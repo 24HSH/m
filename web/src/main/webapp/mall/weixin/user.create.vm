@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>创建成员</title>
+		#ICON()
+        #CSSM(["weui"])
+		#UA()
+	</head>
+	<body>
+		<div class="weui_cells_title">创建成员</div>
+		<div class="weui_cells weui_cells_form">
+			<form method="POST">
+    			<div class="weui_cell">
+                    <div class="weui_cell_hd"><label class="weui_label">UserID</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input" type="text" name="user.userId" placeholder="请输入成员UserID"/>
+                    </div>
+                </div>
+    			<div class="weui_cell">
+                    <div class="weui_cell_hd"><label class="weui_label">名称</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input" type="text" name="user.name" placeholder="请输入成员名称"/>
+                    </div>
+                </div>
+				<div class="weui_cell">
+                    <div class="weui_cell_hd"><label class="weui_label">部门</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+						<select class="weui_input" name="user.department">
+							#foreach($department in $!{departmentList})
+							<option value="$!{department.id}">$!{department.name}</option>
+							#end
+                        </select>
+                    </div>
+                </div>
+				<div class="weui_cell">
+                    <div class="weui_cell_hd"><label class="weui_label">手机</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input" type="text" name="user.mobile" placeholder="请输入手机号码"/>
+                    </div>
+                </div>
+				<div class="weui_cell">
+                    <div class="weui_cell_hd"><label class="weui_label">邮箱</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input" type="text" name="user.email" placeholder="请输入邮箱"/>
+                    </div>
+                </div>
+				<div class="weui_cell">
+                    <div class="weui_cell_hd"><label class="weui_label">微信号</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input" type="text" name="user.weixinId" placeholder="请输入微信号，不是微信的名字"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+		<div class="weui_btn_area">
+            <a class="weui_btn weui_btn_primary" href="javascript:save();" id="showTooltips">确认</a>
+        </div>
+		
+		#parse("/mall/framework/common/loadingToast.vm")
+		#parse("/mall/framework/common/toast.vm")
+
+		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
+		#JSM(["zeptojs"])
+		#JS_ENV_VAL()
+		<script type="text/javascript" src="$!{env.imgUrl}/js/weixin/user.create.js"></script>
+    </body>
+</html>

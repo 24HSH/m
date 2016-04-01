@@ -1,0 +1,64 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://mall}mall$framework"
+		extends="struts-default" namespace="/framework">
+
+		<result-types>
+			<result-type name="velocity" class="org.apache.struts2.dispatcher.VelocityResult" default="true" />
+			<result-type name="json" class="com.wideka.mall.framework.struts.result.JSONResult" />
+		</result-types>
+
+		<interceptors>
+			<interceptor name="exception" class="com.wideka.mall.framework.struts.interceptor.ExceptionInterceptor">
+				<param name="ignoreExceptions">java.net.SocketException</param>
+				<param name="logEnabled">true</param>
+				<param name="logLevel">error</param>
+			</interceptor>
+
+			<interceptor name="decodeParams" class="com.wideka.mall.framework.struts.interceptor.DecodeParametersInterceptor" />
+
+			<!-- interceptor name="set-app-context" class="com.wideka.mall.framework.struts.interceptor.SetAppContextInterceptor" 
+				/ -->
+
+			<interceptor name="oauth2" class="oauth2Interceptor" />
+			<interceptor name="authentication" class="authenticationInterceptor" />
+			<interceptor name="actionMonitor" class="actionMonitorInterceptor" />
+			
+			<interceptor-stack name="oauth2Stack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="oauth2" />
+			</interceptor-stack>
+			
+			<interceptor-stack name="authenticationStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="decodeParams" />
+				<interceptor-ref name="authentication" />
+				<!-- 操作日志 -->
+				<interceptor-ref name="actionMonitor" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="defaultStack" />
+
+		<global-results>
+			<result name="401">/mall/framework/error/401.vm</result>
+			<result name="440">/mall/framework/error/440.vm</result>
+			<result name="authorization_error">/mall/framework/error/authorization_error.vm</result>
+			<result name="exception">/mall/framework/error/error_ok.vm</result>
+			<result name="isNotExsit">/mall/framework/error/isNotExsit.vm</result>
+			<result name="jsonresult" type="json"></result>
+			<result name="oauth2" type="redirectAction">
+				<param name="actionName">shop/index</param>
+			</result>
+			<result name="resourceResult">/mall/framework/common/resourceResult.vm</result>
+			<result name="resultMessage">/mall/framework/common/resultMessage.vm</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="exception" />
+		</global-exception-mappings>
+
+	</package>
+</struts>

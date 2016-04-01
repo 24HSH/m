@@ -1,0 +1,31 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://mall}mall$trade"
+		extends="{http://mall}mall$framework" namespace="/trade">
+
+		<action name="create" class="tradeAction" method="create">
+			<result name="success" type="redirect">${env.appUrl}/pay/index.htm?tradeNo=${tradeNo}</result>
+		</action>
+		
+		<action name="stats" class="tradeAction" method="stats"></action>
+		
+		<action name="list" class="tradeAction" method="list">
+			<result name="success">/mall/trade/list.vm</result>
+		</action>
+		
+		<action name="cancel" class="tradeAction" method="cancel"></action>
+		
+		<action name="detail" class="tradeAction" method="detail">
+			<result name="success">/mall/trade/detail.vm</result>
+		</action>
+		
+		<action name="refund" class="tradeAction" method="refund">
+			<result name="success">/mall/trade/refund.vm</result>
+		</action>
+		
+		<action name="sign" class="tradeAction" method="sign"></action>
+		
+	</package>
+</struts>

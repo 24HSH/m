@@ -1,0 +1,42 @@
+package com.wideka.mall.trade.dao.impl;
+
+import java.util.List;
+
+import com.wideka.mall.api.trade.bo.Trade;
+import com.wideka.mall.framework.dao.impl.BaseDaoImpl;
+import com.wideka.mall.trade.dao.ITradeDao;
+
+/**
+ * 
+ * @author JiakunXu
+ * 
+ */
+public class TradeDaoImpl extends BaseDaoImpl implements ITradeDao {
+
+	@Override
+	public Long createTrade(Trade trade) {
+		return (Long) getSqlMapClientTemplate().insert("trade.createTrade", trade);
+	}
+
+	@Override
+	public int getTradeCount(Trade trade) {
+		return (Integer) getSqlMapClientTemplate().queryForObject("trade.getTradeCount", trade);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Trade> getTradeList(Trade trade) {
+		return (List<Trade>) getSqlMapClientTemplate().queryForList("trade.getTradeList", trade);
+	}
+
+	@Override
+	public Trade getTrade(Trade trade) {
+		return (Trade) getSqlMapClientTemplate().queryForObject("trade.getTrade", trade);
+	}
+
+	@Override
+	public int updateTrade(Trade trade) {
+		return getSqlMapClientTemplate().update("trade.updateTrade", trade);
+	}
+
+}

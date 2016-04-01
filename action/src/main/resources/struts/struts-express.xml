@@ -1,0 +1,37 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://mall}mall$express"
+		extends="{http://mall}mall$framework" namespace="/express">
+
+		<action name="index" class="expressAction" method="index">
+			<result name="success">/mall/express/index.vm</result>
+		</action>
+		
+		<action name="ship" class="expressAction" method="ship">
+			<result name="success">/mall/express/ship.vm</result>
+		</action>
+		
+		<action name="waybill" class="expressAction" method="waybill">
+			<result name="success">/mall/express/waybill.vm</result>
+		</action>
+		
+		<action name="rate" class="expressAction" method="rate">
+			<result name="success">/mall/express/rate.vm</result>
+		</action>
+		
+		<action name="time" class="expressAction" method="time">
+			<result name="success">/mall/express/time.vm</result>
+		</action>
+		
+		<action name="store" class="expressAction" method="store">
+			<result name="success">/mall/express/store.vm</result>
+		</action>
+		
+		<action name="range" class="expressAction" method="range">
+			<result name="success">/mall/express/range.vm</result>
+		</action>
+		
+	</package>
+</struts>

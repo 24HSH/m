@@ -1,0 +1,13 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://mall}mall$member"
+		extends="{http://mall}mall$framework" namespace="/member">
+
+		<action name="index" class="memberAction" method="index">
+			<result name="success">/mall/member/index.vm</result>
+		</action>
+		
+	</package>
+</struts>

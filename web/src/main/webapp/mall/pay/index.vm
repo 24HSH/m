@@ -1,0 +1,177 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+		<div class="center sliding">支付</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="pay.index" class="page no-tabbar">
+		<!-- Scrollable page content-->
+		<div class="page-content">
+			<div class="list-block">
+				<ul>
+					<li>
+						<div class="item-content">
+							<div class="item-media"><i class="iconfont icon-text" style="font-size: 20px;"></i></div>
+							<div class="item-inner" style="font-size: 12px;">
+								<div class="item-title">
+									您于 $!{trade.createDate} 下的订单<br />
+									请在 59分59秒 内付款，超时订单将自动取消。
+								</div>
+							</div>
+						</div>
+					</li>
+                </ul>
+            </div>
+			<div class="list-block">
+				<ul>
+					<li>
+						#if($!{trade.type} == 'check')
+						<a href="$!{env.appUrl}/user/address.htm?tradeNo=$!{tradeNo}" class="item-link item-content" data-ignore-cache="true">
+						#else
+						<div class="item-content">
+						#end
+							<div class="item-media"><i class="iconfont icon-location" style="font-size: 20px;"></i></div>
+							<div class="item-inner" style="font-size: 14px;">
+								<div class="item-title">
+									收货人：$!{trade.receiverName}<span style="float: right;">$!{trade.receiverTel}</span><br />
+									收货地址：$!{trade.receiverProvince}$!{trade.receiverCity}$!{trade.receiverArea}$!{trade.receiverAddress}
+								</div>
+							</div>
+						#if($!{trade.type} == 'check')
+						</a>
+						#else
+						</div>
+						#end
+					</li>
+				</ul>
+            </div>
+			<div class="list-block media-list" style="font-size: 15px;">
+				<ul>
+					<li>
+						<div class="item-content">
+							<div class="item-inner" style="display: inherit;">
+								<div class="item-title" style="font-weight: 400;">店铺：好社惠</div>
+							</div>
+						</div>
+					</li>
+					#foreach($order in $!{trade.orderList})
+					<li>
+						<div class="item-content">
+							<div class="item-media" style="padding-top: 7px; padding-bottom: 8px;">
+								<img src="$!{env.imgUrl}/image/item/detail-3.jpg" style="width: 50px;"></img>
+							</div>
+							<div class="item-inner">
+								<div class="item-title-row" style="margin-top: 3px;">
+									<div class="item-title" style="font-weight: 400;">$!{order.itemName}</div>
+									<div class="item-after">￥$!formatUtil.getAmountFormat($!{order.price})</div>
+								</div>
+								<div class="item-title-row" style="margin-top: 3px;">
+									<div class="item-subtitle" style="font-size: 13px; color: #8e8e93;">$!{order.propertiesName}</div>
+									<div class="item-after">×$!{order.quantity}</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					#end
+					<li>
+						<div class="item-content">
+							<div class="item-inner" style="display: inherit;">
+								<div class="item-title" style="font-weight: 400;">运费</div>
+								<div class="item-after">￥$!formatUtil.getAmountFormat($!{trade.postage})</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="item-content">
+							<div class="item-inner" style="display: inherit;">
+								#if($!{trade.type} == 'check')
+								<div class="item-input">
+									<input type="text" style="font-size: 13px;" id="pay_index_input_remark" placeholder="给卖家留言..." />
+								</div>
+								#else
+								<div class="item-title" style="font-weight: 400; font-size: 13px;">
+									买家留言：#if($!stringUtil.isNotEmpty($!{trade.receiverRemark})) $!{trade.receiverRemark} #else 无 #end
+								</div>
+								#end
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="item-content">
+							<div class="item-inner" style="display: inherit;">
+								<div class="item-title" style="font-weight: 400;">合计</div>
+								<div class="item-after" style="color: #ff5500;">￥$!formatUtil.getAmountFormat($!{trade.price})</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+            </div>
+			<div class="list-block" style="font-size: 15px;">
+				<ul>
+					<li>
+						#if($!{trade.type} == 'check')
+						<a href="#" class="item-link item-content">
+						#else
+						<div class="item-content">
+						#end
+							<div class="item-inner">
+								<div class="item-title">优惠</div>
+								<div class="item-after">使用优惠</div>
+							</div>
+						#if($!{trade.type} == 'check')
+						</a>
+						#else
+						</div>
+						#end
+					</li>
+				</ul>
+            </div>
+			<div class="list-block" style="font-size: 15px;">
+				<ul>
+					<li>
+						<div class="item-content">
+							<div class="item-inner">
+								<div class="item-title">短信通知收件人</div>
+								<div class="item-after">
+									<label class="label-switch">
+                                        <input type="checkbox" checked></input>
+										<div class="checkbox"></div>
+									</label>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+            </div>
+			<div class="list-block" style="font-size: 15px;">
+				<ul>
+					<li>
+						<div class="item-content">
+							<div class="item-inner">
+								<div class="item-title" style="width: 100%; text-align: center;">
+									<div>￥$!formatUtil.getAmountFormat($!{trade.tradePrice}) + ￥$!formatUtil.getAmountFormat($!{trade.postage}) 运费</div>
+									<div style="font-size: 16px; color: #ff5500;">需付：￥$!formatUtil.getAmountFormat($!{trade.price})</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+            </div>
+			<div class="content-block">
+				<p><a href="javascript:pay_index_pay();" class="button button-big button-fill weui_btn_primary">微信安全支付</a></p>
+            </div>
+			
+			<form id="pay/index/wxpay" action="$!{env.appUrl}/wxpay/pay.htm" method="POST" class="ajax-submit">
+				<input type="hidden" name="tradeNo" value="$!{tradeNo}"></input>
+				<input type="hidden" id="pay_index_wxpay_remark" name="remark"></input>
+            </form>
+        </div>
+    </div>
+</div>
