@@ -1,0 +1,24 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://mall}mall$portal"
+		extends="{http://mall}mall$framework" namespace="/">
+
+		<!-- 登陆首页 -->
+		<action name="index" class="portalAction" method="index">
+			<result name="success">/mall/portal/index.vm</result>
+		</action>
+		
+		<action name="home" class="portalAction" method="home">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/portal/home.vm</result>
+		</action>
+		
+		<action name="homepage" class="portalAction" method="homepage">
+			<interceptor-ref name="oauth2Stack" />
+			<result name="success">/mall/portal/homepage.vm</result>
+		</action>
+		
+	</package>
+</struts>

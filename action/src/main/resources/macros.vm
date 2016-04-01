@@ -1,0 +1,169 @@
+#macro(JS_ENV_VAL)
+	<script type="text/javascript">
+		var appUrl = '$!{env.appUrl}';
+		var imgUrl = '$!{env.imgUrl}';
+		var pageSize = $!{limit};
+		var height = 400;
+		var rowIndex;
+	</script>
+#end
+
+#macro(JSM $libs)
+	#foreach ($key in $libs)
+		#if($key == 'angular')
+			<script src="$!{env.imgUrl}/angular/angular.min.js"></script>
+		#elseif($key == 'bootstrap')
+			<script src="$!{env.imgUrl}/bootstrap/js/bootstrap.min.js"></script>
+		#elseif($key == 'bootstrap.table')
+			<script src="$!{env.imgUrl}/bootstrap.table/bootstrap-table.min.js"></script>
+		#elseif($key == 'bootstrap.table.editable')
+			<script src="$!{env.imgUrl}/bootstrap.table/extensions/editable/bootstrap-table-editable.min.js"></script>
+		#elseif($key == 'bootstrap3.editable')
+			<script src="$!{env.imgUrl}/bootstrap3.editable/js/bootstrap-editable.min.js"></script>
+		#elseif($key == 'common')
+			<script src="$!{env.imgUrl}/js/common.js"></script>
+		#elseif($key == 'framework7')
+			<script src="$!{env.imgUrl}/framework7/js/framework7.min.js"></script>
+		#elseif($key == 'jquery')
+			<script src="$!{env.imgUrl}/jquery/jquery-1.12.1.min.js"></script>
+		#elseif($key == 'jquery.citytools')
+			<script src="$!{env.imgUrl}/jquery.citytools/jquery.citytools.min.js"></script>
+		#elseif($key == 'jquery.cookie')
+			<script src="$!{env.imgUrl}/jquery.cookie/jquery.cookie.js"></script>
+		#elseif($key == 'jquery.lazyload')
+			<script src="$!{env.imgUrl}/jquery.lazyload/jquery.lazyload.min.js"></script>
+		#elseif($key == 'weixin')
+			<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		#elseif($key == 'zeptojs')
+			<script src="$!{env.imgUrl}/zeptojs/zepto.min.js"></script>
+		#end
+	#end
+#end
+
+#macro(CSSM $libs)
+	#foreach ($key in $libs)
+		#if($key == 'bootstrap')
+			<link rel="stylesheet" href="$!{env.imgUrl}/bootstrap/css/bootstrap.min.css" />
+			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+                <script src="$!{env.imgUrl}/bootstrap/js/html5shiv.min.js"></script>
+                <script src="$!{env.imgUrl}/bootstrap/js/respond.min.js"></script>
+            <![endif]-->
+		#elseif($key == 'bootstrap.table')
+			<link rel="stylesheet" href="$!{env.imgUrl}/bootstrap.table/bootstrap-table.min.css" />
+		#elseif($key == 'bootstrap3.editable')
+			<link rel="stylesheet" href="$!{env.imgUrl}/bootstrap3.editable/css/bootstrap-editable.css" />
+		#elseif($key == 'font-awesome')
+			<link rel="stylesheet" href="$!{env.imgUrl}/font-awesome/css/font-awesome.min.css" />
+		#elseif($key == 'framework7')
+			<link rel="stylesheet" href="$!{env.imgUrl}/framework7/css/framework7.ios.min.css" />
+			<link rel="stylesheet" href="$!{env.imgUrl}/framework7/css/framework7.ios.colors.min.css" />
+		#elseif($key == 'iconfont')
+			<link rel="stylesheet" href="$!{env.imgUrl}/iconfont/iconfont.css" />
+		#elseif($key == 'nav')
+			<link rel="stylesheet" href="$!{env.imgUrl}/css/nav/nav-global.css" />
+		#elseif($key == 'weui')
+			<link rel="stylesheet" href="$!{env.imgUrl}/weui/weui.min.css" />
+		#end
+	#end
+#end
+
+#macro(ICON)
+	<link rel="icon" href="$!{env.imgUrl}/image/favicon/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="$!{env.imgUrl}/image/favicon/favicon.ico" type="image/x-icon" />
+#end
+
+#macro(UA)
+	<!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-68651304-3', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+#end
+
+#macro(ShowWeixinJSBridge $libs)
+	#foreach ($key in $libs)
+		#if($key == 'menu')
+        	<script type="text/javascript">
+                function onBridgeReady1() {
+                	WeixinJSBridge.call('showOptionMenu');
+                }
+                
+                if (typeof WeixinJSBridge == "undefined") {
+                	if (document.addEventListener) {
+                		document.addEventListener('WeixinJSBridgeReady', onBridgeReady1, false);
+                	} else if (document.attachEvent) {
+                		document.attachEvent('WeixinJSBridgeReady', onBridgeReady1);
+                		document.attachEvent('onWeixinJSBridgeReady', onBridgeReady1);
+                	}
+                } else {
+                	onBridgeReady1();
+                }
+        	</script>
+		#elseif($key == 'toolbar')
+			<script type="text/javascript">
+                function onBridgeReady2() {
+                	WeixinJSBridge.call('showToolbar');
+                }
+                
+                if (typeof WeixinJSBridge == "undefined") {
+                	if (document.addEventListener) {
+                		document.addEventListener('WeixinJSBridgeReady', onBridgeReady2, false);
+                	} else if (document.attachEvent) {
+                		document.attachEvent('WeixinJSBridgeReady', onBridgeReady2);
+                		document.attachEvent('onWeixinJSBridgeReady', onBridgeReady2);
+                	}
+                } else {
+                	onBridgeReady2();
+                }
+        	</script>
+		#end
+	#end
+#end
+
+#macro(HideWeixinJSBridge $libs)
+	#foreach ($key in $libs)
+		#if($key == 'menu')
+        	<script type="text/javascript">
+                function onBridgeReady1() {
+                	WeixinJSBridge.call('hideOptionMenu');
+                }
+                
+                if (typeof WeixinJSBridge == "undefined") {
+                	if (document.addEventListener) {
+                		document.addEventListener('WeixinJSBridgeReady', onBridgeReady1, false);
+                	} else if (document.attachEvent) {
+                		document.attachEvent('WeixinJSBridgeReady', onBridgeReady1);
+                		document.attachEvent('onWeixinJSBridgeReady', onBridgeReady1);
+                	}
+                } else {
+                	onBridgeReady1();
+                }
+        	</script>
+		#elseif($key == 'toolbar')
+			<script type="text/javascript">
+                function onBridgeReady2() {
+                	WeixinJSBridge.call('hideToolbar');
+                }
+                
+                if (typeof WeixinJSBridge == "undefined") {
+                	if (document.addEventListener) {
+                		document.addEventListener('WeixinJSBridgeReady', onBridgeReady2, false);
+                	} else if (document.attachEvent) {
+                		document.attachEvent('WeixinJSBridgeReady', onBridgeReady2);
+                		document.attachEvent('onWeixinJSBridgeReady', onBridgeReady2);
+                	}
+                } else {
+                	onBridgeReady2();
+                }
+        	</script>
+		#end
+	#end
+#end

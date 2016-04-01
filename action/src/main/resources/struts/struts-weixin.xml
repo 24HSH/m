@@ -1,0 +1,154 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://mall}mall$weixin"
+		extends="{http://mall}mall$framework" namespace="/weixin">
+
+		<action name="callback" class="weixinAction" method="callback"></action>
+		
+		<action name="authorize" class="weixinAction" method="authorize">
+			<result name="success">/mall/weixin/authorize.vm</result>
+		</action>
+		
+		<action name="authSucc" class="weixinAction" method="authSucc"></action>
+		
+		<action name="index" class="weixinAction" method="index">
+			<result name="success">/mall/weixin/index.vm</result>
+			<result name="contacts">/mall/weixin/contacts.vm</result>
+			<result name="media">/mall/weixin/media.vm</result>
+			<result name="agent">/mall/weixin/agent.vm</result>
+			<result name="message">/mall/weixin/message.vm</result>
+			<result name="menu">/mall/weixin/menu.vm</result>
+			<result name="auth">/mall/weixin/auth.vm</result>
+			<result name="department">/mall/weixin/department.vm</result>
+			<result name="user">/mall/weixin/user.vm</result>
+			<result name="tag">/mall/weixin/tag.vm</result>
+		</action>
+		
+		<action name="index.framework7" class="weixinAction" method="index">
+			<result name="success">/mall/weixin.framework7/index.vm</result>
+			<result name="contacts">/mall/weixin.framework7/contacts.vm</result>
+			<result name="media">/mall/weixin.framework7/media.vm</result>
+			<result name="agent">/mall/weixin.framework7/agent.vm</result>
+			<result name="message">/mall/weixin.framework7/message.vm</result>
+			<result name="menu">/mall/weixin.framework7/menu.vm</result>
+			<result name="auth">/mall/weixin.framework7/auth.vm</result>
+			<result name="department">/mall/weixin.framework7/department.vm</result>
+			<result name="user">/mall/weixin.framework7/user.vm</result>
+			<result name="tag">/mall/weixin.framework7/tag.vm</result>
+		</action>
+		
+		<action name="department" class="departmentAction" method="department">
+			<result name="success">/mall/weixin/department.vm</result>
+			<result name="create">/mall/weixin/department.create.vm</result>
+			<result name="list">/mall/weixin/department.list.vm</result>
+			<result name="detail">/mall/weixin/department.detail.vm</result>
+		</action>
+		
+		<action name="department.framework7" class="departmentAction" method="department4Framework7">
+			<result name="success">/mall/weixin.framework7/department.vm</result>
+			<result name="create">/mall/weixin.framework7/department.create.vm</result>
+			<result name="list">/mall/weixin.framework7/department.list.vm</result>
+			<result name="detail">/mall/weixin.framework7/department.detail.vm</result>
+		</action>
+		
+		<action name="user" class="userAction" method="user">
+			<result name="success">/mall/weixin/user.vm</result>
+			<result name="create">/mall/weixin/user.create.vm</result>
+			<result name="simpleList">/mall/weixin/user.simple.list.vm</result>
+			<result name="list">/mall/weixin/user.list.vm</result>
+			<result name="invite">/mall/weixin/user.invite.vm</result>
+			<result name="detail">/mall/weixin/user.detail.vm</result>
+		</action>
+		
+		<action name="user.framework7" class="userAction" method="user4Framework7">
+			<result name="success">/mall/weixin.framework7/user.vm</result>
+			<result name="create">/mall/weixin.framework7/user.create.vm</result>
+			<result name="simpleList">/mall/weixin.framework7/user.simple.list.vm</result>
+			<result name="list">/mall/weixin.framework7/user.list.vm</result>
+			<result name="invite">/mall/weixin.framework7/user.invite.vm</result>
+			<result name="detail">/mall/weixin.framework7/user.detail.vm</result>
+		</action>
+		
+		<action name="tag" class="tagAction" method="tag">
+			<result name="success">/mall/weixin/tag.vm</result>
+			<result name="create">/mall/weixin/tag.create.vm</result>
+			<result name="get">/mall/weixin/tag.get.vm</result>
+			<result name="list">/mall/weixin/tag.list.vm</result>
+			<result name="detail">/mall/weixin/tag.detail.vm</result>
+		</action>
+		
+		<action name="tag.framework7" class="tagAction" method="tag4Framework7">
+			<result name="success">/mall/weixin.framework7/tag.vm</result>
+			<result name="create">/mall/weixin.framework7/tag.create.vm</result>
+			<result name="get">/mall/weixin.framework7/tag.get.vm</result>
+			<result name="list">/mall/weixin.framework7/tag.list.vm</result>
+			<result name="detail">/mall/weixin.framework7/tag.detail.vm</result>
+		</action>
+		
+		<action name="media" class="mediaAction" method="media">
+			<result name="success">/mall/weixin/media.vm</result>
+			<result name="material/getCount">/mall/weixin/material.get.count.vm</result>
+			<result name="material/batchGet">/mall/weixin/material.batch.get.vm</result>
+		</action>
+		
+		<action name="media.framework7" class="mediaAction" method="media4Framework7">
+			<result name="success">/mall/weixin/media.vm</result>
+			<result name="material/getCount">/mall/weixin.framework7/material.get.count.vm</result>
+			<result name="material/batchGet">/mall/weixin.framework7/material.batch.get.vm</result>
+		</action>
+		
+		<action name="agent" class="agentAction" method="agent">
+			<result name="success">/mall/weixin/agent.vm</result>
+			<result name="get">/mall/weixin/agent.get.vm</result>
+			<result name="list">/mall/weixin/agent.list.vm</result>
+		</action>
+		
+		<action name="agent.framework7" class="agentAction" method="agent4Framework7">
+			<result name="success">/mall/weixin.framework7/agent.vm</result>
+			<result name="get">/mall/weixin.framework7/agent.get.vm</result>
+			<result name="list">/mall/weixin.framework7/agent.list.vm</result>
+		</action>
+		
+		<action name="message" class="messageAction" method="message">
+			<result name="success">/mall/weixin/message.vm</result>
+			<result name="text">/mall/weixin/message.text.vm</result>
+			<result name="image">/mall/weixin/message.image.vm</result>
+			<result name="voice">/mall/weixin/message.voice.vm</result>
+			<result name="video">/mall/weixin/message.video.vm</result>
+			<result name="file">/mall/weixin/message.file.vm</result>
+			<result name="news">/mall/weixin/message.news.vm</result>
+			<result name="mpnews">/mall/weixin/message.mpnews.vm</result>
+		</action>
+		
+		<action name="message.framework7" class="messageAction" method="message4Framework7">
+			<result name="success">/mall/weixin.framework7/message.vm</result>
+			<result name="text">/mall/weixin.framework7/message.text.vm</result>
+			<result name="image">/mall/weixin.framework7/message.image.vm</result>
+			<result name="voice">/mall/weixin.framework7/message.voice.vm</result>
+			<result name="video">/mall/weixin.framework7/message.video.vm</result>
+			<result name="file">/mall/weixin.framework7/message.file.vm</result>
+			<result name="news">/mall/weixin.framework7/message.news.vm</result>
+			<result name="mpnews">/mall/weixin.framework7/message.mpnews.vm</result>
+		</action>
+		
+		<action name="menu" class="menuAction" method="menu">
+			<result name="success">/mall/weixin/menu.vm</result>
+			<result name="get">/mall/weixin/menu.get.vm</result>
+		</action>
+		
+		<action name="auth" class="authAction" method="auth">
+			<result name="success">/mall/weixin/auth.vm</result>
+			<result name="oauth2">/mall/weixin/auth.oauth2.vm</result>
+			<result name="convert">/mall/weixin/auth.convert.vm</result>
+		</action>
+		
+		<action name="auth.framework7" class="authAction" method="auth4Framework7">
+			<result name="success">/mall/weixin.framework7/auth.vm</result>
+			<result name="oauth2">/mall/weixin.framework7/auth.oauth2.vm</result>
+			<result name="convert">/mall/weixin.framework7/auth.convert.vm</result>
+		</action>
+		
+	</package>
+</struts>

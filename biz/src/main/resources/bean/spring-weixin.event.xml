@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!-- subscribe -->
+	<bean id="eventSubscribeService" class="com.wideka.mall.weixin.service.impl.EventSubscribeServiceImpl">
+		<property name="eventSubscribeDao" ref="eventSubscribeDao" />
+	</bean>
+	<bean id="eventSubscribeDao" class="com.wideka.mall.weixin.dao.impl.EventSubscribeDaoImpl" parent="baseDao" />
+	
+	<!-- location -->
+	<bean id="eventLocationService" class="com.wideka.mall.weixin.service.impl.EventLocationServiceImpl">
+		<property name="eventLocationDao" ref="eventLocationDao" />
+	</bean>
+	<bean id="eventLocationDao" class="com.wideka.mall.weixin.dao.impl.EventLocationDaoImpl" parent="baseDao" />
+	
+	<!-- click -->
+	<bean id="eventClickService" class="com.wideka.mall.weixin.service.impl.EventClickServiceImpl">
+		<property name="eventClickDao" ref="eventClickDao" />
+	</bean>
+	<bean id="eventClickDao" class="com.wideka.mall.weixin.dao.impl.EventClickDaoImpl" parent="baseDao" />
+	
+	<!-- view -->
+	<bean id="eventViewService" class="com.wideka.mall.weixin.service.impl.EventViewServiceImpl">
+		<property name="eventViewDao" ref="eventViewDao" />
+	</bean>
+	<bean id="eventViewDao" class="com.wideka.mall.weixin.dao.impl.EventViewDaoImpl" parent="baseDao" />
+	
+	<!-- scancode -->
+	<bean id="eventScanCodeService" class="com.wideka.mall.weixin.service.impl.EventScanCodeServiceImpl">
+		<property name="eventScanCodeDao" ref="eventScanCodeDao" />
+	</bean>
+	<bean id="eventScanCodeDao" class="com.wideka.mall.weixin.dao.impl.EventScanCodeDaoImpl" parent="baseDao" />
+	
+	<!-- pic -->
+	<bean id="eventPicService" class="com.wideka.mall.weixin.service.impl.EventPicServiceImpl">
+		<property name="eventPicDao" ref="eventPicDao" />
+	</bean>
+	<bean id="eventPicDao" class="com.wideka.mall.weixin.dao.impl.EventPicDaoImpl" parent="baseDao" />
+	
+	<!-- location_select -->
+	<bean id="eventLocationSelectService" class="com.wideka.mall.weixin.service.impl.EventLocationSelectServiceImpl">
+		<property name="eventLocationSelectDao" ref="eventLocationSelectDao" />
+	</bean>
+	<bean id="eventLocationSelectDao" class="com.wideka.mall.weixin.dao.impl.EventLocationSelectDaoImpl" parent="baseDao" />
+	
+	<!-- enter_agent -->
+	<bean id="eventEnterAgentService" class="com.wideka.mall.weixin.service.impl.EventEnterAgentServiceImpl">
+		<property name="eventEnterAgentDao" ref="eventEnterAgentDao" />
+	</bean>
+	<bean id="eventEnterAgentDao" class="com.wideka.mall.weixin.dao.impl.EventEnterAgentDaoImpl" parent="baseDao" />
+	
+	<!-- batch_job_result -->
+	<bean id="eventBatchJobService" class="com.wideka.mall.weixin.service.impl.EventBatchJobServiceImpl">
+		<property name="eventBatchJobDao" ref="eventBatchJobDao" />
+	</bean>
+	<bean id="eventBatchJobDao" class="com.wideka.mall.weixin.dao.impl.EventBatchJobDaoImpl" parent="baseDao" />
+	
+</beans>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>$!{env.companyName}</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		#ICON()
+		#CSSM(["bootstrap"])
+		#UA()
+	</head>
+	<body>
+		<div class="container">
+			<div class="col-md-4 col-md-offset-4">
+    			<div class="modal-header">
+    				<h4 class="modal-title">
+						<span class="glyphicon glyphicon-cloud" aria-hidden="true" style="color: cornflowerblue;"></span>
+					</h4>
+    			</div>
+				<div class="modal-body">
+      				<form class="form-horizontal" role="form" action="$!{env.appUrl}/login.htm" method="POST">
+    					<div class="form-group text-center">
+    						<a class="" id="btn" data-loading-text="正在登录..." href="javascript:submit();">
+								<img alt="Ld-d.png" src="$!{env.imgUrl}/image/weixin/Ld-d.png" width="240" height="50" />
+							</a>
+                        </div>
+          			</form>
+                </div>
+      		</div>
+        </div>
+		
+		#parse("/mall/framework/footer.vm")
+		
+		#JSM(["jquery", "jquery.cookie", "bootstrap"])
+		<script>
+		var appUrl = '$!{env.appUrl}';
+    	var appName = '$!{env.appName}';
+		var domain = '$!{env.domain}';
+        </script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/index.js"></script>
+	</body>
+</html>

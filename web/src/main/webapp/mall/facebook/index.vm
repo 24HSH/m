@@ -1,0 +1,40 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"></div>
+		<div class="center sliding">社区生活</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="facebook.index" class="page">
+		<!-- Scrollable page content-->
+		<div class="page-content">
+			<div class="card facebook-card">
+				<div class="card-header">
+                    <div class="facebook-avatar"><img src="$!{env.imgUrl}/image/facebook/1.jpeg" width="34" height="34"></img></div>
+					<div class="facebook-name">张三</div>
+					<div class="facebook-date">Monday at 2:15 PM</div>
+				</div>
+				<div class="card-content">
+					<div class="card-content-inner">
+						<p>好社惠亭子到社区咯!</p>
+                        <img src="$!{env.imgUrl}/image/ad/LCF_2479.jpg" width="100%"></img>
+						<p class="color-gray">
+							<i class="iconfont icon-appreciate"></i> 100
+							<i class="iconfont icon-comment" style="margin-left: 20px;"></i> 10</p>
+					</div>
+				</div>
+				<div class="card-footer">
+					<a href="#" class="link"><i class="iconfont icon-appreciate" style="font-size: 23px;"></i></a>
+					<a href="#" class="link"><i class="iconfont icon-comment" style="font-size: 23px;"></i></a>
+					<a href="#" class="link"><i class="iconfont icon-share" style="font-size: 23px;"></i></a>
+				</div>
+			</div> 
+        </div>
+    </div>
+</div>

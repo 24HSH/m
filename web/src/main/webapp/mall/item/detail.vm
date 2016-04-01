@@ -1,0 +1,72 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+		<div class="center sliding">商品</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="item.detail" class="page no-tabbar">
+		<!-- Scrollable page content-->
+		<div class="page-content" style="padding-bottom: 50px;">
+			<div class="card" style="margin: 0;">
+				<div valign="bottom" class="color-white no-border">
+					<!-- Slider -->
+					<div class="swiper-container swiper-init" data-pagination=".swiper-pagination-h">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+                                <img src="$!{env.imgUrl}/image/item/detail-1.jpg" width="100%"></img>
+							</div>
+							<div class="swiper-slide">
+								<img src="$!{env.imgUrl}/image/item/detail-2.jpg" width="100%"></img>
+							</div>
+						</div>
+						<div class="swiper-pagination swiper-pagination-h"></div>
+					</div>
+				</div>
+				<div class="card-content">
+					<div class="card-content-inner">
+						<p class="color-gray">特仑苏纯牛奶利乐苗条装250ml×8盒×3提 共24盒</p>
+						<p>
+							生产许可证编号：QS1501 0501 0294<br />
+							产品标准号：GB25190<br />
+							厂名：内蒙古蒙牛乳业(集团)股份有限公司<br />
+							配料表：生牛乳<br />
+							储藏方法：常温密闭保存<br />
+							保质期：180 天<br />
+							净含量: 8x3x250ml
+						</p>
+					</div>
+				</div>
+				<div class="card-footer">
+					<a class="kt_item" href="$!{env.appUrl}/trade/create.htm?type=" data-ignore-cache="true">
+						<div class="kt_price"><b>79.90</b><i> / </i>件</div>
+						<div class="kt_btn"><b>3人团</b></div>
+					</a>
+					<a class="kt_item kt_item_buy" href="$!{env.appUrl}/trade/create.htm?type=" data-ignore-cache="true">
+						<div class="kt_price"><b>135.00</b><i> / </i>件</div>
+						<div class="kt_btn">单独购买</div>
+					</a>
+				</div>
+			</div>
+        </div>
+		
+		<div class="toolbar">
+			<div class="toolbar-inner" style="padding: 0;">
+				<p class="buttons-row" style="width: 100%; margin: 0;">
+					<a href="#" class="button button-big" style="border: 1px solid #d9d9d9; border-right-width: 0px; color: #333;">收藏</a>
+					<a href="javascript:item_detail_cart();" class="button button-big" style="background-color: #ff9402; border: 1px solid #d9d9d9; border-left-width: 0px; border-right-width: 0px; color: #fff;">加入购物车</a>
+					<a href="$!{env.appUrl}/trade/create.htm?type=" class="button button-big" style="background-color: #ff5000; border: 1px solid #d9d9d9; border-left-width: 0px; color: #fff;" data-ignore-cache="true">立即购买</a>
+                </p>
+			</div>
+		</div>
+		
+		<form id="item/detail/cart" action="$!{env.appUrl}/cart/add.htm" method="POST" class="ajax-submit">
+        </form>
+    </div>
+</div>

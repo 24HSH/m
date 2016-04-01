@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="trade.order">
+	
+	<typeAlias alias="order" type="com.wideka.mall.api.trade.bo.Order" />
+
+	<insert id="createOrder4Item" parameterClass="order">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_order
+		  (
+			TRADE_ID,
+			ITEM_ID,
+			ITEM_NAME,
+			SKU_ID,
+			PROPERTIES_NAME,
+			PRICE,
+			`CHANGE`,
+			POINTS,
+			QUANTITY,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  (SELECT #tradeId#,
+			   t.item_id,
+			   t.item_name,
+			   #skuId#,
+			   q.properties_name,
+			   CASE WHEN q.price IS NULL THEN t.price ELSE q.price END,
+			   0,
+			   0,
+			   1,
+			   'U',
+			   NOW(),
+			   #modifyUser#,
+			   NOW(),
+			   #modifyUser#
+		  FROM basis_tb_item t
+		  LEFT JOIN(
+		SELECT qq.item_id, qq.properties_name, qq.price
+		  FROM basis_tb_item_sku qq
+		 WHERE qq.state = 'U'
+		   AND qq.sku_id = #skuId#) q ON t.item_id = q.item_id
+		 WHERE t.state = 'U'
+		   AND t.shop_id = #shopId#
+		   AND t.item_id = #itemId#
+		  )
+	]]>
+		<selectKey resultClass="java.lang.Long" keyProperty="orderId">
+		<![CDATA[
+			SELECT LAST_INSERT_ID()
+		]]>
+		</selectKey>
+	</insert>
+		
+	<insert id="createOrder4Cart" parameterClass="order">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_order
+		  (
+			TRADE_ID,
+			ITEM_ID,
+			ITEM_NAME,
+			SKU_ID,
+			PROPERTIES_NAME,
+			PRICE,
+			`CHANGE`,
+			POINTS,
+			QUANTITY,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  (SELECT #tradeId#,
+			   t.item_id,
+			   p.item_name,
+			   t.sku_id,
+			   q.properties_name,
+			   CASE WHEN k.points_id IS NULL THEN CASE WHEN q.price IS NULL THEN p.price ELSE q.price END ELSE 0 END,
+			   0,
+			   IFNULL(k.points, 0),
+			   t.quantity,
+			   'U',
+			   NOW(),
+			   #modifyUser#,
+			   NOW(),
+			   #modifyUser#
+		  FROM basis_tb_cart t
+		  LEFT JOIN basis_tb_item p ON t.item_id = p.item_id
+		  LEFT JOIN(
+		SELECT qq.item_id, qq.sku_id, qq.properties_name, qq.price
+		  FROM basis_tb_item_sku qq
+		 WHERE qq.state = 'U') q ON t.sku_id = q.sku_id
+		  LEFT JOIN(
+		SELECT kk.points_id, kk.points
+		  FROM basis_tb_points kk
+		 WHERE kk.state = 'U'
+		   AND kk.shop_id = #shopId#
+				 ) k ON t.points_id = k.points_id
+		 WHERE t.state = 'U'
+		   AND p.state = 'U'
+		   AND p.shop_id = #shopId#
+		   AND t.cart_id  IN
+	]]>
+		<iterate property="codes" open="(" close=")" conjunction=",">#codes[]#</iterate>
+	<![CDATA[
+		  )
+	]]>
+	</insert>
+	
+	<select id="getOrderList" parameterClass="order" resultClass="order">
+	<![CDATA[
+		SELECT t.order_id AS orderId,
+			   t.item_name AS itemName,
+			   t.properties_name AS propertiesName,
+			   t.quantity,
+			   t.price,
+			   t.points,
+			   t.change,
+			   t.item_id AS itemId,
+			   t.sku_id AS skuId,
+			   CASE WHEN q.stock IS NULL THEN p.stock ELSE q.stock END AS stock
+		  FROM basis_tb_order t
+		  LEFT JOIN basis_tb_item p ON t.item_id = p.item_id
+		  LEFT JOIN(
+		SELECT qq.sku_id, qq.stock
+		  FROM basis_tb_item_sku qq
+		 WHERE qq.state= 'U') q ON t.sku_id = q.sku_id
+		 WHERE p.item_id is not null
+		   AND t.state = 'U'
+		   AND p.state = 'U'
+		   AND p.shop_id = #shopId#
+		   AND t.trade_id = #tradeId#
+	]]>
+	</select>
+	
+	<select id="getOrder" parameterClass="order" resultClass="order">
+	<![CDATA[
+		SELECT t.order_id AS orderId,
+			   t.item_name AS itemName,
+			   t.properties_name AS propertiesName,
+			   t.quantity,
+			   t.price,
+			   t.points,
+			   t.change
+		  FROM basis_tb_order t
+		 WHERE t.state = 'U'
+		   AND t.trade_id = #tradeId#
+		   AND t.order_id = #orderId#
+	]]>
+	</select>
+	
+</sqlMap>

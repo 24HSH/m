@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>好社惠</title>
+		#ICON()
+		#CSSM(["framework7", "iconfont"])
+		<link rel="stylesheet" href="$!{env.imgUrl}/css/portal/homepage.css" />
+		#UA()
+	</head>
+	<body>
+		<!-- Views -->
+		<div class="views tabs toolbar-through">
+			<!-- Your main view, should have "view-main" class -->
+			<div id="view-1" class="view view-main tab active" data-page="index-1">
+				<!-- Top Navbar-->
+				<div class="navbar" style="background: #ff5500;">
+					<div class="navbar-inner">
+						<!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+						<div class="center sliding" style="color: white;">好社惠－你身边的微小店</div>
+					</div>
+				</div>
+				<!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+				<div class="pages navbar-through toolbar-through">
+					<!-- Page, "data-page" contains page name -->
+					<div data-page="index-1" class="page">
+						<!-- Scrollable page content -->
+						<div class="page-content">
+							 <!-- Slider -->
+							<div class="swiper-container swiper-init" data-pagination=".swiper-pagination-h">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+                                        <img src="$!{env.imgUrl}/image/portal/ad-1.png" width="100%"></img>
+									</div>
+								</div>
+								<div class="swiper-pagination swiper-pagination-h"></div>
+							</div>
+							
+							<div class="" style="background-color:#ffffff;">
+								<ul class="mui-flex" style="padding: 0;">
+									<li class="cell" style="">
+										<a class="component type3 tab-link" href="#view-2" id="view_2_click" style="padding:4px" 0px="" 0px;="">
+                                            <img class="" src="$!{env.imgUrl}/image/portal/lxsp.png" width="36" height="36"></img>冷鲜食品
+										</a>
+									</li>
+									<li class="cell" style="">
+										<a class="component type3" href="" style="padding:4px" 0px="" 0px;="">
+                                            <img class="" src="$!{env.imgUrl}/image/portal/lyfs.png" width="36" height="36"></img>粮油副食
+										</a>
+									</li>
+									<li class="cell" style="">
+                                        <a class="component type3 external" href="$!{env.appUrl}/express/index.htm" style="padding:4px" 0px="" 0px;="">
+                                            <img class="" src="$!{env.imgUrl}/image/portal/kdsf.png" width="36" height="36"></img>快递收发
+                                        </a>
+									</li>
+									<li class="cell" style="">
+                                        <a class="component type3" href="" style="padding:4px" 0px="" 0px;="">
+                                            <img class="" src="$!{env.imgUrl}/image/portal/shjf.png" width="36" height="36"></img>生活缴费
+                                        </a>
+									</li>
+								</ul>
+							</div>
+							
+							<div class="row no-gutter">
+                                <div class="col-50"><img src="$!{env.imgUrl}/image/portal/ad-4.png" width="100%"></img></div>
+								<div class="col-50"><img src="$!{env.imgUrl}/image/portal/ad-5.png" width="100%"></img></div>
+                            </div>
+							<div class="list-block">
+								<img src="$!{env.imgUrl}/image/portal/ad-2.jpg" width="100%"></img>
+							</div>
+							<div class="list-block">
+								<img src="$!{env.imgUrl}/image/portal/ad-3.jpg" width="100%"></img>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+			<div id="view-2" class="view tab">
+				<div class="navbar"><div class="navbar-inner"></div></div>
+				<div class="pages navbar-through toolbar-through">
+                    <div class="page"></div>
+				</div>
+            </div>
+			
+			<div id="view-3" class="view tab">
+				<div class="navbar"><div class="navbar-inner"></div></div>
+				<div class="pages navbar-through toolbar-through">
+					<div class="page"></div>
+                </div>
+            </div>
+			
+			<div id="view-4" class="view tab">
+				<div class="navbar"><div class="navbar-inner"></div></div>
+				<div class="pages navbar-through toolbar-through">
+					<div class="page"></div>
+                </div>
+            </div>
+			
+			<div id="view-5" class="view tab">
+				<div class="navbar"><div class="navbar-inner"></div></div>
+				<div class="pages navbar-through toolbar-through">
+					<div class="page"></div>
+                </div>
+            </div>
+			
+			<div class="toolbar tabbar tabbar-labels">
+				<div class="toolbar-inner">
+					<a id="href-1" href="#view-1" class="tab-link active">
+						<i class="icon iconfont icon-home" style="font-size: 25px;"></i>
+						<span class="tabbar-label">首页</span>
+                    </a>
+                    <a id="href-2" href="#view-2" class="tab-link">
+                        <i class="icon iconfont icon-goods" style="font-size: 25px;"></i>
+						<span class="tabbar-label">团一团</span>
+                    </a>
+					<a id="href-3" href="#view-3" class="tab-link">
+                        <i class="icon iconfont icon-group" style="font-size: 25px;">
+							<span class="badge bg-red">1</span>
+						</i>
+						<span class="tabbar-label">社区</span>
+                    </a>
+					<a id="href-4" href="#view-4" class="tab-link">
+                        <i class="icon iconfont icon-cart" style="font-size: 25px;"></i>
+						<span class="tabbar-label">购物车</span>
+                    </a>
+					<a id="href-5" href="#view-5" class="tab-link">
+                        <i class="icon iconfont icon-my" style="font-size: 25px;"></i>
+						<span class="tabbar-label">会员中心</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+		
+		#JSM(["framework7", "weixin", "jquery", "jquery.citytools", "common"])
+		#JS_ENV_VAL()
+		<script src="$!{env.imgUrl}/js/portal/homepage.js"></script>
+		<script src="$!{env.imgUrl}/js/cart/index.js?t=20160316" async="async"></script>
+		<script src="$!{env.imgUrl}/js/item/detail.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/member/index.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/pay/index.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/trade/list.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/trade/refund.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/user/address.js" async="async"></script>
+		<script>
+        wx.config({
+        			debug : false,
+        			appId : '$!{ticket.appId}',
+        			timestamp : $!{ticket.timestamp},
+        			nonceStr : '$!{ticket.nonceStr}',
+        			signature : '$!{ticket.signature}',
+        			jsApiList : ['onMenuShareTimeline', 'onMenuShareAppMessage']
+        		});
+        
+        wx.ready(function() {
+            wx.onMenuShareTimeline({
+                title: '好社惠365社区便利亭', // 分享标题
+                link: '$!{env.appUrl}/homepage.htm', // 分享链接
+                imgUrl: '$!{env.imgUrl}/image/portal/logo.jpg', // 分享图标
+                success: function () { 
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () { 
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+			
+        	wx.onMenuShareAppMessage({
+        		title : '好社惠365社区便利亭', // 分享标题
+        		desc : '为百姓日常生活消费提供支付便利,满足百姓日常生活中的消费账单如缴纳水电煤电话、手机费充值、信用卡还款转账、购买航空机票等交易需求的同时，为社区居民提供从工厂到消费者的最安全、最实惠、最便捷的社区直营奶站到家服务。', // 分享描述
+        		link : '$!{env.appUrl}/homepage.htm', // 分享链接
+        		imgUrl : '$!{env.imgUrl}/image/portal/logo.jpg', // 分享图标
+        		type : '', // 分享类型,music、video或link，不填默认为link
+        		dataUrl : '', // 如果type是music或video，则要提供数据链接，默认为空
+        		success : function() {
+        			// 用户确认分享后执行的回调函数
+        		},
+        		cancel : function() {
+        			// 用户取消分享后执行的回调函数
+        		}
+        	});
+		});
+        </script>
+	</body>
+</html>  

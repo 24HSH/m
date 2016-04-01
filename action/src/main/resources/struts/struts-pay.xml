@@ -1,0 +1,29 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://mall}mall$pay"
+		extends="{http://mall}mall$framework" namespace="/pay">
+		
+		<!-- 支付首页 -->
+		<action name="index" class="payAction" method="index">
+			<result name="success">/mall/pay/index.vm</result>
+		</action>
+		
+	</package>
+	
+	<!-- alipay 支付 -->
+	<package name="{http://mall}mall$alipay"
+		extends="{http://mall}mall$framework" namespace="/alipay">
+		<action name="pay" class="payAction" method="pay"></action>
+	</package>
+	
+	<!-- wx 支付 -->
+	<package name="{http://mall}mall$wxpay"
+		extends="{http://mall}mall$framework" namespace="/wxpay">
+		<action name="pay" class="payAction" method="pay"></action>
+		<action name="refund" class="payAction" method="refund"></action>
+		<action name="notify" class="payAction" method="wxNotify"></action>
+	</package>
+
+</struts>

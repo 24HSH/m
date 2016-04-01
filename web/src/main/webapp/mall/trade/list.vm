@@ -1,0 +1,101 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+		<div class="center sliding">订单</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="trade.list" class="page no-tabbar">
+		<!-- Scrollable page content-->
+		<div class="page-content pull-to-refresh-content infinite-scroll">
+			<div class="pull-to-refresh-layer">
+				<div class="preloader"></div>
+				<div class="pull-to-refresh-arrow"></div>
+			</div>
+			
+            <div class="more"></div>
+			
+			#foreach($trade in $!{tradeList})
+			<div class="list-block media-list" style="font-size: 14px;">
+				<ul>
+					<li>
+						<div class="item-content">
+							<div class="item-inner" style="display: inherit;">
+								<div class="item-title" style="font-weight: 400;">订单号：$!{trade.tradeNo}</div>
+								<div class="item-after">
+									#if($!{trade.type} == 'check' || $!{trade.type} == 'topay')
+									<a href="javascript:trade_list_cancel('$!{trade.tradeNo}');">取消</a>
+									#end
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="item-content">
+							#set($order = $!{trade.orderList.get(0)})
+							<div class="item-media" style="padding-top: 7px; padding-bottom: 8px;">
+								<img src="$!{env.imgUrl}/image/item/detail-3.jpg" style="width: 50px;"></img>
+							</div>
+							<div class="item-inner">
+								<div class="item-title-row" style="margin-top: 3px;">
+									<div class="item-title" style="font-weight: 400;">$!{order.itemName}</div>
+									<div class="item-after">￥$!formatUtil.getAmountFormat($!{order.price})</div>
+								</div>
+								<div class="item-title-row" style="margin-top: 3px;">
+									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">$!{order.propertiesName}</div>
+									<div class="item-after">×$!{order.quantity}</div>
+								</div>
+							</div>
+                        </div>
+					</li>
+					<li>
+						#if($!{trade.type} == 'check' || $!{trade.type} == 'topay')
+						<a href="$!{env.appUrl}/pay/index.htm?tradeNo=$!{trade.tradeNo}" class="item-link item-content" style="min-height: 0;" data-ignore-cache="true">
+						#else
+						<a href="$!{env.appUrl}/trade/detail.htm?tradeNo=$!{trade.tradeNo}" class="item-link item-content" style="min-height: 0;" data-ignore-cache="true">
+						#end
+							<div class="item-inner" style="display: inherit; min-height: 0; text-align: center; padding-top: 7px; padding-bottom: 6px;">
+								<div class="item-title" style="font-weight: 400; font-size: 13px; width: 100%;">查看全部$!{trade.orderList.size()}件商品</div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<div class="item-content">
+							<div class="item-inner" style="display: inherit;">
+                                <div class="item-title" style="font-weight: 400;">总价：<span style="color: #ff5500;">￥$!formatUtil.getAmountFormat($!{trade.price})</span></div>
+								<div class="item-after">
+									#if($!{trade.type} == 'check' || $!{trade.type} == 'topay')
+									<a href="$!{env.appUrl}/pay/index.htm?tradeNo=$!{trade.tradeNo}" class="button color-orange" data-ignore-cache="true">付款</a>
+									#elseif($!{trade.type} == 'send')
+									<a href="javascript:trade_list_sign('$!{trade.tradeNo}');" class="button color-gray">确认收货</a>
+    								#elseif($!{trade.type} == 'sign')
+    								<a href="#" class="button color-gray" style="margin-left: 5px;">评价</a>
+									#end
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			#end
+			<!-- Preloader -->
+			<!--
+			<div class="infinite-scroll-preloader">
+				<div class="preloader"></div>
+			</div>
+			-->
+			<form id="trade/list/cancel" action="$!{env.appUrl}/trade/cancel.htm" method="POST" class="ajax-submit">
+            	<input type="hidden" name="tradeNo" id="trade_list_cancel_tradeNo"/>
+            </form>
+			<form id="trade/list/sign" action="$!{env.appUrl}/trade/sign.htm" method="POST" class="ajax-submit">
+            	<input type="hidden" name="tradeNo" id="trade_list_sign_tradeNo"/>
+            </form>
+		</div>
+    </div>
+</div>
