@@ -61,7 +61,6 @@
 		<module>action</module>
 		<module>api</module>
 		<module>biz</module>
-		<module>task</module>
 		<module>util</module>
 		<module>web</module>
 	</modules>

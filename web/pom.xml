@@ -22,13 +22,6 @@
 			<version>${project.version}</version>
 		</dependency>
 
-		<!-- module task -->
-		<dependency>
-			<groupId>com.wideka</groupId>
-			<artifactId>mall-task</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
 		<!-- druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
