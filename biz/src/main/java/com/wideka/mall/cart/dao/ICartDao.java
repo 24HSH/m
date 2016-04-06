@@ -23,7 +23,7 @@ public interface ICartDao {
 	 * @param cart
 	 * @return
 	 */
-	int updateCart(Cart cart);
+	int checkCart(Cart cart);
 
 	/**
 	 * 
@@ -37,7 +37,7 @@ public interface ICartDao {
 	 * @param cart
 	 * @return
 	 */
-	int removeCart(Cart cart);
+	int updateCart(Cart cart);
 
 	/**
 	 * 

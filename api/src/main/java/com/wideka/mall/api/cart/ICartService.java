@@ -12,7 +12,7 @@ import com.wideka.mall.framework.bo.BooleanResult;
  */
 public interface ICartService {
 
-	String STATE_COMPLETE = "E";
+	String STATE_FINISH = "E";
 
 	String STATE_REMOVE = "D";
 
@@ -65,5 +65,15 @@ public interface ICartService {
 	 * @return
 	 */
 	Cart getCartStats(String userId, Long shopId, String[] cartId);
+
+	/**
+	 * 根据购物车完成订单.
+	 * 
+	 * @param userId
+	 * @param shopId
+	 * @param cartId
+	 * @return
+	 */
+	BooleanResult finishCart(String userId, Long shopId, String[] cartId);
 
 }

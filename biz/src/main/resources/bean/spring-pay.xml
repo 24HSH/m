@@ -16,6 +16,7 @@
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
 		<property name="wxpayService" ref="wxpayService" />
 		<property name="tradeService" ref="tradeService" />
+		<property name="cartService" ref="cartService" />
 	</bean>
 
 </beans>

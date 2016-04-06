@@ -9,6 +9,7 @@ import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import com.wideka.mall.api.cache.IMemcachedCacheService;
+import com.wideka.mall.api.cart.ICartService;
 import com.wideka.mall.api.pay.IPayService;
 import com.wideka.mall.api.trade.ITradeService;
 import com.wideka.mall.api.trade.bo.OrderRefund;
@@ -40,6 +41,8 @@ public class PayServiceImpl implements IPayService {
 	private IWxpayService wxpayService;
 
 	private ITradeService tradeService;
+
+	private ICartService cartService;
 
 	@Override
 	public BooleanResult pay(final String userId, final Long shopId, final String tradeNo, final String remark,
@@ -93,6 +96,10 @@ public class PayServiceImpl implements IPayService {
 			return result;
 		}
 
+		// 购物车信息
+		String cartIds = trade.getCartId();
+		final String[] cartId = StringUtils.isNotEmpty(cartIds) ? cartIds.split(",") : null;
+
 		// 2. 临时订单
 		if (ITradeService.CHECK.equals(type)) {
 			// 3. 判断库存
@@ -110,6 +117,16 @@ public class PayServiceImpl implements IPayService {
 						ts.setRollbackOnly();
 
 						return res0;
+					}
+
+					// 4.3. 修改购物车状态
+					if (cartId != null && cartId.length > 0) {
+						res0 = cartService.finishCart(userId, shopId, cartId);
+						if (!res0.getResult()) {
+							ts.setRollbackOnly();
+
+							return res0;
+						}
 					}
 
 					return res0;
@@ -373,6 +390,14 @@ public class PayServiceImpl implements IPayService {
 
 	public void setTradeService(ITradeService tradeService) {
 		this.tradeService = tradeService;
+	}
+
+	public ICartService getCartService() {
+		return cartService;
+	}
+
+	public void setCartService(ICartService cartService) {
+		this.cartService = cartService;
 	}
 
 }

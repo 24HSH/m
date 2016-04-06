@@ -172,14 +172,14 @@ public class Trade extends SearchInfo {
 	private String receiverRemark;
 
 	/**
-	 * 购物车(存在多个id: 1,2,3,4,5).
-	 */
-	private String cartId;
-
-	/**
 	 * 是否需要物流 Y or N.
 	 */
 	private String shipment;
+
+	/**
+	 * 购物车(存在多个id: 1,2,3,4,5).
+	 */
+	private String cartId;
 
 	/**
 	 * 支付方式.
@@ -499,20 +499,20 @@ public class Trade extends SearchInfo {
 		this.receiverRemark = receiverRemark;
 	}
 
-	public String getCartId() {
-		return cartId;
-	}
-
-	public void setCartId(String cartId) {
-		this.cartId = cartId;
-	}
-
 	public String getShipment() {
 		return shipment;
 	}
 
 	public void setShipment(String shipment) {
 		this.shipment = shipment;
+	}
+
+	public String getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(String cartId) {
+		this.cartId = cartId;
 	}
 
 	public String getPayType() {

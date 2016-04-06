@@ -96,7 +96,7 @@ public class CartServiceImpl implements ICartService {
 		cart.setQuantity(q);
 
 		// 1. 更新购物车(相同规格商品 只增加数量)
-		if (updateCart(cart) == 1) {
+		if (checkCart(cart) == 1) {
 			result.setCode("添加成功。");
 			result.setResult(true);
 			return result;
@@ -123,9 +123,9 @@ public class CartServiceImpl implements ICartService {
 	 * @param cart
 	 * @return
 	 */
-	private int updateCart(Cart cart) {
+	private int checkCart(Cart cart) {
 		try {
-			return cartDao.updateCart(cart);
+			return cartDao.checkCart(cart);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(cart), e);
 		}
@@ -208,7 +208,7 @@ public class CartServiceImpl implements ICartService {
 
 		cart.setState(ICartService.STATE_REMOVE);
 
-		int n = removeCart(cart);
+		int n = updateCart(cart);
 		if (n == -1) {
 			result.setCode("购物车更新失败！");
 			return result;
@@ -218,21 +218,6 @@ public class CartServiceImpl implements ICartService {
 		result.setResult(true);
 
 		return result;
-	}
-
-	/**
-	 * 
-	 * @param cart
-	 * @return
-	 */
-	private int removeCart(Cart cart) {
-		try {
-			return cartDao.removeCart(cart);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(cart), e);
-		}
-
-		return -1;
 	}
 
 	@Override
@@ -335,6 +320,59 @@ public class CartServiceImpl implements ICartService {
 		}
 
 		return cart;
+	}
+
+	@Override
+	public BooleanResult finishCart(String userId, Long shopId, String[] cartId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		Cart cart = new Cart();
+
+		if (StringUtils.isBlank(userId)) {
+			result.setCode("用户信息不能为空！");
+			return result;
+		}
+		cart.setUserId(userId.trim());
+		cart.setModifyUser(userId);
+
+		if (shopId == null) {
+			result.setCode("店铺信息不能为空！");
+			return result;
+		}
+		cart.setShopId(shopId);
+
+		if (cartId == null || cartId.length == 0) {
+			result.setCode("购物车商品信息不能为空！");
+			return result;
+		}
+		cart.setCodes(cartId);
+
+		cart.setState(ICartService.STATE_FINISH);
+
+		int n = updateCart(cart);
+		if (n == -1) {
+			result.setCode("购物车更新失败！");
+			return result;
+		}
+
+		result.setResult(true);
+		return result;
+	}
+
+	/**
+	 * 
+	 * @param cart
+	 * @return
+	 */
+	private int updateCart(Cart cart) {
+		try {
+			return cartDao.updateCart(cart);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(cart), e);
+		}
+
+		return -1;
 	}
 
 	public ICartDao getCartDao() {

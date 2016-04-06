@@ -45,12 +45,12 @@
 		</selectKey>
 	</insert>
 	
-	<update id="updateCart" parameterClass="cart">
+	<update id="checkCart" parameterClass="cart">
 	<![CDATA[
 		UPDATE basis_tb_cart t
 		   SET t.modify_date = NOW(),
 			   t.modify_user = #modifyUser#,
-			   t.quantity = t.quantity+ #quantity#
+			   t.quantity = t.quantity + #quantity#
 		 WHERE t.state = 'U'
 		   AND t.user_id = #userId#
 		   AND t.shop_id = #shopId#
@@ -74,7 +74,7 @@
 	]]>
 	</select>
 	
-	<update id="removeCart" parameterClass="cart">
+	<update id="updateCart" parameterClass="cart">
 	<![CDATA[
 		UPDATE basis_tb_cart t
 		   SET t.modify_date = NOW(),
@@ -126,5 +126,5 @@
 	]]>
 		<iterate property="codes" open="(" close=")" conjunction=",">#codes[]#</iterate>
 	</select>
-
+	
 </sqlMap>

@@ -19,8 +19,8 @@ public class CartDaoImpl extends BaseDaoImpl implements ICartDao {
 	}
 
 	@Override
-	public int updateCart(Cart cart) {
-		return getSqlMapClientTemplate().update("cart.updateCart", cart);
+	public int checkCart(Cart cart) {
+		return getSqlMapClientTemplate().update("cart.checkCart", cart);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -30,8 +30,8 @@ public class CartDaoImpl extends BaseDaoImpl implements ICartDao {
 	}
 
 	@Override
-	public int removeCart(Cart cart) {
-		return getSqlMapClientTemplate().update("cart.removeCart", cart);
+	public int updateCart(Cart cart) {
+		return getSqlMapClientTemplate().update("cart.updateCart", cart);
 	}
 
 	@Override
