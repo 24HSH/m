@@ -21,6 +21,10 @@ public class CartAction extends BaseAction {
 
 	private List<Cart> cartList;
 
+	private String itemId;
+
+	private String skuId;
+
 	/**
 	 * 删除购物车.
 	 */
@@ -46,7 +50,7 @@ public class CartAction extends BaseAction {
 	 * @return
 	 */
 	public String add() {
-		BooleanResult result = cartService.createCart(this.getOpenId(), 0L, "1", "1", "1");
+		BooleanResult result = cartService.createCart(this.getOpenId(), 0L, itemId, skuId, "1");
 
 		if (result.getResult()) {
 			this.setResourceResult(result.getCode());
@@ -77,6 +81,7 @@ public class CartAction extends BaseAction {
 	}
 
 	/**
+	 * 购物车数量.
 	 * 
 	 * @return
 	 */
@@ -107,6 +112,22 @@ public class CartAction extends BaseAction {
 
 	public void setCartList(List<Cart> cartList) {
 		this.cartList = cartList;
+	}
+
+	public String getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
+
+	public String getSkuId() {
+		return skuId;
+	}
+
+	public void setSkuId(String skuId) {
+		this.skuId = skuId;
 	}
 
 	public String[] getCartIds() {

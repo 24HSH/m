@@ -16,8 +16,10 @@ myApp.onPageInit('item.detail', function(page) {
 					});
 		});
 
-function item_detail_cart(tradeNo) {
+function item_detail_cart(itemId, skuId) {
 	myApp.showIndicator();
 
+	$$('#item_detail_cart_itemId').val(itemId);
+	$$('#item_detail_cart_skuId').val(skuId);
 	$$('#item/detail/cart').trigger("submit");
 }
