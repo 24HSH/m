@@ -8,6 +8,8 @@ import org.apache.commons.lang.StringUtils;
 
 import com.wideka.mall.api.cart.ICartService;
 import com.wideka.mall.api.cart.bo.Cart;
+import com.wideka.mall.api.item.IItemService;
+import com.wideka.mall.api.item.bo.Item;
 import com.wideka.mall.api.item.bo.ItemFile;
 import com.wideka.mall.cart.dao.ICartDao;
 import com.wideka.mall.framework.bo.BooleanResult;
@@ -23,6 +25,8 @@ import com.wideka.mall.framework.util.LogUtil;
 public class CartServiceImpl implements ICartService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(CartServiceImpl.class);
+
+	private IItemService itemService;
 
 	private ICartDao cartDao;
 
@@ -163,17 +167,18 @@ public class CartServiceImpl implements ICartService {
 		}
 
 		// 2. 获取商品信息
+		Map<Long, Item> itemMap = itemService.getItem(shopId, itemId);
 
 		// 3. 获取商品文件信息
-		Map<String, List<ItemFile>> map = null;// itemFileService.getItemFileList(shopId,
+		Map<String, List<ItemFile>> itemFileMap = null;// itemFileService.getItemFileList(shopId,
 
 		for (Cart ca : cartList) {
-			ca.setItemName("特仑苏纯牛奶利乐苗条装");
+			ca.setItemName(itemMap.get(ca.getItemId()).getItemName());
 			ca.setPropertiesName("250ml×8盒×3提 共24盒");
 			ca.setPrice(BigDecimal.valueOf(79.9));
 
-			if (map != null && !map.isEmpty()) {
-				ca.setItemFileList(map.get(ca.getItemId()));
+			if (itemFileMap != null && !itemFileMap.isEmpty()) {
+				ca.setItemFileList(itemFileMap.get(ca.getItemId()));
 			}
 		}
 
@@ -373,6 +378,14 @@ public class CartServiceImpl implements ICartService {
 		}
 
 		return -1;
+	}
+
+	public IItemService getItemService() {
+		return itemService;
+	}
+
+	public void setItemService(IItemService itemService) {
+		this.itemService = itemService;
 	}
 
 	public ICartDao getCartDao() {

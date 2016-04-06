@@ -10,6 +10,7 @@
 	</bean>
 	
 	<bean id="cartService" class="com.wideka.mall.cart.service.impl.CartServiceImpl">
+		<property name="itemService" ref="itemService" />
 		<property name="cartDao" ref="cartDao" />
 	</bean>
 	

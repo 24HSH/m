@@ -1,5 +1,7 @@
 package com.wideka.mall.item.action;
 
+import com.wideka.mall.api.item.IItemService;
+import com.wideka.mall.api.item.bo.Item;
 import com.wideka.mall.framework.action.BaseAction;
 
 /**
@@ -10,6 +12,12 @@ import com.wideka.mall.framework.action.BaseAction;
 public class ItemAction extends BaseAction {
 
 	private static final long serialVersionUID = -8497315926605513479L;
+
+	private IItemService itemService;
+
+	private String itemId;
+
+	private Item item;
 
 	/**
 	 * 
@@ -24,7 +32,33 @@ public class ItemAction extends BaseAction {
 	 * @return
 	 */
 	public String detail() {
+		item = itemService.getItem(0L, itemId);
+
 		return SUCCESS;
+	}
+
+	public IItemService getItemService() {
+		return itemService;
+	}
+
+	public void setItemService(IItemService itemService) {
+		this.itemService = itemService;
+	}
+
+	public String getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 }

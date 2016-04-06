@@ -6,6 +6,22 @@
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 	<bean id="itemAction" class="com.wideka.mall.item.action.ItemAction" parent="baseAction" scope="request">
+		<property name="itemService" ref="itemService" />
+	</bean>
+	<bean id="itemService" class="com.wideka.mall.item.service.impl.ItemServiceImpl">
+		<property name="itemFileService" ref="itemFileService" />
+		<property name="itemSkuService" ref="itemSkuService" />
+		<property name="specService" ref="specService" />
+		<property name="itemDao" ref="itemDao" />
+	</bean>
+	<bean id="itemDao" class="com.wideka.mall.item.dao.impl.ItemDaoImpl" parent="baseDao" />
+	
+	<!-- 商品文件 -->
+	<bean id="itemFileService" class="com.wideka.mall.item.service.impl.ItemFileServiceImpl">
+	</bean>
+	
+	<!-- sku -->
+	<bean id="itemSkuService" class="com.wideka.mall.item.service.impl.ItemSkuServiceImpl">
 	</bean>
 	
 </beans>
