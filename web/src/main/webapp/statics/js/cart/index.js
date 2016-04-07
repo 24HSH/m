@@ -13,7 +13,10 @@ myApp.onPageInit('cart.index', function(page) {
 							});
 				} else if (cart_index_flag == "remove") {
 					myApp.alert(xhr.responseText, '信息', function() {
-								view4.router.refreshPage()
+								view4.router.refreshPage();
+
+								// 更新首页购物车标记
+								portal_homepage_cart_stats();
 							});
 				}
 			});

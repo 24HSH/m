@@ -6,6 +6,8 @@ myApp.onPageInit('item.detail', function(page) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
 						myApp.alert(xhr.responseText, '信息', function() {
+									// 更新首页购物车标记
+									portal_homepage_cart_stats();
 								});
 					});
 
