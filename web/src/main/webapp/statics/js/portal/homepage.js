@@ -77,12 +77,19 @@ $$('#view_2_click').on('click', function() {
 			$$('#href-2').addClass("active");
 		});
 
-$$.get(appUrl + '/cart/stats.htm', {}, function(data) {
-			if (data > 0) {
-				$$('#portal/homepage/cart').addClass('badge bg-red');
-				$$('#portal/homepage/cart').html(data);
-			}
-		});
+function portal_homepage_cart_stats() {
+	$$.get(appUrl + '/cart/stats.htm', {}, function(data) {
+				if (data > 0) {
+					$$('#portal/homepage/cart').addClass('badge bg-red');
+					$$('#portal/homepage/cart').html(data);
+				} else {
+					$$('#portal/homepage/cart').removeClass('badge bg-red');
+					$$('#portal/homepage/cart').html('');
+				}
+			});
+}
+
+portal_homepage_cart_stats();
 
 myApp.addNotification({
 			title : '来自好社惠的消息',

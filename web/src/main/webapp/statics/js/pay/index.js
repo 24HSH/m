@@ -6,6 +6,9 @@ myApp.onPageInit('pay.index', function(page) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
 						getBrandWCPayRequest(xhr.responseText);
+
+						// 更新首页购物车标记
+						portal_homepage_cart_stats();
 					});
 
 			$$('form.ajax-submit').on('submitError', function(e) {
