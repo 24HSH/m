@@ -1,6 +1,5 @@
 package com.wideka.mall.cart.service.impl;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -9,8 +8,10 @@ import org.apache.commons.lang.StringUtils;
 import com.wideka.mall.api.cart.ICartService;
 import com.wideka.mall.api.cart.bo.Cart;
 import com.wideka.mall.api.item.IItemService;
+import com.wideka.mall.api.item.IItemSkuService;
 import com.wideka.mall.api.item.bo.Item;
 import com.wideka.mall.api.item.bo.ItemFile;
+import com.wideka.mall.api.item.bo.ItemSku;
 import com.wideka.mall.cart.dao.ICartDao;
 import com.wideka.mall.framework.bo.BooleanResult;
 import com.wideka.mall.framework.log.Logger4jCollection;
@@ -27,6 +28,8 @@ public class CartServiceImpl implements ICartService {
 	private Logger4jExtend logger = Logger4jCollection.getLogger(CartServiceImpl.class);
 
 	private IItemService itemService;
+
+	private IItemSkuService itemSkuService;
 
 	private ICartDao cartDao;
 
@@ -160,22 +163,46 @@ public class CartServiceImpl implements ICartService {
 			return null;
 		}
 
+		// 商品信息
 		String[] itemId = new String[cartList.size()];
 		int i = 0;
 		for (Cart ca : cartList) {
 			itemId[i++] = ca.getItemId().toString();
 		}
 
+		// sku信息
+		String[] skuId = new String[cartList.size()];
+		int j = 0;
+		for (Cart ca : cartList) {
+			Long id = ca.getSkuId();
+			if (id == 0L) {
+				continue;
+			}
+			skuId[j++] = id.toString();
+		}
+
 		// 2. 获取商品信息
 		Map<Long, Item> itemMap = itemService.getItem(shopId, itemId);
 
-		// 3. 获取商品文件信息
+		// 3. 获取sku信息
+		Map<Long, ItemSku> itemSkuMap = itemSkuService.getItemSku(shopId, skuId);
+
+		// 4. 获取商品文件信息
 		Map<String, List<ItemFile>> itemFileMap = null;// itemFileService.getItemFileList(shopId,
 
 		for (Cart ca : cartList) {
-			ca.setItemName(itemMap.get(ca.getItemId()).getItemName());
-			ca.setPropertiesName("250ml×8盒×3提 共24盒");
-			ca.setPrice(BigDecimal.valueOf(79.9));
+			// 商品名称 & 商品价格
+			Item item = itemMap.get(ca.getItemId());
+			ca.setItemName(item.getItemName());
+			ca.setPrice(item.getPrice());
+
+			// sku名称 & 商品价格
+			Long id = ca.getSkuId();
+			if (id != 0L) {
+				ItemSku sku = itemSkuMap.get(id);
+				ca.setPropertiesName(sku.getPropertiesName());
+				ca.setPrice(sku.getPrice());
+			}
 
 			if (itemFileMap != null && !itemFileMap.isEmpty()) {
 				ca.setItemFileList(itemFileMap.get(ca.getItemId()));
@@ -386,6 +413,14 @@ public class CartServiceImpl implements ICartService {
 
 	public void setItemService(IItemService itemService) {
 		this.itemService = itemService;
+	}
+
+	public IItemSkuService getItemSkuService() {
+		return itemSkuService;
+	}
+
+	public void setItemSkuService(IItemSkuService itemSkuService) {
+		this.itemSkuService = itemSkuService;
 	}
 
 	public ICartDao getCartDao() {

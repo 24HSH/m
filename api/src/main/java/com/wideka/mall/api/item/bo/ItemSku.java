@@ -3,19 +3,23 @@ package com.wideka.mall.api.item.bo;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.wideka.mall.framework.bo.SearchInfo;
+
 /**
  * 
  * @author JiakunXu
  * 
  */
-public class ItemSku {
+public class ItemSku extends SearchInfo {
 
-	private String skuId;
+	private static final long serialVersionUID = 2661444535345405089L;
+
+	private Long skuId;
 
 	/**
 	 * 商品ID.
 	 */
-	private String itemId;
+	private Long itemId;
 
 	/**
 	 * sku的销售属性组合字符串（颜色，大小，等等，可通过类目API获取某类目下的销售属性）,格式是p1:v1;p2:v2.
@@ -41,11 +45,6 @@ public class ItemSku {
 	 * 属于这个sku的商品的数量.
 	 */
 	private int stock;
-
-	/**
-	 * 商品编码.
-	 */
-	private String codes;
 
 	/**
 	 * 属于这个sku的商品的原价格 取值范围:0-100000000;精确到2位小数;单位:元。如:200.07，表示:200元7分.
@@ -82,19 +81,19 @@ public class ItemSku {
 	 */
 	private String modifyUser;
 
-	public String getSkuId() {
+	public Long getSkuId() {
 		return skuId;
 	}
 
-	public void setSkuId(String skuId) {
+	public void setSkuId(Long skuId) {
 		this.skuId = skuId;
 	}
 
-	public String getItemId() {
+	public Long getItemId() {
 		return itemId;
 	}
 
-	public void setItemId(String itemId) {
+	public void setItemId(Long itemId) {
 		this.itemId = itemId;
 	}
 
@@ -136,14 +135,6 @@ public class ItemSku {
 
 	public void setStock(int stock) {
 		this.stock = stock;
-	}
-
-	public String getCodes() {
-		return codes;
-	}
-
-	public void setCodes(String codes) {
-		this.codes = codes;
 	}
 
 	public BigDecimal getOrigin() {

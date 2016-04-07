@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="item.sku">
+	
+	<typeAlias alias="itemSku" type="com.wideka.mall.api.item.bo.ItemSku" />
+	
+	<select id="getItemSkuList" parameterClass="itemSku" resultClass="itemSku">
+	<![CDATA[
+		SELECT t.sku_id AS skuId,
+		  t.properties,
+		  t.properties_name AS propertiesName,
+		  t.stock,
+		  t.price,
+		  t.origin,
+		  t.code
+		FROM basis_tb_item_sku t
+		WHERE t.state     = 'U'
+	]]>	
+		<dynamic>
+			<isNotEmpty property="codes" prepend="and">
+			<![CDATA[ t.sku_id IN ]]>
+				<iterate property="codes" open="(" close=")" conjunction=",">#codes[]#</iterate>
+			</isNotEmpty>
+		</dynamic>
+	<![CDATA[
+		LIMIT $limit$ OFFSET $offset$
+	]]>		
+	</select>
+		
+</sqlMap>

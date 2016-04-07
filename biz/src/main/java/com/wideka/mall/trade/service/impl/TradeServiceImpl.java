@@ -700,8 +700,8 @@ public class TradeServiceImpl implements ITradeService {
 				}
 
 				ItemSku sku = new ItemSku();
-				sku.setItemId(key[0]);
-				sku.setSkuId(key[1]);
+				sku.setItemId(Long.valueOf(key[0]));
+				sku.setSkuId(Long.valueOf(key[1]));
 				sku.setStock(m.getValue());
 
 				skus.add(sku);

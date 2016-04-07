@@ -31,6 +31,7 @@
 
 	<sqlMap resource="ibatis/global.xml" />
 	<sqlMap resource="ibatis/sqlmap-cart.xml" />
+	<sqlMap resource="ibatis/sqlmap-item.sku.xml" />
 	<sqlMap resource="ibatis/sqlmap-item.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.action.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.cache.xml" />

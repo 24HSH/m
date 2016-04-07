@@ -22,6 +22,8 @@
 	
 	<!-- sku -->
 	<bean id="itemSkuService" class="com.wideka.mall.item.service.impl.ItemSkuServiceImpl">
+		<property name="itemSkuDao" ref="itemSkuDao" />
 	</bean>
+	<bean id="itemSkuDao" class="com.wideka.mall.item.dao.impl.ItemSkuDaoImpl" parent="baseDao" />
 	
 </beans>

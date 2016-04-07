@@ -11,6 +11,7 @@
 	
 	<bean id="cartService" class="com.wideka.mall.cart.service.impl.CartServiceImpl">
 		<property name="itemService" ref="itemService" />
+		<property name="itemSkuService" ref="itemSkuService" />
 		<property name="cartDao" ref="cartDao" />
 	</bean>
 	
