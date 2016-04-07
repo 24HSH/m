@@ -18,5 +18,4 @@
 	<include file="struts/struts-shop.xml" />
 	<include file="struts/struts-trade.xml" />
 	<include file="struts/struts-user.xml" />
-	<include file="struts/struts-weixin.xml" />
 </struts>

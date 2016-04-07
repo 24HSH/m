@@ -77,6 +77,13 @@ $$('#view_2_click').on('click', function() {
 			$$('#href-2').addClass("active");
 		});
 
+$$.get(appUrl + '/cart/stats.htm', {}, function(data) {
+			if (data > 0) {
+				$$('#portal/homepage/cart').addClass('badge bg-red');
+				$$('#portal/homepage/cart').html(data);
+			}
+		});
+
 myApp.addNotification({
 			title : '来自好社惠的消息',
 			subtitle : '',

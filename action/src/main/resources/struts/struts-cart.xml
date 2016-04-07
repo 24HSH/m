@@ -4,6 +4,8 @@
 <struts>
 	<package name="{http://mall}mall$cart"
 		extends="{http://mall}mall$framework" namespace="/cart">
+		
+		<action name="stats" class="cartAction" method="stats"></action>
 
 		<action name="index" class="cartAction" method="index">
 			<result name="success">/mall/cart/index.vm</result>

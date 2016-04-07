@@ -28,6 +28,14 @@ public interface ICartService {
 	BooleanResult createCart(String userId, Long shopId, String itemId, String skuId, String quantity);
 
 	/**
+	 * 
+	 * @param userId
+	 * @param shopId
+	 * @return
+	 */
+	int getCartCount(String userId, Long shopId);
+
+	/**
 	 * 获取用户购物车.
 	 * 
 	 * @param userId

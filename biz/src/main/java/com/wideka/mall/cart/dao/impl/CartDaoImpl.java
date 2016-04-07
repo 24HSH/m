@@ -23,6 +23,11 @@ public class CartDaoImpl extends BaseDaoImpl implements ICartDao {
 		return getSqlMapClientTemplate().update("cart.checkCart", cart);
 	}
 
+	@Override
+	public int getCartCount(Cart cart) {
+		return (Integer) getSqlMapClientTemplate().queryForObject("cart.getCartCount", cart);
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cart> getCartList(Cart cart) {

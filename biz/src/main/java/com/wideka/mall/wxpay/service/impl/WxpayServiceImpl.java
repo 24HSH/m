@@ -11,7 +11,6 @@ import com.wideka.mall.framework.bo.BooleanResult;
 import com.wideka.mall.framework.exception.ServiceException;
 import com.wideka.mall.framework.log.Logger4jCollection;
 import com.wideka.mall.framework.log.Logger4jExtend;
-import com.wideka.mall.framework.util.EncryptUtil;
 import com.wideka.mall.framework.util.LogUtil;
 import com.wideka.mall.framework.util.UUIDUtil;
 import com.wideka.mall.wxpay.dao.IWxpayDao;
@@ -20,6 +19,7 @@ import com.wideka.weixin.api.pay.IUnifiedOrderService;
 import com.wideka.weixin.api.pay.bo.Refund;
 import com.wideka.weixin.api.pay.bo.UnifiedOrder;
 import com.wideka.weixin.api.pay.bo.WxNotify;
+import com.wideka.weixin.framework.util.EncryptUtil;
 
 /**
  * 

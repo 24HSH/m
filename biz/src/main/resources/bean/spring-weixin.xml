@@ -5,33 +5,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="weixinAction" class="com.wideka.mall.weixin.action.WeixinAction" parent="baseAction" scope="request">
-		<property name="receiveService" ref="receiveService" />
-		<property name="authorizeService" ref="authorizeService" />
-	</bean>
-	
-	<bean id="receiveService" class="com.wideka.mall.weixin.service.impl.ReceiveServiceImpl">
-		<property name="callbackService" ref="callbackService" />
-		<property name="msgTextService" ref="msgTextService" />
-		<property name="msgImageService" ref="msgImageService" />
-		<property name="msgVoiceService" ref="msgVoiceService" />
-		<property name="msgVideoService" ref="msgVideoService" />
-		<property name="msgLocationService" ref="msgLocationService" />
-		<property name="eventSubscribeService" ref="eventSubscribeService" />
-		<property name="eventLocationService" ref="eventLocationService" />
-		<property name="eventClickService" ref="eventClickService" />
-		<property name="eventViewService" ref="eventViewService" />
-		<property name="eventScanCodeService" ref="eventScanCodeService" />
-		<property name="eventPicService" ref="eventPicService" />
-		<property name="eventLocationSelectService" ref="eventLocationSelectService" />
-		<property name="eventEnterAgentService" ref="eventEnterAgentService" />
-		<property name="eventBatchJobService" ref="eventBatchJobService" />
-		<property name="tokenService" ref="tokenService" />
-		<property name="token">
-			<value>${weixin.token}</value>
+	<bean id="weixinService" class="com.wideka.mall.weixin.service.impl.WeixinServiceImpl">
+		<property name="ticketService" ref="ticketService" />
+		<property name="appId">
+			<value>${weixin.app.id}</value>
 		</property>
-		<property name="encodingAesKey">
-			<value>${weixin.encodingAesKey}</value>
+		<property name="appSecret">
+			<value>${weixin.app.secret}</value>
 		</property>
 		<property name="corpId">
 			<value>${weixin.corp.id}</value>
@@ -51,69 +31,6 @@
 		<property name="tokenService" ref="tokenService" />
 		<property name="jsapiTicketService" ref="jsapiTicketService" />
 	</bean>
-	
-	<bean id="authorizeService" class="com.wideka.mall.weixin.service.impl.AuthorizeServiceImpl">
-		<property name="tokenService" ref="tokenService" />
-		<property name="userService" ref="userService" />
-		<property name="corpId">
-			<value>${weixin.corp.id}</value>
-		</property>
-		<property name="corpSecret">
-			<value>${weixin.corp.secret}</value>
-		</property>
-	</bean>
-	
-	<!-- demo -->
-	<bean id="weixinService" class="com.wideka.mall.weixin.service.impl.WeixinServiceImpl">
-		<property name="tokenService" ref="tokenService" />
-		<property name="ticketService" ref="ticketService" />
-		<property name="departmentService" ref="departmentService" />
-		<property name="userService" ref="userService" />
-		<property name="tagService" ref="tagService" />
-		<property name="materialService" ref="materialService" />
-		<property name="agentService" ref="agentService" />
-		<property name="messageService" ref="messageService" />
-		<property name="menuService" ref="menuService" />
-		<property name="appId">
-			<value>${weixin.app.id}</value>
-		</property>
-		<property name="appSecret">
-			<value>${weixin.app.secret}</value>
-		</property>
-		<property name="corpId">
-			<value>${weixin.corp.id}</value>
-		</property>
-		<property name="corpSecret">
-			<value>${weixin.corp.secret}</value>
-		</property>
-	</bean>
-	
-	<bean id="departmentAction" class="com.wideka.mall.weixin.action.DepartmentAction" parent="baseAction" scope="request">
-		<property name="weixinService" ref="weixinService" />
-	</bean>
-	<bean id="userAction" class="com.wideka.mall.weixin.action.UserAction" parent="baseAction" scope="request">
-		<property name="weixinService" ref="weixinService" />
-	</bean>
-	<bean id="tagAction" class="com.wideka.mall.weixin.action.TagAction" parent="baseAction" scope="request">
-		<property name="weixinService" ref="weixinService" />
-	</bean>
-	<bean id="mediaAction" class="com.wideka.mall.weixin.action.MediaAction" parent="baseAction" scope="request">
-		<property name="weixinService" ref="weixinService" />
-	</bean>
-	<bean id="agentAction" class="com.wideka.mall.weixin.action.AgentAction" parent="baseAction" scope="request">
-		<property name="weixinService" ref="weixinService" />
-	</bean>
-	<bean id="messageAction" class="com.wideka.mall.weixin.action.MessageAction" parent="baseAction" scope="request">
-		<property name="weixinService" ref="weixinService" />
-	</bean>
-	<bean id="menuAction" class="com.wideka.mall.weixin.action.MenuAction" parent="baseAction" scope="request">
-		<property name="weixinService" ref="weixinService" />
-	</bean>
-	<bean id="authAction" class="com.wideka.mall.weixin.action.AuthAction" parent="baseAction" scope="request">
-		<property name="weixinService" ref="weixinService" />
-	</bean>
-	
-	
 	
 	<!-- weixin -->
 	<bean id="accessTokenService" class="com.wideka.weixin.auth.service.impl.AccessTokenServiceImpl"></bean>

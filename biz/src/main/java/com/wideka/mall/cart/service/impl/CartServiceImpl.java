@@ -1,5 +1,6 @@
 package com.wideka.mall.cart.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -141,6 +142,26 @@ public class CartServiceImpl implements ICartService {
 	}
 
 	@Override
+	public int getCartCount(String userId, Long shopId) {
+		// userId 必填
+		if (StringUtils.isBlank(userId) || shopId == null) {
+			return 0;
+		}
+
+		Cart cart = new Cart();
+		cart.setUserId(userId.trim());
+		cart.setShopId(shopId);
+
+		try {
+			return cartDao.getCartCount(cart);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(cart), e);
+		}
+
+		return 0;
+	}
+
+	@Override
 	public List<Cart> getCartList(String userId, Long shopId) {
 		// userId 必填
 		if (StringUtils.isBlank(userId) || shopId == null) {
@@ -185,7 +206,8 @@ public class CartServiceImpl implements ICartService {
 		Map<Long, Item> itemMap = itemService.getItem(shopId, itemId);
 
 		// 3. 获取sku信息
-		Map<Long, ItemSku> itemSkuMap = itemSkuService.getItemSku(shopId, skuId);
+		Map<Long, ItemSku> itemSkuMap =
+			j == 0 ? new HashMap<Long, ItemSku>() : itemSkuService.getItemSku(shopId, skuId);
 
 		// 4. 获取商品文件信息
 		Map<String, List<ItemFile>> itemFileMap = null;// itemFileService.getItemFileList(shopId,
