@@ -10,11 +10,6 @@
 			<result name="success">/mall/portal/index.vm</result>
 		</action>
 		
-		<action name="home" class="portalAction" method="home">
-			<interceptor-ref name="authenticationStack" />
-			<result name="success">/mall/portal/home.vm</result>
-		</action>
-		
 		<action name="homepage" class="portalAction" method="homepage">
 			<interceptor-ref name="oauth2Stack" />
 			<result name="success">/mall/portal/homepage.vm</result>

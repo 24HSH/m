@@ -32,6 +32,8 @@
 			<script src="$!{env.imgUrl}/jquery.cookie/jquery.cookie.js"></script>
 		#elseif($key == 'jquery.lazyload')
 			<script src="$!{env.imgUrl}/jquery.lazyload/jquery.lazyload.min.js"></script>
+		#elseif($key == 'nprogress')
+			<script src="$!{env.imgUrl}/nprogress/nprogress.js"></script>
 		#elseif($key == 'weixin')
 			<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 		#elseif($key == 'zeptojs')
@@ -63,6 +65,8 @@
 			<link rel="stylesheet" href="$!{env.imgUrl}/iconfont/iconfont.css" />
 		#elseif($key == 'nav')
 			<link rel="stylesheet" href="$!{env.imgUrl}/css/nav/nav-global.css" />
+		#elseif($key == 'nprogress')
+			<link rel="stylesheet" href="$!{env.imgUrl}/nprogress/nprogress.css" />
 		#elseif($key == 'weui')
 			<link rel="stylesheet" href="$!{env.imgUrl}/weui/weui.min.css" />
 		#end

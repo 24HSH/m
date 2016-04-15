@@ -30,10 +30,6 @@ public class PortalAction extends BaseAction {
 		return SUCCESS;
 	}
 
-	public String home() {
-		return SUCCESS;
-	}
-
 	/**
 	 * 移动商场.
 	 * 
