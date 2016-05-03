@@ -65,6 +65,13 @@
 		<module>web</module>
 	</modules>
 
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<url>http://192.168.0.203:8081/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
