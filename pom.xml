@@ -46,7 +46,7 @@
 		<slf4j.version>1.7.5</slf4j.version>
 		<spring.version>3.0.5.RELEASE</spring.version>
 		<stax2-api.version>3.1.1</stax2-api.version>
-		<struts.version>2.3.24</struts.version>
+		<struts.version>2.3.28.1</struts.version>
 		<velocity.version>1.7</velocity.version>
 		<velocity-tools.version>2.0</velocity-tools.version>
 		<woodstox-core-asl.version>4.2.0</woodstox-core-asl.version>
