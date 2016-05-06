@@ -151,4 +151,6 @@ function cart_index_edited() {
 	$$('#cart/index/btn/create').show();
 
 	$$('input[type="checkbox"]').prop('checked', true);
+
+	cart_index_stats();
 }
