@@ -4,7 +4,7 @@
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="user.address">
 	
-	<typeAlias alias="userAddress" type="com.wideka.mall.api.user.bo.UserAddress" />
+	<typeAlias alias="userAddress" type="com.hsh24.mall.api.user.bo.UserAddress" />
 	
 	<select id="getUserAddress" parameterClass="userAddress" resultClass="userAddress">
 	<![CDATA[

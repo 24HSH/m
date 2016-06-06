@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="adAction" class="com.wideka.mall.ad.action.AdAction" parent="baseAction" scope="request">
+	<bean id="adAction" class="com.hsh24.mall.ad.action.AdAction" parent="baseAction" scope="request">
 	</bean>
 	
 </beans>

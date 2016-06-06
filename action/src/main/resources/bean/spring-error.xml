@@ -5,6 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="errorAction" class="com.wideka.mall.framework.action.ErrorAction" scope="request" parent="baseAction"></bean>
+	<bean id="errorAction" class="com.hsh24.mall.framework.action.ErrorAction" scope="request" parent="baseAction"></bean>
 	
 </beans>

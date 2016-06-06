@@ -4,7 +4,7 @@
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="trade.order">
 	
-	<typeAlias alias="order" type="com.wideka.mall.api.trade.bo.Order" />
+	<typeAlias alias="order" type="com.hsh24.mall.api.trade.bo.Order" />
 
 	<insert id="createOrder4Item" parameterClass="order">
 	<![CDATA[

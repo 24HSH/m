@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="baseAction" class="com.wideka.mall.framework.action.BaseAction" abstract="true">
+	<bean id="baseAction" class="com.hsh24.mall.framework.action.BaseAction" abstract="true">
 		<property name="env" ref="env" />
 	</bean>
 	

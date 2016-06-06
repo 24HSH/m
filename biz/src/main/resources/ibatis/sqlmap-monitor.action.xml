@@ -4,7 +4,7 @@
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="monitor.action">
 	
-	<typeAlias alias="actionMonitor" type="com.wideka.mall.api.monitor.bo.ActionMonitor" />
+	<typeAlias alias="actionMonitor" type="com.hsh24.mall.api.monitor.bo.ActionMonitor" />
 	
 	<insert id="createActionMonitor" parameterClass="actionMonitor">
 	<![CDATA[

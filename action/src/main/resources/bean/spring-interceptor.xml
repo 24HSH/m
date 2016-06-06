@@ -6,13 +6,13 @@
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 	<!-- OAuth2 -->
-	<bean id="oauth2Interceptor" class="com.wideka.mall.framework.struts.interceptor.OAuth2Interceptor"></bean>
+	<bean id="oauth2Interceptor" class="com.hsh24.mall.framework.struts.interceptor.OAuth2Interceptor"></bean>
 	
 	<!-- 操作权限 -->
-	<bean id="authenticationInterceptor" class="com.wideka.mall.framework.struts.interceptor.AuthenticationInterceptor"></bean>
+	<bean id="authenticationInterceptor" class="com.hsh24.mall.framework.struts.interceptor.AuthenticationInterceptor"></bean>
 	
 	<!-- 操作日志 -->
-	<bean id="actionMonitorInterceptor" class="com.wideka.mall.framework.struts.interceptor.ActionMonitorInterceptor">
+	<bean id="actionMonitorInterceptor" class="com.hsh24.mall.framework.struts.interceptor.ActionMonitorInterceptor">
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
 	</bean>
 	

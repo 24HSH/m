@@ -5,11 +5,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="oauth2Action" class="com.wideka.mall.auth.action.OAuth2Action" parent="baseAction" scope="request">
+	<bean id="oauth2Action" class="com.hsh24.mall.auth.action.OAuth2Action" parent="baseAction" scope="request">
 		<property name="authService" ref="authService" />
 	</bean>
 	
-	<bean id="authService" class="com.wideka.mall.auth.service.impl.AuthServiceImpl">
+	<bean id="authService" class="com.hsh24.mall.auth.service.impl.AuthServiceImpl">
 		<property name="oauth2Service" ref="oauth2Service" />
 		<property name="appId">
 			<value>${weixin.app.id}</value>

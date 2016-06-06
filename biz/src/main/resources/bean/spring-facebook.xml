@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="facebookAction" class="com.wideka.mall.facebook.action.FacebookAction" parent="baseAction" scope="request">
+	<bean id="facebookAction" class="com.hsh24.mall.facebook.action.FacebookAction" parent="baseAction" scope="request">
 	</bean>
 	
 </beans>

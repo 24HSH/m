@@ -7,19 +7,19 @@
 
 		<result-types>
 			<result-type name="velocity" class="org.apache.struts2.dispatcher.VelocityResult" default="true" />
-			<result-type name="json" class="com.wideka.mall.framework.struts.result.JSONResult" />
+			<result-type name="json" class="com.hsh24.mall.framework.struts.result.JSONResult" />
 		</result-types>
 
 		<interceptors>
-			<interceptor name="exception" class="com.wideka.mall.framework.struts.interceptor.ExceptionInterceptor">
+			<interceptor name="exception" class="com.hsh24.mall.framework.struts.interceptor.ExceptionInterceptor">
 				<param name="ignoreExceptions">java.net.SocketException</param>
 				<param name="logEnabled">true</param>
 				<param name="logLevel">error</param>
 			</interceptor>
 
-			<interceptor name="decodeParams" class="com.wideka.mall.framework.struts.interceptor.DecodeParametersInterceptor" />
+			<interceptor name="decodeParams" class="com.hsh24.mall.framework.struts.interceptor.DecodeParametersInterceptor" />
 
-			<!-- interceptor name="set-app-context" class="com.wideka.mall.framework.struts.interceptor.SetAppContextInterceptor" 
+			<!-- interceptor name="set-app-context" class="com.hsh24.mall.framework.struts.interceptor.SetAppContextInterceptor" 
 				/ -->
 
 			<interceptor name="oauth2" class="oauth2Interceptor" />

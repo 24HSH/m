@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="weixinService" class="com.wideka.mall.weixin.service.impl.WeixinServiceImpl">
+	<bean id="weixinService" class="com.hsh24.mall.weixin.service.impl.WeixinServiceImpl">
 		<property name="ticketService" ref="ticketService" />
 		<property name="appId">
 			<value>${weixin.app.id}</value>
@@ -21,30 +21,30 @@
 		</property>
 	</bean>
 	
-	<bean id="tokenService" class="com.wideka.mall.weixin.service.impl.TokenServiceImpl">
+	<bean id="tokenService" class="com.hsh24.mall.weixin.service.impl.TokenServiceImpl">
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
 		<property name="accessTokenService" ref="accessTokenService" />
 	</bean>
 	
-	<bean id="ticketService" class="com.wideka.mall.weixin.service.impl.TicketServiceImpl">
+	<bean id="ticketService" class="com.hsh24.mall.weixin.service.impl.TicketServiceImpl">
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
 		<property name="tokenService" ref="tokenService" />
 		<property name="jsapiTicketService" ref="jsapiTicketService" />
 	</bean>
 	
 	<!-- weixin -->
-	<bean id="accessTokenService" class="com.wideka.weixin.auth.service.impl.AccessTokenServiceImpl"></bean>
-	<bean id="agentService" class="com.wideka.weixin.agent.service.impl.AgentServiceImpl"></bean>
-	<bean id="callbackService" class="com.wideka.weixin.callback.service.impl.CallbackServiceImpl"></bean>
-	<bean id="departmentService" class="com.wideka.weixin.department.service.impl.DepartmentServiceImpl"></bean>
-	<bean id="jsapiTicketService" class="com.wideka.weixin.auth.service.impl.JSAPITicketServiceImpl"></bean>
-	<bean id="materialService" class="com.wideka.weixin.material.service.impl.MaterialServiceImpl"></bean>
-	<bean id="menuService" class="com.wideka.weixin.menu.service.impl.MenuServiceImpl"></bean>
-	<bean id="messageService" class="com.wideka.weixin.message.service.impl.MessageServiceImpl"></bean>
-	<bean id="oauth2Service" class="com.wideka.weixin.auth.service.impl.OAuth2ServiceImpl"></bean>
-	<bean id="refundService" class="com.wideka.weixin.pay.service.impl.RefundServiceImpl"></bean>
-	<bean id="tagService" class="com.wideka.weixin.tag.service.impl.TagServiceImpl"></bean>
-	<bean id="unifiedOrderService" class="com.wideka.weixin.pay.service.impl.UnifiedOrderServiceImpl"></bean>
-	<bean id="userService" class="com.wideka.weixin.user.service.impl.UserServiceImpl"></bean>
+	<bean id="accessTokenService" class="com.hsh24.weixin.auth.service.impl.AccessTokenServiceImpl"></bean>
+	<bean id="agentService" class="com.hsh24.weixin.agent.service.impl.AgentServiceImpl"></bean>
+	<bean id="callbackService" class="com.hsh24.weixin.callback.service.impl.CallbackServiceImpl"></bean>
+	<bean id="departmentService" class="com.hsh24.weixin.department.service.impl.DepartmentServiceImpl"></bean>
+	<bean id="jsapiTicketService" class="com.hsh24.weixin.auth.service.impl.JSAPITicketServiceImpl"></bean>
+	<bean id="materialService" class="com.hsh24.weixin.material.service.impl.MaterialServiceImpl"></bean>
+	<bean id="menuService" class="com.hsh24.weixin.menu.service.impl.MenuServiceImpl"></bean>
+	<bean id="messageService" class="com.hsh24.weixin.message.service.impl.MessageServiceImpl"></bean>
+	<bean id="oauth2Service" class="com.hsh24.weixin.auth.service.impl.OAuth2ServiceImpl"></bean>
+	<bean id="refundService" class="com.hsh24.weixin.pay.service.impl.RefundServiceImpl"></bean>
+	<bean id="tagService" class="com.hsh24.weixin.tag.service.impl.TagServiceImpl"></bean>
+	<bean id="unifiedOrderService" class="com.hsh24.weixin.pay.service.impl.UnifiedOrderServiceImpl"></bean>
+	<bean id="userService" class="com.hsh24.weixin.user.service.impl.UserServiceImpl"></bean>
 	
 </beans>

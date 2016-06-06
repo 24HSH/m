@@ -39,7 +39,7 @@
 	
 	<filter>
 		<filter-name>SessionFilter</filter-name>
-		<filter-class>com.wideka.mall.framework.web.filter.SessionFilter</filter-class>
+		<filter-class>com.hsh24.mall.framework.web.filter.SessionFilter</filter-class>
 	</filter>
 
 	<filter-mapping>

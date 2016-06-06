@@ -4,7 +4,7 @@
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="item.sku">
 	
-	<typeAlias alias="itemSku" type="com.wideka.mall.api.item.bo.ItemSku" />
+	<typeAlias alias="itemSku" type="com.hsh24.mall.api.item.bo.ItemSku" />
 	
 	<select id="getItemSkuList" parameterClass="itemSku" resultClass="itemSku">
 	<![CDATA[

@@ -4,7 +4,7 @@
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="trade.order.refund">
 	
-	<typeAlias alias="orderRefund" type="com.wideka.mall.api.trade.bo.OrderRefund" />
+	<typeAlias alias="orderRefund" type="com.hsh24.mall.api.trade.bo.OrderRefund" />
 
 	<insert id="createOrderRefund" parameterClass="orderRefund">
 	<![CDATA[
