@@ -44,7 +44,7 @@ public interface IOrderService {
 	 * @param tradeId
 	 * @return
 	 */
-	List<Order> getOrderList(String userId, Long shopId, Long tradeId);
+	List<Order> getOrderList(Long userId, Long shopId, Long tradeId);
 
 	/**
 	 * 
@@ -54,6 +54,6 @@ public interface IOrderService {
 	 * @param orderId
 	 * @return
 	 */
-	Order getOrder(String userId, Long shopId, Long tradeId, Long orderId);
+	Order getOrder(Long userId, Long shopId, Long tradeId, Long orderId);
 
 }

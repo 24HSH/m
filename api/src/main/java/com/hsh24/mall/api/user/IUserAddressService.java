@@ -16,7 +16,7 @@ public interface IUserAddressService {
 	 * @param userId
 	 * @return
 	 */
-	UserAddress getDefaultUserAddress(String userId);
+	UserAddress getDefaultUserAddress(Long userId);
 
 	/**
 	 * 新增收货地址 设置默认收货地址 并 修改交易记录.
@@ -27,6 +27,6 @@ public interface IUserAddressService {
 	 * @param tradeNo
 	 * @return
 	 */
-	BooleanResult createUserAddress(String userId, UserAddress userAddress, Long shopId, String tradeNo);
+	BooleanResult createUserAddress(Long userId, UserAddress userAddress, Long shopId, String tradeNo);
 
 }

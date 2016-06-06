@@ -305,8 +305,8 @@ a.component.type3 img {
 
 .quantity button {
     margin: 0;
-    width: 25px;
-    height: 22px;
+    width: 30px;
+    height: 27px;
     border: 1px solid #eee;
     background-color: #f2f2f2;
     border-radius: 1px;
@@ -375,8 +375,8 @@ a.component.type3 img {
 
 .list-block .quantity .txt {
     border: 1px solid #eee;
-    height: 22px;
-    width: 25px;
+    height: 27px;
+    width: 30px;
     line-height: 20px;
     padding: 0;
     margin: 0;
@@ -390,7 +390,7 @@ a.component.type3 img {
 .quantity .response-area {
     width: 32px;
     height: 60px;
-    top: -20px;
+    top: -15px;
     position: absolute;
 }
 
@@ -534,6 +534,62 @@ a.component.type3 img {
     border-left-style: dashed;
 }
 
-.list-block .page-settings:after {
+.page-settings .col-33 + .col-33 {
+    border-left: 1px solid #ccc;
+    border-left-style: dashed;
+}
+
+.page-settings .col-50 + .col-50 {
+    border-left: 1px solid #ccc;
+    border-left-style: dashed;
+}
+
+
+
+/* 去掉下划线 */
+.list-block .after-height-0:after {
 	height: 0;
+}
+
+
+
+/* 采购中心 */
+.item-list-overlay.item-list-overlay-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.item-list-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.4);
+    z-index: 13000;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition-duration: .4s;
+    transition-duration: .4s;
+}
+
+
+
+/* 空 */
+.empty-list {
+    font-size: 14px;
+    display: block;
+    text-align: center;
+    padding: 30px 10px;
+    color: #999;
+}
+
+.empty-list h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.empty-list .empty-list-content {
+    margin-top: 20px;
 }

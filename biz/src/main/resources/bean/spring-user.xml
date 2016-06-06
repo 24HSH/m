@@ -7,14 +7,4 @@
 	
 	<bean id="userDao" class="com.hsh24.mall.user.dao.impl.UserDaoImpl" parent="baseDao" />
 	
-	<bean id="userAddressAction" class="com.hsh24.mall.user.action.UserAddressAction" parent="baseAction" scope="request">
-		<property name="userAddressService" ref="userAddressService" />
-	</bean>
-	<bean id="userAddressService" class="com.hsh24.mall.user.service.impl.UserAddressServiceImpl">
-		<property name="transactionTemplate" ref="transactionTemplate" />
-		<property name="tradeService" ref="tradeService" />
-		<property name="userAddressDao" ref="userAddressDao" />
-	</bean>
-	<bean id="userAddressDao" class="com.hsh24.mall.user.dao.impl.UserAddressDaoImpl" parent="baseDao" />
-	
 </beans>

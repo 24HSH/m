@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.hsh24.mall.api.user.bo.User;
 import com.hsh24.mall.framework.annotation.Decode;
 import com.hsh24.mall.framework.bo.SearchInfo;
 import com.opensymphony.xwork2.ActionContext;
@@ -117,12 +118,12 @@ public class BaseAction extends ActionSupport {
 	}
 
 	/**
-	 * getOpenId.
+	 * getUser.
 	 * 
 	 * @return
 	 */
-	public String getOpenId() {
-		return (String) getSession().getAttribute("ACEGI_SECURITY_LAST_OPEN_ID");
+	public User getUser() {
+		return (User) getSession().getAttribute("ACEGI_SECURITY_LAST_LOGINUSER");
 	}
 
 	public String getGmtStart() {

@@ -33,9 +33,9 @@ public class OAuth2Interceptor implements Interceptor {
 
 		@SuppressWarnings("rawtypes")
 		Map session = invocation.getInvocationContext().getSession();
-		String openId = (String) session.get("ACEGI_SECURITY_LAST_OPEN_ID");
+		String passport = (String) session.get("ACEGI_SECURITY_LAST_PASSPORT");
 
-		if (StringUtils.isEmpty(openId)) {
+		if (StringUtils.isEmpty(passport)) {
 			return OAUTH;
 		}
 

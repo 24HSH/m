@@ -27,8 +27,7 @@ public interface IPayService {
 	 *            用户在商户appid下的唯一标识.
 	 * @return
 	 */
-	BooleanResult pay(String userId, Long shopId, String tradeNo, String remark, String payType, String ip,
-		String openId);
+	BooleanResult pay(Long userId, Long shopId, String tradeNo, String remark, String payType, String ip, String openId);
 
 	/**
 	 * 申请退款.
@@ -41,7 +40,7 @@ public interface IPayService {
 	 *            退款信息.
 	 * @return
 	 */
-	BooleanResult refund(String userId, Long shopId, String tradeNo, String orderId, OrderRefund orderRefund);
+	BooleanResult refund(Long userId, Long shopId, String tradeNo, String orderId, OrderRefund orderRefund);
 
 	// >>>>>>>>>>以下是第三方交易平台<<<<<<<<<<
 

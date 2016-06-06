@@ -23,7 +23,7 @@ public class Trade extends SearchInfo {
 	/**
 	 * 用户ID.
 	 */
-	private String userId;
+	private Long userId;
 
 	/**
 	 * 店铺ID.
@@ -246,11 +246,11 @@ public class Trade extends SearchInfo {
 		this.tradeId = tradeId;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

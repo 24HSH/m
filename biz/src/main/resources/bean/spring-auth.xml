@@ -11,6 +11,7 @@
 	
 	<bean id="authService" class="com.hsh24.mall.auth.service.impl.AuthServiceImpl">
 		<property name="oauth2Service" ref="oauth2Service" />
+		<property name="userWeixinService" ref="userWeixinService" />
 		<property name="appId">
 			<value>${weixin.app.id}</value>
 		</property>

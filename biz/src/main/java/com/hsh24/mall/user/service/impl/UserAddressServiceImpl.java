@@ -31,13 +31,13 @@ public class UserAddressServiceImpl implements IUserAddressService {
 	private IUserAddressDao userAddressDao;
 
 	@Override
-	public UserAddress getDefaultUserAddress(String userId) {
-		if (StringUtils.isBlank(userId)) {
+	public UserAddress getDefaultUserAddress(Long userId) {
+		if (userId == null) {
 			return null;
 		}
 
 		UserAddress userAddress = new UserAddress();
-		userAddress.setUserId(userId.trim());
+		userAddress.setUserId(userId);
 		userAddress.setDefaults("Y");
 
 		try {
@@ -50,7 +50,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
 	}
 
 	@Override
-	public BooleanResult createUserAddress(final String userId, final UserAddress userAddress, final Long shopId,
+	public BooleanResult createUserAddress(final Long userId, final UserAddress userAddress, final Long shopId,
 		final String tradeNo) {
 		BooleanResult res = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
 			public BooleanResult doInTransaction(TransactionStatus ts) {
@@ -104,56 +104,56 @@ public class UserAddressServiceImpl implements IUserAddressService {
 	 * @param userAddress
 	 * @return
 	 */
-	private BooleanResult createUserAddress(String userId, UserAddress userAddress) {
+	private BooleanResult createUserAddress(Long userId, UserAddress userAddress) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
-		if (StringUtils.isBlank(userId)) {
-			result.setCode("用户信息不能为空！");
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
 			return result;
 		}
 
 		if (userAddress == null) {
-			result.setCode("收货地址信息不能为空！");
+			result.setCode("收货地址信息不能为空");
 			return result;
 		}
 
 		if (StringUtils.isBlank(userAddress.getContactName()) || userAddress.getContactName().length() > 10) {
-			result.setCode("收货人信息不能为空或过长！");
+			result.setCode("收货人信息不能为空或过长");
 			return result;
 		}
 
 		if (StringUtils.isBlank(userAddress.getTel()) || userAddress.getTel().length() > 25) {
-			result.setCode("联系电话信息不能为空或过长！");
+			result.setCode("联系电话信息不能为空或过长");
 			return result;
 		}
 
 		if (StringUtils.isBlank(userAddress.getProvince())) {
-			result.setCode("省不能为空！");
+			result.setCode("省不能为空");
 			return result;
 		}
 
 		if (StringUtils.isBlank(userAddress.getCity())) {
-			result.setCode("市不能为空！");
+			result.setCode("市不能为空");
 			return result;
 		}
 
 		if (StringUtils.isBlank(userAddress.getArea())) {
-			result.setCode("区不能为空！");
+			result.setCode("区不能为空");
 			return result;
 		}
 
 		if (StringUtils.isBlank(userAddress.getAddress()) || userAddress.getAddress().length() > 50) {
-			result.setCode("详细地址信息不能为空或过长！");
+			result.setCode("详细地址信息不能为空或过长");
 			return result;
 		}
 
 		if (StringUtils.isNotBlank(userAddress.getPostalCode()) && userAddress.getPostalCode().length() > 10) {
-			result.setCode("邮政编码信息不能为空或过长！");
+			result.setCode("邮政编码信息不能为空或过长");
 			return result;
 		}
 
-		userAddress.setUserId(userId.trim());
+		userAddress.setUserId(userId);
 
 		try {
 			Long addId = userAddressDao.createUserAddress(userAddress);
@@ -162,7 +162,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(userAddress), e);
 
-			result.setCode("收货地址信息创建失败，请稍后再试！");
+			result.setCode("收货地址信息创建失败，请稍后再试");
 		}
 
 		return result;
@@ -173,18 +173,18 @@ public class UserAddressServiceImpl implements IUserAddressService {
 	 * @param userId
 	 * @return
 	 */
-	private BooleanResult removeDefaultUserAddress(String userId) {
+	private BooleanResult removeDefaultUserAddress(Long userId) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
 		UserAddress userAddress = new UserAddress();
 
-		if (StringUtils.isBlank(userId)) {
-			result.setCode("用户信息不能为空！");
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
 			return result;
 		}
 
-		userAddress.setUserId(userId.trim());
+		userAddress.setUserId(userId);
 
 		try {
 			userAddressDao.removeDefaultUserAddress(userAddress);
@@ -192,7 +192,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(userAddress), e);
 
-			result.setCode("默认收货地址信息设置失败，请稍后再试！");
+			result.setCode("默认收货地址信息设置失败，请稍后再试");
 		}
 
 		return result;

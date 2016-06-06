@@ -24,13 +24,14 @@ public class UserAddressAction extends BaseAction {
 	private String tradeNo;
 
 	public String index() {
-		userAddress = userAddressService.getDefaultUserAddress(this.getOpenId());
+		userAddress = userAddressService.getDefaultUserAddress(this.getUser().getUserId());
 
 		return SUCCESS;
 	}
 
 	public String create() {
-		BooleanResult result = userAddressService.createUserAddress(this.getOpenId(), userAddress, 0L, tradeNo);
+		BooleanResult result =
+			userAddressService.createUserAddress(this.getUser().getUserId(), userAddress, 0L, tradeNo);
 
 		if (result.getResult()) {
 			this.setResourceResult(result.getCode());

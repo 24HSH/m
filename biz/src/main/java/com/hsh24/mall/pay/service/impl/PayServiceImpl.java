@@ -45,12 +45,12 @@ public class PayServiceImpl implements IPayService {
 	private ICartService cartService;
 
 	@Override
-	public BooleanResult pay(final String userId, final Long shopId, final String tradeNo, final String remark,
+	public BooleanResult pay(final Long userId, final Long shopId, final String tradeNo, final String remark,
 		String payType, String ip, String openId) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
-		if (StringUtils.isBlank(userId)) {
+		if (userId == null) {
 			result.setCode("用户信息不能为空.");
 			return result;
 		}
@@ -171,12 +171,12 @@ public class PayServiceImpl implements IPayService {
 	}
 
 	@Override
-	public BooleanResult refund(final String userId, final Long shopId, final String tradeNo, String orderId,
+	public BooleanResult refund(final Long userId, final Long shopId, final String tradeNo, String orderId,
 		final OrderRefund orderRefund) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
-		if (StringUtils.isBlank(userId)) {
+		if (userId == null) {
 			result.setCode("用户信息不能为空.");
 			return result;
 		}

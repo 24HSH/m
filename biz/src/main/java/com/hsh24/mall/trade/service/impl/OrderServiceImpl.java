@@ -131,8 +131,8 @@ public class OrderServiceImpl implements IOrderService {
 	}
 
 	@Override
-	public List<Order> getOrderList(String userId, Long shopId, Long tradeId) {
-		if (StringUtils.isBlank(userId) || shopId == null || tradeId == null) {
+	public List<Order> getOrderList(Long userId, Long shopId, Long tradeId) {
+		if (userId == null || shopId == null || tradeId == null) {
 			return null;
 		}
 
@@ -150,8 +150,8 @@ public class OrderServiceImpl implements IOrderService {
 	}
 
 	@Override
-	public Order getOrder(String userId, Long shopId, Long tradeId, Long orderId) {
-		if (StringUtils.isBlank(userId) || shopId == null || tradeId == null) {
+	public Order getOrder(Long userId, Long shopId, Long tradeId, Long orderId) {
+		if (userId == null || shopId == null || tradeId == null) {
 			return null;
 		}
 

@@ -11,7 +11,7 @@ public class User extends SearchInfo {
 
 	private static final long serialVersionUID = 5804990636185340805L;
 
-	private String userId;
+	private Long userId;
 
 	/**
 	 * 用户名.
@@ -30,11 +30,15 @@ public class User extends SearchInfo {
 
 	private String state;
 
-	public String getUserId() {
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	private String openId;
+
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -68,6 +72,14 @@ public class User extends SearchInfo {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getOpenId() {
+		return openId;
+	}
+
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 
 }
