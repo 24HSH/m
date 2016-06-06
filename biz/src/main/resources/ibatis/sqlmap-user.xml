@@ -8,8 +8,7 @@
 	
 	<select id="getUser" parameterClass="user" resultClass="user">
 	<![CDATA[
-		SELECT t.id,
-		  t.user_id AS userId,
+		SELECT t.user_id AS userId,
 		  t.user_name AS userName,
 		  t.passport
 		FROM mall.mall_tb_user t
