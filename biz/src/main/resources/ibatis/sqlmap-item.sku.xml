@@ -15,7 +15,7 @@
 		  t.price,
 		  t.origin,
 		  t.code
-		FROM mall.mall_tb_item_sku t
+		FROM dms.dms_tb_item_sku t
 		WHERE t.state     = 'U'
 	]]>	
 		<dynamic>

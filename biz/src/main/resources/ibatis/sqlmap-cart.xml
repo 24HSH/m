@@ -117,10 +117,10 @@
 			   SUM(CASE WHEN k.points_id IS NULL THEN CASE WHEN q.price IS NULL THEN p.price * t.quantity ELSE q.price * t.quantity END ELSE 0 END) AS price,
 			   SUM(CASE WHEN k.points IS NULL THEN 0 ELSE k.points * t.quantity END) AS points
 		  FROM mall.mall_tb_cart t
-		  left join mall.mall_tb_item p on t.item_id= p.item_id
+		  left join dms.dms_tb_item p on t.item_id= p.item_id
 		  left join(
 		SELECT qq.sku_id, qq.price
-		  FROM mall.mall_tb_item_sku qq
+		  FROM dms.dms_tb_item_sku qq
 		 WHERE qq.state= 'U') q on t.sku_id = q.sku_id
 		  left join(
 		SELECT kk.points_id, kk.points

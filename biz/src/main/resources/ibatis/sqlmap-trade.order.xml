@@ -40,10 +40,10 @@
 			   #modifyUser#,
 			   NOW(),
 			   #modifyUser#
-		  FROM mall.mall_tb_item t
+		  FROM dms.dms_tb_item t
 		  LEFT JOIN(
 		SELECT qq.item_id, qq.properties_name, qq.price
-		  FROM mall.mall_tb_item_sku qq
+		  FROM dms.dms_tb_item_sku qq
 		 WHERE qq.state = 'U'
 		   AND qq.sku_id = #skuId#) q ON t.item_id = q.item_id
 		 WHERE t.state = 'U'
@@ -93,10 +93,10 @@
 			   NOW(),
 			   #modifyUser#
 		  FROM mall.mall_tb_cart t
-		  LEFT JOIN mall.mall_tb_item p ON t.item_id = p.item_id
+		  LEFT JOIN dms.dms_tb_item p ON t.item_id = p.item_id
 		  LEFT JOIN(
 		SELECT qq.item_id, qq.sku_id, qq.properties_name, qq.price
-		  FROM mall.mall_tb_item_sku qq
+		  FROM dms.dms_tb_item_sku qq
 		 WHERE qq.state = 'U') q ON t.sku_id = q.sku_id
 		  LEFT JOIN(
 		SELECT kk.points_id, kk.points
@@ -128,10 +128,10 @@
 			   t.sku_id AS skuId,
 			   CASE WHEN q.stock IS NULL THEN p.stock ELSE q.stock END AS stock
 		  FROM mall.mall_tb_order t
-		  LEFT JOIN mall.mall_tb_item p ON t.item_id = p.item_id
+		  LEFT JOIN dms.dms_tb_item p ON t.item_id = p.item_id
 		  LEFT JOIN(
 		SELECT qq.sku_id, qq.stock
-		  FROM mall.mall_tb_item_sku qq
+		  FROM dms.dms_tb_item_sku qq
 		 WHERE qq.state= 'U') q ON t.sku_id = q.sku_id
 		 WHERE p.item_id is not null
 		   AND t.state = 'U'
