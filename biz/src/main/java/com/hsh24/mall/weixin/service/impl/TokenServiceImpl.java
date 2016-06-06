@@ -8,8 +8,8 @@ import com.hsh24.mall.framework.bo.BooleanResult;
 import com.hsh24.mall.framework.exception.ServiceException;
 import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
-import com.hsh24.weixin.api.auth.IAccessTokenService;
-import com.hsh24.weixin.api.auth.bo.AccessToken;
+import com.wideka.weixin.api.auth.IAccessTokenService;
+import com.wideka.weixin.api.auth.bo.AccessToken;
 
 /**
  * 

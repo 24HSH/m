@@ -17,12 +17,11 @@
 			<artifactId>mall-util</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+
 		<!-- module weixin -->
 		<dependency>
-			<groupId>com.hsh24</groupId>
-			<artifactId>weixin-biz</artifactId>
-			<version>${project.version}</version>
+			<groupId>com.wideka</groupId>
+			<artifactId>weixin-api</artifactId>
 		</dependency>
 
 		<!-- servlet -->

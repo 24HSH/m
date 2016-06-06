@@ -1,6 +1,6 @@
 package com.hsh24.mall.wxpay.dao;
 
-import com.hsh24.weixin.api.pay.bo.WxNotify;
+import com.wideka.weixin.api.pay.bo.WxNotify;
 
 /**
  * 

@@ -2,7 +2,7 @@ package com.hsh24.mall.wxpay.dao.impl;
 
 import com.hsh24.mall.framework.dao.impl.BaseDaoImpl;
 import com.hsh24.mall.wxpay.dao.IWxpayDao;
-import com.hsh24.weixin.api.pay.bo.WxNotify;
+import com.wideka.weixin.api.pay.bo.WxNotify;
 
 /**
  * 

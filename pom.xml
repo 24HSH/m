@@ -11,6 +11,7 @@
 		<java.version>1.6</java.version>
 		<java.encoding>UTF-8</java.encoding>
 
+		<alidayu.version>1455552377940-20160426</alidayu.version>
 		<aspectjweaver.version>1.8.6</aspectjweaver.version>
 		<cglib.version>2.2.2</cglib.version>
 		<commons-beanutils.version>1.9.2</commons-beanutils.version>
@@ -49,6 +50,7 @@
 		<struts.version>2.3.28.1</struts.version>
 		<velocity.version>1.7</velocity.version>
 		<velocity-tools.version>2.0</velocity-tools.version>
+		<weixin-api.version>1.0.0</weixin-api.version>
 		<woodstox-core-asl.version>4.2.0</woodstox-core-asl.version>
 		<wsdl4j.version>1.6.3</wsdl4j.version>
 		<xmemcached.version>2.0.0</xmemcached.version>
@@ -74,6 +76,12 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.wideka</groupId>
+				<artifactId>weixin-api</artifactId>
+				<version>${weixin-api.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils</artifactId>

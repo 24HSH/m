@@ -11,7 +11,7 @@ import com.hsh24.mall.framework.bo.BooleanResult;
 import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
 import com.hsh24.mall.framework.util.UUIDUtil;
-import com.hsh24.weixin.framework.util.EncryptUtil;
+import com.wideka.weixin.framework.util.EncryptUtil;
 
 /**
  * 

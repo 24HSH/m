@@ -4,7 +4,7 @@
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="wxpay">
 	
-	<typeAlias alias="wxNotify" type="com.hsh24.weixin.api.pay.bo.WxNotify" />
+	<typeAlias alias="wxNotify" type="com.wideka.weixin.api.pay.bo.WxNotify" />
 	
 	<insert id="createWxNotify" parameterClass="wxNotify">
 	<![CDATA[

@@ -21,9 +21,9 @@ import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
 import com.hsh24.mall.framework.util.DateUtil;
 import com.hsh24.mall.framework.util.UUIDUtil;
-import com.hsh24.weixin.api.pay.bo.Refund;
-import com.hsh24.weixin.api.pay.bo.WxNotify;
-import com.hsh24.weixin.framework.util.XmlUtil;
+import com.wideka.weixin.api.pay.bo.Refund;
+import com.wideka.weixin.api.pay.bo.WxNotify;
+import com.wideka.weixin.framework.util.XmlUtil;
 
 /**
  * 

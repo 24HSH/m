@@ -2,8 +2,8 @@ package com.hsh24.mall.api.wxpay;
 
 import com.hsh24.mall.framework.bo.BooleanResult;
 import com.hsh24.mall.framework.exception.ServiceException;
-import com.hsh24.weixin.api.pay.bo.Refund;
-import com.hsh24.weixin.api.pay.bo.WxNotify;
+import com.wideka.weixin.api.pay.bo.Refund;
+import com.wideka.weixin.api.pay.bo.WxNotify;
 
 /**
  * 微信支付.
