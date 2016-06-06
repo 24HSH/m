@@ -12,8 +12,13 @@ import com.hsh24.mall.user.dao.IUserDao;
 public class UserDaoImpl extends BaseDaoImpl implements IUserDao {
 
 	@Override
-	public User getUserByPassport(String passport) {
-		return (User) getSqlMapClientTemplate().queryForObject("user.getUserByPassport", passport);
+	public Long createUser(User user) {
+		return (Long) getSqlMapClientTemplate().insert("user.createUser", user);
+	}
+
+	@Override
+	public User getUser(User user) {
+		return (User) getSqlMapClientTemplate().queryForObject("user.getUser", user);
 	}
 
 }

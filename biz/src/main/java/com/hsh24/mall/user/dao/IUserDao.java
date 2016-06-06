@@ -11,9 +11,16 @@ public interface IUserDao {
 
 	/**
 	 * 
-	 * @param passport
+	 * @param user
 	 * @return
 	 */
-	User getUserByPassport(String passport);
+	Long createUser(User user);
+
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	User getUser(User user);
 
 }

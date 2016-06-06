@@ -41,6 +41,7 @@
 	<sqlMap resource="ibatis/sqlmap-trade.order.xml" />
 	<sqlMap resource="ibatis/sqlmap-trade.xml" />
 	<sqlMap resource="ibatis/sqlmap-user.address.xml" />
+	<sqlMap resource="ibatis/sqlmap-user.weixin.xml" />
 	<sqlMap resource="ibatis/sqlmap-user.xml" />
 	<sqlMap resource="ibatis/sqlmap-wxpay.xml" />
     

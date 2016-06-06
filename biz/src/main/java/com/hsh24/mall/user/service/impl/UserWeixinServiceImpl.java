@@ -63,6 +63,7 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 
 				try {
 					u.setUserId(userId);
+					u.setModifyUser("sys");
 					userWeixinDao.createUser(u);
 				} catch (Exception e) {
 					logger.error(LogUtil.parserBean(u), e);

@@ -7,11 +7,11 @@
 	
 	<bean id="oauth2Action" class="com.hsh24.mall.auth.action.OAuth2Action" parent="baseAction" scope="request">
 		<property name="authService" ref="authService" />
+		<property name="userWeixinService" ref="userWeixinService" />
 	</bean>
 	
 	<bean id="authService" class="com.hsh24.mall.auth.service.impl.AuthServiceImpl">
 		<property name="oauth2Service" ref="oauth2Service" />
-		<property name="userWeixinService" ref="userWeixinService" />
 		<property name="appId">
 			<value>${weixin.app.id}</value>
 		</property>

@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap
 	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap namespace="user">
+<sqlMap namespace="user.weixin">
 	
 	<typeAlias alias="user" type="com.hsh24.mall.api.user.bo.User" />
 	
@@ -10,21 +10,20 @@
 	<![CDATA[
 		SELECT t.id,
 		  t.user_id AS userId,
-		  t.user_name AS userName,
-		  t.passport
-		FROM mall.mall_tb_user t
+		  t.open_id AS openId
+		FROM mall.mall_tb_user_weixin t
 		WHERE t.state  = 'U'
-		AND t.user_id  = #userId#
+		AND t.open_id  = #openId#
 	]]>
 	</select>
 	
 	<insert id="createUser" parameterClass="user">
 	<![CDATA[
 		INSERT
-		INTO mall.mall_tb_user
+		INTO mall.mall_tb_user_weixin
 		  (
-			USER_NAME,
-			PASSPORT,
+			USER_ID,
+			OPEN_ID,
 			STATE,
 			CREATE_DATE,
 			CREATE_USER,
@@ -33,8 +32,8 @@
 		  )
 		  VALUES
 		  (
-			#userName:VARCHAR#,
-			#passport:VARCHAR#,
+			#userId:VARCHAR#,
+			#openId:VARCHAR#,
 			'U',
 			NOW(),
 			#modifyUser:VARCHAR#,
@@ -42,7 +41,7 @@
 			#modifyUser:VARCHAR#
 		  )
 	]]>
-		<selectKey resultClass="java.lang.Long" keyProperty="userId">
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
 		<![CDATA[
 			SELECT LAST_INSERT_ID()
 		]]>

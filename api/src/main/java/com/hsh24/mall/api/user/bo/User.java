@@ -30,7 +30,11 @@ public class User extends SearchInfo {
 
 	private String state;
 
+	private String modifyUser;
+
 	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	private Long id;
 
 	private String openId;
 
@@ -72,6 +76,22 @@ public class User extends SearchInfo {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getModifyUser() {
+		return modifyUser;
+	}
+
+	public void setModifyUser(String modifyUser) {
+		this.modifyUser = modifyUser;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getOpenId() {
