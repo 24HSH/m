@@ -13,8 +13,15 @@
 		  t.open_id AS openId
 		FROM mall.mall_tb_user_weixin t
 		WHERE t.state  = 'U'
-		AND t.open_id  = #openId#
 	]]>
+		<dynamic>
+			<isNotEmpty property="openId" prepend="and">
+			<![CDATA[ t.open_id = #openId# ]]>
+			</isNotEmpty>
+			<isNotEmpty property="userId" prepend="and">
+			<![CDATA[ t.user_id = #userId# ]]>
+			</isNotEmpty>
+		</dynamic>
 	</select>
 	
 	<insert id="createUser" parameterClass="user">

@@ -87,8 +87,20 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 
 	@Override
 	public String getOpenId(Long userId) {
-		// TODO Auto-generated method stub
-		return null;
+		if (userId == null) {
+			return null;
+		}
+
+		final User u = new User();
+		u.setUserId(userId);
+
+		User user = getUser(u);
+
+		if (user == null) {
+			return null;
+		}
+
+		return user.getOpenId();
 	}
 
 	private User getUser(User user) {

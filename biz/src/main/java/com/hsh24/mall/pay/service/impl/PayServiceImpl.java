@@ -14,6 +14,7 @@ import com.hsh24.mall.api.pay.IPayService;
 import com.hsh24.mall.api.trade.ITradeService;
 import com.hsh24.mall.api.trade.bo.OrderRefund;
 import com.hsh24.mall.api.trade.bo.Trade;
+import com.hsh24.mall.api.user.IUserWeixinService;
 import com.hsh24.mall.api.wxpay.IWxpayService;
 import com.hsh24.mall.framework.bo.BooleanResult;
 import com.hsh24.mall.framework.exception.ServiceException;
@@ -44,9 +45,11 @@ public class PayServiceImpl implements IPayService {
 
 	private ICartService cartService;
 
+	private IUserWeixinService userWeixinService;
+
 	@Override
 	public BooleanResult pay(final Long userId, final Long shopId, final String tradeNo, final String remark,
-		String payType, String ip, String openId) {
+		String payType, String ip) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -66,11 +69,13 @@ public class PayServiceImpl implements IPayService {
 		}
 
 		// 验证支付方式
-		if (StringUtils.isNotBlank(payType) && !IPayService.PAY_TYPE_ALIPAY.equals(payType)
-			&& !IPayService.PAY_TYPE_WXPAY.equals(payType)) {
+		if (StringUtils.isBlank(payType)
+			|| (!IPayService.PAY_TYPE_ALIPAY.equals(payType) && !IPayService.PAY_TYPE_WXPAY.equals(payType))) {
 			result.setCode("请重新选择支付方式！");
 			return result;
 		}
+
+		String openId = IPayService.PAY_TYPE_WXPAY.equals(payType) ? userWeixinService.getOpenId(userId) : null;
 
 		// 锁定订单
 		String key = tradeNo.trim();
@@ -398,6 +403,14 @@ public class PayServiceImpl implements IPayService {
 
 	public void setCartService(ICartService cartService) {
 		this.cartService = cartService;
+	}
+
+	public IUserWeixinService getUserWeixinService() {
+		return userWeixinService;
+	}
+
+	public void setUserWeixinService(IUserWeixinService userWeixinService) {
+		this.userWeixinService = userWeixinService;
 	}
 
 }

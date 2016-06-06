@@ -17,6 +17,7 @@
 		<property name="wxpayService" ref="wxpayService" />
 		<property name="tradeService" ref="tradeService" />
 		<property name="cartService" ref="cartService" />
+		<property name="userWeixinService" ref="userWeixinService" />
 	</bean>
 
 </beans>

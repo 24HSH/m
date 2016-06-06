@@ -70,7 +70,7 @@ public class PayAction extends BaseAction {
 	public String pay() {
 		BooleanResult result =
 			payService.pay(this.getUser().getUserId(), 0L, tradeNo, remark, "wxpay",
-				ClientUtil.getIpAddr(this.getServletRequest()), "todo");
+				ClientUtil.getIpAddr(this.getServletRequest()));
 
 		if (result.getResult()) {
 			this.setResourceResult(result.getCode());
