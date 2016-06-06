@@ -9,7 +9,7 @@
 	<insert id="createWxNotify" parameterClass="wxNotify">
 	<![CDATA[
 		INSERT
-		INTO basis_tb_wxpay_notify
+		INTO mall.mall_tb_wxpay_notify
 		  (
 			APP_ID,
 			MCH_ID,

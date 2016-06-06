@@ -17,7 +17,7 @@
 		  t.address,
 		  t.postal_code AS postalCode,
 		  t.tel
-		FROM basis_tb_user_address t
+		FROM mall.mall_tb_user_address t
 		WHERE t.state  = 'U'
 		AND t.defaults = #defaults#
 		AND t.user_id  = #userId#
@@ -27,7 +27,7 @@
 	<insert id="createUserAddress" parameterClass="userAddress">
 	<![CDATA[
 		INSERT
-		INTO basis_tb_user_address
+		INTO mall.mall_tb_user_address
 		  (
 			USER_ID,
 			CONTACT_NAME,
@@ -75,7 +75,7 @@
 	
 	<update id="removeDefaultUserAddress" parameterClass="userAddress">
 	<![CDATA[
-		UPDATE basis_tb_user_address t
+		UPDATE mall.mall_tb_user_address t
 		SET t.modify_date = NOW(),
 		  t.modify_user   = #userId#,
 		  t.defaults      = 'N'

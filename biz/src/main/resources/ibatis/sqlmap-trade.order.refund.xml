@@ -9,7 +9,7 @@
 	<insert id="createOrderRefund" parameterClass="orderRefund">
 	<![CDATA[
 		INSERT
-		INTO basis_tb_order_refund
+		INTO mall.mall_tb_order_refund
 		  (
 			ORDER_ID,
 			TRADE_NO,

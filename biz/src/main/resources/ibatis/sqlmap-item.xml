@@ -17,7 +17,7 @@
 		  t.quota,
 		  t.origin,
 		  t.remark
-		FROM basis_tb_item t
+		FROM mall.mall_tb_item t
 		WHERE t.state = 'U'
 		AND t.shop_id = #shopId#
 	]]>	
@@ -43,7 +43,7 @@
 		  t.quota,
 		  t.origin,
 		  t.remark
-		FROM basis_tb_item t
+		FROM mall.mall_tb_item t
 		WHERE t.state = 'U'
 		AND t.shop_id = #shopId#
 		AND t.item_id = #itemId#
