@@ -49,9 +49,7 @@
 			<result name="exception">/mall/framework/error/error_ok.vm</result>
 			<result name="isNotExsit">/mall/framework/error/isNotExsit.vm</result>
 			<result name="jsonresult" type="json"></result>
-			<result name="oauth2" type="redirectAction">
-				<param name="actionName">shop/index</param>
-			</result>
+			<result name="oauth2" type="redirect">${env.appUrl}/shop/index.htm</result>
 			<result name="resourceResult">/mall/framework/common/resourceResult.vm</result>
 			<result name="resultMessage">/mall/framework/common/resultMessage.vm</result>
 		</global-results>
