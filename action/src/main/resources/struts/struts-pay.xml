@@ -23,7 +23,6 @@
 		extends="{http://mall}mall$framework" namespace="/wxpay">
 		<action name="pay" class="payAction" method="pay"></action>
 		<action name="refund" class="payAction" method="refund"></action>
-		<action name="notify" class="payAction" method="wxNotify"></action>
 	</package>
 
 </struts>

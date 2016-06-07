@@ -40,14 +40,4 @@ public interface IPayService {
 	 */
 	BooleanResult refund(Long userId, Long shopId, String tradeNo, String orderId, OrderRefund orderRefund);
 
-	// >>>>>>>>>>以下是第三方交易平台<<<<<<<<<<
-
-	/**
-	 * 支付通知.
-	 * 
-	 * @param wxNotify
-	 * @return
-	 */
-	BooleanResult notify(String wxNotify);
-
 }

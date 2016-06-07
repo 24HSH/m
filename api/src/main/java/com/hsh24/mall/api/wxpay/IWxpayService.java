@@ -1,9 +1,7 @@
 package com.hsh24.mall.api.wxpay;
 
-import com.hsh24.mall.framework.bo.BooleanResult;
 import com.hsh24.mall.framework.exception.ServiceException;
 import com.wideka.weixin.api.pay.bo.Refund;
-import com.wideka.weixin.api.pay.bo.WxNotify;
 
 /**
  * 微信支付.
@@ -51,20 +49,5 @@ public interface IWxpayService {
 	 */
 	Refund refund(String deviceInfo, String transactionId, String outTradeNo, String outRefundNo, int totalFee,
 		int refundFee, String refundFeeType) throws ServiceException;
-
-	/**
-	 * 支付通知.
-	 * 
-	 * @param wxNotify
-	 * @return
-	 */
-	BooleanResult validateWxNotify(WxNotify wxNotify);
-
-	/**
-	 * 
-	 * @param wxNotify
-	 * @return
-	 */
-	BooleanResult createWxNotify(WxNotify wxNotify);
 
 }

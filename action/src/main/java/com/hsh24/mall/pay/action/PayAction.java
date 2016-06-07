@@ -1,17 +1,11 @@
 package com.hsh24.mall.pay.action;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import com.hsh24.mall.api.pay.IPayService;
 import com.hsh24.mall.api.trade.ITradeService;
 import com.hsh24.mall.api.trade.bo.OrderRefund;
 import com.hsh24.mall.api.trade.bo.Trade;
 import com.hsh24.mall.framework.action.BaseAction;
 import com.hsh24.mall.framework.bo.BooleanResult;
-import com.hsh24.mall.framework.log.Logger4jCollection;
-import com.hsh24.mall.framework.log.Logger4jExtend;
 import com.hsh24.mall.framework.util.ClientUtil;
 
 /**
@@ -22,8 +16,6 @@ import com.hsh24.mall.framework.util.ClientUtil;
 public class PayAction extends BaseAction {
 
 	private static final long serialVersionUID = 3200362561478926494L;
-
-	private Logger4jExtend logger = Logger4jCollection.getLogger(PayAction.class);
 
 	private IPayService payService;
 
@@ -96,50 +88,6 @@ public class PayAction extends BaseAction {
 			this.getServletResponse().setStatus(599);
 			this.setResourceResult(result.getCode());
 		}
-
-		return RESOURCE_RESULT;
-	}
-
-	/**
-	 * 回调.
-	 * 
-	 * @return
-	 */
-	public String wxNotify() {
-		StringBuilder fileContent = new StringBuilder();
-
-		InputStreamReader in = null;
-		BufferedReader reader = null;
-		try {
-			in = new InputStreamReader(this.getServletRequest().getInputStream(), "UTF-8");
-			reader = new BufferedReader(in);
-
-			String tempStr = reader.readLine();
-			while (tempStr != null) {
-				fileContent.append(tempStr);
-				tempStr = reader.readLine();
-			}
-		} catch (Exception e) {
-			logger.error(e);
-		} finally {
-			if (in != null) {
-				try {
-					in.close();
-				} catch (IOException e) {
-					logger.error(e);
-				}
-			}
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					logger.error(e);
-				}
-			}
-		}
-
-		BooleanResult result = payService.notify(fileContent.toString());
-		this.setResourceResult(result.getCode());
 
 		return RESOURCE_RESULT;
 	}

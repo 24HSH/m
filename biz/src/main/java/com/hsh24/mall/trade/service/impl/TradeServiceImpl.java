@@ -551,52 +551,6 @@ public class TradeServiceImpl implements ITradeService {
 		return result;
 	}
 
-	// >>>>>>>>>>以下是第三方交易平台<<<<<<<<<<
-
-	@Override
-	public Trade getTrade(String tradeNo) {
-		if (StringUtils.isBlank(tradeNo)) {
-			return null;
-		}
-
-		Trade trade = new Trade();
-		trade.setTradeNo(tradeNo.trim());
-
-		return getTrade(trade);
-	}
-
-	@Override
-	public BooleanResult payTrade(String tradeNo, String payType, String payDate) {
-		BooleanResult result = new BooleanResult();
-		result.setResult(false);
-
-		Trade trade = new Trade();
-		// 待发货
-		trade.setType(ITradeService.TO_SEND);
-
-		if (StringUtils.isBlank(tradeNo)) {
-			result.setCode("交易订单不能为空");
-			return result;
-		}
-		trade.setTradeNo(tradeNo.trim());
-
-		if (StringUtils.isBlank(payType)) {
-			result.setCode("支付类型不能为空");
-			return result;
-		}
-		trade.setPayType(payType.trim());
-
-		if (StringUtils.isBlank(payDate)) {
-			result.setCode("支付时间不能为空");
-			return result;
-		}
-		trade.setPayDate(payDate);
-
-		trade.setModifyUser(payType);
-
-		return updateTrade(trade);
-	}
-
 	/**
 	 * 
 	 * @param trade

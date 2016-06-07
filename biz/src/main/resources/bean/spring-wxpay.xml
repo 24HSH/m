@@ -8,7 +8,6 @@
 	<bean id="wxpayService" class="com.hsh24.mall.wxpay.service.impl.WxpayServiceImpl">
 		<property name="unifiedOrderService" ref="unifiedOrderService" />
 		<property name="refundService" ref="refundService" />
-		<property name="wxpayDao" ref="wxpayDao" />
 		<property name="appId">
 			<value>${weixin.app.id}</value>
 		</property>
@@ -28,7 +27,5 @@
 			<value>${weixin.ssl.path}</value>
 		</property>
 	</bean>
-	
-	<bean id="wxpayDao" class="com.hsh24.mall.wxpay.dao.impl.WxpayDaoImpl" parent="baseDao" />
 	
 </beans>
