@@ -60,6 +60,7 @@
 			
             <div class="more"></div>
 			
+		#if($!{tradeList})
 			#foreach($trade in $!{tradeList})
 			<div class="list-block media-list" style="font-size: 14px;">
 				<ul>
@@ -123,6 +124,17 @@
 				</ul>
 			</div>
 			#end
+		#else
+			<div class="empty-list">
+				<div class="empty-list-header">
+					<h4>居然还没有订单</h4>
+					<span>好东西，手慢无</span>
+				</div>
+				<div class="empty-list-content">
+				</div>
+			</div>
+		#end
+		
 			<!-- Preloader -->
 			<!--
 			<div class="infinite-scroll-preloader">
