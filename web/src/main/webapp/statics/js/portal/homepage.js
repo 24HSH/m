@@ -25,6 +25,8 @@ var mainView = myApp.addView('.view-main', {
 			dynamicNavbar : true
 		});
 
+// ==============================
+
 var view2 = myApp.addView('#view-2', {
 			dynamicNavbar : true
 		});
@@ -83,6 +85,8 @@ $$('#view_2_click').on('click', function() {
 			$$('#href-2').addClass("active");
 		});
 
+// ==============================
+
 function portal_homepage_cart_stats() {
 	$$.get(appUrl + '/cart/stats.htm', {}, function(data) {
 				if (data > 0) {
@@ -96,6 +100,20 @@ function portal_homepage_cart_stats() {
 }
 
 portal_homepage_cart_stats();
+
+myApp.onPageInit('portal.homepage', function(page) {
+			$$('#view_2_click').on('click', function() {
+						if (view2.history.length == 1) {
+							view2.router.load({
+										url : appUrl + "/item/list.htm"
+									});
+						}
+
+						$$('#href-2').addClass("active");
+					});
+
+			portal_homepage_cart_stats();
+		})
 
 myApp.addNotification({
 			title : '来自好社惠的消息',
