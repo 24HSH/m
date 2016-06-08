@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.hsh24.mall.api.shop.bo.Shop;
 import com.hsh24.mall.api.user.bo.User;
 import com.hsh24.mall.framework.annotation.Decode;
 import com.hsh24.mall.framework.bo.SearchInfo;
@@ -124,6 +125,10 @@ public class BaseAction extends ActionSupport {
 	 */
 	public User getUser() {
 		return (User) getSession().getAttribute("ACEGI_SECURITY_LAST_LOGINUSER");
+	}
+
+	public Shop getShop() {
+		return (Shop) getSession().getAttribute("ACEGI_SECURITY_LAST_SHOP");
 	}
 
 	public String getGmtStart() {

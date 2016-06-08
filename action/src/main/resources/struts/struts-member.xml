@@ -6,6 +6,7 @@
 		extends="{http://mall}mall$framework" namespace="/member">
 
 		<action name="index" class="memberAction" method="index">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/member/index.vm</result>
 		</action>
 		

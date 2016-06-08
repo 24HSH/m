@@ -80,6 +80,10 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 
 	int CACHE_KEY_TRADE_NO_DEFAULT_EXP = 3;
 
+	// >>>>>>>>>>以下是店铺相关<<<<<<<<<<
+
+	String CACHE_KEY_SHOP_ID = "key_shop_id_";
+
 	// >>>>>>>>>>end<<<<<<<<<<
 
 	/**

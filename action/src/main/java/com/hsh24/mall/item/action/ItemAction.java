@@ -32,7 +32,7 @@ public class ItemAction extends BaseAction {
 	 * @return
 	 */
 	public String detail() {
-		item = itemService.getItem(0L, itemId);
+		item = itemService.getItem(this.getShop().getShopId(), itemId);
 
 		return SUCCESS;
 	}

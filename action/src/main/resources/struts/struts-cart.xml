@@ -5,17 +5,26 @@
 	<package name="{http://mall}mall$cart"
 		extends="{http://mall}mall$framework" namespace="/cart">
 		
-		<action name="stats" class="cartAction" method="stats"></action>
+		<action name="stats" class="cartAction" method="stats">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 
 		<action name="index" class="cartAction" method="index">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/cart/index.vm</result>
 		</action>
 		
-		<action name="add" class="cartAction" method="add"></action>
+		<action name="add" class="cartAction" method="add">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 		
-		<action name="remove" class="cartAction" method="remove"></action>
+		<action name="remove" class="cartAction" method="remove">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 		
-		<action name="num" class="cartAction" method="num"></action>
+		<action name="num" class="cartAction" method="num">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 		
 	</package>
 </struts>

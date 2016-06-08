@@ -89,6 +89,7 @@ public class LoginAction extends BaseAction {
 			// login
 			session.removeAttribute("ACEGI_SECURITY_LAST_PASSPORT");
 			session.removeAttribute("ACEGI_SECURITY_LAST_LOGINUSER");
+			session.removeAttribute("ACEGI_SECURITY_LAST_SHOP");
 
 			session.invalidate();
 		} catch (Exception e) {

@@ -6,7 +6,7 @@
 		extends="{http://mall}mall$framework" namespace="/shop">
 
 		<action name="index" class="shopAction" method="index">
-			<result name="success" type="redirect">${env.appUrl}/auth/authorize.htm</result>
+			<result name="success" type="redirect">${env.appUrl}/homepage.htm</result>
 		</action>
 		
 	</package>

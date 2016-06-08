@@ -7,6 +7,7 @@
 		
 		<!-- 支付首页 -->
 		<action name="index" class="payAction" method="index">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/pay/index.vm</result>
 		</action>
 		
@@ -15,14 +16,20 @@
 	<!-- alipay 支付 -->
 	<package name="{http://mall}mall$alipay"
 		extends="{http://mall}mall$framework" namespace="/alipay">
-		<action name="pay" class="payAction" method="pay"></action>
+		<action name="pay" class="payAction" method="pay">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 	</package>
 	
 	<!-- wx 支付 -->
 	<package name="{http://mall}mall$wxpay"
 		extends="{http://mall}mall$framework" namespace="/wxpay">
-		<action name="pay" class="payAction" method="pay"></action>
-		<action name="refund" class="payAction" method="refund"></action>
+		<action name="pay" class="payAction" method="pay">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		<action name="refund" class="payAction" method="refund">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 	</package>
 
 </struts>

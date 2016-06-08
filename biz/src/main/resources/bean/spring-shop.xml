@@ -6,6 +6,14 @@
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 	<bean id="shopAction" class="com.hsh24.mall.shop.action.ShopAction" parent="baseAction" scope="request">
+		<property name="shopService" ref="shopService" />
 	</bean>
+	
+	<bean id="shopService" class="com.hsh24.mall.shop.service.impl.ShopServiceImpl">
+		<property name="memcachedCacheService" ref="memcachedCacheService" />
+		<property name="shopDao" ref="shopDao" />
+	</bean>
+	
+	<bean id="shopDao" class="com.hsh24.mall.shop.dao.impl.ShopDaoImpl" parent="baseDao" />
 	
 </beans>

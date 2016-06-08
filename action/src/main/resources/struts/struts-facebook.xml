@@ -6,6 +6,7 @@
 		extends="{http://mall}mall$framework" namespace="/facebook">
 
 		<action name="index" class="expressAction" method="index">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/facebook/index.vm</result>
 		</action>
 		

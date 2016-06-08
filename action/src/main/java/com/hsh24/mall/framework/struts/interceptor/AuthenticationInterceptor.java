@@ -8,7 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 
 import com.hsh24.mall.api.ca.ICAService;
-import com.hsh24.mall.api.user.bo.User;
+import com.hsh24.mall.api.shop.bo.Shop;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
@@ -22,7 +22,9 @@ public class AuthenticationInterceptor implements Interceptor {
 
 	private static final long serialVersionUID = -7498838714747075663L;
 
-	private static final String LOGIN_TIMEOUT = "440";
+	private static final String OAUTH = "oauth2";
+
+	private static final String SHOP = "shop";
 
 	private ICAService caService;
 
@@ -36,16 +38,16 @@ public class AuthenticationInterceptor implements Interceptor {
 
 		@SuppressWarnings("rawtypes")
 		Map session = invocation.getInvocationContext().getSession();
-		User user = (User) session.get("ACEGI_SECURITY_LAST_LOGINUSER");
+		String passport = (String) session.get("ACEGI_SECURITY_LAST_PASSPORT");
 
-		if (user == null) {
-			String actionName = getActionName();
-			// 登录首页 不需要 goto
-			if (!"/home.htm".equals(actionName)) {
-				setAttribute("goto", getUrl());
-			}
+		if (StringUtils.isEmpty(passport)) {
+			return OAUTH;
+		}
 
-			return LOGIN_TIMEOUT;
+		Shop shop = (Shop) session.get("ACEGI_SECURITY_LAST_SHOP");
+		if (shop == null) {
+			// TODO
+			return SHOP;
 		}
 
 		return invocation.invoke();

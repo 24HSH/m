@@ -37,6 +37,7 @@
 	<sqlMap resource="ibatis/sqlmap-monitor.cache.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.log.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.method.xml" />
+	<sqlMap resource="ibatis/sqlmap-shop.xml" />
 	<sqlMap resource="ibatis/sqlmap-trade.order.refund.xml" />
 	<sqlMap resource="ibatis/sqlmap-trade.order.xml" />
 	<sqlMap resource="ibatis/sqlmap-trade.xml" />

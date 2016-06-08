@@ -22,14 +22,8 @@
 			<!-- interceptor name="set-app-context" class="com.hsh24.mall.framework.struts.interceptor.SetAppContextInterceptor" 
 				/ -->
 
-			<interceptor name="oauth2" class="oauth2Interceptor" />
 			<interceptor name="authentication" class="authenticationInterceptor" />
 			<interceptor name="actionMonitor" class="actionMonitorInterceptor" />
-			
-			<interceptor-stack name="oauth2Stack">
-				<interceptor-ref name="defaultStack" />
-				<interceptor-ref name="oauth2" />
-			</interceptor-stack>
 			
 			<interceptor-stack name="authenticationStack">
 				<interceptor-ref name="defaultStack" />
@@ -49,9 +43,10 @@
 			<result name="exception">/mall/framework/error/error_ok.vm</result>
 			<result name="isNotExsit">/mall/framework/error/isNotExsit.vm</result>
 			<result name="jsonresult" type="json"></result>
-			<result name="oauth2" type="redirect">${env.appUrl}/shop/index.htm</result>
+			<result name="oauth2" type="redirect">${env.appUrl}/auth/authorize.htm</result>
 			<result name="resourceResult">/mall/framework/common/resourceResult.vm</result>
 			<result name="resultMessage">/mall/framework/common/resultMessage.vm</result>
+			<result name="shop" type="redirect">${env.appUrl}/shop/index.htm</result>
 		</global-results>
 
 		<global-exception-mappings>

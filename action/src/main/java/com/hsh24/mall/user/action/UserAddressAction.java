@@ -31,7 +31,8 @@ public class UserAddressAction extends BaseAction {
 
 	public String create() {
 		BooleanResult result =
-			userAddressService.createUserAddress(this.getUser().getUserId(), userAddress, 0L, tradeNo);
+			userAddressService.createUserAddress(this.getUser().getUserId(), userAddress, this.getShop().getShopId(),
+				tradeNo);
 
 		if (result.getResult()) {
 			this.setResourceResult(result.getCode());

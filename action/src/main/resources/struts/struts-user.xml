@@ -6,6 +6,7 @@
 		extends="{http://mall}mall$framework" namespace="/user">
 
 		<action name="address" class="userAddressAction" method="index">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/user/address.vm</result>
 		</action>
 		
@@ -13,6 +14,8 @@
 	
 	<package name="{http://mall}mall$address"
 		extends="{http://mall}mall$framework" namespace="/address">
-		<action name="create" class="userAddressAction" method="create"></action>
+		<action name="create" class="userAddressAction" method="create">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 	</package>
 </struts>

@@ -49,7 +49,7 @@ public class PayAction extends BaseAction {
 	 * @return
 	 */
 	public String index() {
-		trade = tradeService.getTrade(this.getUser().getUserId(), 0L, tradeNo);
+		trade = tradeService.getTrade(this.getUser().getUserId(), this.getShop().getShopId(), tradeNo);
 
 		return SUCCESS;
 	}
@@ -61,7 +61,7 @@ public class PayAction extends BaseAction {
 	 */
 	public String pay() {
 		BooleanResult result =
-			payService.pay(this.getUser().getUserId(), 0L, tradeNo, remark, "wxpay",
+			payService.pay(this.getUser().getUserId(), this.getShop().getShopId(), tradeNo, remark, "wxpay",
 				ClientUtil.getIpAddr(this.getServletRequest()));
 
 		if (result.getResult()) {
@@ -80,7 +80,8 @@ public class PayAction extends BaseAction {
 	 * @return
 	 */
 	public String refund() {
-		BooleanResult result = payService.refund(this.getUser().getUserId(), 0L, tradeNo, orderId, orderRefund);
+		BooleanResult result =
+			payService.refund(this.getUser().getUserId(), this.getShop().getShopId(), tradeNo, orderId, orderRefund);
 
 		if (result.getResult()) {
 			this.setResourceResult(result.getCode());

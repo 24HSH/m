@@ -6,26 +6,36 @@
 		extends="{http://mall}mall$framework" namespace="/trade">
 
 		<action name="create" class="tradeAction" method="create">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success" type="redirect">${env.appUrl}/pay/index.htm?tradeNo=${tradeNo}</result>
 		</action>
 		
-		<action name="stats" class="tradeAction" method="stats"></action>
+		<action name="stats" class="tradeAction" method="stats">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 		
 		<action name="list" class="tradeAction" method="list">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/trade/list.vm</result>
 		</action>
 		
-		<action name="cancel" class="tradeAction" method="cancel"></action>
+		<action name="cancel" class="tradeAction" method="cancel">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 		
 		<action name="detail" class="tradeAction" method="detail">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/trade/detail.vm</result>
 		</action>
 		
 		<action name="refund" class="tradeAction" method="refund">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/trade/refund.vm</result>
 		</action>
 		
-		<action name="sign" class="tradeAction" method="sign"></action>
+		<action name="sign" class="tradeAction" method="sign">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 		
 	</package>
 </struts>

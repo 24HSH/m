@@ -6,30 +6,37 @@
 		extends="{http://mall}mall$framework" namespace="/express">
 
 		<action name="index" class="expressAction" method="index">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/express/index.vm</result>
 		</action>
 		
 		<action name="ship" class="expressAction" method="ship">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/express/ship.vm</result>
 		</action>
 		
 		<action name="waybill" class="expressAction" method="waybill">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/express/waybill.vm</result>
 		</action>
 		
 		<action name="rate" class="expressAction" method="rate">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/express/rate.vm</result>
 		</action>
 		
 		<action name="time" class="expressAction" method="time">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/express/time.vm</result>
 		</action>
 		
 		<action name="store" class="expressAction" method="store">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/express/store.vm</result>
 		</action>
 		
 		<action name="range" class="expressAction" method="range">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/mall/express/range.vm</result>
 		</action>
 		
