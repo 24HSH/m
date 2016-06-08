@@ -5,6 +5,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
+	<bean id="userAction" class="com.hsh24.mall.user.action.UserAction" parent="baseAction" scope="request">
+	</bean>
+	
 	<bean id="userService" class="com.hsh24.mall.user.service.impl.UserServiceImpl">
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
 		<property name="userDao" ref="userDao" />

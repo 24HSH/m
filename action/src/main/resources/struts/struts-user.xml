@@ -10,6 +10,12 @@
 			<result name="success">/mall/user/address.vm</result>
 		</action>
 		
+		<!-- 用户基本信息 -->
+		<action name="detail" class="userAction" method="detail">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/user/detail.vm</result>
+		</action>
+		
 	</package>
 	
 	<package name="{http://mall}mall$address"
