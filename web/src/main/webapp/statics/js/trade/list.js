@@ -88,7 +88,7 @@ function trade_list_sign(tradeNo) {
 function trade_list_stats() {
 	$$.get(appUrl + '/trade/stats.htm', {}, function(data) {
 				var stats = data.split("&");
-				$$('#trade/list/all').html(stats[0]);
+				$$('#trade/list/topay').html(stats[0]);
 				$$('#trade/list/tosend').html(stats[1]);
 				$$('#trade/list/send').html(stats[2]);
 				$$('#trade/list/sign').html(stats[3]);
