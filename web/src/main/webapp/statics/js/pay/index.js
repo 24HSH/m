@@ -1,8 +1,9 @@
 myApp.onPageInit('pay.index', function(page) {
-			$$('form.ajax-submit').on('beforeSubmit', function(e) {
+			$$('form.ajax-submit.pay-index-form').on('beforeSubmit',
+					function(e) {
 					});
 
-			$$('form.ajax-submit').on('submitted', function(e) {
+			$$('form.ajax-submit.pay-index-form').on('submitted', function(e) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
 						getBrandWCPayRequest(xhr.responseText);
@@ -11,7 +12,8 @@ myApp.onPageInit('pay.index', function(page) {
 						portal_homepage_cart_stats();
 					});
 
-			$$('form.ajax-submit').on('submitError', function(e) {
+			$$('form.ajax-submit.pay-index-form').on('submitError',
+					function(e) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
 						myApp.alert(xhr.responseText, '错误');

@@ -14,7 +14,7 @@
 	<div data-page="trade.refund" class="page no-tabbar">
 		<!-- Scrollable page content-->
 		<div class="page-content">
-			<form id="trade/refund/refund" action="$!{env.appUrl}/wxpay/refund.htm" method="POST" class="ajax-submit">
+			<form id="trade/refund/refund" action="$!{env.appUrl}/wxpay/refund.htm" method="POST" class="ajax-submit trade-refund-refund">
     			<div class="list-block media-list" style="font-size: 15px;">
     				<ul>
 						<li>

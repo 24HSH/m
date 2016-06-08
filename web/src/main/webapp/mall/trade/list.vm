@@ -90,10 +90,10 @@
 				<div class="preloader"></div>
 			</div>
 			-->
-			<form id="trade/list/cancel" action="$!{env.appUrl}/trade/cancel.htm" method="POST" class="ajax-submit">
+			<form id="trade/list/cancel" action="$!{env.appUrl}/trade/cancel.htm" method="POST" class="ajax-submit trade-list-cancel">
             	<input type="hidden" name="tradeNo" id="trade_list_cancel_tradeNo"/>
             </form>
-			<form id="trade/list/sign" action="$!{env.appUrl}/trade/sign.htm" method="POST" class="ajax-submit">
+			<form id="trade/list/sign" action="$!{env.appUrl}/trade/sign.htm" method="POST" class="ajax-submit trade-list-sign">
             	<input type="hidden" name="tradeNo" id="trade_list_sign_tradeNo"/>
             </form>
 		</div>

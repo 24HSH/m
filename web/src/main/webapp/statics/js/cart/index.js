@@ -1,8 +1,9 @@
 myApp.onPageInit('cart.index', function(page) {
-			$$('form.ajax-submit').on('beforeSubmit', function(e) {
+			$$('form.ajax-submit.cart-index-form').on('beforeSubmit',
+					function(e) {
 					});
 
-			$$('form.ajax-submit').on('submitted', function(e) {
+			$$('form.ajax-submit.cart-index-form').on('submitted', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
 
@@ -21,7 +22,8 @@ myApp.onPageInit('cart.index', function(page) {
 				}
 			});
 
-			$$('form.ajax-submit').on('submitError', function(e) {
+			$$('form.ajax-submit.cart-index-form').on('submitError',
+					function(e) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
 						myApp.alert(xhr.responseText, '错误');

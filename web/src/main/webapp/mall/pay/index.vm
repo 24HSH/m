@@ -168,7 +168,7 @@
 				<p><a href="javascript:pay_index_pay();" class="button button-big button-fill weui_btn_primary">微信安全支付</a></p>
             </div>
 			
-			<form id="pay/index/wxpay" action="$!{env.appUrl}/wxpay/pay.htm" method="POST" class="ajax-submit">
+			<form id="pay/index/wxpay" action="$!{env.appUrl}/wxpay/pay.htm" method="POST" class="ajax-submit pay-index-form">
 				<input type="hidden" name="tradeNo" value="$!{tradeNo}"></input>
 				<input type="hidden" id="pay_index_wxpay_remark" name="remark"></input>
             </form>
