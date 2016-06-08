@@ -15,6 +15,18 @@
 		<!-- Scrollable page content-->
 		<div class="page-content">
 			<div class="list-block" style="font-size: 15px;">
+				<ul>
+					<li>
+						<a href="$!{env.appUrl}/user/detail.htm" class="item-link item-content" data-ignore-cache="true">
+							<div class="item-media"><i class="iconfont icon-my"></i></div>
+							<div class="item-inner">
+								<div class="item-title">$!{user.userName}</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+            </div>
+			<div class="list-block" style="font-size: 15px;">
 				<ul class="page-settings after-height-0">
 					<li class="row" style="text-align: center;">
 						<a href="$!{env.appUrl}/trade/list.htm?type=topay" class="col-25 item-link" style="width: 25%;" data-ignore-cache="true">

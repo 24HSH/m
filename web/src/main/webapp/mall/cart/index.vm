@@ -21,7 +21,7 @@
     					<li>
     						<div class="item-content">
     							<div class="item-inner" style="display: inherit;">
-    								<div class="item-title" style="font-weight: 400;">店铺：好社惠</div>
+    								<div class="item-title" style="font-weight: 400;">店铺：$!{shop.shopName}</div>
     								<div class="item-after">
     									<a id="cart/index/edit" href="javascript:cart_index_edit();" style="margin: -10px 0px; padding: 10px 0px;">编辑</a>
     									<a id="cart/index/edited" href="javascript:cart_index_edited();" style="margin: -10px 0px; padding: 10px 0px; display: none;">完成</a>
