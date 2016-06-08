@@ -529,6 +529,11 @@ a.component.type3 img {
     font-size: 0.8rem;
 }
 
+.page-settings .col-20 + .col-20 {
+    border-left: 1px solid #ccc;
+    border-left-style: dashed;
+}
+
 .page-settings .col-25 + .col-25 {
     border-left: 1px solid #ccc;
     border-left-style: dashed;
