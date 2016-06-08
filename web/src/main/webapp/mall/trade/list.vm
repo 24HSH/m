@@ -19,6 +19,45 @@
 				<div class="pull-to-refresh-arrow"></div>
 			</div>
 			
+			<div class="list-block" style="font-size: 15px;">
+				<ul class="page-settings">
+					<li class="row" style="text-align: center;">
+						<a href="javascript:trade_list('');" class="col-25 item-link" style="width: 25%;">
+							#if($!stringUtil.isEmpty($!{type}))
+							<h3 id="trade/list/all" style="color: #FF5500;">0</h3>
+							#else
+							<h3 id="trade/list/all" style="color: #8e8e93;">0</h3>
+							#end
+							<div class="color-gray">全部订单</div>
+                        </a>
+						<a href="javascript:trade_list('tosend');" class="col-25 item-link" style="width: 25%;">
+							#if("tosend" == $!{type})
+							<h3 id="trade/list/tosend" style="color: #FF5500;">0</h3>
+							#else
+							<h3 id="trade/list/tosend" style="color: #8e8e93;">0</h3>
+							#end
+							<div class="color-gray">待发货</div>
+                        </a>
+						<a href="javascript:trade_list('send');" class="col-25 item-link" style="width: 25%;">
+							#if("send" == $!{type})
+							<h3 id="trade/list/send" style="color: #FF5500;">0</h3>
+							#else
+							<h3 id="trade/list/send" style="color: #8e8e93;">0</h3>
+							#end
+							<div class="color-gray">已发货</div>
+                        </a>
+						<a href="javascript:trade_list('sign');" class="col-25 item-link" style="width: 25%;">
+							#if("sign" == $!{type})
+							<h3 id="trade/list/sign" style="color: #FF5500;">0</h3>
+							#else
+							<h3 id="trade/list/sign" style="color: #8e8e93;">0</h3>
+							#end
+							<div class="color-gray">已完成</div>
+                        </a>
+					</li>
+                </ul>
+            </div>
+			
             <div class="more"></div>
 			
 			#foreach($trade in $!{tradeList})

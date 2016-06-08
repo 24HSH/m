@@ -15,7 +15,7 @@
 		<!-- Scrollable page content-->
 		<div class="page-content">
 			<div class="list-block" style="font-size: 15px;">
-				<ul class="page-settings">
+				<ul class="page-settings after-height-0">
 					<li class="row" style="text-align: center;">
 						<a href="$!{env.appUrl}/trade/list.htm?type=topay" class="col-25 item-link" style="width: 25%;" data-ignore-cache="true">
 							<h3 id="member/index/topay">0</h3>

@@ -55,7 +55,17 @@ myApp.onPageInit('trade.list', function(page) {
 						var xhr = e.detail.xhr;
 						myApp.alert(xhr.responseText, '错误');
 					});
+
+			trade_list_stats();
 		});
+
+function trade_list(type) {
+	myApp.getCurrentView().router.load({
+				url : appUrl + "/trade/list.htm?type=" + type,
+				ignoreCache : true,
+				reload : true
+			});
+}
 
 function trade_list_cancel(tradeNo) {
 	myApp.confirm('确定取消订单？', '订单管理', function() {
@@ -72,5 +82,15 @@ function trade_list_sign(tradeNo) {
 
 				$$('#trade_list_sign_tradeNo').val(tradeNo);
 				$$('#trade/list/sign').trigger("submit");
+			});
+}
+
+function trade_list_stats() {
+	$$.get(appUrl + '/trade/stats.htm', {}, function(data) {
+				var stats = data.split("&");
+				$$('#trade/list/all').html(stats[0]);
+				$$('#trade/list/tosend').html(stats[1]);
+				$$('#trade/list/send').html(stats[2]);
+				$$('#trade/list/sign').html(stats[3]);
 			});
 }
