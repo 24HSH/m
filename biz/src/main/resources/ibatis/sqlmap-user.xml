@@ -10,7 +10,8 @@
 	<![CDATA[
 		SELECT t.user_id AS userId,
 		  t.user_name AS userName,
-		  t.passport
+		  t.passport,
+		  t.head_img_url AS headImgUrl
 		FROM mall.mall_tb_user t
 		WHERE t.state  = 'U'
 		AND t.user_id  = #userId#
