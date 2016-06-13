@@ -24,6 +24,11 @@
 		  (
 			USER_NAME,
 			PASSPORT,
+			SEX,
+			PROVINCE,
+			CITY,
+			COUNTRY,
+			HEAD_IMG_URL,
 			STATE,
 			CREATE_DATE,
 			CREATE_USER,
@@ -34,6 +39,11 @@
 		  (
 			#userName:VARCHAR#,
 			#passport:VARCHAR#,
+			#sex:VARCHAR#,
+			#province:VARCHAR#,
+			#city:VARCHAR#,
+			#country:VARCHAR#,
+			#headImgUrl:VARCHAR#,
 			'U',
 			NOW(),
 			#modifyUser:VARCHAR#,
