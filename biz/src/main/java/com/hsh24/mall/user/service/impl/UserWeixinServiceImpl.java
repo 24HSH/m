@@ -43,10 +43,7 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 			return null;
 		}
 
-		final User u = new User();
-		u.setOpenId(openId.trim());
-
-		User user = getUser(u);
+		User user = getUser(openId.trim());
 		if (user != null) {
 			return userService.getUser(user.getUserId());
 		}
@@ -63,8 +60,16 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 			return null;
 		}
 
+		final User u = new User();
 		u.setUserName(userInfo.getNickName());
 		u.setPassport(openId);
+		u.setSex(userInfo.getSex());
+		u.setProvince(userInfo.getProvince());
+		u.setCity(userInfo.getCity());
+		u.setCountry(userInfo.getCountry());
+		u.setHeadImgUrl(userInfo.getHeadImgUrl());
+
+		u.setOpenId(openId.trim());
 
 		BooleanResult res = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
 			public BooleanResult doInTransaction(TransactionStatus ts) {
@@ -101,24 +106,90 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 		}
 	}
 
+	private User getUser(String openId) {
+		String key = openId;
+
+		User user = null;
+
+		try {
+			user = (User) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_WX_OPEN_ID + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_WX_OPEN_ID + key, e);
+		}
+
+		if (user != null) {
+			return user;
+		}
+
+		user = new User();
+		user.setOpenId(openId);
+
+		user = getUser(user);
+
+		if (user == null) {
+			return null;
+		}
+
+		// not null then set to cache
+		try {
+			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_WX_OPEN_ID + key, user);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_WX_OPEN_ID + key, e);
+		}
+
+		return user;
+	}
+
 	@Override
 	public String getOpenId(Long userId) {
 		if (userId == null) {
 			return null;
 		}
 
-		final User u = new User();
-		u.setUserId(userId);
+		String key = userId.toString();
 
-		User user = getUser(u);
+		String openId = null;
+
+		try {
+			openId = (String) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_WX_USER_ID + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_WX_USER_ID + key, e);
+		}
+
+		if (StringUtils.isNotEmpty(openId)) {
+			return openId;
+		}
+
+		User user = new User();
+		user.setUserId(userId);
+
+		user = getUser(user);
 
 		if (user == null) {
 			return null;
 		}
 
-		return user.getOpenId();
+		openId = user.getOpenId();
+
+		if (StringUtils.isEmpty(openId)) {
+			return null;
+		}
+
+		// not null then set to cache
+		try {
+			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_WX_USER_ID + key, openId);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_WX_USER_ID + key, e);
+		}
+
+		return openId;
 	}
 
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
 	private User getUser(User user) {
 		try {
 			return userWeixinDao.getUser(user);

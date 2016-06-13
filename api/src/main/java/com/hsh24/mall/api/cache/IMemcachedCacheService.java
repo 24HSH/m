@@ -49,6 +49,10 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 	 */
 	String CACHE_KEY_PASSPORT = "key_passport_";
 
+	String CACHE_KEY_WX_OPEN_ID = "key_wx_open_id_";
+
+	String CACHE_KEY_WX_USER_ID = "key_wx_user_id_";
+
 	// >>>>>>>>>>以下是监控相关<<<<<<<<<<
 
 	/**

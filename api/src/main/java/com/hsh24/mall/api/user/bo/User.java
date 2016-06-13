@@ -28,6 +28,16 @@ public class User extends SearchInfo {
 	 */
 	private String password;
 
+	private String sex;
+
+	private String province;
+
+	private String city;
+
+	private String country;
+
+	private String headImgUrl;
+
 	private String state;
 
 	private String modifyUser;
@@ -68,6 +78,46 @@ public class User extends SearchInfo {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getHeadImgUrl() {
+		return headImgUrl;
+	}
+
+	public void setHeadImgUrl(String headImgUrl) {
+		this.headImgUrl = headImgUrl;
 	}
 
 	public String getState() {

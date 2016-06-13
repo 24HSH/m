@@ -6,6 +6,7 @@ import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.user.IUserService;
 import com.hsh24.mall.api.user.bo.User;
 import com.hsh24.mall.framework.bo.BooleanResult;
+import com.hsh24.mall.framework.exception.ServiceException;
 import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
 import com.hsh24.mall.framework.util.LogUtil;
@@ -60,16 +61,43 @@ public class UserServiceImpl implements IUserService {
 			return null;
 		}
 
-		User user = new User();
+		String key = userId.toString();
+
+		User user = null;
+
+		try {
+			user = (User) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_USER_ID + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_USER_ID + key, e);
+		}
+
+		if (user != null) {
+			return user;
+		}
+
+		user = new User();
 		user.setUserId(userId);
 
 		try {
-			return userDao.getUser(user);
+			user = userDao.getUser(user);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(user), e);
+
+			user = null;
 		}
 
-		return null;
+		if (user == null) {
+			return null;
+		}
+
+		// not null then set to cache
+		try {
+			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_USER_ID + key, user);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_USER_ID + key, e);
+		}
+
+		return user;
 	}
 
 	public IMemcachedCacheService getMemcachedCacheService() {
