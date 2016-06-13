@@ -34,12 +34,15 @@ public class OAuth2Action extends BaseAction {
 
 	private String redirectUrl;
 
+	private String scope;
+
 	public String authorize() {
 		BooleanResult result = null;
 
 		try {
 			result =
-				authService.authorize(URLEncoder.encode(env.getProperty("appUrl") + "/auth/redirect.htm", "UTF-8"));
+				authService.authorize(URLEncoder.encode(env.getProperty("appUrl") + "/auth/redirect.htm", "UTF-8"),
+					StringUtils.isBlank(scope) ? "snsapi_base" : scope.trim());
 		} catch (Exception e) {
 			logger.error(e);
 			return ERROR;
@@ -58,15 +61,17 @@ public class OAuth2Action extends BaseAction {
 		// 用户唯一标识
 		AccessToken accessToken = authService.accessToken(this.getCode());
 
+		// 用户没有授权 或...
 		if (accessToken == null || StringUtils.isEmpty(accessToken.getOpenId())) {
 			return ERROR;
 		}
 
 		// 根据 openId 获得 userId
-		User u = userWeixinService.getUser(accessToken.getAccessToken(), accessToken.getOpenId());
+		User u =
+			userWeixinService.getUser(accessToken.getAccessToken(), accessToken.getOpenId(), accessToken.getScope());
 
 		if (u == null) {
-			return ERROR;
+			return NONE;
 		}
 
 		HttpSession session = this.getSession();
@@ -107,6 +112,14 @@ public class OAuth2Action extends BaseAction {
 
 	public void setRedirectUrl(String redirectUrl) {
 		this.redirectUrl = redirectUrl;
+	}
+
+	public String getScope() {
+		return scope;
+	}
+
+	public void setScope(String scope) {
+		this.scope = scope;
 	}
 
 }

@@ -38,14 +38,32 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 	private IUserWeixinDao userWeixinDao;
 
 	@Override
-	public User getUser(String accessToken, String openId) {
-		if (StringUtils.isBlank(accessToken) || StringUtils.isBlank(openId)) {
+	public User getUser(String accessToken, String openId, String scope) {
+		if (StringUtils.isBlank(accessToken) || StringUtils.isBlank(openId) || StringUtils.isBlank(scope)) {
 			return null;
 		}
 
 		User user = getUser(openId.trim());
 		if (user != null) {
 			return userService.getUser(user.getUserId());
+		}
+
+		String[] scopes = scope.split(",");
+		if (scopes == null || scopes.length == 0) {
+			return null;
+		}
+
+		// 判断 scope 是否为 snsapi_userinfo
+		boolean f = false;
+		for (String s : scopes) {
+			if ("snsapi_userinfo".equals(s)) {
+				f = true;
+				break;
+			}
+		}
+
+		if (!f) {
+			return null;
 		}
 
 		// 拉取用户信息

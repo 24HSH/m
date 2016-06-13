@@ -13,17 +13,19 @@ public interface IAuthService {
 	/**
 	 * 
 	 * @param redirectUrl
+	 * @param scope
 	 * @return
 	 */
-	BooleanResult authorize(String redirectUrl);
+	BooleanResult authorize(String redirectUrl, String scope);
 
 	/**
 	 * 
 	 * @param redirectUrl
+	 * @param scope
 	 * @param state
 	 * @return
 	 */
-	BooleanResult authorize(String redirectUrl, String state);
+	BooleanResult authorize(String redirectUrl, String scope, String state);
 
 	/**
 	 * 

@@ -26,22 +26,27 @@ public class AuthServiceImpl implements IAuthService {
 	private String appSecret;
 
 	@Override
-	public BooleanResult authorize(String redirectUrl) {
-		return authorize(redirectUrl, null);
+	public BooleanResult authorize(String redirectUrl, String scope) {
+		return authorize(redirectUrl, scope, null);
 	}
 
 	@Override
-	public BooleanResult authorize(String redirectUrl, String state) {
+	public BooleanResult authorize(String redirectUrl, String scope, String state) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
 		if (StringUtils.isBlank(redirectUrl)) {
-			result.setCode("redirectUrl 不能为空.");
+			result.setCode("redirectUrl 不能为空");
+			return result;
+		}
+
+		if (StringUtils.isBlank(scope)) {
+			result.setCode("scope 不能为空");
 			return result;
 		}
 
 		try {
-			result.setCode(oauth2Service.authorize(appId, redirectUrl, "snsapi_userinfo", state));
+			result.setCode(oauth2Service.authorize(appId, redirectUrl, scope, state));
 			result.setResult(true);
 		} catch (ServiceException e) {
 			logger.error(e);
