@@ -54,11 +54,9 @@ public class AuthServiceImpl implements IAuthService {
 
 	@Override
 	public AccessToken accessToken(String code) {
-		System.out.println("*****");
 		if (StringUtils.isBlank(code)) {
 			return null;
 		}
-		System.out.println(code);
 
 		try {
 			return oauth2Service.accessToken(appId, appSecret, code);
@@ -66,7 +64,6 @@ public class AuthServiceImpl implements IAuthService {
 			logger.error(e);
 		}
 
-		System.out.println("*****");
 		return null;
 	}
 
