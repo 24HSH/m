@@ -56,6 +56,7 @@ public class OAuth2Action extends BaseAction {
 	}
 
 	public String redirect() {
+		System.out.println("***");
 		// 用户唯一标识
 		AccessToken accessToken = authService.accessToken(this.getCode());
 		System.out.println(LogUtil.parserBean(accessToken));
