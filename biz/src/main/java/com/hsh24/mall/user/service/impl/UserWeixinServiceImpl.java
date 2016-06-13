@@ -10,6 +10,7 @@ import com.hsh24.mall.api.user.IUserService;
 import com.hsh24.mall.api.user.IUserWeixinService;
 import com.hsh24.mall.api.user.bo.User;
 import com.hsh24.mall.framework.bo.BooleanResult;
+import com.hsh24.mall.framework.exception.ServiceException;
 import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
 import com.hsh24.mall.framework.util.LogUtil;
@@ -51,7 +52,13 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 		}
 
 		// 拉取用户信息
-		UserInfo userInfo = oauth2Service.getUserInfo(accessToken, openId);
+		UserInfo userInfo = null;
+		try {
+			userInfo = oauth2Service.getUserInfo(accessToken, openId);
+		} catch (ServiceException e) {
+			logger.error(e);
+		}
+
 		if (userInfo == null) {
 			return null;
 		}
