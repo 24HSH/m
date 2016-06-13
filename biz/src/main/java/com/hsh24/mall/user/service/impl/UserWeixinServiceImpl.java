@@ -54,12 +54,9 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 		// 拉取用户信息
 		UserInfo userInfo = null;
 		try {
-			System.out.println(accessToken + "&" + openId);
 			userInfo = oauth2Service.getUserInfo(accessToken, openId);
 		} catch (ServiceException e) {
 			logger.error(e);
-
-			e.printStackTrace();
 		}
 
 		if (userInfo == null) {
