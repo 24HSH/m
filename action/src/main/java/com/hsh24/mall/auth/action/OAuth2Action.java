@@ -16,6 +16,7 @@ import com.hsh24.mall.framework.bo.BooleanResult;
 import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
 import com.wideka.weixin.api.auth.bo.AccessToken;
+import com.wideka.weixin.framework.util.LogUtil;
 
 /**
  * 
@@ -59,6 +60,7 @@ public class OAuth2Action extends BaseAction {
 		AccessToken accessToken = authService.accessToken(this.getCode());
 
 		if (accessToken == null || StringUtils.isEmpty(accessToken.getOpenId())) {
+			System.out.println(LogUtil.parserBean(accessToken));
 			return ERROR;
 		}
 
