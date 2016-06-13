@@ -58,9 +58,9 @@ public class OAuth2Action extends BaseAction {
 	public String redirect() {
 		// 用户唯一标识
 		AccessToken accessToken = authService.accessToken(this.getCode());
+		System.out.println(LogUtil.parserBean(accessToken));
 
 		if (accessToken == null || StringUtils.isEmpty(accessToken.getOpenId())) {
-			System.out.println(LogUtil.parserBean(accessToken));
 			return ERROR;
 		}
 
