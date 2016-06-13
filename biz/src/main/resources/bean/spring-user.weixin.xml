@@ -9,6 +9,7 @@
 		<property name="transactionTemplate" ref="transactionTemplate" />
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
 		<property name="userService" ref="userService" />
+		<property name="oauth2Service" ref="oauth2Service" />
 		<property name="userWeixinDao" ref="userWeixinDao" />
 	</bean>
 	

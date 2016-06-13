@@ -1,6 +1,7 @@
 package com.hsh24.mall.api.auth;
 
 import com.hsh24.mall.framework.bo.BooleanResult;
+import com.wideka.weixin.api.auth.bo.AccessToken;
 
 /**
  * 
@@ -29,6 +30,6 @@ public interface IAuthService {
 	 * @param code
 	 * @return
 	 */
-	String getOpenId(String code);
+	AccessToken accessToken(String code);
 
 }

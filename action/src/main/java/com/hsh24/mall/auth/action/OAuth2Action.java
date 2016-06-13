@@ -15,6 +15,7 @@ import com.hsh24.mall.framework.action.BaseAction;
 import com.hsh24.mall.framework.bo.BooleanResult;
 import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
+import com.wideka.weixin.api.auth.bo.AccessToken;
 
 /**
  * 
@@ -55,14 +56,14 @@ public class OAuth2Action extends BaseAction {
 
 	public String redirect() {
 		// 用户唯一标识
-		String openId = authService.getOpenId(this.getCode());
+		AccessToken accessToken = authService.accessToken(this.getCode());
 
-		if (StringUtils.isEmpty(openId)) {
+		if (accessToken == null || StringUtils.isEmpty(accessToken.getOpenId())) {
 			return ERROR;
 		}
 
 		// 根据 openId 获得 userId
-		User u = userWeixinService.getUser(openId);
+		User u = userWeixinService.getUser(accessToken.getAccessToken(), accessToken.getOpenId());
 
 		if (u == null) {
 			return ERROR;

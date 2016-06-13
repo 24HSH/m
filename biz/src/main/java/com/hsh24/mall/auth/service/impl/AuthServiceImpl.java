@@ -41,7 +41,7 @@ public class AuthServiceImpl implements IAuthService {
 		}
 
 		try {
-			result.setCode(oauth2Service.authorize(appId, redirectUrl, "snsapi_base", state));
+			result.setCode(oauth2Service.authorize(appId, redirectUrl, "snsapi_userinfo", state));
 			result.setResult(true);
 		} catch (ServiceException e) {
 			logger.error(e);
@@ -53,24 +53,18 @@ public class AuthServiceImpl implements IAuthService {
 	}
 
 	@Override
-	public String getOpenId(String code) {
+	public AccessToken accessToken(String code) {
 		if (StringUtils.isBlank(code)) {
 			return null;
 		}
 
-		AccessToken accessToken = null;
-
 		try {
-			accessToken = oauth2Service.accessToken(appId, appSecret, code);
+			return oauth2Service.accessToken(appId, appSecret, code);
 		} catch (ServiceException e) {
 			logger.error(e);
 		}
 
-		if (accessToken == null) {
-			return null;
-		}
-
-		return accessToken.getOpenId();
+		return null;
 	}
 
 	public IOAuth2Service getOauth2Service() {

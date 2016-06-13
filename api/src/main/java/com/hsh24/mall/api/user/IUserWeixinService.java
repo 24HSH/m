@@ -11,10 +11,11 @@ public interface IUserWeixinService {
 
 	/**
 	 * 
+	 * @param accessToken
 	 * @param openId
 	 * @return
 	 */
-	User getUser(String openId);
+	User getUser(String accessToken, String openId);
 
 	/**
 	 * 

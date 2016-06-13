@@ -14,6 +14,8 @@ import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
 import com.hsh24.mall.framework.util.LogUtil;
 import com.hsh24.mall.user.dao.IUserWeixinDao;
+import com.wideka.weixin.api.auth.IOAuth2Service;
+import com.wideka.weixin.api.auth.bo.UserInfo;
 
 /**
  * 
@@ -30,11 +32,13 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 
 	private IUserService userService;
 
+	private IOAuth2Service oauth2Service;
+
 	private IUserWeixinDao userWeixinDao;
 
 	@Override
-	public User getUser(String openId) {
-		if (StringUtils.isBlank(openId)) {
+	public User getUser(String accessToken, String openId) {
+		if (StringUtils.isBlank(accessToken) || StringUtils.isBlank(openId)) {
 			return null;
 		}
 
@@ -42,12 +46,17 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 		u.setOpenId(openId.trim());
 
 		User user = getUser(u);
-
 		if (user != null) {
 			return userService.getUser(user.getUserId());
 		}
 
-		u.setUserName(openId);
+		// 拉取用户信息
+		UserInfo userInfo = oauth2Service.getUserInfo(accessToken, openId);
+		if (userInfo == null) {
+			return null;
+		}
+
+		u.setUserName(userInfo.getNickName());
 		u.setPassport(openId);
 
 		BooleanResult res = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
@@ -135,6 +144,14 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
+	}
+
+	public IOAuth2Service getOauth2Service() {
+		return oauth2Service;
+	}
+
+	public void setOauth2Service(IOAuth2Service oauth2Service) {
+		this.oauth2Service = oauth2Service;
 	}
 
 	public IUserWeixinDao getUserWeixinDao() {
