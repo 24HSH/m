@@ -1,5 +1,7 @@
 package com.hsh24.mall.item.action;
 
+import java.util.List;
+
 import com.hsh24.mall.api.item.IItemService;
 import com.hsh24.mall.api.item.bo.Item;
 import com.hsh24.mall.framework.action.BaseAction;
@@ -15,6 +17,8 @@ public class ItemAction extends BaseAction {
 
 	private IItemService itemService;
 
+	private List<Item> itemList;
+
 	private String itemId;
 
 	private Item item;
@@ -24,6 +28,8 @@ public class ItemAction extends BaseAction {
 	 * @return
 	 */
 	public String list() {
+		itemList = itemService.getItemList(this.getShop().getShopId(), new Item());
+
 		return SUCCESS;
 	}
 
@@ -43,6 +49,14 @@ public class ItemAction extends BaseAction {
 
 	public void setItemService(IItemService itemService) {
 		this.itemService = itemService;
+	}
+
+	public List<Item> getItemList() {
+		return itemList;
+	}
+
+	public void setItemList(List<Item> itemList) {
+		this.itemList = itemList;
 	}
 
 	public String getItemId() {

@@ -12,56 +12,114 @@
 <div class="pages">
 	<!-- Page, data-page contains page name-->
 	<div data-page="item.list" class="page">
+		<!-- Search bar -->
+		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init item-list-searchbar">
+			<div class="searchbar-input">
+				<input type="search" placeholder="Search" /><a href="#" class="searchbar-clear"></a>
+			</div><a href="#" class="searchbar-cancel">取消</a>
+		</form>
+		
+		<!-- Search bar overlay -->
+		<div class="searchbar-overlay"></div>
+			
 		<!-- Scrollable page content-->
 		<div class="page-content">
-			<div class="list-block cards-list">
+			<div class="list-block list-block-search searchbar-found" style="font-size: 15px;">
 				<ul>
-					<li class="card demo-card-header-pic">
-						<div style="background-image:url($!{env.imgUrl}/image/item/index-1.jpg)" valign="bottom" class="card-header color-white no-border"></div>
-						<div class="card-content">
-							<div class="card-content-inner">
-								<p class="color-gray">特仑苏纯牛奶利乐苗条装250ml×8盒×3提 共24盒</p>
-								<p>特仑苏纯牛奶来自黄金奶源纬度带，特仑苏专属牧场，海拔、纬度、阳光、水土，精选多国优质牧草品种，汇集各国良种乳牛，造就出天然优质乳蛋白，每100毫升牛奶中蛋白质含量>3.3克，比国家标准高出13.8%，比欧盟标准高出10%。牛奶中的新贵族。</p>
+					#foreach($item in $!{itemList})
+                    <li>
+						<div class="item-content">
+							<div class="item-media">
+								#if($!{item.itemFileList.size()} > 0)
+								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 50px; height: 50px;"></img>
+								#end
 							</div>
-						</div>
-						<div class="card-footer">
-							<a href="$!{env.appUrl}/item/detail.htm?itemId=1" class="">
-								<div class="tuan_g_core">
-									<div class="tuan_g_price">
-										<span>3人团</span>
-										<b>79.90</b>
-									</div>
-									<div class="tuan_g_btn">去开团</div>
+							<div class="item-inner">
+								<div class="item-title">
+									$!{item.itemName} ￥$!formatUtil.getAmountFormat($!{item.price})
 								</div>
-							</a>
+                            </div>
 						</div>
+						<div class="item-content">
+    						<div class="item-inner">
+                                <div class="item-title"></div>
+								<div class="item-after">
+									<a href="#" data-picker=".picker-$!{item.itemId}-0" class="open-picker"><i class="iconfont icon-cart" style="font-size: 23px; color: #FF5500;"></i></a>
+								</div>
+    						</div>
+                        </div>
 					</li>
+					#end
 				</ul>
 			</div>
-			<div class="list-block cards-list">
-				<ul>
-					<li class="card demo-card-header-pic">
-						<div style="background-image:url($!{env.imgUrl}/image/item/index-2.jpg)" valign="bottom" class="card-header color-white no-border"></div>
-						<div class="card-content">
-							<div class="card-content-inner">
-								<p class="color-gray">特仑苏谷粒调制牛奶250ml×12盒×2提</p>
-								<p>特仑苏纯牛奶来自黄金奶源纬度带，特仑苏专属牧场，海拔、纬度、阳光、水土，精选多国优质牧草品种，汇集各国良种乳牛，造就出天然优质乳蛋白。牛奶中的新贵族。</p>
-							</div>
-						</div>
-						<div class="card-footer">
-							<a href="$!{env.appUrl}/item/detail.htm?itemId=2" class="">
-								<div class="tuan_g_core">
-									<div class="tuan_g_price">
-										<span>3人团</span>
-										<b>79.90</b>
-									</div>
-									<div class="tuan_g_btn">去开团</div>
-								</div>
-							</a>
-						</div>
-					</li>
-				</ul>
-			</div>
+			
+			<div class="item-list-overlay"></div>
         </div>
+		
+		#foreach($item in $!{itemList})
+		<!-- Picker -->
+        <div class="picker-modal picker-$!{item.itemId}-0" style="background: #FFFFFF; margin-bottom: 50px;">
+            <div class="toolbar" style="background: #FFFFFF;">
+            	<div class="toolbar-inner">
+            		<div class="left">$!{item.itemName}</div>
+            		<div class="right"><a href="#" class="close-picker"><i class="iconfont icon-close" style="font-size: 20px; color: #8e8e93;"></i></a></div>
+            	</div>
+            </div>
+            <div class="picker-modal-inner">
+            	<div class="content-block" style="margin-top: 0; margin-bottom: 0;">
+					<p>$!{item.remark}</p>
+					#if($!{sku.barCode})
+					<p>条码：$!{item.barCode}</p>
+					#end
+            	</div>
+				<div class="list-block" style="margin-top: 0; margin-bottom: 0;">
+					<div class="item-content">
+						<div class="item-inner">
+							<div class="item-title"></div>
+							<div class="item-after">￥$!formatUtil.getAmountFormat($!{item.price})</div>
+						</div>
+                    </div>
+					<div class="item-content">
+						<div class="item-inner">
+							<div class="item-title">购买数量：</div>
+							<div class="item-after">
+								<div class="quantity">
+									<button class="minus" type="button"></button>
+                                    <input id="item/list/quantity/$!{item.itemId}/0" type="text" class="txt" value="1"></input>
+									<button class="plus" type="button"></button>
+									<div class="response-area response-area-minus" onclick="item_list_minus('$!{item.itemId}/0');"></div>
+									<div class="response-area response-area-plus" onclick="item_list_plus('$!{item.itemId}/0');"></div>
+								</div>
+							</div>
+						</div>
+                    </div>
+					<div class="item-content" style="margin-top: 20px;">
+						<div class="item-inner after-height-0">
+							<div class="row no-gutter" style="width: 100%;">
+								<div class="col-50">
+									<a href="javascript:item_list_trade('$!{item.itemId}', '0');" class="button button-big color-orange" data-ignore-cache="true">立即下单</a>
+                                </div>
+								<div class="col-50">
+									<a href="javascript:item_list_cart('$!{item.itemId}', '0');" class="button button-big color-gray" style="margin-left: 10px;" data-ignore-cache="true">添加进货车</a>
+                                </div>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		#end
+				
+		<form id="item/list/trade" action="$!{env.appUrl}/trade/create.htm" method="POST" class="ajax-submit item-list-trade">
+			<input type="hidden" id="item_list_trade_itemId" name="itemId"></input>
+			<input type="hidden" id="item_list_trade_skuId" name="skuId"></input>
+			<input type="hidden" id="item_list_trade_quantity" name="quantity"></input>
+        </form>
+		
+		<form id="item/list/cart" action="$!{env.appUrl}/cart/add.htm" method="POST" class="ajax-submit item-list-cart">
+			<input type="hidden" id="item_list_cart_itemId" name="itemId"></input>
+			<input type="hidden" id="item_list_cart_skuId" name="skuId"></input>
+			<input type="hidden" id="item_list_cart_quantity" name="quantity"></input>
+        </form>
     </div>
 </div>

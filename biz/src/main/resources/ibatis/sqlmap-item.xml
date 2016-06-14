@@ -28,6 +28,7 @@
 			</isNotEmpty>
 		</dynamic>
 	<![CDATA[
+		ORDER BY t.item_name, t.item_id
 		LIMIT $limit$ OFFSET $offset$
 	]]>
 	</select>

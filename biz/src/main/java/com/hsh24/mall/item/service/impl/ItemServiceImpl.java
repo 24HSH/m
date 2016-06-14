@@ -46,6 +46,8 @@ public class ItemServiceImpl implements IItemService {
 		}
 
 		item.setShopId(shopId);
+		item.setLimit(100);
+		item.setOffset(0);
 
 		try {
 			return itemDao.getItemCount(item);
@@ -58,8 +60,19 @@ public class ItemServiceImpl implements IItemService {
 
 	@Override
 	public List<Item> getItemList(Long shopId, Item item) {
-		// TODO Auto-generated method stub
-		return null;
+		if (shopId == null || item == null) {
+			return null;
+		}
+
+		item.setShopId(shopId);
+
+		List<Item> itemList = getItemList(item);
+
+		if (itemList == null || itemList.size() == 0) {
+			return null;
+		}
+
+		return itemList;
 	}
 
 	@Override
