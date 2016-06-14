@@ -6,6 +6,10 @@
 		extends="{http://mall}mall$framework" namespace="/shop">
 
 		<action name="index" class="shopAction" method="index">
+			<result name="success">/mall/shop/index.vm</result>
+		</action>
+		
+		<action name="select" class="shopAction" method="select">
 			<result name="success" type="redirect">${env.appUrl}/homepage.htm</result>
 		</action>
 		

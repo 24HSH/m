@@ -20,7 +20,7 @@
 		FROM dms.dms_tb_item t
 		WHERE t.state = 'U'
 		AND t.shop_id = #shopId#
-	]]>	
+	]]>
 		<dynamic>
 			<isNotEmpty property="codes" prepend="and">
 			<![CDATA[ t.item_id IN ]]>
@@ -29,7 +29,7 @@
 		</dynamic>
 	<![CDATA[
 		LIMIT $limit$ OFFSET $offset$
-	]]>		
+	]]>
 	</select>
 	
 	<select id="getItem" parameterClass="item" resultClass="item">

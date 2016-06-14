@@ -6,6 +6,16 @@
 	
 	<typeAlias alias="shop" type="com.hsh24.mall.api.shop.bo.Shop" />
 	
+	<select id="getShopList" parameterClass="shop" resultClass="shop">
+	<![CDATA[
+		SELECT t.shop_id AS shopId,
+			   t.shop_name AS shopName,
+			   t.region_id AS regionId
+		  FROM mdm.mdm_tb_shop t
+		 WHERE t.state = 'U'
+	]]>
+	</select>
+	
 	<select id="getShop" parameterClass="shop" resultClass="shop">
 	<![CDATA[
 		SELECT t.shop_id AS shopId,

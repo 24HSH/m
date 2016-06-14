@@ -1,5 +1,7 @@
 package com.hsh24.mall.api.shop;
 
+import java.util.List;
+
 import com.hsh24.mall.api.shop.bo.Shop;
 
 /**
@@ -11,9 +13,16 @@ public interface IShopService {
 
 	/**
 	 * 
+	 * @param shop
+	 * @return
+	 */
+	List<Shop> getShopList(Shop shop);
+
+	/**
+	 * 
 	 * @param shopId
 	 * @return
 	 */
-	Shop getShop(Long shopId);
+	Shop getShop(String shopId);
 
 }

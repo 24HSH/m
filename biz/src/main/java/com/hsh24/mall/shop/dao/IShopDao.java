@@ -1,5 +1,7 @@
 package com.hsh24.mall.shop.dao;
 
+import java.util.List;
+
 import com.hsh24.mall.api.shop.bo.Shop;
 
 /**
@@ -8,6 +10,13 @@ import com.hsh24.mall.api.shop.bo.Shop;
  * 
  */
 public interface IShopDao {
+
+	/**
+	 * 
+	 * @param shop
+	 * @return
+	 */
+	List<Shop> getShopList(Shop shop);
 
 	/**
 	 * 

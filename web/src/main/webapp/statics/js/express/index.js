@@ -1,6 +1,12 @@
 // Initialize your app
 var myApp = new Framework7({
+			animateNavBackIcon : true,
+			animatePages : Framework7.prototype.device.ios,
+			pushState : true,
 			swipePanel : 'left',
+			modalButtonOk : '确认',
+			modalButtonCancel : '取消',
+			imagesLazyLoadPlaceholder : imgUrl + '/image/loading.png',
 			// Hide and show indicator during ajax requests
 			onAjaxStart : function(xhr) {
 				myApp.showIndicator();

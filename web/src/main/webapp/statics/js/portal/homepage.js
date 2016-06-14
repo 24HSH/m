@@ -115,6 +115,10 @@ myApp.onPageInit('portal.homepage', function(page) {
 			portal_homepage_cart_stats();
 		})
 
+function portal_homepage_shop() {
+	top.location.href = appUrl + "/shop/index.htm";
+}
+
 myApp.addNotification({
 			title : '来自好社惠的消息',
 			subtitle : '',

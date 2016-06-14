@@ -1,5 +1,9 @@
 package com.hsh24.mall.shop.service.impl;
 
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.shop.IShopService;
 import com.hsh24.mall.api.shop.bo.Shop;
@@ -23,12 +27,28 @@ public class ShopServiceImpl implements IShopService {
 	private IShopDao shopDao;
 
 	@Override
-	public Shop getShop(Long shopId) {
-		if (shopId == null) {
+	public List<Shop> getShopList(Shop shop) {
+		if (shop == null) {
 			return null;
 		}
 
-		String key = shopId.toString();
+		try {
+			return shopDao.getShopList(shop);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(shop), e);
+
+		}
+
+		return null;
+	}
+
+	@Override
+	public Shop getShop(String shopId) {
+		if (StringUtils.isBlank(shopId)) {
+			return null;
+		}
+
+		String key = shopId.trim();
 
 		Shop shop = null;
 
@@ -43,7 +63,13 @@ public class ShopServiceImpl implements IShopService {
 		}
 
 		shop = new Shop();
-		shop.setShopId(shopId);
+		try {
+			shop.setShopId(Long.valueOf(shopId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			return null;
+		}
 
 		try {
 			shop = shopDao.getShop(shop);
