@@ -20,7 +20,11 @@
 				<div class="navbar">
 					<div class="navbar-inner">
 						<!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-						<div class="center sliding">请选择离你最近的店铺</div>
+						<div class="center sliding">选择附近的店铺</div>
+						<div class="right">
+                			<!-- Right link contains only icon - additional "icon-only" class-->
+                			<a href="#" class="link icon-only"> <i class="iconfont icon-location" style="font-size: 21px; color: #FF5500;"></i><span></span></a>
+                		</div>
 					</div>
 				</div>
 				<div class="pages navbar-through">
