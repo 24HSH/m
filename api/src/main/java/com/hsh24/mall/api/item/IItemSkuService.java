@@ -18,7 +18,7 @@ public interface IItemSkuService {
 	 * @param itemId
 	 * @return
 	 */
-	List<ItemSku> getItemSkuList(Long shopId, String itemId);
+	List<ItemSku> getItemSkuList(Long shopId, Long itemId);
 
 	/**
 	 * 

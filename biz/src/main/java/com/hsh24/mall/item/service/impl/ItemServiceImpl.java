@@ -72,7 +72,14 @@ public class ItemServiceImpl implements IItemService {
 			return null;
 		}
 
-		return itemList;
+		// 获得商品更多信息
+		List<Item> list = new ArrayList<Item>();
+
+		for (Item ietm : itemList) {
+			list.add(getItem(shopId, ietm.getItemId(), ietm));
+		}
+
+		return list;
 	}
 
 	@Override
@@ -99,6 +106,10 @@ public class ItemServiceImpl implements IItemService {
 			return null;
 		}
 
+		return getItem(shopId, item.getItemId(), item);
+	}
+
+	private Item getItem(Long shopId, Long itemId, Item item) {
 		// 2. 获取商品文件信息
 		item.setItemFileList(itemFileService.getItemFileList(shopId, itemId));
 

@@ -24,7 +24,7 @@
 			
 		<!-- Scrollable page content-->
 		<div class="page-content">
-			<div class="list-block list-block-search searchbar-found" style="font-size: 15px;">
+			<div class="list-block media-list list-block-search searchbar-found" style="font-size: 15px;">
 				<ul>
 					#foreach($item in $!{itemList})
                     <li>
@@ -35,19 +35,18 @@
 								#end
 							</div>
 							<div class="item-inner">
-								<div class="item-title">
-									$!{item.itemName} ￥$!formatUtil.getAmountFormat($!{item.price})
+								<div class="item-title-row" style="margin-top: 3px;">
+									<div class="item-title" style="font-weight: 400;">$!{item.itemName}</div>
+									<div class="item-after">￥$!formatUtil.getAmountFormat($!{item.price})</div>
+								</div>
+								<div class="item-title-row" style="margin-top: 3px;">
+									<div class="item-subtitle" style="font-size: 13px; color: #8e8e93;">$!{order.propertiesName}</div>
+									<div class="item-after">
+										<a href="#" data-picker=".picker-$!{item.itemId}-0" class="open-picker"><i class="iconfont icon-cart" style="font-size: 23px; color: #FF5500;"></i></a>
+                                    </div>
 								</div>
                             </div>
 						</div>
-						<div class="item-content">
-    						<div class="item-inner">
-                                <div class="item-title"></div>
-								<div class="item-after">
-									<a href="#" data-picker=".picker-$!{item.itemId}-0" class="open-picker"><i class="iconfont icon-cart" style="font-size: 23px; color: #FF5500;"></i></a>
-								</div>
-    						</div>
-                        </div>
 					</li>
 					#end
 				</ul>
@@ -100,7 +99,7 @@
 									<a href="javascript:item_list_trade('$!{item.itemId}', '0');" class="button button-big color-orange" data-ignore-cache="true">立即下单</a>
                                 </div>
 								<div class="col-50">
-									<a href="javascript:item_list_cart('$!{item.itemId}', '0');" class="button button-big color-gray" style="margin-left: 10px;" data-ignore-cache="true">添加进货车</a>
+									<a href="javascript:item_list_cart('$!{item.itemId}', '0');" class="button button-big color-gray" style="margin-left: 10px;" data-ignore-cache="true">添加购物车</a>
                                 </div>
 							</div>
 						</div>

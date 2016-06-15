@@ -18,6 +18,6 @@ public interface IItemFileService {
 	 * @param itemId
 	 * @return
 	 */
-	List<ItemFile> getItemFileList(Long shopId, String itemId);
+	List<ItemFile> getItemFileList(Long shopId, Long itemId);
 
 }

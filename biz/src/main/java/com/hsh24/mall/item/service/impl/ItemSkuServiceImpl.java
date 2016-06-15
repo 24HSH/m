@@ -23,7 +23,7 @@ public class ItemSkuServiceImpl implements IItemSkuService {
 	private IItemSkuDao itemSkuDao;
 
 	@Override
-	public List<ItemSku> getItemSkuList(Long shopId, String itemId) {
+	public List<ItemSku> getItemSkuList(Long shopId, Long itemId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

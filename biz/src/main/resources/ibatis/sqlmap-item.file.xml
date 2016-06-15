@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="item.file">
+	
+	<typeAlias alias="itemFile" type="com.hsh24.mall.api.item.bo.ItemFile" />
+	
+	<select id="getItemFileList" parameterClass="itemFile" resultClass="itemFile">
+	<![CDATA[
+		SELECT p.id,
+		  p.item_id   AS itemId,
+		  t.file_id   AS fileId,
+		  t.file_path AS filePath
+		FROM dms.dms_tb_file t,
+		  dms.dms_tb_item_file p
+		WHERE t.file_id = p.file_id
+		AND t.state     = 'U'
+		AND p.state     = 'U'
+		AND t.shop_id   = #shopId#
+		AND p.item_id   = #itemId#
+	]]>
+	</select>
+	
+</sqlMap>

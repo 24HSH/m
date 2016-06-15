@@ -8,22 +8,14 @@
 	<bean id="itemAction" class="com.hsh24.mall.item.action.ItemAction" parent="baseAction" scope="request">
 		<property name="itemService" ref="itemService" />
 	</bean>
+	
 	<bean id="itemService" class="com.hsh24.mall.item.service.impl.ItemServiceImpl">
 		<property name="itemFileService" ref="itemFileService" />
 		<property name="itemSkuService" ref="itemSkuService" />
 		<property name="specService" ref="specService" />
 		<property name="itemDao" ref="itemDao" />
 	</bean>
+	
 	<bean id="itemDao" class="com.hsh24.mall.item.dao.impl.ItemDaoImpl" parent="baseDao" />
-	
-	<!-- 商品文件 -->
-	<bean id="itemFileService" class="com.hsh24.mall.item.service.impl.ItemFileServiceImpl">
-	</bean>
-	
-	<!-- sku -->
-	<bean id="itemSkuService" class="com.hsh24.mall.item.service.impl.ItemSkuServiceImpl">
-		<property name="itemSkuDao" ref="itemSkuDao" />
-	</bean>
-	<bean id="itemSkuDao" class="com.hsh24.mall.item.dao.impl.ItemSkuDaoImpl" parent="baseDao" />
 	
 </beans>
