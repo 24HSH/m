@@ -206,8 +206,7 @@ public class CartServiceImpl implements ICartService {
 		Map<Long, Item> itemMap = itemService.getItem(shopId, itemId);
 
 		// 3. 获取sku信息
-		Map<Long, ItemSku> itemSkuMap =
-			j == 0 ? new HashMap<Long, ItemSku>() : itemSkuService.getItemSku(shopId, skuId);
+		Map<Long, ItemSku> itemSkuMap = j == 0 ? new HashMap<Long, ItemSku>() : itemSkuService.getItemSku(skuId);
 
 		// 4. 获取商品文件信息
 		Map<String, List<ItemFile>> itemFileMap = null;// itemFileService.getItemFileList(shopId,

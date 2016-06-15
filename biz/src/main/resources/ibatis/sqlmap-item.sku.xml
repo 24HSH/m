@@ -19,6 +19,9 @@
 		WHERE t.state     = 'U'
 	]]>	
 		<dynamic>
+			<isNotEmpty property="itemId" prepend="and">
+			<![CDATA[ t.item_id = #itemId# ]]>
+			</isNotEmpty>
 			<isNotEmpty property="codes" prepend="and">
 			<![CDATA[ t.sku_id IN ]]>
 				<iterate property="codes" open="(" close=")" conjunction=",">#codes[]#</iterate>

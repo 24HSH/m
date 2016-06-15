@@ -114,7 +114,7 @@ public class ItemServiceImpl implements IItemService {
 		item.setItemFileList(itemFileService.getItemFileList(shopId, itemId));
 
 		// 3. 获取商品 sku 信息
-		List<ItemSku> skuList = itemSkuService.getItemSkuList(shopId, itemId);
+		List<ItemSku> skuList = itemSkuService.getItemSkuList(itemId);
 
 		// 不存在 sku 信息 直接返回
 		if (skuList == null || skuList.size() == 0) {
@@ -169,20 +169,20 @@ public class ItemServiceImpl implements IItemService {
 			}
 
 			// 判断最大最小
-			if (sku.getOrigin().compareTo(min0) == -1) {
-				min0 = sku.getOrigin();
+			if (sk.getOrigin().compareTo(min0) == -1) {
+				min0 = sk.getOrigin();
 			}
 
-			if (sku.getOrigin().compareTo(max0) == 1) {
-				max0 = sku.getOrigin();
+			if (sk.getOrigin().compareTo(max0) == 1) {
+				max0 = sk.getOrigin();
 			}
 
-			if (sku.getPrice().compareTo(min1) == -1) {
-				min1 = sku.getPrice();
+			if (sk.getPrice().compareTo(min1) == -1) {
+				min1 = sk.getPrice();
 			}
 
-			if (sku.getPrice().compareTo(max1) == 1) {
-				max1 = sku.getPrice();
+			if (sk.getPrice().compareTo(max1) == 1) {
+				max1 = sk.getPrice();
 			}
 		}
 

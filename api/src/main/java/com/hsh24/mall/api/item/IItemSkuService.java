@@ -18,7 +18,7 @@ public interface IItemSkuService {
 	 * @param itemId
 	 * @return
 	 */
-	List<ItemSku> getItemSkuList(Long shopId, Long itemId);
+	List<ItemSku> getItemSkuList(Long itemId);
 
 	/**
 	 * 
@@ -26,6 +26,6 @@ public interface IItemSkuService {
 	 * @param skuId
 	 * @return
 	 */
-	Map<Long, ItemSku> getItemSku(Long shopId, String[] skuId);
+	Map<Long, ItemSku> getItemSku(String[] skuId);
 
 }

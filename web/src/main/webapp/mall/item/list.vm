@@ -35,12 +35,16 @@
 								#end
 							</div>
 							<div class="item-inner">
-								<div class="item-title-row" style="margin-top: 3px;">
+								<a href="$!{env.appUrl}/item/detail.htm?itemId=$!{item.itemId}" class="item-link item-title-row" style="margin-top: 3px;">
 									<div class="item-title" style="font-weight: 400;">$!{item.itemName}</div>
-									<div class="item-after">￥$!formatUtil.getAmountFormat($!{item.price})</div>
-								</div>
+									<div class="item-after">￥$!{item.priceRange}</div>
+								</a>
 								<div class="item-title-row" style="margin-top: 3px;">
-									<div class="item-subtitle" style="font-size: 13px; color: #8e8e93;">$!{order.propertiesName}</div>
+									<a href="$!{env.appUrl}/item/detail.htm?itemId=$!{item.itemId}" class="item-subtitle" style="font-size: 13px; color: #8e8e93;">
+										#if($!{item.skuList.size()} > 0)
+										$!{item.skuList.get(0).propertiesName} ...
+										#end
+									</a>
 									<div class="item-after">
 										<a href="#" data-picker=".picker-$!{item.itemId}-0" class="open-picker"><i class="iconfont icon-cart" style="font-size: 23px; color: #FF5500;"></i></a>
                                     </div>
@@ -67,15 +71,12 @@
             <div class="picker-modal-inner">
             	<div class="content-block" style="margin-top: 0; margin-bottom: 0;">
 					<p>$!{item.remark}</p>
-					#if($!{sku.barCode})
-					<p>条码：$!{item.barCode}</p>
-					#end
             	</div>
 				<div class="list-block" style="margin-top: 0; margin-bottom: 0;">
 					<div class="item-content">
 						<div class="item-inner">
 							<div class="item-title"></div>
-							<div class="item-after">￥$!formatUtil.getAmountFormat($!{item.price})</div>
+							<div class="item-after">￥$!{item.priceRange}</div>
 						</div>
                     </div>
 					<div class="item-content">
