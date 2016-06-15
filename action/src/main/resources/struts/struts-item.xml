@@ -4,6 +4,11 @@
 <struts>
 	<package name="{http://mall}mall$item"
 		extends="{http://mall}mall$framework" namespace="/item">
+		
+		<action name="cat" class="itemCatAction" method="index">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/item/cat.vm</result>
+		</action>
 
 		<action name="list" class="itemAction" method="list">
 			<interceptor-ref name="authenticationStack" />

@@ -27,6 +27,11 @@ var mainView = myApp.addView('.view-main', {
 
 // ==============================
 
+var view_left = myApp.addView('#view-left', {
+			dynamicNavbar : true
+		});
+view_left.router.reloadPage(appUrl + "/item/cat.htm");
+
 var view2 = myApp.addView('#view-2', {
 			dynamicNavbar : true
 		});
