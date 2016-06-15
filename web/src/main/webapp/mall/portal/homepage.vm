@@ -137,6 +137,14 @@
             </div>
         </div>
 		
+		<!-- First, we need to add Panel's overlay that will overlays app while panel is opened -->
+		<div class="panel-overlay"></div>
+ 
+        <!-- Left panel -->
+        <div class="panel panel-left panel-reveal">
+			
+        </div>
+		
 		#JSM(["framework7", "weixin", "jquery", "jquery.citytools", "common"])
 		#JS_ENV_VAL()
 		<script src="$!{env.imgUrl}/js/portal/homepage.js"></script>
