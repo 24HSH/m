@@ -31,13 +31,13 @@
 						<div class="item-content">
 							<div class="item-media">
 								#if($!{item.itemFileList.size()} > 0)
-								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 50px; height: 50px;"></img>
+								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
 								#end
 							</div>
 							<div class="item-inner">
 								<a href="$!{env.appUrl}/item/detail.htm?itemId=$!{item.itemId}" class="item-link item-title-row" style="margin-top: 3px;">
-									<div class="item-title" style="font-weight: 400;">$!{item.itemName}</div>
-									<div class="item-after">￥$!{item.priceRange}</div>
+                                    <div class="item-title" style="font-weight: 400;"><span class="little-tag">新品</span>$!{item.itemName}</div>
+									<div class="item-after"></div>
 								</a>
 								<div class="item-title-row" style="margin-top: 3px;">
 									<a href="$!{env.appUrl}/item/detail.htm?itemId=$!{item.itemId}" class="item-subtitle" style="font-size: 13px; color: #8e8e93;">
@@ -45,6 +45,10 @@
 										$!{item.skuList.get(0).propertiesName} ...
 										#end
 									</a>
+									<div class="item-after"></div>
+								</div>
+								<div class="item-title-row" style="margin-top: 3px;">
+									<div class="item-title" style="font-weight: 400; color: #FF5500;">￥$!{item.price}</div>
 									<div class="item-after">
 										<a href="#" data-picker=".picker-$!{item.itemId}-0" class="open-picker"><i class="iconfont icon-cart" style="font-size: 23px; color: #FF5500;"></i></a>
                                     </div>
@@ -76,7 +80,7 @@
 					<div class="item-content">
 						<div class="item-inner">
 							<div class="item-title"></div>
-							<div class="item-after">￥$!{item.priceRange}</div>
+							<div class="item-after">￥$!{item.price}</div>
 						</div>
                     </div>
 					<div class="item-content">

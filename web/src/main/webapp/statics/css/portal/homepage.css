@@ -593,3 +593,24 @@ a.component.type3 img {
 .empty-list .empty-list-content {
     margin-top: 20px;
 }
+
+
+
+/* tag */
+.little-tag {
+    display: block;
+    padding: 0 2px 0 2px;
+    background-color: #f23030;
+    border-radius: 2px;
+    color: white;
+    font-size: .6875rem;
+    margin-right: 5px;
+    margin-left: 0;
+    float: left;
+    height: .875rem;
+    line-height: .9375rem;
+    overflow: hidden;
+    position: relative;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
