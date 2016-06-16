@@ -48,7 +48,12 @@
 									<div class="item-after"></div>
 								</div>
 								<div class="item-title-row" style="margin-top: 3px;">
-									<div class="item-title" style="font-weight: 400; color: #FF5500;">￥$!{item.price}</div>
+                                    <div class="item-title" style="font-weight: 400; color: #FF5500;">
+										￥$!{item.price}
+                                        <del style="font-size: 10px; color: #999; margin-left: 5px;">
+											<span style="">￥$!{item.origin}</span>
+										</del>
+									</div>
 									<div class="item-after">
 										<a href="#" data-picker=".picker-$!{item.itemId}-0" class="open-picker"><i class="iconfont icon-cart" style="font-size: 23px; color: #FF5500;"></i></a>
                                     </div>
