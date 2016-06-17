@@ -275,7 +275,9 @@ public class ItemServiceImpl implements IItemService {
 		// 某一商品价格
 		BigDecimal price = null;
 
-		if (!skuId.equals(0L)) {
+		List<ItemSku> itemSkuList = itemSkuService.getItemSkuList(itemId);
+
+		if (itemSkuList != null && itemSkuList.size() > 0) {
 			// 根据 skuId 获得 item 并 验证
 			Map<Long, ItemSku> map = itemSkuService.getItemSku(new String[] { skuId.toString() });
 			if (map == null || map.size() == 0) {
@@ -295,6 +297,8 @@ public class ItemServiceImpl implements IItemService {
 			}
 
 			price = itemSku.getPrice();
+		} else {
+			skuId = 0L;
 		}
 
 		// 根据 itemId 获得 item
