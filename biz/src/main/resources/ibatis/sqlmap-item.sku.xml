@@ -9,6 +9,7 @@
 	<select id="getItemSkuList" parameterClass="itemSku" resultClass="itemSku">
 	<![CDATA[
 		SELECT t.sku_id AS skuId,
+		  t.item_id AS itemId,
 		  t.properties,
 		  t.properties_name AS propertiesName,
 		  t.stock,

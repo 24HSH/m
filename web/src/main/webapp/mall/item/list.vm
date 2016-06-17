@@ -73,8 +73,11 @@
         <div class="picker-modal picker-$!{item.itemId}-0" style="background: #FFFFFF; margin-bottom: 50px;">
             <div class="toolbar" style="background: #FFFFFF;">
             	<div class="toolbar-inner">
-            		<div class="left">$!{item.itemName}</div>
-            		<div class="right"><a href="#" class="close-picker"><i class="iconfont icon-close" style="font-size: 20px; color: #8e8e93;"></i></a></div>
+                    <div class="left">$!{item.itemName}</div>
+            		<div class="right">
+						<span style="margin-right: 13px; font-size: 13px; color: #FF5500;">￥$!{item.priceRange}</span>
+						<a href="#" class="close-picker"><i class="iconfont icon-close" style="font-size: 20px; color: #8e8e93;"></i></a>
+					</div>
             	</div>
             </div>
             <div class="picker-modal-inner">
@@ -84,8 +87,19 @@
 				<div class="list-block" style="margin-top: 0; margin-bottom: 0;">
 					<div class="item-content">
 						<div class="item-inner">
-							<div class="item-title"></div>
-							<div class="item-after">￥$!{item.price}</div>
+							
+			#if($item.specCatList)
+			<div>
+				<div class="col-xs-12">
+					<dl class="dl-horizontal">
+						#foreach($specCat in $item.specCatList)
+						<dt><strong>$!{specCat.specCName}</strong></dt>
+						<dd style="margin: 5px;" id="specItemValue$!{specCat.specCId}"></dd>
+						#end
+					</dl>
+                </div>
+            </div>
+			#end
 						</div>
                     </div>
 					<div class="item-content">
@@ -94,7 +108,7 @@
 							<div class="item-after">
 								<div class="quantity">
 									<button class="minus" type="button"></button>
-                                    <input id="item/list/quantity/$!{item.itemId}/0" type="text" class="txt" value="1"></input>
+                                    <input id="item/list/quantity/$!{item.itemId}" type="text" class="txt" value="1"></input>
 									<button class="plus" type="button"></button>
 									<div class="response-area response-area-minus" onclick="item_list_minus('$!{item.itemId}/0');"></div>
 									<div class="response-area response-area-plus" onclick="item_list_plus('$!{item.itemId}/0');"></div>
@@ -105,12 +119,26 @@
 					<div class="item-content" style="margin-top: 20px;">
 						<div class="item-inner after-height-0">
 							<div class="row no-gutter" style="width: 100%;">
+								#if($!{item.stock} == 0)
+								<div class="col-100">
+									<a class="button button-big color-gray" disabled>商品已售罄</a>
+                                </div>
+								#else
 								<div class="col-50">
+									#if($!{item.skuList.size()} > 0)
+									<a href="javascript:item_list_trade('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-orange" data-ignore-cache="true">立即下单</a>
+									#else
 									<a href="javascript:item_list_trade('$!{item.itemId}', '0');" class="button button-big color-orange" data-ignore-cache="true">立即下单</a>
-                                </div>
+									#end
+								</div>
 								<div class="col-50">
-									<a href="javascript:item_list_cart('$!{item.itemId}', '0');" class="button button-big color-gray" style="margin-left: 10px;" data-ignore-cache="true">添加购物车</a>
-                                </div>
+									#if($!{item.skuList.size()} > 0)
+									<a href="javascript:item_list_cart('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-gray" style="margin-left: 10px;" data-ignore-cache="true">添加购物车</a>
+									#else
+									<a href="javascript:item_list_cart('$!{item.itemId}', '0');" class="button button-big color-orange" data-ignore-cache="true">立即下单</a>
+									#end
+								</div>
+								#end
 							</div>
 						</div>
                     </div>

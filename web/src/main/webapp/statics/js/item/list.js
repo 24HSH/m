@@ -70,8 +70,8 @@ function item_list_trade(itemId, skuId) {
 
 	$$('#item_list_trade_itemId').val(itemId);
 	$$('#item_list_trade_skuId').val(skuId);
-	$$('#item_list_trade_quantity').val($$('#item/list/quantity/' + itemId
-			+ '/' + skuId).val());
+	$$('#item_list_trade_quantity').val($$('#item/list/quantity/' + itemId)
+			.val());
 
 	$$('#item/list/trade').trigger("submit");
 }
@@ -85,8 +85,8 @@ function item_list_cart(itemId, skuId) {
 
 	$$('#item_list_cart_itemId').val(itemId);
 	$$('#item_list_cart_skuId').val(skuId);
-	$$('#item_list_cart_quantity').val($$('#item/list/quantity/' + itemId + '/'
-			+ skuId).val());
+	$$('#item_list_cart_quantity').val($$('#item/list/quantity/' + itemId)
+			.val());
 
 	$$('#item/list/cart').trigger("submit");
 }

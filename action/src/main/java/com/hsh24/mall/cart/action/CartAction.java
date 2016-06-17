@@ -58,7 +58,7 @@ public class CartAction extends BaseAction {
 	 */
 	public String add() {
 		BooleanResult result =
-			cartService.createCart(this.getUser().getUserId(), this.getShop().getShopId(), itemId, skuId, "1");
+			cartService.createCart(this.getUser().getUserId(), this.getShop().getShopId(), itemId, skuId, quantity);
 
 		if (result.getResult()) {
 			this.setResourceResult(result.getCode());

@@ -61,17 +61,13 @@ public class TradeAction extends BaseAction {
 			result =
 				tradeService.createTrade(this.getUser().getUserId(), this.getShop().getShopId(), itemId, skuId,
 					quantity);
-			if (result.getResult()) {
-				this.setResourceResult(result.getCode());
-			}
 		} else {
 			result = tradeService.createTrade(this.getUser().getUserId(), this.getShop().getShopId(), cartIds);
-			if (result.getResult()) {
-				this.setResourceResult("添加购物车成功");
-			}
 		}
 
-		if (!result.getResult()) {
+		if (result.getResult()) {
+			this.setResourceResult(result.getCode());
+		} else {
 			this.getServletResponse().setStatus(599);
 			this.setResourceResult(result.getCode());
 		}
