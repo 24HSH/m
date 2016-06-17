@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hsh24.mall.api.item.bo.Item;
+import com.hsh24.mall.framework.bo.BooleanResult;
 
 /**
  * 
@@ -43,5 +44,15 @@ public interface IItemService {
 	 * @return
 	 */
 	Map<Long, Item> getItem(Long shopId, String[] itemId);
+
+	/**
+	 * 验证 itemId 和 skuId 并返回 .
+	 * 
+	 * @param shopId
+	 * @param itemId
+	 * @param skuId
+	 * @return
+	 */
+	BooleanResult validate(Long shopId, Long itemId, Long skuId);
 
 }

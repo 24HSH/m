@@ -24,7 +24,8 @@ public class OrderServiceImpl implements IOrderService {
 	private IOrderDao orderDao;
 
 	@Override
-	public BooleanResult createOrder(Long shopId, Long tradeId, String itemId, String skuId, String modifyUser) {
+	public BooleanResult createOrder(Long shopId, Long tradeId, String itemId, String skuId, String quantity,
+		String modifyUser) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -62,17 +63,30 @@ public class OrderServiceImpl implements IOrderService {
 		try {
 			order.setSkuId(Long.valueOf(skuId));
 		} catch (NumberFormatException e) {
-			logger.error(itemId, e);
+			logger.error(skuId, e);
 
 			result.setCode("SKU信息不正确！");
 			return result;
 		}
 
-		if (StringUtils.isBlank(modifyUser)) {
+		if (StringUtils.isBlank(quantity)) {
+			result.setCode("数量信息不能为空！");
+			return result;
+		}
+		try {
+			order.setQuantity(Integer.valueOf(quantity));
+		} catch (NumberFormatException e) {
+			logger.error(quantity, e);
+
+			result.setCode("数量信息不正确！");
+			return result;
+		}
+
+		if (StringUtils.isEmpty(modifyUser)) {
 			result.setCode("操作人信息不能为空！");
 			return result;
 		}
-		order.setModifyUser(modifyUser.trim());
+		order.setModifyUser(modifyUser);
 
 		try {
 			orderDao.createOrder4Item(order);

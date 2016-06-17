@@ -14,6 +14,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.cart.ICartService;
 import com.hsh24.mall.api.cart.bo.Cart;
+import com.hsh24.mall.api.item.IItemService;
 import com.hsh24.mall.api.item.bo.Item;
 import com.hsh24.mall.api.item.bo.ItemSku;
 import com.hsh24.mall.api.trade.IOrderRefundService;
@@ -54,11 +55,13 @@ public class TradeServiceImpl implements ITradeService {
 
 	private ICartService cartService;
 
+	private IItemService itemService;
+
 	private ITradeDao tradeDao;
 
 	@Override
 	public BooleanResult createTrade(final Long userId, final Long shopId, final String itemId, final String skuId,
-		String quantity) {
+		final String quantity) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -77,6 +80,39 @@ public class TradeServiceImpl implements ITradeService {
 			return result;
 		}
 
+		if (StringUtils.isBlank(skuId)) {
+			result.setCode("商品SKU信息不能为空");
+			return result;
+		}
+
+		if (StringUtils.isBlank(quantity)) {
+			result.setCode("数量信息不能为空！");
+			return result;
+		}
+		try {
+			Integer.valueOf(quantity);
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("数量信息不正确！");
+			return result;
+		}
+
+		try {
+			result = itemService.validate(shopId, Long.valueOf(itemId), Long.valueOf(skuId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("商品，SKU信息不存在");
+			return result;
+		}
+
+		if (!result.getResult()) {
+			return result;
+		}
+
+		final BigDecimal price = new BigDecimal(result.getCode()).multiply(new BigDecimal(quantity));
+
 		// 获取默认收货地址
 		final UserAddress userAddress = userAddressService.getDefaultUserAddress(userId);
 
@@ -93,7 +129,7 @@ public class TradeServiceImpl implements ITradeService {
 				trade.setUserId(userId);
 				trade.setShopId(shopId);
 				// 交易价格
-				trade.setTradePrice(BigDecimal.ONE);
+				trade.setTradePrice(price);
 				// 积分兑换
 				trade.setTradePoints(BigDecimal.ZERO);
 				trade.setCouponPrice(BigDecimal.ZERO);
@@ -128,7 +164,7 @@ public class TradeServiceImpl implements ITradeService {
 				}
 
 				// 2. 创建订单
-				result = orderService.createOrder(shopId, tradeId, itemId, skuId, userId.toString());
+				result = orderService.createOrder(shopId, tradeId, itemId, skuId, quantity, userId.toString());
 				if (!result.getResult()) {
 					ts.setRollbackOnly();
 
@@ -740,6 +776,14 @@ public class TradeServiceImpl implements ITradeService {
 
 	public void setCartService(ICartService cartService) {
 		this.cartService = cartService;
+	}
+
+	public IItemService getItemService() {
+		return itemService;
+	}
+
+	public void setItemService(IItemService itemService) {
+		this.itemService = itemService;
 	}
 
 	public ITradeDao getTradeDao() {

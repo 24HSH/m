@@ -17,6 +17,7 @@ import com.hsh24.mall.api.item.bo.ItemSku;
 import com.hsh24.mall.api.spec.ISpecService;
 import com.hsh24.mall.api.spec.bo.SpecCat;
 import com.hsh24.mall.api.spec.bo.SpecItem;
+import com.hsh24.mall.framework.bo.BooleanResult;
 import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
 import com.hsh24.mall.framework.util.LogUtil;
@@ -249,6 +250,69 @@ public class ItemServiceImpl implements IItemService {
 		}
 
 		return map;
+	}
+
+	@Override
+	public BooleanResult validate(Long shopId, Long itemId, Long skuId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (shopId == null) {
+			result.setCode("店铺信息不能为空");
+			return result;
+		}
+
+		if (itemId == null) {
+			result.setCode("商品信息不能为空");
+			return result;
+		}
+
+		if (skuId == null) {
+			result.setCode("商品SKU信息不能为空");
+			return result;
+		}
+
+		// 某一商品价格
+		BigDecimal price = null;
+
+		if (!skuId.equals(0L)) {
+			// 根据 skuId 获得 item 并 验证
+			Map<Long, ItemSku> map = itemSkuService.getItemSku(new String[] { skuId.toString() });
+			if (map == null || map.size() == 0) {
+				result.setCode("SKU信息不存在");
+				return result;
+			}
+
+			ItemSku itemSku = map.get(skuId);
+			if (itemSku == null) {
+				result.setCode("SKU信息不存在");
+				return result;
+			}
+
+			if (!itemId.equals(itemSku.getItemId())) {
+				result.setCode("商品和SKU信息不匹配");
+				return result;
+			}
+
+			price = itemSku.getPrice();
+		}
+
+		// 根据 itemId 获得 item
+		Map<Long, Item> map = getItem(shopId, new String[] { itemId.toString() });
+		if (map == null || map.size() == 0) {
+			result.setCode("商品信息不存在");
+			return result;
+		}
+
+		Item item = map.get(itemId);
+		if (item == null) {
+			result.setCode("商品信息不存在");
+			return result;
+		}
+
+		result.setCode(skuId.equals(0L) ? item.getPrice().toString() : price.toString());
+		result.setResult(true);
+		return result;
 	}
 
 	private List<Item> getItemList(Item item) {

@@ -34,7 +34,7 @@
 			   CASE WHEN q.price IS NULL THEN t.price ELSE q.price END,
 			   0,
 			   0,
-			   1,
+			   #quantity#,
 			   'U',
 			   NOW(),
 			   #modifyUser#,

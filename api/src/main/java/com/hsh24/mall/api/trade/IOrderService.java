@@ -20,10 +20,11 @@ public interface IOrderService {
 	 * @param tradeId
 	 * @param itemId
 	 * @param skuId
+	 * @param quantity
 	 * @param modifyUser
 	 * @return
 	 */
-	BooleanResult createOrder(Long shopId, Long tradeId, String itemId, String skuId, String modifyUser);
+	BooleanResult createOrder(Long shopId, Long tradeId, String itemId, String skuId, String quantity, String modifyUser);
 
 	/**
 	 * 根据购物车批量创建订单明细信息.
