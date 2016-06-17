@@ -62,7 +62,7 @@ function item_list_scan() {
 }
 
 function item_list_trade(itemId, skuId) {
-	myApp.closeModal('.picker-' + itemId + '-' + skuId);
+	myApp.closeModal('.picker-' + itemId);
 	$('.page-content .item-list-overlay')
 			.removeClass('item-list-overlay-visible');
 
@@ -77,7 +77,7 @@ function item_list_trade(itemId, skuId) {
 }
 
 function item_list_cart(itemId, skuId) {
-	myApp.closeModal('.picker-' + itemId + '-' + skuId);
+	myApp.closeModal('.picker-' + itemId);
 	$('.page-content .item-list-overlay')
 			.removeClass('item-list-overlay-visible');
 

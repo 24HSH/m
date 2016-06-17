@@ -55,7 +55,7 @@
 										</del>
 									</div>
 									<div class="item-after">
-										<a href="#" data-picker=".picker-$!{item.itemId}-0" class="open-picker"><i class="iconfont icon-cart" style="font-size: 23px; color: #FF5500;"></i></a>
+										<a href="#" data-picker=".picker-$!{item.itemId}" class="open-picker"><i class="iconfont icon-cart" style="font-size: 23px; color: #FF5500;"></i></a>
                                     </div>
 								</div>
                             </div>
@@ -70,7 +70,7 @@
 		
 		#foreach($item in $!{itemList})
 		<!-- Picker -->
-        <div class="picker-modal picker-$!{item.itemId}-0" style="background: #FFFFFF; margin-bottom: 50px;">
+        <div class="picker-modal picker-$!{item.itemId}" style="background: #FFFFFF; margin-bottom: 50px;">
             <div class="toolbar" style="background: #FFFFFF;">
             	<div class="toolbar-inner">
                     <div class="left">$!{item.itemName}</div>
