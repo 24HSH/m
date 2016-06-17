@@ -51,4 +51,34 @@
 	]]>		
 	</select>
 	
+	<update id="updateItem1" parameterClass="item">
+	<![CDATA[
+		UPDATE dms.dms_tb_item t
+		SET t.modify_date = NOW(),
+		  t.modify_user   = #modifyUser#,
+		  t.stock         =
+		  (SELECT IFNULL(SUM(p.stock), 0)
+		  FROM dms.dms_tb_item_sku p
+		  WHERE p.state = 'U'
+		  AND p.item_id = t.item_id
+		  )
+		WHERE t.state  = 'U'
+		AND t.shop_id  = #shopId#
+		AND t.item_id IN
+	]]>
+		<iterate property="codes" open="(" close=")" conjunction=",">#codes[]#</iterate>
+	</update>
+	
+	<update id="updateItem2" parameterClass="item">
+	<![CDATA[
+		UPDATE dms.dms_tb_item t
+		SET t.modify_date = NOW(),
+		  t.modify_user   = #modifyUser#,
+		  t.stock         = #stock#
+		WHERE t.state     = 'U'
+		AND t.shop_id     = #shopId#
+		AND t.item_id     = #itemId#
+	]]>
+	</update>
+	
 </sqlMap>

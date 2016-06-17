@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.hsh24.mall.api.item.IItemSkuService;
 import com.hsh24.mall.api.item.bo.ItemSku;
+import com.hsh24.mall.framework.bo.BooleanResult;
 import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
 import com.hsh24.mall.framework.util.LogUtil;
@@ -60,6 +63,34 @@ public class ItemSkuServiceImpl implements IItemSkuService {
 		}
 
 		return map;
+	}
+
+	@Override
+	public BooleanResult updateItemSkuStock(List<ItemSku> skuList, String modifyUser) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (skuList == null || skuList.size() == 0) {
+			result.setCode("商品规格信息不能为空");
+			return result;
+		}
+
+		if (StringUtils.isEmpty(modifyUser)) {
+			result.setCode("操作人信息不能为空");
+			return result;
+		}
+
+		try {
+			itemSkuDao.updateItemSku(skuList, modifyUser);
+			result.setResult(true);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(skuList) + "modifyUser:" + modifyUser, e);
+
+			result.setCode("更新SKU库存信息失败");
+			return result;
+		}
+
+		return result;
 	}
 
 	private List<ItemSku> getItemSkuList(ItemSku item) {

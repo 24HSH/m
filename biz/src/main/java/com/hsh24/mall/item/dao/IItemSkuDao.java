@@ -18,4 +18,12 @@ public interface IItemSkuDao {
 	 */
 	List<ItemSku> getItemSkuList(ItemSku sku);
 
+	/**
+	 * 
+	 * @param skuList
+	 * @param modifyUser
+	 * @return
+	 */
+	int updateItemSku(List<ItemSku> skuList, String modifyUser);
+
 }

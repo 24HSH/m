@@ -1,7 +1,11 @@
 package com.hsh24.mall.pay.service.impl;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.transaction.TransactionStatus;
@@ -10,8 +14,14 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.cart.ICartService;
+import com.hsh24.mall.api.item.IItemService;
+import com.hsh24.mall.api.item.IItemSkuService;
+import com.hsh24.mall.api.item.bo.Item;
+import com.hsh24.mall.api.item.bo.ItemSku;
 import com.hsh24.mall.api.pay.IPayService;
+import com.hsh24.mall.api.trade.IOrderService;
 import com.hsh24.mall.api.trade.ITradeService;
+import com.hsh24.mall.api.trade.bo.Order;
 import com.hsh24.mall.api.trade.bo.OrderRefund;
 import com.hsh24.mall.api.trade.bo.Trade;
 import com.hsh24.mall.api.user.IUserWeixinService;
@@ -41,6 +51,12 @@ public class PayServiceImpl implements IPayService {
 
 	private ITradeService tradeService;
 
+	private IOrderService orderService;
+
+	private IItemService itemService;
+
+	private IItemSkuService itemSkuService;
+
 	private ICartService cartService;
 
 	private IUserWeixinService userWeixinService;
@@ -52,17 +68,17 @@ public class PayServiceImpl implements IPayService {
 		result.setResult(false);
 
 		if (userId == null) {
-			result.setCode("用户信息不能为空.");
+			result.setCode("用户信息不能为空");
 			return result;
 		}
 
 		if (shopId == null) {
-			result.setCode("店铺信息不能为空.");
+			result.setCode("店铺信息不能为空");
 			return result;
 		}
 
 		if (StringUtils.isBlank(tradeNo)) {
-			result.setCode("交易信息不能为空.");
+			result.setCode("交易信息不能为空");
 			return result;
 		}
 
@@ -76,10 +92,10 @@ public class PayServiceImpl implements IPayService {
 		String openId = IPayService.PAY_TYPE_WXPAY.equals(payType) ? userWeixinService.getOpenId(userId) : null;
 
 		// 锁定订单
-		String key = tradeNo.trim();
+		String no = tradeNo.trim();
 
 		try {
-			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + key, key, 30);
+			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + no, no, 30);
 		} catch (ServiceException e) {
 			result.setCode("当前订单已被锁定，请稍后再试。");
 			return result;
@@ -106,13 +122,104 @@ public class PayServiceImpl implements IPayService {
 		// 2. 临时订单
 		if (ITradeService.CHECK.equals(type)) {
 			// 3. 判断库存
+			List<Order> orderList = orderService.getOrderList(userId, shopId, trade.getTradeId());
+			if (orderList == null || orderList.size() == 0) {
+				result.setCode("当前订单明细不存在！");
+				return result;
+			}
+
+			// 存放各个商品库存数量 存在 购物相同商品 的情况
+			Map<String, Integer> map = new HashMap<String, Integer>();
+
+			for (Order order : orderList) {
+				String key = order.getItemId() + "&" + order.getSkuId();
+				if (!map.containsKey(key)) {
+					map.put(key, order.getStock());
+				}
+
+				int quantity = order.getQuantity();
+				int stock = map.get(key);
+				if (quantity > stock) {
+					String propertiesName = order.getPropertiesName();
+					result.setCode(order.getItemName()
+						+ (StringUtils.isBlank(propertiesName) ? "" : "(" + propertiesName + ")") + " 库存不足！");
+
+					return result;
+				}
+
+				map.put(key, stock - quantity);
+			}
+
+			// 根据 map 组装 skuList
+			// item sku 表库存
+			final List<ItemSku> skuList = new ArrayList<ItemSku>();
+			// item 表库存 即不存在 sku
+			final List<Item> itemList = new ArrayList<Item>();
+			// 用于统计 还有 sku 的商品的合计库存数
+			final String[] itemId = new String[orderList.size()];
+			int i = 0;
+
+			for (Map.Entry<String, Integer> m : map.entrySet()) {
+				String[] key = m.getKey().split("&");
+
+				// if skuId is null or 0 then 商品没有规格
+				if (StringUtils.isBlank(key[1]) || "0".equals(key[1])) {
+					Item item = new Item();
+					item.setItemId(Long.valueOf(key[0]));
+					item.setStock(m.getValue());
+
+					itemList.add(item);
+
+					continue;
+				}
+
+				ItemSku sku = new ItemSku();
+				sku.setItemId(Long.valueOf(key[0]));
+				sku.setSkuId(Long.valueOf(key[1]));
+				sku.setStock(m.getValue());
+
+				skuList.add(sku);
+
+				itemId[i++] = key[0];
+			}
 
 			// 4. 占用库存
 			BooleanResult res1 = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
 				public BooleanResult doInTransaction(TransactionStatus ts) {
 					BooleanResult res0 = new BooleanResult();
 
+					String modifyUser = userId.toString();
+
 					// 4.1 占用库存
+					// 4.1.1 存在 item_sku
+					if (skuList != null && skuList.size() > 0) {
+						// 4.1.1.1 更新 item_sku stock
+						res0 = itemSkuService.updateItemSkuStock(skuList, modifyUser);
+						if (!res0.getResult()) {
+							ts.setRollbackOnly();
+
+							return res0;
+						}
+
+						// 4.1.1.2 更新 还有 sku 的 item 合计库存数
+						res0 = itemService.updateItemStock(shopId, itemId, modifyUser);
+						if (!res0.getResult()) {
+							ts.setRollbackOnly();
+
+							return res0;
+						}
+					}
+
+					// 4.1.2 不存在 item_sku
+					if (itemList != null && itemList.size() > 0) {
+						// 4.1.2.1 更新 item stock
+						res0 = itemService.updateItemStock(shopId, itemList, modifyUser);
+						if (!res0.getResult()) {
+							ts.setRollbackOnly();
+
+							return res0;
+						}
+					}
 
 					// 4.2 修改交易状态 -> topay
 					res0 = tradeService.topayTrade(userId, shopId, tradeNo, remark);
@@ -169,7 +276,7 @@ public class PayServiceImpl implements IPayService {
 			return result;
 		}
 
-		result.setCode("支付类型.");
+		result.setCode("支付类型");
 		return result;
 	}
 
@@ -180,22 +287,22 @@ public class PayServiceImpl implements IPayService {
 		result.setResult(false);
 
 		if (userId == null) {
-			result.setCode("用户信息不能为空.");
+			result.setCode("用户信息不能为空");
 			return result;
 		}
 
 		if (shopId == null) {
-			result.setCode("店铺信息不能为空.");
+			result.setCode("店铺信息不能为空");
 			return result;
 		}
 
 		if (StringUtils.isBlank(tradeNo)) {
-			result.setCode("交易信息不能为空.");
+			result.setCode("交易信息不能为空");
 			return result;
 		}
 
 		if (StringUtils.isBlank(orderId)) {
-			result.setCode("订单信息不能为空.");
+			result.setCode("订单信息不能为空");
 			return result;
 		}
 
@@ -205,7 +312,7 @@ public class PayServiceImpl implements IPayService {
 		} catch (NumberFormatException e) {
 			logger.error(e);
 
-			result.setCode("订单信息不正确.");
+			result.setCode("订单信息不正确");
 			return result;
 		}
 		final Long ordreId = id;
@@ -284,7 +391,7 @@ public class PayServiceImpl implements IPayService {
 			return result;
 		}
 
-		result.setCode("支付类型.");
+		result.setCode("支付类型");
 		return result;
 	}
 
@@ -318,6 +425,30 @@ public class PayServiceImpl implements IPayService {
 
 	public void setTradeService(ITradeService tradeService) {
 		this.tradeService = tradeService;
+	}
+
+	public IOrderService getOrderService() {
+		return orderService;
+	}
+
+	public void setOrderService(IOrderService orderService) {
+		this.orderService = orderService;
+	}
+
+	public IItemService getItemService() {
+		return itemService;
+	}
+
+	public void setItemService(IItemService itemService) {
+		this.itemService = itemService;
+	}
+
+	public IItemSkuService getItemSkuService() {
+		return itemSkuService;
+	}
+
+	public void setItemSkuService(IItemSkuService itemSkuService) {
+		this.itemSkuService = itemSkuService;
 	}
 
 	public ICartService getCartService() {

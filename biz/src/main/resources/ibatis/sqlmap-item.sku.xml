@@ -31,5 +31,17 @@
 		LIMIT $limit$ OFFSET $offset$
 	]]>		
 	</select>
+	
+	<update id="updateItemSku" parameterClass="itemSku">
+	<![CDATA[
+		UPDATE dms.dms_tb_item_sku t
+		SET t.modify_date = NOW(),
+		  t.modify_user   = #modifyUser#,
+		  t.stock         = #stock#
+		WHERE t.state     = 'U'
+		AND t.item_id     = #itemId#
+		AND t.sku_id      = #skuId#
+	]]>
+	</update>
 		
 </sqlMap>

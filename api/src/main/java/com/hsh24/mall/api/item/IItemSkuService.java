@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hsh24.mall.api.item.bo.ItemSku;
+import com.hsh24.mall.framework.bo.BooleanResult;
 
 /**
  * 
@@ -28,4 +29,11 @@ public interface IItemSkuService {
 	 */
 	Map<Long, ItemSku> getItemSku(String[] skuId);
 
+	/**
+	 * 
+	 * @param skuList
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult updateItemSkuStock(List<ItemSku> skuList, String modifyUser);
 }

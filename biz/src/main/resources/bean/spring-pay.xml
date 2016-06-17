@@ -16,6 +16,9 @@
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
 		<property name="wxpayService" ref="wxpayService" />
 		<property name="tradeService" ref="tradeService" />
+		<property name="orderService" ref="orderService" />
+		<property name="itemService" ref="itemService" />
+		<property name="itemSkuService" ref="itemSkuService" />
 		<property name="cartService" ref="cartService" />
 		<property name="userWeixinService" ref="userWeixinService" />
 	</bean>

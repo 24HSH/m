@@ -15,6 +15,7 @@ import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.cart.ICartService;
 import com.hsh24.mall.api.cart.bo.Cart;
 import com.hsh24.mall.api.item.IItemService;
+import com.hsh24.mall.api.item.IItemSkuService;
 import com.hsh24.mall.api.item.bo.Item;
 import com.hsh24.mall.api.item.bo.ItemSku;
 import com.hsh24.mall.api.trade.IOrderRefundService;
@@ -56,6 +57,8 @@ public class TradeServiceImpl implements ITradeService {
 	private ICartService cartService;
 
 	private IItemService itemService;
+
+	private IItemSkuService itemSkuService;
 
 	private ITradeDao tradeDao;
 
@@ -628,7 +631,7 @@ public class TradeServiceImpl implements ITradeService {
 	 * @param modifyUser
 	 * @return
 	 */
-	private BooleanResult cancelTrade(final Trade trade, String type, String modifyUser) {
+	private BooleanResult cancelTrade(final Trade trade, String type, final String modifyUser) {
 		// 是否需要释放库存
 		boolean f = false;
 		// item sku 表库存
@@ -720,6 +723,39 @@ public class TradeServiceImpl implements ITradeService {
 					return result;
 				}
 
+				// 2. 释放库存
+				if (flag) {
+					// 2.1 存在 item_sku
+					if (skuList != null && skuList.size() > 0) {
+						// 2.1.1 更新 item_sku stock
+						result = itemSkuService.updateItemSkuStock(skuList, modifyUser);
+						if (!result.getResult()) {
+							ts.setRollbackOnly();
+
+							return result;
+						}
+
+						// 2.1.2 更新 还有 sku 的 item 合计库存数
+						result = itemService.updateItemStock(trade.getShopId(), itemId, modifyUser);
+						if (!result.getResult()) {
+							ts.setRollbackOnly();
+
+							return result;
+						}
+					}
+
+					// 2.2 不存在 item_sku
+					if (itemList != null && itemList.size() > 0) {
+						// 2.2.1 更新 item stock
+						result = itemService.updateItemStock(trade.getShopId(), itemList, modifyUser);
+						if (!result.getResult()) {
+							ts.setRollbackOnly();
+
+							return result;
+						}
+					}
+				}
+
 				return result;
 			}
 		});
@@ -784,6 +820,14 @@ public class TradeServiceImpl implements ITradeService {
 
 	public void setItemService(IItemService itemService) {
 		this.itemService = itemService;
+	}
+
+	public IItemSkuService getItemSkuService() {
+		return itemSkuService;
+	}
+
+	public void setItemSkuService(IItemSkuService itemSkuService) {
+		this.itemSkuService = itemSkuService;
 	}
 
 	public ITradeDao getTradeDao() {

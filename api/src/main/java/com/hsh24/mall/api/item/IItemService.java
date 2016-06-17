@@ -55,4 +55,22 @@ public interface IItemService {
 	 */
 	BooleanResult validate(Long shopId, Long itemId, Long skuId);
 
+	/**
+	 * 
+	 * @param shopId
+	 * @param itemId
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult updateItemStock(Long shopId, String[] itemId, String modifyUser);
+
+	/**
+	 * 
+	 * @param shopId
+	 * @param itemList
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult updateItemStock(Long shopId, List<Item> itemList, String modifyUser);
+
 }

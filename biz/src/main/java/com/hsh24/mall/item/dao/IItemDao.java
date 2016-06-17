@@ -32,4 +32,22 @@ public interface IItemDao {
 	 */
 	Item getItem(Item item);
 
+	/**
+	 * 
+	 * @param shopId
+	 * @param itemId
+	 * @param modifyUser
+	 * @return
+	 */
+	int updateItem(Long shopId, String[] itemId, String modifyUser);
+
+	/**
+	 * 
+	 * @param shopId
+	 * @param itemList
+	 * @param modifyUser
+	 * @return
+	 */
+	int updateItem(Long shopId, List<Item> itemList, String modifyUser);
+
 }

@@ -18,6 +18,7 @@
 		<property name="orderRefundService" ref="orderRefundService" />
 		<property name="cartService" ref="cartService" />
 		<property name="itemService" ref="itemService" />
+		<property name="itemSkuService" ref="itemSkuService" />
 		<property name="tradeDao" ref="tradeDao" />
 	</bean>
 	
