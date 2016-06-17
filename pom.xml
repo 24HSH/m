@@ -23,7 +23,7 @@
 		<dom4j.version>1.6.1</dom4j.version>
 		<druid.version>1.0.19</druid.version>
 		<dubbo.version>2.5.3</dubbo.version>
-		<fastjson.version>1.2.6</fastjson.version>
+		<fastjson.version>1.2.12</fastjson.version>
 		<hadoop-core.version>1.2.1</hadoop-core.version>
 		<httpclient.version>4.3.1</httpclient.version>
 		<ibatis-sqlmap.version>2.3.4.726</ibatis-sqlmap.version>
