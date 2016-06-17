@@ -110,8 +110,8 @@
 									<button class="minus" type="button"></button>
                                     <input id="item/list/quantity/$!{item.itemId}" type="text" class="txt" value="1"></input>
 									<button class="plus" type="button"></button>
-									<div class="response-area response-area-minus" onclick="item_list_minus('$!{item.itemId}/0');"></div>
-									<div class="response-area response-area-plus" onclick="item_list_plus('$!{item.itemId}/0');"></div>
+									<div class="response-area response-area-minus" onclick="item_list_minus('$!{item.itemId}');"></div>
+									<div class="response-area response-area-plus" onclick="item_list_plus('$!{item.itemId}');"></div>
 								</div>
 							</div>
 						</div>
