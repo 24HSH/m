@@ -18,6 +18,12 @@ public class TradeAction extends BaseAction {
 
 	private ITradeService tradeService;
 
+	private String itemId;
+
+	private String skuId;
+
+	private String quantity;
+
 	/**
 	 * 购物车.
 	 */
@@ -52,27 +58,25 @@ public class TradeAction extends BaseAction {
 
 		// 直接购买
 		if (cartIds == null || cartIds.length == 0) {
-			result = tradeService.createTrade(this.getUser().getUserId(), this.getShop().getShopId(), "1", "1", "1");
-
+			result =
+				tradeService.createTrade(this.getUser().getUserId(), this.getShop().getShopId(), itemId, skuId,
+					quantity);
 			if (result.getResult()) {
-				tradeNo = result.getCode();
-			} else {
-
+				this.setResourceResult(result.getCode());
 			}
-
-			return SUCCESS;
 		} else {
 			result = tradeService.createTrade(this.getUser().getUserId(), this.getShop().getShopId(), cartIds);
-
 			if (result.getResult()) {
-				this.setResourceResult(result.getCode());
-			} else {
-				this.getServletResponse().setStatus(599);
-				this.setResourceResult(result.getCode());
+				this.setResourceResult("添加购物车成功");
 			}
-
-			return RESOURCE_RESULT;
 		}
+
+		if (!result.getResult()) {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
 	}
 
 	/**
@@ -185,6 +189,30 @@ public class TradeAction extends BaseAction {
 
 	public void setTradeService(ITradeService tradeService) {
 		this.tradeService = tradeService;
+	}
+
+	public String getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
+
+	public String getSkuId() {
+		return skuId;
+	}
+
+	public void setSkuId(String skuId) {
+		this.skuId = skuId;
+	}
+
+	public String getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
 	}
 
 	public String[] getCartIds() {

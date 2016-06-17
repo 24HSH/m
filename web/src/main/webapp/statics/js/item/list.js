@@ -8,11 +8,12 @@ myApp.onPageInit('item.list', function(page) {
 					});
 
 			$$('form.ajax-submit.item-list-trade').on('submitted', function(e) {
-						myApp.hideIndicator();
-						var xhr = e.detail.xhr;
-						myApp.alert(xhr.responseText, '信息', function() {
-								});
-					});
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+
+				view2.router.loadPage(appUrl + "/pay/index.htm?tradeNo="
+						+ xhr.responseText);
+			});
 
 			$$('form.ajax-submit.item-list-cart').on('submitted', function(e) {
 						myApp.hideIndicator();
