@@ -273,7 +273,7 @@ public class ItemServiceImpl implements IItemService {
 		}
 
 		// 某一商品价格
-		BigDecimal price = null;
+		BigDecimal price = BigDecimal.ZERO;
 
 		List<ItemSku> itemSkuList = itemSkuService.getItemSkuList(itemId);
 
