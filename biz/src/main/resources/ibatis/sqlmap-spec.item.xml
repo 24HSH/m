@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="spec.item">
+	
+	<typeAlias alias="specItem" type="com.hsh24.mall.api.spec.bo.SpecItem" />
+	
+	<select id="getSpecItemList" parameterClass="specItem" resultClass="specItem">
+	<![CDATA[
+		SELECT t.spec_item_id AS specItemId,
+		  t.spec_item_value   AS specItemValue,
+		  t.spec_cid          AS specCid
+		FROM dms.dms_tb_spec_item t
+		WHERE t.state = 'U'
+		AND t.shop_id = #shopId#
+	]]>
+		<dynamic>
+			<isNotEmpty property="specCId" prepend="and">
+			<![CDATA[ t.spec_cid = #specCId# ]]>
+			</isNotEmpty>
+			<isNotEmpty property="codes" prepend="and">
+			<![CDATA[ t.spec_item_id IN ]]>
+				<iterate property="codes" open="(" close=")" conjunction=",">#codes[]#</iterate>
+			</isNotEmpty>
+			<isEmpty property="codes">
+			<![CDATA[ ORDER BY t.spec_item_value ]]>
+			</isEmpty>
+		</dynamic>
+	</select>
+	
+</sqlMap>

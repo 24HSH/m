@@ -140,9 +140,9 @@ public class ItemServiceImpl implements IItemService {
 		List<SpecCat> specCatList = specService.getSpecCatList(shopId, specCId);
 		// 根据 specCId[] 重新排序
 		if (specCatList != null && specCatList.size() > 0) {
-			Map<Long, SpecCat> map = new HashMap<Long, SpecCat>();
+			Map<String, SpecCat> map = new HashMap<String, SpecCat>();
 			for (SpecCat sc : specCatList) {
-				map.put(sc.getSpecCId(), sc);
+				map.put(sc.getSpecCId().toString(), sc);
 			}
 
 			specCatList = new ArrayList<SpecCat>();

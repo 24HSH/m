@@ -6,6 +6,10 @@
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 	<bean id="specService" class="com.hsh24.mall.spec.service.impl.SpecServiceImpl">
+		<property name="memcachedCacheService" ref="memcachedCacheService" />
+		<property name="specDao" ref="specDao" />
 	</bean>
+	
+	<bean id="specDao" class="com.hsh24.mall.spec.dao.impl.SpecDaoImpl" parent="baseDao" />
 	
 </beans>
