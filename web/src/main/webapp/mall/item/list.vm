@@ -83,7 +83,7 @@
 		
 		#foreach($item in $!{itemList})
 		<!-- Picker -->
-        <div class="picker-modal picker-$!{item.itemId}" style="background: #FFFFFF; margin-bottom: 50px;">
+        <div class="picker-modal picker-$!{item.itemId}" style="background: #FFFFFF; height: 50%;">
             <div class="toolbar" style="background: #FFFFFF;">
             	<div class="toolbar-inner">
                     <div class="left">$!{item.itemName}</div>

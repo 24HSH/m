@@ -16,6 +16,15 @@ myApp.onPageInit('item.detail', function(page) {
 						var xhr = e.detail.xhr;
 						myApp.alert(xhr.responseText, '错误');
 					});
+
+			$$('.open-picker').on('click', function() {
+				$('.page-content .item-detail-overlay')
+						.addClass('item-detail-overlay-visible');
+			});
+			$$('.close-picker').on('click', function() {
+				$('.page-content .item-detail-overlay')
+						.removeClass('item-detail-overlay-visible');
+			});
 		});
 
 function item_detail_cart(itemId, skuId) {

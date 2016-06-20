@@ -43,12 +43,14 @@ myApp.onPageInit('item.list', function(page) {
 			//
 
 			$$('.open-picker').on('click', function() {
+				myApp.hideToolbar($$('.toolbar.tabbar.tabbar-labels'));
 				$('.page-content .item-list-overlay')
 						.addClass('item-list-overlay-visible');
 			});
 			$$('.close-picker').on('click', function() {
 				$('.page-content .item-list-overlay')
 						.removeClass('item-list-overlay-visible');
+				myApp.showToolbar($$('.toolbar.tabbar.tabbar-labels'));
 			});
 		});
 

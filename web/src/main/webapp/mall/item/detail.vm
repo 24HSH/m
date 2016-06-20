@@ -44,27 +44,99 @@
 					</div>
 				</div>
 				<div class="card-footer">
-					<a class="kt_item" href="$!{env.appUrl}/trade/create.htm?type=" data-ignore-cache="true">
-						<div class="kt_price"><b>79.90</b><i> / </i>件</div>
-						<div class="kt_btn"><b>3人团</b></div>
-					</a>
-					<a class="kt_item kt_item_buy" href="$!{env.appUrl}/trade/create.htm?type=" data-ignore-cache="true">
-						<div class="kt_price"><b>135.00</b><i> / </i>件</div>
-						<div class="kt_btn">单独购买</div>
-					</a>
 				</div>
 			</div>
+			
+			<div class="item-detail-overlay"></div>
         </div>
 		
 		<div class="toolbar">
 			<div class="toolbar-inner" style="padding: 0;">
 				<p class="buttons-row" style="width: 100%; margin: 0;">
-					<a href="#" class="button button-big" style="border: 1px solid #d9d9d9; border-right-width: 0px; color: #333;">收藏</a>
-					<a href="javascript:item_detail_cart('$!{item.itemId}', '$!{item.itemId}');" class="button button-big" style="background-color: #ff9402; border: 1px solid #d9d9d9; border-left-width: 0px; border-right-width: 0px; color: #fff;">加入购物车</a>
-					<a href="$!{env.appUrl}/trade/create.htm?type=" class="button button-big" style="background-color: #ff5000; border: 1px solid #d9d9d9; border-left-width: 0px; color: #fff;" data-ignore-cache="true">立即购买</a>
+					<a href="#" class="button button-big" style="border: 1px solid #d9d9d9; border-right-width: 0px; color: #333;" disabled>收藏</a>
+					<a href="#" data-picker=".picker" class="button button-big open-picker" style="background-color: #ff9402; border: 1px solid #d9d9d9; border-left-width: 0px; border-right-width: 0px; color: #fff;">加入购物车</a>
+					<a href="#" data-picker=".picker" class="button button-big open-picker" style="background-color: #ff5000; border: 1px solid #d9d9d9; border-left-width: 0px; color: #fff;" data-ignore-cache="true">立即购买</a>
                 </p>
 			</div>
 		</div>
+		
+		<!-- Picker -->
+        <div class="picker-modal picker" style="background: #FFFFFF; height: 50%;">
+            <div class="toolbar" style="background: #FFFFFF;">
+            	<div class="toolbar-inner">
+                    <div class="left">$!{item.itemName}</div>
+            		<div class="right">
+						<span style="margin-right: 13px; font-size: 13px; color: #FF5500;">￥$!{item.priceRange}</span>
+						<a href="#" class="close-picker"><i class="iconfont icon-close" style="font-size: 20px; color: #8e8e93;"></i></a>
+					</div>
+            	</div>
+            </div>
+            <div class="picker-modal-inner">
+            	<div class="content-block" style="margin-top: 0; margin-bottom: 0;">
+					<p>$!{item.remark}</p>
+            	</div>
+				<div class="list-block" style="margin-top: 0; margin-bottom: 0;">
+					<div class="item-content">
+						<div class="item-inner">
+							
+                			#if($item.specCatList)
+                			<div>
+                				<div class="col-xs-12">
+                					<dl class="dl-horizontal">
+                						#foreach($specCat in $item.specCatList)
+                						<dt><strong>$!{specCat.specCName}</strong></dt>
+                						<dd style="margin: 5px;" id="item/list/specItemValue/$!{specCat.specCId}"></dd>
+                						#end
+                					</dl>
+                                </div>
+                            </div>
+							#end
+							
+						</div>
+                    </div>
+					<div class="item-content">
+						<div class="item-inner">
+							<div class="item-title">购买数量：</div>
+							<div class="item-after">
+								<div class="quantity">
+									<button class="minus" type="button"></button>
+                                    <input id="item/list/quantity/$!{item.itemId}" type="text" class="txt" value="1"></input>
+									<button class="plus" type="button"></button>
+									<div class="response-area response-area-minus" onclick="item_list_minus('$!{item.itemId}');"></div>
+									<div class="response-area response-area-plus" onclick="item_list_plus('$!{item.itemId}');"></div>
+								</div>
+							</div>
+						</div>
+                    </div>
+					<div class="item-content" style="margin-top: 20px;">
+						<div class="item-inner after-height-0">
+							<div class="row no-gutter" style="width: 100%;">
+								#if($!{item.stock} == 0)
+								<div class="col-100">
+									<a class="button button-big color-gray" disabled>商品已售罄</a>
+                                </div>
+								#else
+								<div class="col-50">
+									#if($!{item.skuList.size()} > 0)
+									<a href="javascript:item_list_trade('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-orange" data-ignore-cache="true">立即下单</a>
+									#else
+									<a href="javascript:item_list_trade('$!{item.itemId}', '0');" class="button button-big color-orange" data-ignore-cache="true">立即下单</a>
+									#end
+								</div>
+								<div class="col-50">
+									#if($!{item.skuList.size()} > 0)
+									<a href="javascript:item_list_cart('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-gray" style="margin-left: 10px;" data-ignore-cache="true">添加购物车</a>
+									#else
+									<a href="javascript:item_list_cart('$!{item.itemId}', '0');" class="button button-big color-gray" style="margin-left: 10px;" data-ignore-cache="true">添加购物车</a>
+									#end
+								</div>
+								#end
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 		
 		<form id="item/detail/cart" action="$!{env.appUrl}/cart/add.htm" method="POST" class="ajax-submit">
 			<input type="hidden" id="item_detail_cart_itemId" name="itemId"></input>
