@@ -592,6 +592,12 @@ a.component.type3 img {
     transition-duration: .4s;
 }
 
+.checked {
+    border-radius: 2px;
+    border: 2px solid #f60;
+    padding: 4px;
+}
+
 
 
 /* 空 */

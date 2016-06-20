@@ -54,14 +54,14 @@
 			<div class="toolbar-inner" style="padding: 0;">
 				<p class="buttons-row" style="width: 100%; margin: 0;">
 					<a href="#" class="button button-big" style="border: 1px solid #d9d9d9; border-right-width: 0px; color: #333;" disabled>收藏</a>
-					<a href="#" data-picker=".picker" class="button button-big open-picker" style="background-color: #ff9402; border: 1px solid #d9d9d9; border-left-width: 0px; border-right-width: 0px; color: #fff;">加入购物车</a>
-					<a href="#" data-picker=".picker" class="button button-big open-picker" style="background-color: #ff5000; border: 1px solid #d9d9d9; border-left-width: 0px; color: #fff;" data-ignore-cache="true">立即购买</a>
+					<a href="javascript:item_detail_picker('cart')" class="button button-big" style="background-color: #ff9402; border: 1px solid #d9d9d9; border-left-width: 0px; border-right-width: 0px; color: #fff;">加入购物车</a>
+					<a href="javascript:item_detail_picker('trade')" class="button button-big" style="background-color: #ff5000; border: 1px solid #d9d9d9; border-left-width: 0px; color: #fff;">立即购买</a>
                 </p>
 			</div>
 		</div>
 		
 		<!-- Picker -->
-        <div class="picker-modal picker" style="background: #FFFFFF; height: 50%;">
+        <div class="picker-modal picker-item-detail" style="background: #FFFFFF; height: 50%;">
             <div class="toolbar" style="background: #FFFFFF;">
             	<div class="toolbar-inner">
                     <div class="left">$!{item.itemName}</div>
@@ -80,16 +80,12 @@
 						<div class="item-inner">
 							
                 			#if($item.specCatList)
-                			<div>
-                				<div class="col-xs-12">
-                					<dl class="dl-horizontal">
-                						#foreach($specCat in $item.specCatList)
-                						<dt><strong>$!{specCat.specCName}</strong></dt>
-                						<dd style="margin: 5px;" id="item/list/specItemValue/$!{specCat.specCId}"></dd>
-                						#end
-                					</dl>
-                                </div>
-                            </div>
+        					<dl style="margin: 0;">
+        						#foreach($specCat in $item.specCatList)
+        						<dt><strong>$!{specCat.specCName}</strong></dt>
+        						<dd style="margin: 5px;" id="item/detail/specItem/$!{specCat.specCId}"></dd>
+        						#end
+        					</dl>
 							#end
 							
 						</div>
@@ -100,10 +96,10 @@
 							<div class="item-after">
 								<div class="quantity">
 									<button class="minus" type="button"></button>
-                                    <input id="item/list/quantity/$!{item.itemId}" type="text" class="txt" value="1"></input>
+                                    <input id="item/detail/quantity/$!{item.itemId}" type="text" class="txt" value="1"></input>
 									<button class="plus" type="button"></button>
-									<div class="response-area response-area-minus" onclick="item_list_minus('$!{item.itemId}');"></div>
-									<div class="response-area response-area-plus" onclick="item_list_plus('$!{item.itemId}');"></div>
+									<div class="response-area response-area-minus" onclick="item_detail_minus('$!{item.itemId}');"></div>
+									<div class="response-area response-area-plus" onclick="item_detail_plus('$!{item.itemId}');"></div>
 								</div>
 							</div>
 						</div>
@@ -116,18 +112,18 @@
 									<a class="button button-big color-gray" disabled>商品已售罄</a>
                                 </div>
 								#else
-								<div class="col-50">
+								<div class="col-100" id="item/detail/trade">
 									#if($!{item.skuList.size()} > 0)
-									<a href="javascript:item_list_trade('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-orange" data-ignore-cache="true">立即下单</a>
+									<a href="javascript:item_list_trade('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-orange">立即下单</a>
 									#else
-									<a href="javascript:item_list_trade('$!{item.itemId}', '0');" class="button button-big color-orange" data-ignore-cache="true">立即下单</a>
+									<a href="javascript:item_list_trade('$!{item.itemId}', '0');" class="button button-big color-orange">立即下单</a>
 									#end
 								</div>
-								<div class="col-50">
+								<div class="col-100" id="item/detail/cart">
 									#if($!{item.skuList.size()} > 0)
-									<a href="javascript:item_list_cart('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-gray" style="margin-left: 10px;" data-ignore-cache="true">添加购物车</a>
+									<a href="javascript:item_list_cart('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-gray" style="margin-left: 10px;">添加购物车</a>
 									#else
-									<a href="javascript:item_list_cart('$!{item.itemId}', '0');" class="button button-big color-gray" style="margin-left: 10px;" data-ignore-cache="true">添加购物车</a>
+									<a href="javascript:item_list_cart('$!{item.itemId}', '0');" class="button button-big color-gray" style="margin-left: 10px;">添加购物车</a>
 									#end
 								</div>
 								#end
@@ -138,7 +134,19 @@
             </div>
         </div>
 		
-		<form id="item/detail/cart" action="$!{env.appUrl}/cart/add.htm" method="POST" class="ajax-submit">
+		<!-- -->
+		#foreach($sku in $item.skuList)
+		<input type="hidden" id="item/detail/sku/$!{sku.properties}" value="$!{sku.skuId}" ></input>
+		<input type="hidden" id="item/detail/price/$!{sku.properties}" value="$!{sku.price}" ></input>
+		<input type="hidden" id="item/detail/origin/$!{sku.properties}" value="$!{sku.origin}" ></input>
+		<input type="hidden" id="item/detail/stock/$!{sku.properties}" value="$!{sku.stock}" ></input>
+		#end
+		
+		<!-- -->
+		<input type="hidden" id="item/detail/specCat" value='$!{item.specCat}' ></input>
+		<input type="hidden" id="item/detail/specItem" value='$!{item.specItem}' ></input>
+		
+		<form id="item/detail/cart" action="$!{env.appUrl}/cart/add.htm" method="POST" class="ajax-submit item-detail-cart">
 			<input type="hidden" id="item_detail_cart_itemId" name="itemId"></input>
 			<input type="hidden" id="item_detail_cart_skuId" name="skuId"></input>
         </form>
