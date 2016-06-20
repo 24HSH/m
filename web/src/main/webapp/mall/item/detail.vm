@@ -19,28 +19,21 @@
 					<!-- Slider -->
 					<div class="swiper-container swiper-init" data-pagination=".swiper-pagination-h">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-                                <img src="$!{env.imgUrl}/image/item/detail-1.jpg" width="100%"></img>
-							</div>
-							<div class="swiper-slide">
-								<img src="$!{env.imgUrl}/image/item/detail-2.jpg" width="100%"></img>
-							</div>
+							#if($!{item.itemFileList.size()} > 0)
+								#foreach($file in $!{item.itemFileList})
+    							<div class="swiper-slide">
+    								<img data-src="$!{file.filePath}" class="lazy" width="100%"></img>
+    							</div>
+								#end
+							#end
 						</div>
 						<div class="swiper-pagination swiper-pagination-h"></div>
 					</div>
 				</div>
 				<div class="card-content">
 					<div class="card-content-inner">
-						<p class="color-gray">特仑苏纯牛奶利乐苗条装250ml×8盒×3提 共24盒</p>
-						<p>
-							生产许可证编号：QS1501 0501 0294<br />
-							产品标准号：GB25190<br />
-							厂名：内蒙古蒙牛乳业(集团)股份有限公司<br />
-							配料表：生牛乳<br />
-							储藏方法：常温密闭保存<br />
-							保质期：180 天<br />
-							净含量: 8x3x250ml
-						</p>
+						<p class="color-gray">$!{item.itemName}</p>
+						<p>$!{item.remark}</p>
 					</div>
 				</div>
 				<div class="card-footer">
@@ -96,10 +89,10 @@
 							<div class="item-after">
 								<div class="quantity">
 									<button class="minus" type="button"></button>
-                                    <input id="item/detail/quantity/$!{item.itemId}" type="text" class="txt" value="1"></input>
+                                    <input id="item/detail/quantity" type="text" class="txt" value="1"></input>
 									<button class="plus" type="button"></button>
-									<div class="response-area response-area-minus" onclick="item_detail_minus('$!{item.itemId}');"></div>
-									<div class="response-area response-area-plus" onclick="item_detail_plus('$!{item.itemId}');"></div>
+									<div class="response-area response-area-minus" onclick="item_detail_minus();"></div>
+									<div class="response-area response-area-plus" onclick="item_detail_plus();"></div>
 								</div>
 							</div>
 						</div>
@@ -112,18 +105,18 @@
 									<a class="button button-big color-gray" disabled>商品已售罄</a>
                                 </div>
 								#else
-								<div class="col-100" id="item/detail/trade">
+								<div class="col-100" id="picker/item/detail/trade">
 									#if($!{item.skuList.size()} > 0)
-									<a href="javascript:item_list_trade('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-orange">立即下单</a>
+									<a href="javascript:item_detail_trade('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-orange">立即下单</a>
 									#else
-									<a href="javascript:item_list_trade('$!{item.itemId}', '0');" class="button button-big color-orange">立即下单</a>
+									<a href="javascript:item_detail_trade('$!{item.itemId}', '0');" class="button button-big color-orange">立即下单</a>
 									#end
 								</div>
-								<div class="col-100" id="item/detail/cart">
+								<div class="col-100" id="picker/item/detail/cart">
 									#if($!{item.skuList.size()} > 0)
-									<a href="javascript:item_list_cart('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-gray" style="margin-left: 10px;">添加购物车</a>
+									<a href="javascript:item_detail_cart('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-gray" style="margin-left: 10px;">添加购物车</a>
 									#else
-									<a href="javascript:item_list_cart('$!{item.itemId}', '0');" class="button button-big color-gray" style="margin-left: 10px;">添加购物车</a>
+									<a href="javascript:item_detail_cart('$!{item.itemId}', '0');" class="button button-big color-gray" style="margin-left: 10px;">添加购物车</a>
 									#end
 								</div>
 								#end
@@ -146,9 +139,16 @@
 		<input type="hidden" id="item/detail/specCat" value='$!{item.specCat}' ></input>
 		<input type="hidden" id="item/detail/specItem" value='$!{item.specItem}' ></input>
 		
+		<form id="item/detail/trade" action="$!{env.appUrl}/trade/create.htm" method="POST" class="ajax-submit item-detail-trade">
+			<input type="hidden" id="item_detail_trade_itemId" name="itemId"></input>
+			<input type="hidden" id="item_detail_trade_skuId" name="skuId"></input>
+			<input type="hidden" id="item_detail_trade_quantity" name="quantity"></input>
+        </form>
+		
 		<form id="item/detail/cart" action="$!{env.appUrl}/cart/add.htm" method="POST" class="ajax-submit item-detail-cart">
 			<input type="hidden" id="item_detail_cart_itemId" name="itemId"></input>
 			<input type="hidden" id="item_detail_cart_skuId" name="skuId"></input>
+			<input type="hidden" id="item_detail_cart_quantity" name="quantity"></input>
         </form>
     </div>
 </div>

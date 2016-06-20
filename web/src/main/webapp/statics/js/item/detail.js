@@ -1,6 +1,19 @@
 myApp.onPageInit('item.detail', function(page) {
+			$$('form.ajax-submit.item-detail-trade').on('beforeSubmit',
+					function(e) {
+					});
+
 			$$('form.ajax-submit.item-detail-cart').on('beforeSubmit',
 					function(e) {
+					});
+
+			$$('form.ajax-submit.item-detail-trade').on('submitted',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+
+						view2.router.loadPage(appUrl
+								+ "/pay/index.htm?tradeNo=" + xhr.responseText);
 					});
 
 			$$('form.ajax-submit.item-detail-cart').on('submitted',
@@ -11,6 +24,13 @@ myApp.onPageInit('item.detail', function(page) {
 									// 更新首页购物车标记
 									portal_homepage_cart_stats();
 								});
+					});
+
+			$$('form.ajax-submit.item-detail-trade').on('submitError',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.alert(xhr.responseText, '错误');
 					});
 
 			$$('form.ajax-submit.item-detail-cart').on('submitError',
@@ -60,39 +80,59 @@ function item_detail_picker(type) {
 			.addClass('item-detail-overlay-visible');
 
 	if (type == 'cart') {
-		$$('#item/detail/trade').hide();
-		$$('#item/detail/cart').show();
+		$$('#picker/item/detail/trade').hide();
+		$$('#picker/item/detail/cart').show();
 		myApp.pickerModal('.picker-item-detail');
 	} else if (type == 'trade') {
-		$$('#item/detail/cart').hide();
-		$$('#item/detail/trade').show();
+		$$('#picker/item/detail/cart').hide();
+		$$('#picker/item/detail/trade').show();
 		myApp.pickerModal('.picker-item-detail');
 	}
 }
 
+function item_detail_trade(itemId, skuId) {
+	myApp.closeModal('.picker-item-detail');
+	$('.page-content .item-detail-overlay')
+			.removeClass('item-detail-overlay-visible');
+
+	myApp.showIndicator();
+
+	$$('#item_detail_trade_itemId').val(itemId);
+	$$('#item_detail_trade_skuId').val(skuId);
+	$$('#item_detail_trade_quantity').val($$('#item/detail/quantity').val());
+
+	$$('#item/detail/trade').trigger("submit");
+}
+
 function item_detail_cart(itemId, skuId) {
+	myApp.closeModal('.picker-item-detail');
+	$('.page-content .item-detail-overlay')
+			.removeClass('item-detail-overlay-visible');
+
 	myApp.showIndicator();
 
 	$$('#item_detail_cart_itemId').val(itemId);
 	$$('#item_detail_cart_skuId').val(skuId);
+	$$('#item_detail_cart_quantity').val($$('#item/detail/quantity').val());
+
 	$$('#item/detail/cart').trigger("submit");
 }
 
-function item_detail_minus(id) {
-	var q = $$('#item/detail/quantity/' + id).val();
+function item_detail_minus() {
+	var q = $$('#item/detail/quantity').val();
 
 	if (q == 1) {
 		return;
 	}
 
-	item_detail_num(id, dcmSub(q, 1));
+	item_detail_num(dcmSub(q, 1));
 }
 
-function item_detail_plus(id) {
-	var q = $$('#item/detail/quantity/' + id).val();
-	item_detail_num(id, dcmAdd(q, 1));
+function item_detail_plus() {
+	var q = $$('#item/detail/quantity').val();
+	item_detail_num(dcmAdd(q, 1));
 }
 
-function item_detail_num(id, quantity) {
-	$$('#item/detail/quantity/' + id).val(quantity);
+function item_detail_num(quantity) {
+	$$('#item/detail/quantity').val(quantity);
 }
