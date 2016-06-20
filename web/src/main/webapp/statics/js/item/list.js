@@ -38,6 +38,10 @@ myApp.onPageInit('item.list', function(page) {
 						myApp.alert(xhr.responseText, '错误');
 					});
 
+			//
+
+			//
+
 			$$('.open-picker').on('click', function() {
 				$('.page-content .item-list-overlay')
 						.addClass('item-list-overlay-visible');

@@ -61,6 +61,19 @@
                             </div>
 						</div>
 					</li>
+					
+					<!-- -->
+					#foreach($sku in $item.skuList)
+            		<input type="hidden" id="item/list/sku/$!{sku.properties}" value="$!{sku.skuId}" ></input>
+            		<input type="hidden" id="item/list/price/$!{sku.properties}" value="$!{sku.price}" ></input>
+            		<input type="hidden" id="item/list/origin/$!{sku.properties}" value="$!{sku.origin}" ></input>
+            		<input type="hidden" id="item/list/stock/$!{sku.properties}" value="$!{sku.stock}" ></input>
+					#end
+					
+					<!-- -->
+					<input type="hidden" id="item/list/specCat/$!{item.itemId}" value='$!{item.specCat}' ></input>
+					<input type="hidden" id="item/list/specItem/$!{item.itemId}" value='$!{item.specItem}' ></input>
+					
 					#end
 				</ul>
 			</div>
@@ -88,18 +101,19 @@
 					<div class="item-content">
 						<div class="item-inner">
 							
-			#if($item.specCatList)
-			<div>
-				<div class="col-xs-12">
-					<dl class="dl-horizontal">
-						#foreach($specCat in $item.specCatList)
-						<dt><strong>$!{specCat.specCName}</strong></dt>
-						<dd style="margin: 5px;" id="specItemValue$!{specCat.specCId}"></dd>
-						#end
-					</dl>
-                </div>
-            </div>
-			#end
+                			#if($item.specCatList)
+                			<div>
+                				<div class="col-xs-12">
+                					<dl class="dl-horizontal">
+                						#foreach($specCat in $item.specCatList)
+                						<dt><strong>$!{specCat.specCName}</strong></dt>
+                						<dd style="margin: 5px;" id="item/list/specItemValue/$!{specCat.specCId}"></dd>
+                						#end
+                					</dl>
+                                </div>
+                            </div>
+							#end
+							
 						</div>
                     </div>
 					<div class="item-content">
