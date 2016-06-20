@@ -48,7 +48,7 @@ myApp.onPageInit('item.detail', function(page) {
 
 			$.each(specItem, function() {
 						$$("#item/detail/specItem/" + this.specCId)
-								.append("<span class='unchecked' name='span"
+								.append("<span class='spec-item unchecked' name='span"
 										+ this.specCId
 										+ "' checked='false' id='"
 										+ this.specItemId
@@ -67,11 +67,11 @@ myApp.onPageInit('item.detail', function(page) {
 function item_detail_change(span) {
 	$('span[name="' + $(span).attr('name') + '"]').each(function() {
 				if (this.checked && this != span) {
-					this.className = "unchecked";
+					this.className = "spec-item unchecked";
 					this.checked = false;
 				}
 			});
-	span.className = "checked";
+	span.className = "spec-item checked";
 	span.checked = true;
 }
 

@@ -592,6 +592,18 @@ a.component.type3 img {
     transition-duration: .4s;
 }
 
+.spec-item.unchecked {
+    border-radius: 2px;
+    border: 1px solid gray;
+    padding: 4px;
+}
+
+.spec-item.checked {
+    border-radius: 2px;
+    border: 2px solid #f60;
+    padding: 4px;
+}
+
 
 
 /* 空 */
