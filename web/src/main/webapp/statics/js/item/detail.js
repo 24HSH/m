@@ -50,6 +50,11 @@ myApp.onPageInit('item.detail', function(page) {
 					.parseJSON(item_detail_specItem) : '';
 
 			$.each(item_detail_specItem, function() {
+						$$("#item/detail/specItem/0/" + this.specCId)
+								.html($$("#item/detail/specItem/0/"
+										+ this.specCId).html()
+										+ this.specItemValue + " ");
+
 						$$("#item/detail/specItem/" + this.specCId)
 								.append("<span class='tag sku-tag' name='tag"
 										+ this.specCId

@@ -31,7 +31,7 @@
 					</div>
 				</div>
 				<div class="card-content">
-					<div class="list-block media-list list-block-search searchbar-found" style="font-size: 15px;">
+					<div class="list-block media-list" style="font-size: 15px;">
         				<ul>
                             <li>
         						<div class="item-content">
@@ -56,7 +56,7 @@
         							<div class="item-inner">
 										#foreach($specCat in $item.specCatList)
                     					<div class="item-title-row" style="margin-top: 3px;">
-                    						<div class="item-title" style="font-weight: 400;">$!{specCat.specCName}：<div>
+                    						<span class="item-title" style="font-weight: 400;" id="item/detail/specItem/0/$!{specCat.specCId}">$!{specCat.specCName}：<span>
                     					</div>
                     					#end
                                     </div>
