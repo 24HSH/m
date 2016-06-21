@@ -97,7 +97,7 @@ public class PayServiceImpl implements IPayService {
 		try {
 			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + no, no, 30);
 		} catch (ServiceException e) {
-			result.setCode("当前订单已被锁定，请稍后再试。");
+			result.setCode("当前订单已被锁定，请稍后再试");
 			return result;
 		}
 
@@ -323,7 +323,7 @@ public class PayServiceImpl implements IPayService {
 		try {
 			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + key, key, 30);
 		} catch (ServiceException e) {
-			result.setCode("当前订单已被锁定，请稍后再试。");
+			result.setCode("当前订单已被锁定，请稍后再试");
 			return result;
 		}
 
@@ -375,7 +375,7 @@ public class PayServiceImpl implements IPayService {
 						Refund refund =
 							wxpayService.refund(null, null, trade.getTradeNo(), refundNo, fee, refundFee, null);
 
-						res0.setCode("申请退款成功。");
+						res0.setCode("申请退款成功");
 					} catch (ServiceException e) {
 						ts.setRollbackOnly();
 
