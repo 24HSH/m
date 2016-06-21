@@ -41,12 +41,15 @@ myApp.onPageInit('item.detail', function(page) {
 					});
 
 			//
-			var specCat = $$('#item/detail/specCat').val();;
-			specCat = (specCat != '') ? jQuery.parseJSON(specCat) : '';
-			var specItem = $$('#item/detail/specItem').val();;
-			specItem = (specItem != '') ? jQuery.parseJSON(specItem) : '';
+			item_detail_specCat = $$('#item/detail/specCat').val();;
+			item_detail_specCat = (item_detail_specCat != '') ? jQuery
+					.parseJSON(item_detail_specCat) : '';
 
-			$.each(specItem, function() {
+			item_detail_specItem = $$('#item/detail/specItem').val();;
+			item_detail_specItem = (item_detail_specItem != '') ? jQuery
+					.parseJSON(item_detail_specItem) : '';
+
+			$.each(item_detail_specItem, function() {
 						$$("#item/detail/specItem/" + this.specCId)
 								.append("<span class='tag sku-tag' name='tag"
 										+ this.specCId
@@ -57,6 +60,7 @@ myApp.onPageInit('item.detail', function(page) {
 					});
 
 			//
+			item_detail_skuId = "0";
 
 			$$('.close-picker').on('click', function() {
 				$('.page-content .item-detail-overlay')
@@ -73,6 +77,37 @@ function item_detail_change(tag) {
 			});
 	tag.className = "tag sku-tag active";
 	tag.checked = true;
+
+	var properties = "";
+	$.each(item_detail_specCat, function() {
+				var specCId = this.specCId;
+				$('span[name="tag' + specCId + '"]').each(function() {
+							if (this.checked) {
+								if (properties != "") {
+									properties += ";";
+								}
+								properties += specCId + ":" + this.id;
+							}
+						});
+			});
+
+	try {
+		var o = document.getElementById("item_detail_price_" + properties);
+		if (o == null) {
+			$$("#item/detail/price").html("暂无此规格商品");
+			$$("#item/detail/stock").html("");
+		} else {
+			$$("#item/detail/price").html(o.value);
+			$$("#item/detail/stock")
+					.html("剩余"
+							+ document.getElementById("item_detail_stock_"
+									+ properties).value + "件");
+
+			item_detail_skuId = document.getElementById("item_detail_sku_"
+					+ properties).value;
+		}
+	} catch (e) {
+	}
 }
 
 function item_detail_picker(type) {
@@ -90,29 +125,27 @@ function item_detail_picker(type) {
 	}
 }
 
-function item_detail_trade(itemId, skuId) {
+function item_detail_trade(skuId) {
 	myApp.closeModal('.picker-item-detail');
 	$('.page-content .item-detail-overlay')
 			.removeClass('item-detail-overlay-visible');
 
 	myApp.showIndicator();
 
-	$$('#item_detail_trade_itemId').val(itemId);
-	$$('#item_detail_trade_skuId').val(skuId);
+	$$('#item_detail_trade_skuId').val(skuId == "0" ? "0" : item_detail_skuId);
 	$$('#item_detail_trade_quantity').val($$('#item/detail/quantity').val());
 
 	$$('#item/detail/trade').trigger("submit");
 }
 
-function item_detail_cart(itemId, skuId) {
+function item_detail_cart(skuId) {
 	myApp.closeModal('.picker-item-detail');
 	$('.page-content .item-detail-overlay')
 			.removeClass('item-detail-overlay-visible');
 
 	myApp.showIndicator();
 
-	$$('#item_detail_cart_itemId').val(itemId);
-	$$('#item_detail_cart_skuId').val(skuId);
+	$$('#item_detail_cart_skuId').val(skuId == "0" ? "0" : item_detail_skuId);
 	$$('#item_detail_cart_quantity').val($$('#item/detail/quantity').val());
 
 	$$('#item/detail/cart').trigger("submit");

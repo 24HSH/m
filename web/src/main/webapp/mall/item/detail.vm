@@ -59,7 +59,7 @@
             	<div class="toolbar-inner">
                     <div class="left">$!{item.itemName}</div>
             		<div class="right">
-						<span style="margin-right: 13px; font-size: 13px; color: #FF5500;">￥$!{item.priceRange}</span>
+						<span style="margin-right: 13px; color: #FF5500;" id="item/detail/price">￥$!{item.priceRange}</span>
 						<a href="#" class="close-picker"><i class="iconfont icon-close" style="font-size: 20px; color: #8e8e93;"></i></a>
 					</div>
             	</div>
@@ -71,7 +71,6 @@
 				<div class="list-block" style="margin-top: 0; margin-bottom: 0;">
 					<div class="item-content">
 						<div class="item-inner">
-							
                 			#if($item.specCatList)
         					<dl class="sku-list-container" style="margin-top: 0;">
         						#foreach($specCat in $item.specCatList)
@@ -82,12 +81,14 @@
         						#end
         					</dl>
 							#end
-							
 						</div>
                     </div>
 					<div class="item-content">
 						<div class="item-inner">
-							<div class="item-title">购买数量：</div>
+							<div class="item-title">
+                                <div>购买数量：</div>
+                                <span style="font-size: 12px;" id="item/detail/stock">剩余$!{item.stock}件</span>
+							</div>
 							<div class="item-after">
 								<div class="quantity">
 									<button class="minus" type="button"></button>
@@ -99,7 +100,7 @@
 							</div>
 						</div>
                     </div>
-					<div class="item-content" style="margin-top: 20px;">
+					<div class="item-content" style="margin: 20px 0;">
 						<div class="item-inner after-height-0">
 							<div class="row no-gutter" style="width: 100%;">
 								#if($!{item.stock} == 0)
@@ -109,16 +110,16 @@
 								#else
 								<div class="col-100" id="picker/item/detail/trade">
 									#if($!{item.skuList.size()} > 0)
-									<a href="javascript:item_detail_trade('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-orange">立即下单</a>
+									<a href="javascript:item_detail_trade('-1');" class="button button-big color-orange">立即下单</a>
 									#else
-									<a href="javascript:item_detail_trade('$!{item.itemId}', '0');" class="button button-big color-orange">立即下单</a>
+									<a href="javascript:item_detail_trade('0');" class="button button-big color-orange">立即下单</a>
 									#end
 								</div>
 								<div class="col-100" id="picker/item/detail/cart">
 									#if($!{item.skuList.size()} > 0)
-									<a href="javascript:item_detail_cart('$!{item.itemId}', '$!{item.skuList.get(0).skuId}');" class="button button-big color-gray" style="margin-left: 10px;">添加购物车</a>
+									<a href="javascript:item_detail_cart('-1');" class="button button-big color-gray" style="margin-left: 10px;">添加购物车</a>
 									#else
-									<a href="javascript:item_detail_cart('$!{item.itemId}', '0');" class="button button-big color-gray" style="margin-left: 10px;">添加购物车</a>
+									<a href="javascript:item_detail_cart('0');" class="button button-big color-gray" style="margin-left: 10px;">添加购物车</a>
 									#end
 								</div>
 								#end
@@ -131,10 +132,9 @@
 		
 		<!-- -->
 		#foreach($sku in $item.skuList)
-		<input type="hidden" id="item/detail/sku/$!{sku.properties}" value="$!{sku.skuId}" ></input>
-		<input type="hidden" id="item/detail/price/$!{sku.properties}" value="$!{sku.price}" ></input>
-		<input type="hidden" id="item/detail/origin/$!{sku.properties}" value="$!{sku.origin}" ></input>
-		<input type="hidden" id="item/detail/stock/$!{sku.properties}" value="$!{sku.stock}" ></input>
+		<input type="hidden" id="item_detail_sku_$!{sku.properties}" value="$!{sku.skuId}" ></input>
+		<input type="hidden" id="item_detail_price_$!{sku.properties}" value="$!{sku.price}" ></input>
+		<input type="hidden" id="item_detail_stock_$!{sku.properties}" value="$!{sku.stock}" ></input>
 		#end
 		
 		<!-- -->
@@ -142,13 +142,13 @@
 		<input type="hidden" id="item/detail/specItem" value='$!{item.specItem}' ></input>
 		
 		<form id="item/detail/trade" action="$!{env.appUrl}/trade/create.htm" method="POST" class="ajax-submit item-detail-trade">
-			<input type="hidden" id="item_detail_trade_itemId" name="itemId"></input>
+			<input type="hidden" name="itemId" value='$!{item.itemId}'></input>
 			<input type="hidden" id="item_detail_trade_skuId" name="skuId"></input>
 			<input type="hidden" id="item_detail_trade_quantity" name="quantity"></input>
         </form>
 		
 		<form id="item/detail/cart" action="$!{env.appUrl}/cart/add.htm" method="POST" class="ajax-submit item-detail-cart">
-			<input type="hidden" id="item_detail_cart_itemId" name="itemId"></input>
+			<input type="hidden" name="itemId" value='$!{item.itemId}'></input>
 			<input type="hidden" id="item_detail_cart_skuId" name="skuId"></input>
 			<input type="hidden" id="item_detail_cart_quantity" name="quantity"></input>
         </form>
