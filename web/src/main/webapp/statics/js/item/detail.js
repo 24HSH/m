@@ -48,7 +48,7 @@ myApp.onPageInit('item.detail', function(page) {
 
 			$.each(specItem, function() {
 						$$("#item/detail/specItem/" + this.specCId)
-								.append("<span class='spec-item unchecked' name='span"
+								.append("<span class='tag sku-tag' name='tag"
 										+ this.specCId
 										+ "' checked='false' id='"
 										+ this.specItemId
@@ -64,15 +64,15 @@ myApp.onPageInit('item.detail', function(page) {
 			});
 		});
 
-function item_detail_change(span) {
-	$('span[name="' + $(span).attr('name') + '"]').each(function() {
-				if (this.checked && this != span) {
-					this.className = "spec-item unchecked";
+function item_detail_change(tag) {
+	$('span[name="' + $(tag).attr('name') + '"]').each(function() {
+				if (this.checked && this != tag) {
+					this.className = "tag sku-tag";
 					this.checked = false;
 				}
 			});
-	span.className = "spec-item checked";
-	span.checked = true;
+	tag.className = "tag sku-tag active";
+	tag.checked = true;
 }
 
 function item_detail_picker(type) {

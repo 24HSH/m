@@ -73,10 +73,12 @@
 						<div class="item-inner">
 							
                 			#if($item.specCatList)
-        					<dl style="margin: 0;">
+        					<dl class="sku-list-container" style="margin-top: 0;">
         						#foreach($specCat in $item.specCatList)
-        						<dt><strong>$!{specCat.specCName}</strong></dt>
-        						<dd style="margin: 5px;" id="item/detail/specItem/$!{specCat.specCId}"></dd>
+        						<dt class="sku-sel-title"><label>$!{specCat.specCName}</label></dt>
+        						<dd style="margin: 0;">
+									<ul class="sku-sel-list before-height-0 after-height-0" id="item/detail/specItem/$!{specCat.specCId}"></ul>
+								</dd>
         						#end
         					</dl>
 							#end
