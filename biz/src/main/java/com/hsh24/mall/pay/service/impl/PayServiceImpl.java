@@ -85,7 +85,7 @@ public class PayServiceImpl implements IPayService {
 		// 验证支付方式
 		if (StringUtils.isBlank(payType)
 			|| (!IPayService.PAY_TYPE_ALIPAY.equals(payType) && !IPayService.PAY_TYPE_WXPAY.equals(payType))) {
-			result.setCode("请重新选择支付方式！");
+			result.setCode("请重新选择支付方式");
 			return result;
 		}
 
@@ -104,14 +104,14 @@ public class PayServiceImpl implements IPayService {
 		// 0. 查询交易订单
 		Trade trade = tradeService.getTrade(userId, shopId, tradeNo);
 		if (trade == null) {
-			result.setCode("当前订单不存在！");
+			result.setCode("当前订单不存在");
 			return result;
 		}
 
 		// 1. 判断是否属于未付款交易订单
 		String type = trade.getType();
 		if (!ITradeService.CHECK.equals(type) && !ITradeService.TO_PAY.equals(type)) {
-			result.setCode("当前订单已完成支付！");
+			result.setCode("当前订单已完成支付");
 			return result;
 		}
 
@@ -124,7 +124,7 @@ public class PayServiceImpl implements IPayService {
 			// 3. 判断库存
 			List<Order> orderList = orderService.getOrderList(userId, shopId, trade.getTradeId());
 			if (orderList == null || orderList.size() == 0) {
-				result.setCode("当前订单明细不存在！");
+				result.setCode("当前订单明细不存在");
 				return result;
 			}
 
@@ -142,7 +142,7 @@ public class PayServiceImpl implements IPayService {
 				if (quantity > stock) {
 					String propertiesName = order.getPropertiesName();
 					result.setCode(order.getItemName()
-						+ (StringUtils.isBlank(propertiesName) ? "" : "(" + propertiesName + ")") + " 库存不足！");
+						+ (StringUtils.isBlank(propertiesName) ? "" : "(" + propertiesName + ")") + " 库存不足");
 
 					return result;
 				}
@@ -330,14 +330,14 @@ public class PayServiceImpl implements IPayService {
 		// 0. 查询交易订单
 		final Trade trade = tradeService.getTrade(userId, shopId, tradeNo);
 		if (trade == null) {
-			result.setCode("当前订单不存在！");
+			result.setCode("当前订单不存在");
 			return result;
 		}
 
 		// 1. 判断是否属于未付款交易订单
 		String type = trade.getType();
 		if (!ITradeService.TO_SEND.equals(type)) {
-			result.setCode("当前订单尚未付款或已发货！");
+			result.setCode("当前订单尚未付款或已发货");
 			return result;
 		}
 

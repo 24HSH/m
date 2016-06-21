@@ -32,19 +32,19 @@ public class OrderServiceImpl implements IOrderService {
 		Order order = new Order();
 
 		if (tradeId == null) {
-			result.setCode("交易信息不能为空！");
+			result.setCode("交易信息不能为空");
 			return result;
 		}
 		order.setTradeId(tradeId);
 
 		if (shopId == null) {
-			result.setCode("店铺信息不能为空！");
+			result.setCode("店铺信息不能为空");
 			return result;
 		}
 		order.setShopId(shopId);
 
 		if (StringUtils.isBlank(itemId)) {
-			result.setCode("商品信息不能为空！");
+			result.setCode("商品信息不能为空");
 			return result;
 		}
 		try {
@@ -52,12 +52,12 @@ public class OrderServiceImpl implements IOrderService {
 		} catch (NumberFormatException e) {
 			logger.error(itemId, e);
 
-			result.setCode("商品信息不正确！");
+			result.setCode("商品信息不正确");
 			return result;
 		}
 
 		if (StringUtils.isBlank(skuId)) {
-			result.setCode("SKU信息不能为空！");
+			result.setCode("SKU信息不能为空");
 			return result;
 		}
 		try {
@@ -65,12 +65,12 @@ public class OrderServiceImpl implements IOrderService {
 		} catch (NumberFormatException e) {
 			logger.error(skuId, e);
 
-			result.setCode("SKU信息不正确！");
+			result.setCode("SKU信息不正确");
 			return result;
 		}
 
 		if (StringUtils.isBlank(quantity)) {
-			result.setCode("数量信息不能为空！");
+			result.setCode("数量信息不能为空");
 			return result;
 		}
 		try {
@@ -78,12 +78,12 @@ public class OrderServiceImpl implements IOrderService {
 		} catch (NumberFormatException e) {
 			logger.error(quantity, e);
 
-			result.setCode("数量信息不正确！");
+			result.setCode("数量信息不正确");
 			return result;
 		}
 
 		if (StringUtils.isEmpty(modifyUser)) {
-			result.setCode("操作人信息不能为空！");
+			result.setCode("操作人信息不能为空");
 			return result;
 		}
 		order.setModifyUser(modifyUser);
@@ -94,7 +94,7 @@ public class OrderServiceImpl implements IOrderService {
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(order), e);
 
-			result.setCode("创建订单失败！");
+			result.setCode("创建订单失败");
 		}
 
 		return result;
@@ -108,25 +108,25 @@ public class OrderServiceImpl implements IOrderService {
 		Order order = new Order();
 
 		if (tradeId == null) {
-			result.setCode("交易信息不能为空！");
+			result.setCode("交易信息不能为空");
 			return result;
 		}
 		order.setTradeId(tradeId);
 
 		if (shopId == null) {
-			result.setCode("店铺信息不能为空！");
+			result.setCode("店铺信息不能为空");
 			return result;
 		}
 		order.setShopId(shopId);
 
 		if (cartId == null || cartId.length == 0) {
-			result.setCode("购物车不能为空！");
+			result.setCode("购物车不能为空");
 			return result;
 		}
 		order.setCodes(cartId);
 
 		if (StringUtils.isBlank(modifyUser)) {
-			result.setCode("操作人信息不能为空！");
+			result.setCode("操作人信息不能为空");
 			return result;
 		}
 
@@ -138,7 +138,7 @@ public class OrderServiceImpl implements IOrderService {
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(order), e);
 
-			result.setCode("创建订单失败！");
+			result.setCode("创建订单失败");
 		}
 
 		return result;

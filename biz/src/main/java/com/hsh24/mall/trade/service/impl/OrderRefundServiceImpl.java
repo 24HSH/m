@@ -28,30 +28,30 @@ public class OrderRefundServiceImpl implements IOrderRefundService {
 		result.setResult(false);
 
 		if (orderRefund == null) {
-			result.setCode("退款订单信息不能为空！");
+			result.setCode("退款订单信息不能为空");
 			return result;
 		}
 
 		if (orderId == null) {
-			result.setCode("订单信息不能为空！");
+			result.setCode("订单信息不能为空");
 			return result;
 		}
 		orderRefund.setOrderId(orderId);
 
 		if (StringUtils.isBlank(tradeNo)) {
-			result.setCode("交易编号信息不能为空！");
+			result.setCode("交易编号信息不能为空");
 			return result;
 		}
 		orderRefund.setTradeNo(tradeNo.trim());
 
 		if (StringUtils.isBlank(refundNo)) {
-			result.setCode("退款订单编号信息不能为空！");
+			result.setCode("退款订单编号信息不能为空");
 			return result;
 		}
 		orderRefund.setRefundNo(refundNo.trim());
 
 		if (StringUtils.isBlank(modifyUser)) {
-			result.setCode("操作人信息不能为空！");
+			result.setCode("操作人信息不能为空");
 			return result;
 		}
 		orderRefund.setModifyUser(modifyUser.trim());
@@ -62,7 +62,7 @@ public class OrderRefundServiceImpl implements IOrderRefundService {
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(orderRefund), e);
 
-			result.setCode("创建退款订单失败！");
+			result.setCode("创建退款订单失败");
 		}
 
 		return result;

@@ -13,7 +13,7 @@ import com.hsh24.mall.framework.bo.BooleanResult;
  */
 public interface ICacheMonitorService {
 
-	String ERROR_MESSAGE = "操作失败！";
+	String ERROR_MESSAGE = "操作失败";
 
 	/**
 	 * 

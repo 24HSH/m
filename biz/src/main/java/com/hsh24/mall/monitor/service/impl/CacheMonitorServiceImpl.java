@@ -58,7 +58,7 @@ public class CacheMonitorServiceImpl implements ICacheMonitorService {
 		res.setResult(false);
 
 		if (cacheStatsList == null || cacheStatsList.size() == 0) {
-			res.setCode("cache 信息不能为空！");
+			res.setCode("cache 信息不能为空");
 			return res;
 		}
 

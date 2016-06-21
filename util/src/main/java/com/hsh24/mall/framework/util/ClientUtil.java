@@ -136,7 +136,7 @@ public final class ClientUtil {
 		try {
 			response.sendRedirect(new String(url.getBytes("GBK"), "ISO8859_1"));
 		} catch (UnsupportedEncodingException e) {
-			logger.error("字符转换错误！" + e);
+			logger.error("字符转换错误" + e);
 		}
 	}
 

@@ -11,7 +11,7 @@ import com.wideka.weixin.api.pay.bo.Refund;
  */
 public interface IWxpayService {
 
-	String ERROR_MESSAGE = "微信支付接口调用失败！";
+	String ERROR_MESSAGE = "微信支付接口调用失败";
 
 	String RETURN_CODE_SUCCESS = "<xml><return_code><![CDATA[SUCCESS]]></return_code></xml>";
 

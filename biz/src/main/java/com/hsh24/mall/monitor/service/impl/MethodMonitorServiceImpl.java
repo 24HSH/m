@@ -57,7 +57,7 @@ public class MethodMonitorServiceImpl implements IMethodMonitorService {
 		res.setResult(false);
 
 		if (methodMonitor == null) {
-			res.setCode("method 信息不能为空！");
+			res.setCode("method 信息不能为空");
 			return res;
 		}
 

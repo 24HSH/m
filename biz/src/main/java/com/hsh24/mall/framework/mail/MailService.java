@@ -84,7 +84,7 @@ public class MailService {
 	public Map<String, String> send() {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("state", "success");
-		String message = "邮件发送成功！";
+		String message = "邮件发送成功";
 		Session session = null;
 		Properties props = System.getProperties();
 		props.put("mail.smtp.host", smtpServer);
@@ -162,18 +162,18 @@ public class MailService {
 
 		} catch (AuthenticationFailedException e) {
 			map.put("state", "failed");
-			message = "邮件发送失败！错误原因：\n" + "身份验证错误!";
+			message = "邮件发送失败错误原因：\n" + "身份验证错误";
 			logger.error(LogUtil.parserBean(msg), e);
 		} catch (MessagingException e) {
 			map.put("state", "failed");
-			message = "邮件发送失败！错误原因：\n" + e.getMessage();
+			message = "邮件发送失败错误原因：\n" + e.getMessage();
 			Exception ex = e.getNextException();
 			if (ex != null) {
 				logger.error(LogUtil.parserBean(msg), ex);
 			}
 		} catch (Exception e) {
 			map.put("state", "failed");
-			message = "邮件发送失败！错误原因：\n" + e.getMessage();
+			message = "邮件发送失败错误原因：\n" + e.getMessage();
 			logger.error(LogUtil.parserBean(msg), e);
 		}
 
