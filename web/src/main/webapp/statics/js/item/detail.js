@@ -97,7 +97,7 @@ function item_detail_change(tag) {
 			$$("#item/detail/price").html("暂无此规格商品");
 			$$("#item/detail/stock").html("");
 		} else {
-			$$("#item/detail/price").html(o.value);
+			$$("#item/detail/price").html("￥" + o.value);
 			$$("#item/detail/stock")
 					.html("剩余"
 							+ document.getElementById("item_detail_stock_"
