@@ -89,7 +89,7 @@ public class TradeServiceImpl implements ITradeService {
 		}
 
 		if (StringUtils.isBlank(quantity)) {
-			result.setCode("数量信息不能为空！");
+			result.setCode("数量信息不能为空");
 			return result;
 		}
 		try {
@@ -97,7 +97,7 @@ public class TradeServiceImpl implements ITradeService {
 		} catch (NumberFormatException e) {
 			logger.error(e);
 
-			result.setCode("数量信息不正确！");
+			result.setCode("数量信息不正确");
 			return result;
 		}
 
@@ -188,17 +188,17 @@ public class TradeServiceImpl implements ITradeService {
 		result.setResult(false);
 
 		if (userId == null) {
-			result.setCode("用户信息不能为空！");
+			result.setCode("用户信息不能为空");
 			return result;
 		}
 
 		if (shopId == null) {
-			result.setCode("店铺信息不能为空！");
+			result.setCode("店铺信息不能为空");
 			return result;
 		}
 
 		if (cartId == null || cartId.length == 0) {
-			result.setCode("购物车不能为空！");
+			result.setCode("购物车不能为空");
 			return result;
 		}
 
@@ -207,7 +207,7 @@ public class TradeServiceImpl implements ITradeService {
 
 		// 合计价格 合计积分 最小运费
 		if (cart.getPrice() == null || cart.getPoints() == null || cart.getPostage() == null) {
-			result.setCode("购物车商品总价为空！");
+			result.setCode("购物车商品总价为空");
 			return result;
 		}
 
@@ -267,7 +267,7 @@ public class TradeServiceImpl implements ITradeService {
 					logger.error(LogUtil.parserBean(trade), e);
 					ts.setRollbackOnly();
 
-					result.setCode("创建交易失败！");
+					result.setCode("创建交易失败");
 					return result;
 				}
 
