@@ -54,7 +54,7 @@
 		</div>
 		
 		<!-- Picker -->
-        <div class="picker-modal picker-item-detail" style="background: #FFFFFF; height: 50%;">
+        <div class="picker-modal picker-item-detail" style="background: #FFFFFF;">
             <div class="toolbar" style="background: #FFFFFF;">
             	<div class="toolbar-inner">
                     <div class="left">$!{item.itemName}</div>
