@@ -15,7 +15,7 @@
 		<!-- Search bar -->
 		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init item-list-searchbar">
 			<div class="searchbar-input">
-				<input type="search" placeholder="Search" /><a href="#" class="searchbar-clear"></a>
+				<input type="search" placeholder="搜索" /><a href="#" class="searchbar-clear"></a>
 			</div><a href="#" class="searchbar-cancel">取消</a>
 		</form>
 		
