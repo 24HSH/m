@@ -102,7 +102,7 @@
 		   AND p.shop_id = #{shopId}
 		   AND t.cart_id  IN
 	]]>
-		<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+		<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
 	<![CDATA[
 		  )
 	]]>

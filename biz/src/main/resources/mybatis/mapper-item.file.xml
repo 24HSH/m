@@ -2,7 +2,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hsh24.dms.item.dao.IItemFileDao">
+<mapper namespace="com.hsh24.mall.item.dao.IItemFileDao">
 	
 	<select id="getItemFileList" parameterType="itemFile" resultType="itemFile">
 	<![CDATA[

@@ -21,7 +21,7 @@
 	]]>
 		<if test="codes != null and codes.length > 0">
 		<![CDATA[ AND t.item_id IN ]]>
-			<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
 		</if>
 	<![CDATA[
 		ORDER BY t.item_name, t.item_id
@@ -62,7 +62,7 @@
 		AND t.shop_id  = #{shopId}
 		AND t.item_id IN
 	]]>
-		<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+		<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
 	</update>
 	
 	<update id="updateItem2">

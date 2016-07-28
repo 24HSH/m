@@ -75,8 +75,8 @@
 		   AND t.user_id = #{userId}
 	]]>
 		<if test="codes != null and codes.length > 0">
-		<![CDATA[ t.type IN ]]>
-			<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+		<![CDATA[ AND t.type IN ]]>
+			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
 		</if>
 	</select>
 	
@@ -108,8 +108,8 @@
 		   AND t.user_id = #{userId}
 	]]>
 		<if test="codes != null and codes.length > 0">
-		<![CDATA[ t.type IN ]]>
-			<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+		<![CDATA[ AND t.type IN ]]>
+			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
 		</if>
 		<if test="sort == null or sort == ''">
 		<![CDATA[ ORDER BY TRADE_ID DESC ]]>

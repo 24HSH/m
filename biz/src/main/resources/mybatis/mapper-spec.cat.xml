@@ -13,8 +13,8 @@
 		AND t.shop_id = #{shopId}
 	]]>
 		<if test="codes != null and codes.length > 0">
-		<![CDATA[ t.spec_cid IN ]]>
-			<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+		<![CDATA[ AND t.spec_cid IN ]]>
+			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
 		</if>
 		<if test="codes == null or codes.length == 0">
 		<![CDATA[ ORDER BY t.spec_cname ]]>
