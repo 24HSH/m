@@ -5,8 +5,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 
+import javax.annotation.Resource;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
@@ -23,12 +26,15 @@ import com.hsh24.mall.framework.log.Logger4jExtend;
  * @author xujiakun
  * 
  */
+@Service
 public class MethodProfiler {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(MethodProfiler.class);
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
+	@Resource
 	private IMethodMonitorService methodMonitorService;
 
 	public Object profile(ProceedingJoinPoint call) throws Throwable {
@@ -107,22 +113,6 @@ public class MethodProfiler {
 		} catch (ServiceException e) {
 			logger.error(e);
 		}
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
-	}
-
-	public IMethodMonitorService getMethodMonitorService() {
-		return methodMonitorService;
-	}
-
-	public void setMethodMonitorService(IMethodMonitorService methodMonitorService) {
-		this.methodMonitorService = methodMonitorService;
 	}
 
 }

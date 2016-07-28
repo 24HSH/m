@@ -4,20 +4,15 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
            http://www.springframework.org/schema/aop
-           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-	
-	<bean id="methodProfiler" class="com.hsh24.mall.framework.aop.MethodProfiler">
-		<property name="memcachedCacheService" ref="memcachedCacheService" />
-		<property name="methodMonitorService" ref="methodMonitorService" />
-	</bean>
+           http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
 	
 	<aop:config>
 		<aop:aspect ref="methodProfiler">
 			
 			<aop:pointcut id="theExecutionOfServiceMethod"
-				expression="(execution(* com.hsh24.mall.*.task.*.*(..))
+				expression="(execution(* com.hsh24.mall.*.service.impl.*.*(..))
 				)"/>
 				
 			<aop:around pointcut-ref="theExecutionOfServiceMethod"

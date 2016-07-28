@@ -2,7 +2,10 @@ package com.hsh24.mall.item.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.item.IItemCatService;
@@ -16,12 +19,15 @@ import com.hsh24.mall.item.dao.IItemCatDao;
  * @author JiakunXu
  * 
  */
+@Service
 public class ItemCatServiceImpl implements IItemCatService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(ItemCatServiceImpl.class);
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
+	@Resource
 	private IItemCatDao itemCatDao;
 
 	@Override
@@ -47,22 +53,6 @@ public class ItemCatServiceImpl implements IItemCatService {
 		}
 
 		return null;
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
-	}
-
-	public IItemCatDao getItemCatDao() {
-		return itemCatDao;
-	}
-
-	public void setItemCatDao(IItemCatDao itemCatDao) {
-		this.itemCatDao = itemCatDao;
 	}
 
 }

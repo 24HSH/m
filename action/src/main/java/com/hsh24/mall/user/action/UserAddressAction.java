@@ -1,5 +1,10 @@
 package com.hsh24.mall.user.action;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.hsh24.mall.api.user.IUserAddressService;
 import com.hsh24.mall.api.user.bo.UserAddress;
 import com.hsh24.mall.framework.action.BaseAction;
@@ -10,10 +15,13 @@ import com.hsh24.mall.framework.bo.BooleanResult;
  * @author JiakunXu
  * 
  */
+@Controller
+@Scope("request")
 public class UserAddressAction extends BaseAction {
 
 	private static final long serialVersionUID = -8769317353845217884L;
 
+	@Resource
 	private IUserAddressService userAddressService;
 
 	private UserAddress userAddress;
@@ -42,14 +50,6 @@ public class UserAddressAction extends BaseAction {
 		}
 
 		return RESOURCE_RESULT;
-	}
-
-	public IUserAddressService getUserAddressService() {
-		return userAddressService;
-	}
-
-	public void setUserAddressService(IUserAddressService userAddressService) {
-		this.userAddressService = userAddressService;
 	}
 
 	public UserAddress getUserAddress() {

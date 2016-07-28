@@ -1,11 +1,16 @@
 package com.hsh24.mall.framework.action;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 /**
  * error.
  * 
  * @author xujiakun
  * 
  */
+@Controller
+@Scope("request")
 public class ErrorAction extends BaseAction {
 
 	private static final long serialVersionUID = 940723518391814342L;

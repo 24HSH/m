@@ -1,6 +1,9 @@
 package com.hsh24.mall.weixin.service.impl;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.weixin.ITokenService;
@@ -16,12 +19,15 @@ import com.wideka.weixin.api.auth.bo.AccessToken;
  * @author JiakunXu
  * 
  */
+@Service
 public class TokenServiceImpl implements ITokenService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(TokenServiceImpl.class);
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
+	@Resource
 	private IAccessTokenService accessTokenService;
 
 	@Override
@@ -137,22 +143,6 @@ public class TokenServiceImpl implements ITokenService {
 		result.setCode(token);
 		result.setResult(true);
 		return result;
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
-	}
-
-	public IAccessTokenService getAccessTokenService() {
-		return accessTokenService;
-	}
-
-	public void setAccessTokenService(IAccessTokenService accessTokenService) {
-		this.accessTokenService = accessTokenService;
 	}
 
 }

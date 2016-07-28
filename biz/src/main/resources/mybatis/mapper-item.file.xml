@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.dms.item.dao.IItemFileDao">
+	
+	<select id="getItemFileList" parameterType="itemFile" resultType="itemFile">
+	<![CDATA[
+		SELECT p.id,
+		  p.item_id   AS itemId,
+		  t.file_id   AS fileId,
+		  t.file_path AS filePath
+		FROM dms.dms_tb_file t,
+		  dms.dms_tb_item_file p
+		WHERE t.file_id = p.file_id
+		AND t.state     = 'U'
+		AND p.state     = 'U'
+		AND t.shop_id   = #{shopId}
+		AND p.item_id   = #{itemId}
+	]]>
+	</select>
+	
+</mapper>

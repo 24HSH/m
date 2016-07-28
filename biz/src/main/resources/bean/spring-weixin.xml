@@ -5,33 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="weixinService" class="com.hsh24.mall.weixin.service.impl.WeixinServiceImpl">
-		<property name="ticketService" ref="ticketService" />
-		<property name="appId">
-			<value>${weixin.app.id}</value>
-		</property>
-		<property name="appSecret">
-			<value>${weixin.app.secret}</value>
-		</property>
-		<property name="corpId">
-			<value>${weixin.corp.id}</value>
-		</property>
-		<property name="corpSecret">
-			<value>${weixin.corp.secret}</value>
-		</property>
-	</bean>
-	
-	<bean id="tokenService" class="com.hsh24.mall.weixin.service.impl.TokenServiceImpl">
-		<property name="memcachedCacheService" ref="memcachedCacheService" />
-		<property name="accessTokenService" ref="accessTokenService" />
-	</bean>
-	
-	<bean id="ticketService" class="com.hsh24.mall.weixin.service.impl.TicketServiceImpl">
-		<property name="memcachedCacheService" ref="memcachedCacheService" />
-		<property name="tokenService" ref="tokenService" />
-		<property name="jsapiTicketService" ref="jsapiTicketService" />
-	</bean>
-	
 	<!-- weixin -->
 	<bean id="accessTokenService" class="com.wideka.weixin.auth.service.impl.AccessTokenServiceImpl"></bean>
 	<bean id="jsapiTicketService" class="com.wideka.weixin.auth.service.impl.JSAPITicketServiceImpl"></bean>

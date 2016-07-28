@@ -3,6 +3,7 @@ package com.hsh24.mall.framework.action;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -49,6 +50,7 @@ public class BaseAction extends ActionSupport {
 
 	protected Map<String, Boolean> permission;
 
+	@Resource
 	protected Properties env = new Properties();
 
 	protected String token;

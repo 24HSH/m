@@ -1,8 +1,11 @@
 package com.hsh24.mall.portal.action;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.hsh24.mall.api.weixin.IWeixinService;
 import com.hsh24.mall.api.weixin.bo.Ticket;
@@ -13,10 +16,13 @@ import com.hsh24.mall.framework.action.BaseAction;
  * @author JiakunXu
  * 
  */
+@Controller
+@Scope("request")
 public class PortalAction extends BaseAction {
 
 	private static final long serialVersionUID = 2191525146456353749L;
 
+	@Resource
 	private IWeixinService weixinService;
 
 	private Ticket ticket;

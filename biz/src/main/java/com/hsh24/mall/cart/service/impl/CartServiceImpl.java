@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 
 import com.hsh24.mall.api.cart.ICartService;
 import com.hsh24.mall.api.cart.bo.Cart;
@@ -24,14 +27,18 @@ import com.hsh24.mall.framework.util.LogUtil;
  * @author JiakunXu
  * 
  */
+@Service
 public class CartServiceImpl implements ICartService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(CartServiceImpl.class);
 
+	@Resource
 	private IItemService itemService;
 
+	@Resource
 	private IItemSkuService itemSkuService;
 
+	@Resource
 	private ICartDao cartDao;
 
 	@Override
@@ -426,30 +433,6 @@ public class CartServiceImpl implements ICartService {
 		}
 
 		return -1;
-	}
-
-	public IItemService getItemService() {
-		return itemService;
-	}
-
-	public void setItemService(IItemService itemService) {
-		this.itemService = itemService;
-	}
-
-	public IItemSkuService getItemSkuService() {
-		return itemSkuService;
-	}
-
-	public void setItemSkuService(IItemSkuService itemSkuService) {
-		this.itemSkuService = itemSkuService;
-	}
-
-	public ICartDao getCartDao() {
-		return cartDao;
-	}
-
-	public void setCartDao(ICartDao cartDao) {
-		this.cartDao = cartDao;
 	}
 
 }

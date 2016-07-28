@@ -4,10 +4,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.apache.logging.log4j.Logger;
+
 import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
 import com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor;
-import com.opensymphony.xwork2.util.logging.Logger;
 
 /**
  * 

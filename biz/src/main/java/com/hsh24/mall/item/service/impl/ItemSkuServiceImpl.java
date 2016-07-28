@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 
 import com.hsh24.mall.api.item.IItemSkuService;
 import com.hsh24.mall.api.item.bo.ItemSku;
@@ -19,10 +22,12 @@ import com.hsh24.mall.item.dao.IItemSkuDao;
  * @author JiakunXu
  * 
  */
+@Service
 public class ItemSkuServiceImpl implements IItemSkuService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(ItemSkuServiceImpl.class);
 
+	@Resource
 	private IItemSkuDao itemSkuDao;
 
 	@Override
@@ -101,14 +106,6 @@ public class ItemSkuServiceImpl implements IItemSkuService {
 		}
 
 		return null;
-	}
-
-	public IItemSkuDao getItemSkuDao() {
-		return itemSkuDao;
-	}
-
-	public void setItemSkuDao(IItemSkuDao itemSkuDao) {
-		this.itemSkuDao = itemSkuDao;
 	}
 
 }

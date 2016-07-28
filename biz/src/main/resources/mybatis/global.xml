@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="global">
+
+	<sql id="paginationStart">
+	<![CDATA[ select * from (select row_.*, rownum rownum_ from ( ]]>
+	</sql>
+
+	<sql id="paginationEnd">
+	<![CDATA[ ) row_ where rownum < #{end}) where rownum_ >= #{start} ]]>
+	</sql>
+
+	<sql id="orderBy">
+		<if test="sort != null and sort != ''">
+		<![CDATA[ ORDER BY ${sort} ${dir} ]]>
+		</if>
+	</sql>
+
+</mapper>

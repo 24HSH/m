@@ -7,7 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -39,26 +42,36 @@ import com.wideka.weixin.api.pay.bo.Refund;
  * @author JiakunXu
  * 
  */
+@Service
 public class PayServiceImpl implements IPayService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(PayServiceImpl.class);
 
+	@Resource
 	private TransactionTemplate transactionTemplate;
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
+	@Resource
 	private IWxpayService wxpayService;
 
+	@Resource
 	private ITradeService tradeService;
 
+	@Resource
 	private IOrderService orderService;
 
+	@Resource
 	private IItemService itemService;
 
+	@Resource
 	private IItemSkuService itemSkuService;
 
+	@Resource
 	private ICartService cartService;
 
+	@Resource
 	private IUserWeixinService userWeixinService;
 
 	@Override
@@ -393,78 +406,6 @@ public class PayServiceImpl implements IPayService {
 
 		result.setCode("支付类型");
 		return result;
-	}
-
-	public TransactionTemplate getTransactionTemplate() {
-		return transactionTemplate;
-	}
-
-	public void setTransactionTemplate(TransactionTemplate transactionTemplate) {
-		this.transactionTemplate = transactionTemplate;
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
-	}
-
-	public IWxpayService getWxpayService() {
-		return wxpayService;
-	}
-
-	public void setWxpayService(IWxpayService wxpayService) {
-		this.wxpayService = wxpayService;
-	}
-
-	public ITradeService getTradeService() {
-		return tradeService;
-	}
-
-	public void setTradeService(ITradeService tradeService) {
-		this.tradeService = tradeService;
-	}
-
-	public IOrderService getOrderService() {
-		return orderService;
-	}
-
-	public void setOrderService(IOrderService orderService) {
-		this.orderService = orderService;
-	}
-
-	public IItemService getItemService() {
-		return itemService;
-	}
-
-	public void setItemService(IItemService itemService) {
-		this.itemService = itemService;
-	}
-
-	public IItemSkuService getItemSkuService() {
-		return itemSkuService;
-	}
-
-	public void setItemSkuService(IItemSkuService itemSkuService) {
-		this.itemSkuService = itemSkuService;
-	}
-
-	public ICartService getCartService() {
-		return cartService;
-	}
-
-	public void setCartService(ICartService cartService) {
-		this.cartService = cartService;
-	}
-
-	public IUserWeixinService getUserWeixinService() {
-		return userWeixinService;
-	}
-
-	public void setUserWeixinService(IUserWeixinService userWeixinService) {
-		this.userWeixinService = userWeixinService;
 	}
 
 }

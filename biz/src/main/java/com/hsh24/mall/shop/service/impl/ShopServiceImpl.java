@@ -2,7 +2,10 @@ package com.hsh24.mall.shop.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.shop.IShopService;
@@ -18,12 +21,15 @@ import com.hsh24.mall.shop.dao.IShopDao;
  * @author JiakunXu
  * 
  */
+@Service
 public class ShopServiceImpl implements IShopService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(ShopServiceImpl.class);
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
+	@Resource
 	private IShopDao shopDao;
 
 	@Override
@@ -91,22 +97,6 @@ public class ShopServiceImpl implements IShopService {
 		}
 
 		return shop;
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
-	}
-
-	public IShopDao getShopDao() {
-		return shopDao;
-	}
-
-	public void setShopDao(IShopDao shopDao) {
-		this.shopDao = shopDao;
 	}
 
 }

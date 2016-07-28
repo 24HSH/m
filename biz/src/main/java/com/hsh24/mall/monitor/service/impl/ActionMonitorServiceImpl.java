@@ -2,6 +2,10 @@ package com.hsh24.mall.monitor.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.hsh24.mall.api.monitor.IActionMonitorService;
 import com.hsh24.mall.api.monitor.bo.ActionMonitor;
 import com.hsh24.mall.framework.log.Logger4jCollection;
@@ -15,10 +19,12 @@ import com.hsh24.mall.monitor.dao.IActionMonitorDao;
  * @author xujiakun
  * 
  */
+@Service
 public class ActionMonitorServiceImpl implements IActionMonitorService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(ActionMonitorServiceImpl.class);
 
+	@Resource
 	private IActionMonitorDao actionMonitorDao;
 
 	@Override
@@ -65,14 +71,6 @@ public class ActionMonitorServiceImpl implements IActionMonitorService {
 		}
 
 		return null;
-	}
-
-	public IActionMonitorDao getActionMonitorDao() {
-		return actionMonitorDao;
-	}
-
-	public void setActionMonitorDao(IActionMonitorDao actionMonitorDao) {
-		this.actionMonitorDao = actionMonitorDao;
 	}
 
 }

@@ -1,12 +1,12 @@
 <!DOCTYPE struts PUBLIC
- "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
- "http://struts.apache.org/dtds/struts-2.3.dtd">
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<package name="{http://mall}mall$framework"
 		extends="struts-default" namespace="/framework">
 
 		<result-types>
-			<result-type name="velocity" class="org.apache.struts2.dispatcher.VelocityResult" default="true" />
+			<result-type name="velocity" class="org.apache.struts2.result.VelocityResult" default="true" />
 			<result-type name="json" class="com.hsh24.mall.framework.struts.result.JSONResult" />
 		</result-types>
 

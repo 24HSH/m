@@ -1,0 +1,49 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.user.dao.IUserWeixinDao">
+	
+	<select id="getUser" parameterType="user" resultType="user">
+	<![CDATA[
+		SELECT t.id,
+		  t.user_id AS userId,
+		  t.open_id AS openId
+		FROM mall.mall_tb_user_weixin t
+		WHERE t.state  = 'U'
+	]]>
+		<if test="openId != null and openId != ''">
+		<![CDATA[ AND t.open_id = #{openId} ]]>
+		</if>
+		<if test="userId != null and userId != ''">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
+	</select>
+	
+	<insert id="createUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+	<![CDATA[
+		INSERT
+		INTO mall.mall_tb_user_weixin
+		  (
+			USER_ID,
+			OPEN_ID,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{userId},
+			#{openId},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
+	
+</mapper>

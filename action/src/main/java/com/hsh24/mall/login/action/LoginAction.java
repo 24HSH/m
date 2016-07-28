@@ -1,8 +1,12 @@
 package com.hsh24.mall.login.action;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.hsh24.mall.api.ca.ICAService;
 import com.hsh24.mall.api.ca.bo.ValidateResult;
@@ -19,14 +23,18 @@ import com.hsh24.mall.framework.log.Logger4jExtend;
  * @author JiakunXu
  * 
  */
+@Controller
+@Scope("request")
 public class LoginAction extends BaseAction {
 
 	private static final long serialVersionUID = 7498561926934442624L;
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(LoginAction.class);
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
+	@Resource
 	private ICAService caService;
 
 	private String passport;
@@ -105,22 +113,6 @@ public class LoginAction extends BaseAction {
 		}
 
 		return LOGOUT;
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
-	}
-
-	public ICAService getCaService() {
-		return caService;
-	}
-
-	public void setCaService(ICAService caService) {
-		this.caService = caService;
 	}
 
 	public String getPassport() {

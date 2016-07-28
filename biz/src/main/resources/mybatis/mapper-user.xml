@@ -1,0 +1,55 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.user.dao.IUserDao">
+	
+	<select id="getUser" parameterType="user" resultType="user">
+	<![CDATA[
+		SELECT t.user_id AS userId,
+		  t.user_name AS userName,
+		  t.passport,
+		  t.head_img_url AS headImgUrl
+		FROM mall.mall_tb_user t
+		WHERE t.state  = 'U'
+		AND t.user_id  = #{userId}
+	]]>
+	</select>
+	
+	<insert id="createUser" parameterType="user" useGeneratedKeys="true" keyProperty="userId">
+	<![CDATA[
+		INSERT
+		INTO mall.mall_tb_user
+		  (
+			USER_NAME,
+			PASSPORT,
+			SEX,
+			PROVINCE,
+			CITY,
+			COUNTRY,
+			HEAD_IMG_URL,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{userName},
+			#{passport},
+			#{sex},
+			#{province},
+			#{city},
+			#{country},
+			#{headImgUrl},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
+	
+</mapper>

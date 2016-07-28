@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.trade.dao.IOrderRefundDao">
+	
+	<insert id="createOrderRefund" parameterType="orderRefund" useGeneratedKeys="true" keyProperty="refundId">
+	<![CDATA[
+		INSERT
+		INTO mall.mall_tb_order_refund
+		  (
+			ORDER_ID,
+			TRADE_NO,
+			REFUND_NO,
+			REFUND_FEE,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{orderId},
+			#{tradeNo},
+			#{refundNo},
+			#{refundFee},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
+		
+</mapper>

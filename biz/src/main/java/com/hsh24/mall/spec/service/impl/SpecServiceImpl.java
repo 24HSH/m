@@ -2,6 +2,10 @@ package com.hsh24.mall.spec.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.spec.ISpecService;
 import com.hsh24.mall.api.spec.bo.SpecCat;
@@ -9,20 +13,27 @@ import com.hsh24.mall.api.spec.bo.SpecItem;
 import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
 import com.hsh24.mall.framework.util.LogUtil;
-import com.hsh24.mall.spec.dao.ISpecDao;
+import com.hsh24.mall.spec.dao.ISpecCatDao;
+import com.hsh24.mall.spec.dao.ISpecItemDao;
 
 /**
  * 
  * @author JiakunXu
  * 
  */
+@Service
 public class SpecServiceImpl implements ISpecService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(SpecServiceImpl.class);
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
-	private ISpecDao specDao;
+	@Resource
+	private ISpecCatDao specCatDao;
+
+	@Resource
+	private ISpecItemDao specItemDao;
 
 	@Override
 	public List<SpecCat> getSpecCatList(Long shopId, String[] specCId) {
@@ -52,7 +63,7 @@ public class SpecServiceImpl implements ISpecService {
 
 	private List<SpecCat> getSpecCatList(SpecCat specCat) {
 		try {
-			return specDao.getSpecCatList(specCat);
+			return specCatDao.getSpecCatList(specCat);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(specCat), e);
 		}
@@ -62,28 +73,12 @@ public class SpecServiceImpl implements ISpecService {
 
 	private List<SpecItem> getSpecItemList(SpecItem specItem) {
 		try {
-			return specDao.getSpecItemList(specItem);
+			return specItemDao.getSpecItemList(specItem);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(specItem), e);
 		}
 
 		return null;
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
-	}
-
-	public ISpecDao getSpecDao() {
-		return specDao;
-	}
-
-	public void setSpecDao(ISpecDao specDao) {
-		this.specDao = specDao;
 	}
 
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.shop.dao.IShopDao">
+	
+	<select id="getShopList" parameterType="shop" resultType="shop">
+	<![CDATA[
+		SELECT t.shop_id AS shopId,
+			   t.shop_name AS shopName,
+			   t.region_id AS regionId
+		  FROM mdm.mdm_tb_shop t
+		 WHERE t.state = 'U'
+	]]>
+	</select>
+	
+	<select id="getShop" parameterType="shop" resultType="shop">
+	<![CDATA[
+		SELECT t.shop_id AS shopId,
+			   t.shop_name AS shopName,
+			   t.region_id AS regionId
+		  FROM mdm.mdm_tb_shop t
+		 WHERE t.state = 'U'
+		   AND t.shop_id = #{shopId}
+	]]>
+	</select>
+	
+</mapper>

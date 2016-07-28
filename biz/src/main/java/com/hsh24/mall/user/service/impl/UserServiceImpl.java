@@ -1,6 +1,9 @@
 package com.hsh24.mall.user.service.impl;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.user.IUserService;
@@ -17,12 +20,15 @@ import com.hsh24.mall.user.dao.IUserDao;
  * @author JiakunXu
  * 
  */
+@Service
 public class UserServiceImpl implements IUserService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(UserServiceImpl.class);
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
+	@Resource
 	private IUserDao userDao;
 
 	@Override
@@ -98,22 +104,6 @@ public class UserServiceImpl implements IUserService {
 		}
 
 		return user;
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
-	}
-
-	public IUserDao getUserDao() {
-		return userDao;
-	}
-
-	public void setUserDao(IUserDao userDao) {
-		this.userDao = userDao;
 	}
 
 }

@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.item.dao.IItemCatDao">
+	
+	<select id="getItemCatList" parameterType="itemCat" resultType="itemCat">
+	<![CDATA[
+		SELECT t.ITEM_CID AS itemCId,
+			   t.ITEM_CNAME AS itemCName
+		  FROM mdm.mdm_tb_item_cat t
+		 WHERE t.state = 'U'
+		   AND t.PARENT_ITEM_CID = #{parentItemCId}
+		 ORDER BY t.rank
+	]]>
+	</select>
+	
+</mapper>

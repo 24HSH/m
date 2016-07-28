@@ -1,0 +1,133 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.cart.dao.ICartDao">
+	
+	<insert id="createCart" parameterType="cart" useGeneratedKeys="true" keyProperty="cartId">
+	<![CDATA[
+		INSERT
+		INTO mall.mall_tb_cart
+		  (
+			USER_ID,
+			SHOP_ID,
+			ITEM_ID,
+			SKU_ID,
+			POINTS_ID,
+			QUANTITY,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{userId},
+			#{shopId},
+			#{itemId},
+			#{skuId},
+			#{pointsId},
+			#{quantity},
+			'U',
+			NOW(),
+			#{userId},
+			NOW(),
+			#{userId}
+		  )
+	]]>
+	</insert>
+	
+	<update id="checkCart" parameterType="cart">
+	<![CDATA[
+		UPDATE mall.mall_tb_cart t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.quantity = t.quantity + #{quantity}
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.shop_id = #{shopId}
+		   AND t.item_id = #{itemId}
+		   AND t.sku_id  = #{skuId}
+	]]>
+	</update>
+	
+	<select id="getCartCount" parameterType="cart" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT COUNT(1)
+		  FROM mall.mall_tb_cart t
+		 WHERE t.STATE = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.shop_id = #{shopId}
+	]]>
+	</select>
+	
+	<select id="getCartList" parameterType="cart" resultType="cart">
+	<![CDATA[
+		SELECT t.cart_id AS cartId,
+			   t.item_id AS itemId,
+			   t.sku_id AS skuId,
+			   t.points_id AS pointsId,
+			   t.quantity
+		  FROM mall.mall_tb_cart t
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.shop_id = #{shopId}
+		 ORDER BY t.create_date DESC
+	]]>
+	</select>
+	
+	<update id="updateCart" parameterType="cart">
+	<![CDATA[
+		UPDATE mall.mall_tb_cart t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.state = #{state}
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.shop_id = #{shopId}
+		   AND t.cart_id IN
+	]]>
+		<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+	</update>
+	
+	<update id="updateQuantity" parameterType="cart">
+	<![CDATA[
+		UPDATE mall.mall_tb_cart t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.quantity = #{quantity}
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.shop_id = #{shopId}
+		   AND t.cart_id = #{cartId}
+	]]>
+	</update>
+	
+	<select id="getCartStats" parameterType="cart" resultType="cart">
+	<![CDATA[
+		SELECT MIN(p.postage) AS postage,
+			   SUM(CASE WHEN k.points_id IS NULL THEN CASE WHEN q.price IS NULL THEN p.price * t.quantity ELSE q.price * t.quantity END ELSE 0 END) AS price,
+			   SUM(CASE WHEN k.points IS NULL THEN 0 ELSE k.points * t.quantity END) AS points
+		  FROM mall.mall_tb_cart t
+		  left join dms.dms_tb_item p on t.item_id= p.item_id
+		  left join(
+		SELECT qq.sku_id, qq.price
+		  FROM dms.dms_tb_item_sku qq
+		 WHERE qq.state= 'U') q on t.sku_id = q.sku_id
+		  left join(
+		SELECT kk.points_id, kk.points
+		  FROM mall.mall_tb_points kk
+		 WHERE kk.state = 'U'
+		   AND kk.shop_id = #{shopId}
+				 ) k on t.points_id = k.points_id
+		 WHERE t.state = 'U'
+		   AND p.state = 'U'
+		   AND p.shop_id = #{shopId}
+		   AND t.user_id = #{userId}
+		   AND t.cart_id  IN 
+	]]>
+		<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+	</select>
+	
+</mapper>

@@ -1,6 +1,10 @@
 package com.hsh24.mall.auth.service.impl;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.hsh24.mall.api.auth.IAuthService;
 import com.hsh24.mall.framework.bo.BooleanResult;
@@ -15,14 +19,18 @@ import com.wideka.weixin.api.auth.bo.AccessToken;
  * @author JiakunXu
  * 
  */
+@Service
 public class AuthServiceImpl implements IAuthService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(AuthServiceImpl.class);
 
+	@Resource
 	private IOAuth2Service oauth2Service;
 
+	@Value("${weixin.app.id}")
 	private String appId;
 
+	@Value("${weixin.app.secret}")
 	private String appSecret;
 
 	@Override
@@ -70,30 +78,6 @@ public class AuthServiceImpl implements IAuthService {
 		}
 
 		return null;
-	}
-
-	public IOAuth2Service getOauth2Service() {
-		return oauth2Service;
-	}
-
-	public void setOauth2Service(IOAuth2Service oauth2Service) {
-		this.oauth2Service = oauth2Service;
-	}
-
-	public String getAppId() {
-		return appId;
-	}
-
-	public void setAppId(String appId) {
-		this.appId = appId;
-	}
-
-	public String getAppSecret() {
-		return appSecret;
-	}
-
-	public void setAppSecret(String appSecret) {
-		this.appSecret = appSecret;
 	}
 
 }

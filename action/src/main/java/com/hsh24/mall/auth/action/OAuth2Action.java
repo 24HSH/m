@@ -2,11 +2,14 @@ package com.hsh24.mall.auth.action;
 
 import java.net.URLEncoder;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.hsh24.mall.api.auth.IAuthService;
 import com.hsh24.mall.api.user.IUserWeixinService;
@@ -22,14 +25,18 @@ import com.wideka.weixin.api.auth.bo.AccessToken;
  * @author JiakunXu
  * 
  */
+@Controller("oauth2Action")
+@Scope("request")
 public class OAuth2Action extends BaseAction {
 
 	private static final long serialVersionUID = 6386474612475679175L;
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(OAuth2Action.class);
 
+	@Resource
 	private IAuthService authService;
 
+	@Resource
 	private IUserWeixinService userWeixinService;
 
 	private String redirectUrl;
@@ -88,22 +95,6 @@ public class OAuth2Action extends BaseAction {
 		}
 
 		return SUCCESS;
-	}
-
-	public IAuthService getAuthService() {
-		return authService;
-	}
-
-	public void setAuthService(IAuthService authService) {
-		this.authService = authService;
-	}
-
-	public IUserWeixinService getUserWeixinService() {
-		return userWeixinService;
-	}
-
-	public void setUserWeixinService(IUserWeixinService userWeixinService) {
-		this.userWeixinService = userWeixinService;
 	}
 
 	public String getRedirectUrl() {

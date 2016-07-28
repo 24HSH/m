@@ -1,0 +1,240 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.trade.dao.ITradeDao">
+	
+	<insert id="createTrade" parameterType="trade" useGeneratedKeys="true" keyProperty="tradeId">
+	<![CDATA[
+		INSERT
+		INTO mall.mall_tb_trade
+		  (
+			TRADE_ID,
+			TRADE_NO,
+			USER_ID,
+			SHOP_ID,
+			TYPE,
+			TRADE_PRICE,
+			COUPON_PRICE,
+			POSTAGE,
+			`CHANGE`,
+			TRADE_POINTS,
+			RECEIVER_NAME,
+			RECEIVER_PROVINCE,
+			RECEIVER_CITY,
+			RECEIVER_AREA,
+			RECEIVER_BACK_CODE,
+			RECEIVER_ADDRESS,
+			RECEIVER_ZIP,
+			RECEIVER_TEL,
+			SHIPMENT,
+			CART_ID,
+			CREATE_DATE,
+			STATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{tradeId},
+			#{tradeNo},
+			#{userId},
+			#{shopId},
+			#{type},
+			#{tradePrice},
+			#{couponPrice},
+			#{postage},
+			#{change},
+			#{tradePoints},
+			#{receiverName},
+			#{receiverProvince},
+			#{receiverCity},
+			#{receiverArea},
+			#{receiverBackCode},
+			#{receiverAddress},
+			#{receiverZip},
+			#{receiverTel},
+			#{shipment},
+			#{cartId},
+			NOW(),
+			'U',
+			#{userId},
+			NOW(),
+			#{userId}
+		  )
+	]]>
+	</insert>
+
+	<select id="getTradeCount" parameterType="trade" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT COUNT(1)
+		  FROM mall.mall_tb_trade t
+		 WHERE t.STATE = 'U'
+		   AND t.shop_id = #{shopId}
+		   AND t.user_id = #{userId}
+	]]>
+		<if test="codes != null and codes.length > 0">
+		<![CDATA[ t.type IN ]]>
+			<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+		</if>
+	</select>
+	
+	<select id="getTradeList" parameterType="trade" resultType="trade">
+	<![CDATA[
+		SELECT t.trade_id AS tradeId,
+			   t.trade_no AS tradeNo,
+			   t.trade_price AS tradePrice,
+			   t.coupon_price AS couponPrice,
+			   t.postage,
+			   t.change,
+			   t.receiver_name AS receiverName,
+			   t.receiver_tel AS receiverTel,
+			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate,
+			   DATE_FORMAT(t.modify_date, '%Y-%m-%d %T') AS modifyDate,
+			   DATE_FORMAT(t.pay_date, '%Y-%m-%d %T') AS payDate,
+			   DATE_FORMAT(t.send_date, '%Y-%m-%d %T') AS sendDate,
+			   DATE_FORMAT(t.sign_date, '%Y-%m-%d %T') AS signDate,
+			   DATE_FORMAT(t.feedback_date, '%Y-%m-%d %T') AS feedbackDate,
+			   DATE_FORMAT(t.feedbacked_date, '%Y-%m-%d %T') AS feedbackedDate,
+			   t.type,
+			   IFNULL(t.score, 0),
+			   t.trade_points AS tradePoints,
+			   t.shipment,
+			   t.feedback_type AS feedbackType
+		  FROM mall.mall_tb_trade t
+		 WHERE t.state = 'U'
+		   AND t.shop_id = #{shopId}
+		   AND t.user_id = #{userId}
+	]]>
+		<if test="codes != null and codes.length > 0">
+		<![CDATA[ t.type IN ]]>
+			<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+		</if>
+		<if test="sort == null or sort == ''">
+		<![CDATA[ ORDER BY TRADE_ID DESC ]]>
+		</if>
+		<if test="sort != null and sort != ''">
+		<![CDATA[ ORDER BY ${sort} ${order}, TRADE_ID DESC ]]>
+		</if>
+	<![CDATA[
+		LIMIT ${limit} OFFSET ${offset}
+	]]>
+	</select>
+	
+	<select id="getTrade" parameterType="trade" resultType="trade">
+	<![CDATA[
+		SELECT t.trade_id AS tradeId,
+			   t.trade_no AS tradeNo,
+			   t.type,
+			   t.pay_type AS payType,
+			   t.trade_price AS tradePrice,
+			   t.coupon_price AS couponPrice,
+			   t.postage,
+			   t.change,
+			   t.receiver_name AS receiverName,
+			   t.receiver_province AS receiverProvince,
+			   t.receiver_city AS receiverCity,
+			   t.receiver_area AS receiverArea,
+			   t.receiver_address AS receiverAddress,
+			   t.receiver_tel AS receiverTel,
+			   t.receiver_remark AS receiverRemark,
+			   t.cart_id AS cartId,
+			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate,
+			   DATE_FORMAT(t.modify_date, '%Y-%m-%d %T') AS modifyDate,
+			   DATE_FORMAT(t.pay_date, '%Y-%m-%d %T') AS payDate,
+			   DATE_FORMAT(t.send_date, '%Y-%m-%d %T') AS sendDate,
+			   DATE_FORMAT(t.sign_date, '%Y-%m-%d %T') AS signDate,
+			   DATE_FORMAT(t.feedback_date, '%Y-%m-%d %T') AS feedbackDate,
+			   DATE_FORMAT(t.feedbacked_date, '%Y-%m-%d %T') AS feedbackedDate
+		  FROM mall.mall_tb_trade t
+		 WHERE t.trade_no = #{tradeNo}
+	]]>
+		<if test="userId != null and userId != ''">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
+	</select>
+	
+	<update id="updateTrade" parameterType="trade">
+	<![CDATA[
+		UPDATE mall.mall_tb_trade t
+		SET t.modify_date = NOW(),
+		  t.modify_user   = #{modifyUser}
+	]]>
+		<if test="type != null and type != ''">
+		<![CDATA[ , t.type = #{type} ]]>
+		</if>
+		<if test="type != null and type != ''">
+			<if test="type == 'tosend'">
+			<![CDATA[ , t.PAY_DATE = STR_TO_DATE(#{payDate}, '%Y%m%d%H%i%s') ]]>
+			</if>
+			<if test="type == 'send'">
+			<![CDATA[ , t.SEND_DATE = NOW() ]]>
+			</if>
+			<if test="type == 'sign'">
+			<![CDATA[ , t.SIGN_DATE = NOW() ]]>
+			</if>
+			<if test="type == 'feedback'">
+			<![CDATA[ , t.FEEDBACK_DATE = NOW() ]]>
+			</if>
+			<if test="type == 'feedbacked'">
+			<![CDATA[ , t.FEEDBACKED_DATE = NOW() ]]>
+			</if>
+		</if>
+		<if test="receiverName != null and receiverName != ''">
+		<![CDATA[ , t.receiver_name = #{receiverName} ]]>
+		</if>
+		<if test="receiverProvince != null and receiverProvince != ''">
+		<![CDATA[ , t.receiver_province = #{receiverProvince} ]]>
+		</if>
+		<if test="receiverCity != null and receiverCity != ''">
+		<![CDATA[ , t.receiver_city = #{receiverCity} ]]>
+		</if>
+		<if test="receiverArea != null and receiverArea != ''">
+		<![CDATA[ , t.receiver_area = #{receiverArea} ]]>
+		</if>
+		<if test="receiverBackCode != null and receiverBackCode != ''">
+		<![CDATA[ , t.receiver_back_code = #{receiverBackCode} ]]>
+		</if>
+		<if test="receiverAddress != null and receiverAddress != ''">
+		<![CDATA[ , t.receiver_address = #{receiverAddress} ]]>
+		</if>
+		<if test="receiverZip != null and receiverZip != ''">
+		<![CDATA[ , t.receiver_zip = #{receiverZip} ]]>
+		</if>
+		<if test="receiverTel != null and receiverTel != ''">
+		<![CDATA[ , t.receiver_tel = #{receiverTel} ]]>
+		</if>
+		<if test="receiverRemark != null and receiverRemark != ''">
+		<![CDATA[ , t.receiver_remark = #receiverRemark# ]]>
+		</if>
+		<if test="shipment != null and shipment != ''">
+		<![CDATA[ , t.shipment = #{shipment} ]]>
+		</if>
+		<if test="payType != null and payType != ''">
+		<![CDATA[ , t.pay_type = #{payType} ]]>
+		</if>
+		<if test="feedbackType != null and feedbackType != ''">
+		<![CDATA[ , t.feedback_type = #{feedbackType} ]]>
+		</if>
+		<if test="score != null and score != ''">
+		<![CDATA[ , t.score = #{score} ]]>
+		</if>
+	<![CDATA[
+		WHERE t.state       = 'U'
+	]]>
+		<if test="tradeId != null and tradeId != ''">
+		<![CDATA[ AND t.trade_id = #{tradeId} ]]>
+		</if>
+		<if test="tradeNo != null and tradeNo != ''">
+		<![CDATA[ AND t.trade_no = #{tradeNo} ]]>
+		</if>
+		<if test="userId != null and userId != ''">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
+		<if test="type != null and type != ''">
+		<![CDATA[ AND t.type <> #{type} ]]>
+		</if>
+	</update>
+		
+</mapper>

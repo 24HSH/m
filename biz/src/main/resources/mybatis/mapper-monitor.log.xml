@@ -1,0 +1,97 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.monitor.dao.ILogMonitorDao">
+	
+	<select id="getLogMonitorCount" parameterType="logMonitor" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT COUNT(1) FROM BASIS_TB_MONITOR_LOG t
+	]]>
+		<where>
+			<if test="gmtStart != null and gmtStart != ''">
+			<![CDATA[ AND t.create_date >= to_date(#{gmtStart}, 'yyyy-mm-dd') ]]>
+			</if>
+			<if test="gmtEnd != null and gmtEnd != ''">
+			<![CDATA[ AND t.create_date < to_date(#{gmtEnd}, 'yyyy-mm-dd') + 1 ]]>
+			</if>
+		</where>
+	</select>
+	
+	<select id="getLogMonitorList" parameterType="logMonitor" resultType="logMonitor">
+		<include refid="global.paginationStart" />
+	<![CDATA[
+		SELECT t.id,
+		  t.class_name          AS className,
+		  t.method_name         AS methodName,
+		  t.line_number         AS lineNumber,
+		  t.message             AS MESSAGE,
+		  t.e,
+		  TO_CHAR(t.create_date,'yyyy-mm-dd hh24:mi:ss') AS createDate
+		FROM BASIS_TB_MONITOR_LOG t
+	]]>
+		<where>
+			<if test="gmtStart != null and gmtStart != ''">
+			<![CDATA[ AND t.create_date >= to_date(#{gmtStart}, 'yyyy-mm-dd') ]]>
+			</if>
+			<if test="gmtEnd != null and gmtEnd != ''">
+			<![CDATA[ AND t.create_date < to_date(#{gmtEnd}, 'yyyy-mm-dd') + 1 ]]>
+			</if>
+		</where>
+		<include refid="global.orderBy" />
+		<include refid="global.paginationEnd" />
+	</select>
+	
+	<insert id="createLogMonitor" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+	<![CDATA[
+		INSERT
+		INTO BASIS_TB_MONITOR_LOG
+		  (
+			CLASS_NAME,
+			METHOD_NAME,
+			LINE_NUMBER,
+			MESSAGE,
+			E,
+			CREATE_DATE
+		  )
+		  VALUES
+	]]>
+		<foreach collection="logMonitorList" item="logMonitor" separator=","> 
+		<![CDATA[
+			  (
+				#{logMonitor.className},
+				#{logMonitor.methodName},
+				#{logMonitor.lineNumber},
+				#{logMonitor.message},
+				#{logMonitor.e},
+				STR_TO_DATE(#{logMonitor.createDate}, '%Y-%m-%d %T')
+			  )
+		]]>
+		</foreach>
+	</insert>
+	
+	<select id="getLogMonitorList4SendEmail" resultType="logMonitor">
+	<![CDATA[
+		SELECT *
+		FROM
+		  (SELECT row_.*,
+			rownum rownum_
+		  FROM
+			(SELECT t.id,
+			  t.class_name           AS className,
+			  t.method_name          AS methodName,
+			  t.line_number          AS lineNumber,
+			  t.message              AS MESSAGE,
+			  t.e,
+			  TO_CHAR(t.create_date,'yyyy-mm-dd hh24:mi:ss') AS createDate
+			FROM BASIS_TB_MONITOR_LOG t
+			WHERE t.create_date > sysdate - 0.25
+			ORDER BY t.log_monitor_id DESC
+			) row_
+		  WHERE rownum < 50
+		  )
+		WHERE rownum_ >= 1
+	]]>
+	</select>
+	
+</mapper>

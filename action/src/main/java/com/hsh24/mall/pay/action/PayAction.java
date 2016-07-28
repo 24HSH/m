@@ -1,5 +1,10 @@
 package com.hsh24.mall.pay.action;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.hsh24.mall.api.pay.IPayService;
 import com.hsh24.mall.api.trade.ITradeService;
 import com.hsh24.mall.api.trade.bo.OrderRefund;
@@ -13,12 +18,16 @@ import com.hsh24.mall.framework.util.ClientUtil;
  * @author JiakunXu
  * 
  */
+@Controller
+@Scope("request")
 public class PayAction extends BaseAction {
 
 	private static final long serialVersionUID = 3200362561478926494L;
 
+	@Resource
 	private IPayService payService;
 
+	@Resource
 	private ITradeService tradeService;
 
 	/**
@@ -91,22 +100,6 @@ public class PayAction extends BaseAction {
 		}
 
 		return RESOURCE_RESULT;
-	}
-
-	public IPayService getPayService() {
-		return payService;
-	}
-
-	public void setPayService(IPayService payService) {
-		this.payService = payService;
-	}
-
-	public ITradeService getTradeService() {
-		return tradeService;
-	}
-
-	public void setTradeService(ITradeService tradeService) {
-		this.tradeService = tradeService;
 	}
 
 	public String getTradeNo() {

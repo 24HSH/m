@@ -2,6 +2,10 @@ package com.hsh24.mall.monitor.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.hsh24.mall.api.monitor.ILogMonitorService;
 import com.hsh24.mall.api.monitor.bo.LogMonitor;
 import com.hsh24.mall.framework.log.Logger4jCollection;
@@ -14,10 +18,12 @@ import com.hsh24.mall.monitor.dao.ILogMonitorDao;
  * @author xujiakun
  * 
  */
+@Service
 public class LogMonitorServiceImpl implements ILogMonitorService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(LogMonitorServiceImpl.class);
 
+	@Resource
 	private ILogMonitorDao logMonitorDao;
 
 	@Override
@@ -75,14 +81,6 @@ public class LogMonitorServiceImpl implements ILogMonitorService {
 		}
 
 		return null;
-	}
-
-	public ILogMonitorDao getLogMonitorDao() {
-		return logMonitorDao;
-	}
-
-	public void setLogMonitorDao(ILogMonitorDao logMonitorDao) {
-		this.logMonitorDao = logMonitorDao;
 	}
 
 }

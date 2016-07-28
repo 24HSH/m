@@ -2,7 +2,10 @@ package com.hsh24.mall.trade.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 
 import com.hsh24.mall.api.trade.IOrderService;
 import com.hsh24.mall.api.trade.bo.Order;
@@ -17,10 +20,12 @@ import com.hsh24.mall.trade.dao.IOrderDao;
  * @author JiakunXu
  * 
  */
+@Service
 public class OrderServiceImpl implements IOrderService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(OrderServiceImpl.class);
 
+	@Resource
 	private IOrderDao orderDao;
 
 	@Override
@@ -181,14 +186,6 @@ public class OrderServiceImpl implements IOrderService {
 		}
 
 		return null;
-	}
-
-	public IOrderDao getOrderDao() {
-		return orderDao;
-	}
-
-	public void setOrderDao(IOrderDao orderDao) {
-		this.orderDao = orderDao;
 	}
 
 }

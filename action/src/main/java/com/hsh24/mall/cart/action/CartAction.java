@@ -3,6 +3,11 @@ package com.hsh24.mall.cart.action;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.hsh24.mall.api.cart.ICartService;
 import com.hsh24.mall.api.cart.bo.Cart;
 import com.hsh24.mall.framework.action.BaseAction;
@@ -13,10 +18,13 @@ import com.hsh24.mall.framework.bo.BooleanResult;
  * @author JiakunXu
  * 
  */
+@Controller
+@Scope("request")
 public class CartAction extends BaseAction {
 
 	private static final long serialVersionUID = -4392828383974468915L;
 
+	@Resource
 	private ICartService cartService;
 
 	private List<Cart> cartList;
@@ -105,14 +113,6 @@ public class CartAction extends BaseAction {
 		}
 
 		return RESOURCE_RESULT;
-	}
-
-	public ICartService getCartService() {
-		return cartService;
-	}
-
-	public void setCartService(ICartService cartService) {
-		this.cartService = cartService;
 	}
 
 	public List<Cart> getCartList() {

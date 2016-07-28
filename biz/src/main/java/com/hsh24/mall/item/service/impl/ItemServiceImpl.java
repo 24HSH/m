@@ -6,7 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.hsh24.mall.api.item.IItemFileService;
@@ -28,16 +31,21 @@ import com.hsh24.mall.item.dao.IItemDao;
  * @author JiakunXu
  * 
  */
+@Service
 public class ItemServiceImpl implements IItemService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(ItemServiceImpl.class);
 
+	@Resource
 	private IItemFileService itemFileService;
 
+	@Resource
 	private IItemSkuService itemSkuService;
 
+	@Resource
 	private ISpecService specService;
 
+	@Resource
 	private IItemDao itemDao;
 
 	@Override
@@ -340,7 +348,7 @@ public class ItemServiceImpl implements IItemService {
 		}
 
 		try {
-			itemDao.updateItem(shopId, itemId, modifyUser);
+			itemDao.updateItem1(shopId, itemId, modifyUser);
 			result.setResult(true);
 		} catch (Exception e) {
 			logger.error("shopId:" + shopId + LogUtil.parserBean(itemId) + "modifyUser:" + modifyUser, e);
@@ -373,7 +381,7 @@ public class ItemServiceImpl implements IItemService {
 		}
 
 		try {
-			itemDao.updateItem(shopId, itemList, modifyUser);
+			itemDao.updateItem2(shopId, itemList, modifyUser);
 			result.setResult(true);
 		} catch (Exception e) {
 			logger.error("shopId:" + shopId + LogUtil.parserBean(itemList) + "modifyUser:" + modifyUser, e);
@@ -403,38 +411,6 @@ public class ItemServiceImpl implements IItemService {
 		}
 
 		return null;
-	}
-
-	public IItemFileService getItemFileService() {
-		return itemFileService;
-	}
-
-	public void setItemFileService(IItemFileService itemFileService) {
-		this.itemFileService = itemFileService;
-	}
-
-	public IItemSkuService getItemSkuService() {
-		return itemSkuService;
-	}
-
-	public void setItemSkuService(IItemSkuService itemSkuService) {
-		this.itemSkuService = itemSkuService;
-	}
-
-	public ISpecService getSpecService() {
-		return specService;
-	}
-
-	public void setSpecService(ISpecService specService) {
-		this.specService = specService;
-	}
-
-	public IItemDao getItemDao() {
-		return itemDao;
-	}
-
-	public void setItemDao(IItemDao itemDao) {
-		this.itemDao = itemDao;
 	}
 
 }

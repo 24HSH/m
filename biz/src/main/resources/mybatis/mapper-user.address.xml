@@ -1,0 +1,81 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.user.dao.IUserAddressDao">
+	
+	<select id="getUserAddress" parameterType="userAddress" resultType="userAddress">
+	<![CDATA[
+		SELECT t.add_id  AS addId,
+		  t.contact_name AS contactName,
+		  t.province,
+		  t.city,
+		  t.area,
+		  t.back_code AS backCode,
+		  t.address,
+		  t.postal_code AS postalCode,
+		  t.tel
+		FROM mall.mall_tb_user_address t
+		WHERE t.state  = 'U'
+		AND t.defaults = #{defaults}
+		AND t.user_id  = #{userId}
+	]]>
+	</select>
+	
+	<insert id="createUserAddress" parameterType="userAddress" useGeneratedKeys="true" keyProperty="addId">
+	<![CDATA[
+		INSERT
+		INTO mall.mall_tb_user_address
+		  (
+			USER_ID,
+			CONTACT_NAME,
+			PROVINCE,
+			CITY,
+			AREA,
+			BACK_CODE,
+			ADDRESS,
+			POSTAL_CODE,
+			TEL,
+			ALIAS,
+			DEFAULTS,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{userId},
+			#{contactName},
+			#{province},
+			#{city},
+			#{area},
+			#{backCode},
+			#{address},
+			#{postalCode},
+			#{tel},
+			#{contactName},
+			'Y',
+			'U',
+			NOW(),
+			#{userId},
+			NOW(),
+			#{userId}
+		  )
+	]]>
+	</insert>
+	
+	<update id="removeDefaultUserAddress" parameterType="userAddress">
+	<![CDATA[
+		UPDATE mall.mall_tb_user_address t
+		SET t.modify_date = NOW(),
+		  t.modify_user   = #{userId},
+		  t.defaults      = 'N'
+		WHERE t.state     = 'U'
+		AND t.defaults    = 'Y'
+		AND t.user_id     = #{userId}
+	]]>
+	</update>
+	
+</mapper>

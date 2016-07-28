@@ -1,6 +1,9 @@
 package com.hsh24.mall.weixin.service.impl;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.weixin.ITicketService;
@@ -17,14 +20,18 @@ import com.wideka.weixin.api.auth.bo.Ticket;
  * @author JiakunXu
  * 
  */
+@Service
 public class TicketServiceImpl implements ITicketService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(TicketServiceImpl.class);
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
+	@Resource
 	private ITokenService tokenService;
 
+	@Resource
 	private IJSAPITicketService jsapiTicketService;
 
 	@Override
@@ -143,30 +150,6 @@ public class TicketServiceImpl implements ITicketService {
 
 		result.setCode(t);
 		return result;
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
-	}
-
-	public ITokenService getTokenService() {
-		return tokenService;
-	}
-
-	public void setTokenService(ITokenService tokenService) {
-		this.tokenService = tokenService;
-	}
-
-	public IJSAPITicketService getJsapiTicketService() {
-		return jsapiTicketService;
-	}
-
-	public void setJsapiTicketService(IJSAPITicketService jsapiTicketService) {
-		this.jsapiTicketService = jsapiTicketService;
 	}
 
 }

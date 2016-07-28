@@ -1,0 +1,24 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.spec.dao.ISpecCatDao">
+	
+	<select id="getSpecCatList" parameterType="specCat" resultType="specCat">
+	<![CDATA[
+		SELECT t.spec_cid AS specCId,
+		  t.spec_cname    AS specCName
+		FROM dms.dms_tb_spec_cat t
+		WHERE t.state = 'U'
+		AND t.shop_id = #{shopId}
+	]]>
+		<if test="codes != null and codes.length > 0">
+		<![CDATA[ t.spec_cid IN ]]>
+			<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+		</if>
+		<if test="codes == null or codes.length == 0">
+		<![CDATA[ ORDER BY t.spec_cname ]]>
+		</if>
+	</select>
+	
+</mapper>

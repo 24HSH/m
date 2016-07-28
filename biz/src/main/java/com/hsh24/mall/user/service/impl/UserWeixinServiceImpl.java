@@ -1,6 +1,9 @@
 package com.hsh24.mall.user.service.impl;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -23,18 +26,24 @@ import com.wideka.weixin.api.auth.bo.UserInfo;
  * @author JiakunXu
  * 
  */
+@Service
 public class UserWeixinServiceImpl implements IUserWeixinService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(UserWeixinServiceImpl.class);
 
+	@Resource
 	private TransactionTemplate transactionTemplate;
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
+	@Resource
 	private IUserService userService;
 
+	@Resource
 	private IOAuth2Service oauth2Service;
 
+	@Resource
 	private IUserWeixinDao userWeixinDao;
 
 	@Override
@@ -216,46 +225,6 @@ public class UserWeixinServiceImpl implements IUserWeixinService {
 		}
 
 		return null;
-	}
-
-	public TransactionTemplate getTransactionTemplate() {
-		return transactionTemplate;
-	}
-
-	public void setTransactionTemplate(TransactionTemplate transactionTemplate) {
-		this.transactionTemplate = transactionTemplate;
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
-	}
-
-	public IUserService getUserService() {
-		return userService;
-	}
-
-	public void setUserService(IUserService userService) {
-		this.userService = userService;
-	}
-
-	public IOAuth2Service getOauth2Service() {
-		return oauth2Service;
-	}
-
-	public void setOauth2Service(IOAuth2Service oauth2Service) {
-		this.oauth2Service = oauth2Service;
-	}
-
-	public IUserWeixinDao getUserWeixinDao() {
-		return userWeixinDao;
-	}
-
-	public void setUserWeixinDao(IUserWeixinDao userWeixinDao) {
-		this.userWeixinDao = userWeixinDao;
 	}
 
 }

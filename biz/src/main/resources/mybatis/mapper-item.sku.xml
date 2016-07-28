@@ -1,0 +1,46 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.item.dao.IItemSkuDao">
+	
+	<select id="getItemSkuList" parameterType="itemSku" resultType="itemSku">
+	<![CDATA[
+		SELECT t.sku_id AS skuId,
+		  t.item_id AS itemId,
+		  t.properties,
+		  t.properties_name AS propertiesName,
+		  t.stock,
+		  t.price,
+		  t.origin,
+		  t.code
+		FROM dms.dms_tb_item_sku t
+		WHERE t.state     = 'U'
+	]]>	
+		<if test="itemId != null and itemId != ''">
+		<![CDATA[ AND t.item_id = #{itemId} ]]>
+		</if>
+		<if test="codes != null and codes.length > 0">
+		<![CDATA[ AND t.sku_id IN ]]>
+			<foreach collection="codes" open="(" close=")" separator=",">#{codes[]}</foreach>
+		</if>
+	<![CDATA[
+		LIMIT ${limit} OFFSET ${offset}
+	]]>		
+	</select>
+	
+	<update id="updateItemSku">
+		<foreach collection="#{0}" item="itemSku" separator=";">
+		<![CDATA[
+			UPDATE dms.dms_tb_item_sku t
+			SET t.modify_date = NOW(),
+			  t.modify_user   = #{1},
+			  t.stock         = #{itemSku.stock}
+			WHERE t.state     = 'U'
+			AND t.item_id     = #{itemSku.itemId}
+			AND t.sku_id      = #{itemSku.skuId}
+		]]>
+		</foreach>
+	</update>
+		
+</mapper>

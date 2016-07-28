@@ -2,7 +2,11 @@ package com.hsh24.mall.weixin.service.impl;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.hsh24.mall.api.weixin.ITicketService;
 import com.hsh24.mall.api.weixin.IWeixinService;
@@ -18,18 +22,24 @@ import com.wideka.weixin.framework.util.EncryptUtil;
  * @author JiakunXu
  * 
  */
+@Service
 public class WeixinServiceImpl implements IWeixinService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(WeixinServiceImpl.class);
 
+	@Resource
 	private ITicketService ticketService;
 
+	@Value("${weixin.app.id}")
 	private String appId;
 
+	@Value("${weixin.app.secret}")
 	private String appSecret;
 
+	@Value("${weixin.corp.id}")
 	private String corpId;
 
+	@Value("${weixin.corp.secret}")
 	private String corpSecret;
 
 	@Override
@@ -66,46 +76,6 @@ public class WeixinServiceImpl implements IWeixinService {
 		ticket.setSignature(signature);
 
 		return ticket;
-	}
-
-	public ITicketService getTicketService() {
-		return ticketService;
-	}
-
-	public void setTicketService(ITicketService ticketService) {
-		this.ticketService = ticketService;
-	}
-
-	public String getAppId() {
-		return appId;
-	}
-
-	public void setAppId(String appId) {
-		this.appId = appId;
-	}
-
-	public String getAppSecret() {
-		return appSecret;
-	}
-
-	public void setAppSecret(String appSecret) {
-		this.appSecret = appSecret;
-	}
-
-	public String getCorpId() {
-		return corpId;
-	}
-
-	public void setCorpId(String corpId) {
-		this.corpId = corpId;
-	}
-
-	public String getCorpSecret() {
-		return corpSecret;
-	}
-
-	public void setCorpSecret(String corpSecret) {
-		this.corpSecret = corpSecret;
 	}
 
 }

@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Component;
 
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.monitor.bo.ActionMonitor;
@@ -26,12 +28,14 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
  * @author JiakunXu
  * 
  */
+@Component
 public class ActionMonitorInterceptor implements Interceptor {
 
 	private static final long serialVersionUID = -57833731348869514L;
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(ActionMonitorInterceptor.class);
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
 	public void destroy() {
@@ -97,14 +101,6 @@ public class ActionMonitorInterceptor implements Interceptor {
 		}
 
 		return invocation.invoke();
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
 	}
 
 }

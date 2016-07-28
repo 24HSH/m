@@ -6,7 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -40,26 +43,36 @@ import com.hsh24.mall.trade.dao.ITradeDao;
  * @author JiakunXu
  * 
  */
+@Service
 public class TradeServiceImpl implements ITradeService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(TradeServiceImpl.class);
 
+	@Resource
 	private TransactionTemplate transactionTemplate;
 
+	@Resource
 	private IMemcachedCacheService memcachedCacheService;
 
+	@Resource
 	private IUserAddressService userAddressService;
 
+	@Resource
 	private IOrderService orderService;
 
+	@Resource
 	private IOrderRefundService orderRefundService;
 
+	@Resource
 	private ICartService cartService;
 
+	@Resource
 	private IItemService itemService;
 
+	@Resource
 	private IItemSkuService itemSkuService;
 
+	@Resource
 	private ITradeDao tradeDao;
 
 	@Override
@@ -764,78 +777,6 @@ public class TradeServiceImpl implements ITradeService {
 			res.setCode("取消成功");
 		}
 		return res;
-	}
-
-	public TransactionTemplate getTransactionTemplate() {
-		return transactionTemplate;
-	}
-
-	public void setTransactionTemplate(TransactionTemplate transactionTemplate) {
-		this.transactionTemplate = transactionTemplate;
-	}
-
-	public IMemcachedCacheService getMemcachedCacheService() {
-		return memcachedCacheService;
-	}
-
-	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
-		this.memcachedCacheService = memcachedCacheService;
-	}
-
-	public IUserAddressService getUserAddressService() {
-		return userAddressService;
-	}
-
-	public void setUserAddressService(IUserAddressService userAddressService) {
-		this.userAddressService = userAddressService;
-	}
-
-	public IOrderService getOrderService() {
-		return orderService;
-	}
-
-	public void setOrderService(IOrderService orderService) {
-		this.orderService = orderService;
-	}
-
-	public IOrderRefundService getOrderRefundService() {
-		return orderRefundService;
-	}
-
-	public void setOrderRefundService(IOrderRefundService orderRefundService) {
-		this.orderRefundService = orderRefundService;
-	}
-
-	public ICartService getCartService() {
-		return cartService;
-	}
-
-	public void setCartService(ICartService cartService) {
-		this.cartService = cartService;
-	}
-
-	public IItemService getItemService() {
-		return itemService;
-	}
-
-	public void setItemService(IItemService itemService) {
-		this.itemService = itemService;
-	}
-
-	public IItemSkuService getItemSkuService() {
-		return itemSkuService;
-	}
-
-	public void setItemSkuService(IItemSkuService itemSkuService) {
-		this.itemSkuService = itemSkuService;
-	}
-
-	public ITradeDao getTradeDao() {
-		return tradeDao;
-	}
-
-	public void setTradeDao(ITradeDao tradeDao) {
-		this.tradeDao = tradeDao;
 	}
 
 }

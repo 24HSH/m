@@ -39,7 +39,7 @@ public interface IItemDao {
 	 * @param modifyUser
 	 * @return
 	 */
-	int updateItem(Long shopId, String[] itemId, String modifyUser);
+	int updateItem1(Long shopId, String[] itemId, String modifyUser);
 
 	/**
 	 * 
@@ -48,6 +48,6 @@ public interface IItemDao {
 	 * @param modifyUser
 	 * @return
 	 */
-	int updateItem(Long shopId, List<Item> itemList, String modifyUser);
+	int updateItem2(Long shopId, List<Item> itemList, String modifyUser);
 
 }

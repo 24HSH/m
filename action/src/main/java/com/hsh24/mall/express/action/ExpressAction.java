@@ -1,5 +1,8 @@
 package com.hsh24.mall.express.action;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.hsh24.mall.framework.action.BaseAction;
 
 /**
@@ -7,6 +10,8 @@ import com.hsh24.mall.framework.action.BaseAction;
  * @author JiakunXu
  * 
  */
+@Controller
+@Scope("request")
 public class ExpressAction extends BaseAction {
 
 	private static final long serialVersionUID = -7830510972757206031L;

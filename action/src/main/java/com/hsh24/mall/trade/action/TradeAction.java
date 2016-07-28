@@ -2,6 +2,11 @@ package com.hsh24.mall.trade.action;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.hsh24.mall.api.trade.ITradeService;
 import com.hsh24.mall.api.trade.bo.Trade;
 import com.hsh24.mall.framework.action.BaseAction;
@@ -12,10 +17,13 @@ import com.hsh24.mall.framework.bo.BooleanResult;
  * @author JiakunXu
  * 
  */
+@Controller
+@Scope("request")
 public class TradeAction extends BaseAction {
 
 	private static final long serialVersionUID = -912767004509511731L;
 
+	@Resource
 	private ITradeService tradeService;
 
 	private String itemId;
@@ -177,14 +185,6 @@ public class TradeAction extends BaseAction {
 		}
 
 		return RESOURCE_RESULT;
-	}
-
-	public ITradeService getTradeService() {
-		return tradeService;
-	}
-
-	public void setTradeService(ITradeService tradeService) {
-		this.tradeService = tradeService;
 	}
 
 	public String getItemId() {

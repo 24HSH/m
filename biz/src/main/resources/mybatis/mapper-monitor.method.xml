@@ -1,0 +1,75 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.monitor.dao.IMethodMonitorDao">
+	
+	<select id="getMethodMonitorCount" parameterType="methodMonitor" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT COUNT(1) FROM BASIS_TB_MONITOR_METHOD t
+	]]>
+		<where>
+			<if test="gmtStart != null and gmtStart != ''">
+			<![CDATA[ AND t.create_date >= to_date(#{gmtStart}, 'yyyy-mm-dd') ]]>
+			</if>
+			<if test="gmtEnd != null and gmtEnd != ''">
+			<![CDATA[ AND t.create_date < to_date(#{gmtEnd}, 'yyyy-mm-dd') + 1 ]]>
+			</if>
+			<if test="className != null and className != ''">
+			<![CDATA[ AND t.class_name like #{className,handler=wildcard} escape '\' ]]>
+			</if>
+			<if test="methodName != null and methodName != ''">
+			<![CDATA[ AND t.method_name like #{methodName,handler=wildcard} escape '\' ]]>
+			</if>
+		</where>
+	</select>
+	
+	<select id="getMethodMonitorList" parameterType="methodMonitor" resultType="methodMonitor">
+		<include refid="global.paginationStart" />
+	<![CDATA[
+		SELECT t.id,
+		  t.class_name             AS className,
+		  t.method_name            AS methodName,
+		  t.cost,
+		  t.create_date AS createDate
+		FROM BASIS_TB_MONITOR_METHOD t
+	]]>
+		<where>
+			<if test="gmtStart != null and gmtStart != ''">
+			<![CDATA[ AND t.create_date >= to_date(#{gmtStart}, 'yyyy-mm-dd') ]]>
+			</if>
+			<if test="gmtEnd != null and gmtEnd != ''">
+			<![CDATA[ AND t.create_date < to_date(#{gmtEnd}, 'yyyy-mm-dd') + 1 ]]>
+			</if>
+			<if test="className != null and className != ''">
+			<![CDATA[ AND t.class_name like #{className,handler=wildcard} escape '\' ]]>
+			</if>
+			<if test="methodName != null and methodName != ''">
+			<![CDATA[ AND t.method_name like #{methodName,handler=wildcard} escape '\' ]]>
+			</if>
+		</where>
+		<include refid="global.orderBy" />
+		<include refid="global.paginationEnd" />
+	</select>
+	
+	<insert id="createMethodMonitor" parameterType="methodMonitor" useGeneratedKeys="true" keyProperty="id">
+	<![CDATA[
+		INSERT
+		INTO BASIS_TB_MONITOR_METHOD
+		  (
+			CLASS_NAME,
+			METHOD_NAME,
+			COST,
+			CREATE_DATE
+		  )
+		  VALUES
+		  (
+			#{className},
+			#{methodName},
+			#{cost},
+			NOW()
+		  )
+	]]>
+	</insert>
+
+</mapper>

@@ -1,6 +1,9 @@
 package com.hsh24.mall.user.service.impl;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -20,14 +23,18 @@ import com.hsh24.mall.user.dao.IUserAddressDao;
  * @author JiakunXu
  * 
  */
+@Service
 public class UserAddressServiceImpl implements IUserAddressService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(UserAddressServiceImpl.class);
 
+	@Resource
 	private TransactionTemplate transactionTemplate;
 
+	@Resource
 	private ITradeService tradeService;
 
+	@Resource
 	private IUserAddressDao userAddressDao;
 
 	@Override
@@ -196,30 +203,6 @@ public class UserAddressServiceImpl implements IUserAddressService {
 		}
 
 		return result;
-	}
-
-	public TransactionTemplate getTransactionTemplate() {
-		return transactionTemplate;
-	}
-
-	public void setTransactionTemplate(TransactionTemplate transactionTemplate) {
-		this.transactionTemplate = transactionTemplate;
-	}
-
-	public ITradeService getTradeService() {
-		return tradeService;
-	}
-
-	public void setTradeService(ITradeService tradeService) {
-		this.tradeService = tradeService;
-	}
-
-	public IUserAddressDao getUserAddressDao() {
-		return userAddressDao;
-	}
-
-	public void setUserAddressDao(IUserAddressDao userAddressDao) {
-		this.userAddressDao = userAddressDao;
 	}
 
 }

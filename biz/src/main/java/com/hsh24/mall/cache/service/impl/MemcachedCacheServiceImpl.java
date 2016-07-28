@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.exception.MemcachedException;
@@ -24,10 +27,12 @@ import com.hsh24.mall.framework.util.DateUtil;
  * @author xujiakun
  * 
  */
+@Service
 public class MemcachedCacheServiceImpl implements IMemcachedCacheService {
 
 	private Logger logger = Logger.getLogger(MemcachedCacheServiceImpl.class);
 
+	@Resource
 	private MemcachedClient memcachedClient;
 
 	@Override

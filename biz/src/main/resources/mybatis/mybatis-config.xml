@@ -1,0 +1,81 @@
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<setting name="multipleResultSetsEnabled" value="true"/>
+		<setting name="useColumnLabel" value="true"/>
+		<setting name="useGeneratedKeys" value="false"/>
+		<setting name="autoMappingBehavior" value="PARTIAL"/>
+		<setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+		<setting name="defaultExecutorType" value="SIMPLE"/>
+		<setting name="defaultStatementTimeout" value="25"/>
+		<setting name="defaultFetchSize" value="100"/>
+		<setting name="safeRowBoundsEnabled" value="false"/>
+		<setting name="mapUnderscoreToCamelCase" value="false"/>
+		<setting name="localCacheScope" value="SESSION"/>
+		<setting name="jdbcTypeForNull" value="OTHER"/>
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+	</settings>
+
+	<typeAliases>
+		<package name="com.hsh24.mall.api.cart.bo" />
+		<package name="com.hsh24.mall.api.item.bo" />
+		<package name="com.hsh24.mall.api.monitor.bo" />
+		<package name="com.hsh24.mall.api.shop.bo" />
+		<package name="com.hsh24.mall.api.spec.bo" />
+		<package name="com.hsh24.mall.api.trade.bo" />
+		<package name="com.hsh24.mall.api.user.bo" />
+	</typeAliases>
+	
+	<typeHandlers>
+		<!-- 为传入参数加上%后缀，执行前缀查询 -->
+		<typeHandler handler="com.hsh24.mall.framework.mybatis.type.PrefixTypeHanlderCallback" />
+		
+		<!-- 为传入参数加上%前缀，执行后缀查询 -->
+		<typeHandler handler="com.hsh24.mall.framework.mybatis.type.PostfixTypeHanlderCallback" />
+	
+		<!-- 为传入参数的前后都加上%，执行模糊查询 -->
+		<typeHandler handler="com.hsh24.mall.framework.mybatis.type.WildcardTypeHanlderCallback" />
+	
+		<!-- 将java.util.Date类型的传入参数转化成yyyy-mm-dd hh24:mi:ss格式的字符串 -->
+		<typeHandler handler="com.hsh24.mall.framework.mybatis.type.DateTimeTypeHanlderCallback" />
+	
+		<!-- 将java.util.Date类型的传入参数转化成yyyy-mm-dd格式的字符串 -->
+		<typeHandler handler="com.hsh24.mall.framework.mybatis.type.DateOnlyTypeHanlderCallback" />
+	
+		<!-- 根据传入的java.util.Date类型参数计算出前/后一天，并且转化成yyyy-mm-dd hh24:mi:ss格式的字符串。执行时间区间查询时，构造条件一般为：开始日期 
+			<= DateField < 结束日期的后一天 -->
+		<typeHandler handler="com.hsh24.mall.framework.mybatis.type.PreviousDateTypeHanlderCallback" />
+	
+		<typeHandler handler="com.hsh24.mall.framework.mybatis.type.NextDateTypeHanlderCallback" />
+	
+		<!-- 当执行in参数查询的时候替换“’”字符为空 -->
+		<typeHandler handler="com.hsh24.mall.framework.mybatis.type.CharacterReplaceHanlderCallback" />
+	</typeHandlers>
+
+	<mappers>
+		<mapper resource="mybatis/global.xml" />
+		<mapper resource="mybatis/mapper-cart.xml" />
+		<mapper resource="mybatis/mapper-item.cat.xml" />
+		<mapper resource="mybatis/mapper-item.file.xml" />
+		<mapper resource="mybatis/mapper-item.sku.xml" />
+		<mapper resource="mybatis/mapper-item.xml" />
+		<mapper resource="mybatis/mapper-monitor.action.xml" />
+		<mapper resource="mybatis/mapper-monitor.log.xml" />
+		<mapper resource="mybatis/mapper-monitor.method.xml" />
+		<mapper resource="mybatis/mapper-shop.xml" />
+		<mapper resource="mybatis/mapper-spec.cat.xml" />
+		<mapper resource="mybatis/mapper-spec.item.xml" />
+		<mapper resource="mybatis/mapper-trade.order.refund.xml" />
+		<mapper resource="mybatis/mapper-trade.order.xml" />
+		<mapper resource="mybatis/mapper-trade.xml" />
+		<mapper resource="mybatis/mapper-user.address.xml" />
+		<mapper resource="mybatis/mapper-user.weixin.xml" />
+		<mapper resource="mybatis/mapper-user.xml" />
+	</mappers>
+	
+</configuration>

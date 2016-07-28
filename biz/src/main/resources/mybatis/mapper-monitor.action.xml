@@ -1,0 +1,81 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.monitor.dao.IActionMonitorDao">
+	
+	<insert id="createActionMonitor" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+	<![CDATA[
+		INSERT
+		INTO BASIS_TB_MONITOR_ACTION
+		  (
+			USER_ID,
+			ACTION_NAME,
+			CREATE_DATE,
+			IP
+		  )
+		  VALUES
+	]]>
+		<foreach collection="logs" item="actionMonitor" separator=","> 
+		<![CDATA[
+			  (
+				#{actionMonitor.userId},
+				#{actionMonitor.actionName},
+				STR_TO_DATE(#{actionMonitor.createDate}, '%Y-%m-%d %T'),
+				#{actionMonitor.ip}
+			  )
+		]]>
+		</foreach>
+	</insert>
+	
+	<select id="getActionMonitorCount" parameterType="actionMonitor" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT COUNT(1)
+		FROM BASIS_TB_MONITOR_ACTION t,
+		  BASIS_tb_user p
+		WHERE t.user_id = p.user_id
+	]]>
+		<if test="passport != null and passport != ''">
+		<![CDATA[ AND p.passport like upper(#passport,handler=wildcard#) escape '\' ]]>
+		</if>
+		<if test="userId != null and userId != ''">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
+		<if test="gmtStart != null and gmtStart != ''">
+		<![CDATA[ AND t.create_date >= to_date(#{gmtStart}, 'yyyy-mm-dd') ]]>
+		</if>
+		<if test="gmtEnd != null and gmtEnd != ''">
+		<![CDATA[ AND t.create_date < to_date(#{gmtEnd}, 'yyyy-mm-dd') + 1 ]]>
+		</if>
+	</select>
+	
+	<select id="getActionMonitorList" parameterType="actionMonitor" resultType="actionMonitor">
+		<include refid="global.paginationStart" />
+	<![CDATA[
+		SELECT t.id,
+		  p.passport,
+		  p.user_name   AS userName,
+		  t.action_name AS actionName,
+		  t.ip,
+		  TO_CHAR(t.create_date,'yyyy-mm-dd hh24:mi:ss') AS createDate
+		FROM BASIS_TB_MONITOR_ACTION t,
+		  BASIS_tb_user p
+		WHERE t.user_id = p.user_id
+	]]>
+		<if test="passport != null and passport != ''">
+		<![CDATA[ AND p.passport like upper(#passport,handler=wildcard#) escape '\' ]]>
+		</if>
+		<if test="userId != null and userId != ''">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
+		<if test="gmtStart != null and gmtStart != ''">
+		<![CDATA[ AND t.create_date >= to_date(#{gmtStart}, 'yyyy-mm-dd') ]]>
+		</if>
+		<if test="gmtEnd != null and gmtEnd != ''">
+		<![CDATA[ AND t.create_date < to_date(#{gmtEnd}, 'yyyy-mm-dd') + 1 ]]>
+		</if>
+		<include refid="global.orderBy" />
+		<include refid="global.paginationEnd" />
+	</select>
+	
+</mapper>
