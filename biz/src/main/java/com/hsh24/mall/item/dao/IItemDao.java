@@ -2,6 +2,8 @@ package com.hsh24.mall.item.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.hsh24.mall.api.item.bo.Item;
 
 /**
@@ -39,7 +41,8 @@ public interface IItemDao {
 	 * @param modifyUser
 	 * @return
 	 */
-	int updateItem1(Long shopId, String[] itemId, String modifyUser);
+	int updateItem1(@Param("shopId") Long shopId, @Param("itemId") String[] itemId,
+		@Param("modifyUser") String modifyUser);
 
 	/**
 	 * 
@@ -48,6 +51,7 @@ public interface IItemDao {
 	 * @param modifyUser
 	 * @return
 	 */
-	int updateItem2(Long shopId, List<Item> itemList, String modifyUser);
+	int updateItem2(@Param("shopId") Long shopId, @Param("itemList") List<Item> itemList,
+		@Param("modifyUser") String modifyUser);
 
 }

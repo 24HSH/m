@@ -163,8 +163,8 @@ public class UserAddressServiceImpl implements IUserAddressService {
 		userAddress.setUserId(userId);
 
 		try {
-			Long addId = userAddressDao.createUserAddress(userAddress);
-			result.setCode(addId.toString());
+			userAddressDao.createUserAddress(userAddress);
+			result.setCode(userAddress.getAddId().toString());
 			result.setResult(true);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(userAddress), e);

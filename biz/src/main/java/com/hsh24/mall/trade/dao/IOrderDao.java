@@ -16,7 +16,7 @@ public interface IOrderDao {
 	 * @param order
 	 * @return
 	 */
-	Long createOrder4Item(Order order);
+	int createOrder4Item(Order order);
 
 	/**
 	 * 

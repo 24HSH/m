@@ -21,7 +21,7 @@ public interface IUserAddressDao {
 	 * @param userAddress
 	 * @return
 	 */
-	Long createUserAddress(UserAddress userAddress);
+	int createUserAddress(UserAddress userAddress);
 
 	/**
 	 * 

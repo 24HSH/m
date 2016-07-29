@@ -138,9 +138,6 @@ public class TradeServiceImpl implements ITradeService {
 				result.setResult(false);
 
 				// 1. 创建交易
-				// create trade
-				Long tradeId = null;
-
 				Trade trade = new Trade();
 				trade.setUserId(userId);
 				trade.setShopId(shopId);
@@ -170,7 +167,7 @@ public class TradeServiceImpl implements ITradeService {
 				trade.setTradeNo(DateUtil.getNowDateminStr() + UUIDUtil.generate().substring(9));
 
 				try {
-					tradeId = tradeDao.createTrade(trade);
+					tradeDao.createTrade(trade);
 				} catch (Exception e) {
 					logger.error(LogUtil.parserBean(trade), e);
 					ts.setRollbackOnly();
@@ -180,7 +177,8 @@ public class TradeServiceImpl implements ITradeService {
 				}
 
 				// 2. 创建订单
-				result = orderService.createOrder(shopId, tradeId, itemId, skuId, quantity, userId.toString());
+				result =
+					orderService.createOrder(shopId, trade.getTradeId(), itemId, skuId, quantity, userId.toString());
 				if (!result.getResult()) {
 					ts.setRollbackOnly();
 
@@ -233,9 +231,6 @@ public class TradeServiceImpl implements ITradeService {
 				result.setResult(false);
 
 				// 1. 创建交易
-				// create trade
-				Long tradeId = null;
-
 				Trade trade = new Trade();
 				trade.setUserId(userId);
 				trade.setShopId(shopId);
@@ -275,7 +270,7 @@ public class TradeServiceImpl implements ITradeService {
 				trade.setCartId(sb.toString());
 
 				try {
-					tradeId = tradeDao.createTrade(trade);
+					tradeDao.createTrade(trade);
 				} catch (Exception e) {
 					logger.error(LogUtil.parserBean(trade), e);
 					ts.setRollbackOnly();
@@ -285,7 +280,7 @@ public class TradeServiceImpl implements ITradeService {
 				}
 
 				// 2. 创建订单
-				result = orderService.createOrder(shopId, tradeId, cartId, userId.toString());
+				result = orderService.createOrder(shopId, trade.getTradeId(), cartId, userId.toString());
 				if (!result.getResult()) {
 					ts.setRollbackOnly();
 

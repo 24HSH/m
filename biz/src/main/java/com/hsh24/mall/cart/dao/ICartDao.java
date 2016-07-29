@@ -16,7 +16,7 @@ public interface ICartDao {
 	 * @param cart
 	 * @return
 	 */
-	Long createCart(Cart cart);
+	int createCart(Cart cart);
 
 	/**
 	 * 

@@ -14,6 +14,6 @@ public interface IOrderRefundDao {
 	 * @param orderRefund
 	 * @return
 	 */
-	Long createOrderRefund(OrderRefund orderRefund);
+	int createOrderRefund(OrderRefund orderRefund);
 
 }

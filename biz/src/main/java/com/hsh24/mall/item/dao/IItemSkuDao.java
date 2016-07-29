@@ -2,6 +2,8 @@ package com.hsh24.mall.item.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.hsh24.mall.api.item.bo.ItemSku;
 
 /**
@@ -24,6 +26,6 @@ public interface IItemSkuDao {
 	 * @param modifyUser
 	 * @return
 	 */
-	int updateItemSku(List<ItemSku> skuList, String modifyUser);
+	int updateItemSku(@Param("skuList") List<ItemSku> skuList, @Param("modifyUser") String modifyUser);
 
 }
