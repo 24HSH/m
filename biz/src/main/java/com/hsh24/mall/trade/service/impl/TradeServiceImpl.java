@@ -454,9 +454,12 @@ public class TradeServiceImpl implements ITradeService {
 		}
 		trade.setTradeNo(tradeNo.trim());
 
+		// 锁定订单
+		String key = tradeNo.trim();
+
 		// 锁定当前订单
 		try {
-			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + tradeNo.trim(), tradeNo,
+			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + key, key,
 				IMemcachedCacheService.CACHE_KEY_TRADE_NO_DEFAULT_EXP);
 		} catch (ServiceException e) {
 			result.setCode("当前订单已被锁定，请稍后再试");
@@ -467,18 +470,25 @@ public class TradeServiceImpl implements ITradeService {
 		Trade t = getTrade(trade);
 		if (t == null) {
 			result.setCode("当前订单不存在");
+
+			remove(key);
 			return result;
 		}
 
 		if (!ITradeService.CHECK.equals(t.getType()) && !ITradeService.TO_PAY.equals(t.getType())) {
 			result.setCode("当前订单已付款或取消");
+
+			remove(key);
 			return result;
 		}
 
 		// 处理 订单明细数据 需要用到
 		trade.setTradeId(t.getTradeId());
 
-		return cancelTrade(trade, t.getType(), trade.getModifyUser());
+		result = cancelTrade(trade, t.getType(), trade.getModifyUser());
+
+		remove(key);
+		return result;
 	}
 
 	@Override
@@ -772,6 +782,14 @@ public class TradeServiceImpl implements ITradeService {
 			res.setCode("取消成功");
 		}
 		return res;
+	}
+
+	private void remove(String tradeNo) {
+		try {
+			memcachedCacheService.remove(IMemcachedCacheService.CACHE_KEY_TRADE_NO + tradeNo);
+		} catch (Exception e) {
+			logger.error(e);
+		}
 	}
 
 }

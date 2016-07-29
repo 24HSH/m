@@ -108,7 +108,8 @@ public class PayServiceImpl implements IPayService {
 		String no = tradeNo.trim();
 
 		try {
-			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + no, no, 30);
+			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + no, no,
+				IMemcachedCacheService.CACHE_KEY_TRADE_NO_DEFAULT_EXP);
 		} catch (ServiceException e) {
 			result.setCode("当前订单已被锁定，请稍后再试");
 			return result;
@@ -118,6 +119,8 @@ public class PayServiceImpl implements IPayService {
 		Trade trade = tradeService.getTrade(userId, shopId, tradeNo);
 		if (trade == null) {
 			result.setCode("当前订单不存在");
+
+			remove(no);
 			return result;
 		}
 
@@ -125,6 +128,8 @@ public class PayServiceImpl implements IPayService {
 		String type = trade.getType();
 		if (!ITradeService.CHECK.equals(type) && !ITradeService.TO_PAY.equals(type)) {
 			result.setCode("当前订单已完成支付");
+
+			remove(no);
 			return result;
 		}
 
@@ -138,6 +143,8 @@ public class PayServiceImpl implements IPayService {
 			List<Order> orderList = orderService.getOrderList(userId, shopId, trade.getTradeId());
 			if (orderList == null || orderList.size() == 0) {
 				result.setCode("当前订单明细不存在");
+
+				remove(no);
 				return result;
 			}
 
@@ -157,6 +164,7 @@ public class PayServiceImpl implements IPayService {
 					result.setCode(order.getItemName()
 						+ (StringUtils.isBlank(propertiesName) ? "" : "(" + propertiesName + ")") + " 库存不足");
 
+					remove(no);
 					return result;
 				}
 
@@ -257,6 +265,7 @@ public class PayServiceImpl implements IPayService {
 			});
 
 			if (!res1.getResult()) {
+				remove(no);
 				return res1;
 			}
 		}
@@ -267,6 +276,7 @@ public class PayServiceImpl implements IPayService {
 		}
 
 		if (IPayService.PAY_TYPE_ALIPAY.equals(payType)) {
+			// remove(key);
 			return result;
 		}
 
@@ -286,10 +296,13 @@ public class PayServiceImpl implements IPayService {
 				result.setCode(e.getMessage());
 			}
 
+			remove(no);
 			return result;
 		}
 
 		result.setCode("支付类型");
+
+		remove(no);
 		return result;
 	}
 
@@ -334,7 +347,8 @@ public class PayServiceImpl implements IPayService {
 		String key = tradeNo.trim();
 
 		try {
-			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + key, key, 30);
+			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + key, key,
+				IMemcachedCacheService.CACHE_KEY_TRADE_NO_DEFAULT_EXP);
 		} catch (ServiceException e) {
 			result.setCode("当前订单已被锁定，请稍后再试");
 			return result;
@@ -344,6 +358,8 @@ public class PayServiceImpl implements IPayService {
 		final Trade trade = tradeService.getTrade(userId, shopId, tradeNo);
 		if (trade == null) {
 			result.setCode("当前订单不存在");
+
+			remove(key);
 			return result;
 		}
 
@@ -351,6 +367,8 @@ public class PayServiceImpl implements IPayService {
 		String type = trade.getType();
 		if (!ITradeService.TO_SEND.equals(type)) {
 			result.setCode("当前订单尚未付款或已发货");
+
+			remove(key);
 			return result;
 		}
 
@@ -360,6 +378,7 @@ public class PayServiceImpl implements IPayService {
 		String payType = trade.getPayType();
 
 		if (IPayService.PAY_TYPE_ALIPAY.equals(payType)) {
+			// remove(key);
 			return result;
 		}
 
@@ -401,11 +420,22 @@ public class PayServiceImpl implements IPayService {
 				}
 			});
 
+			remove(key);
 			return result;
 		}
 
 		result.setCode("支付类型");
+
+		remove(key);
 		return result;
+	}
+
+	private void remove(String tradeNo) {
+		try {
+			memcachedCacheService.remove(IMemcachedCacheService.CACHE_KEY_TRADE_NO + tradeNo);
+		} catch (Exception e) {
+			logger.error(e);
+		}
 	}
 
 }
