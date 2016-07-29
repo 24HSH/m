@@ -8,6 +8,9 @@ import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.hsh24.mall.api.item.IItemSkuService;
 import com.hsh24.mall.api.item.bo.ItemSku;
@@ -26,6 +29,9 @@ import com.hsh24.mall.item.dao.IItemSkuDao;
 public class ItemSkuServiceImpl implements IItemSkuService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(ItemSkuServiceImpl.class);
+
+	@Resource
+	private TransactionTemplate transactionTemplate;
 
 	@Resource
 	private IItemSkuDao itemSkuDao;
@@ -71,7 +77,7 @@ public class ItemSkuServiceImpl implements IItemSkuService {
 	}
 
 	@Override
-	public BooleanResult updateItemSkuStock(List<ItemSku> skuList, String modifyUser) {
+	public BooleanResult updateItemSkuStock(final List<ItemSku> skuList, final String modifyUser) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -85,15 +91,34 @@ public class ItemSkuServiceImpl implements IItemSkuService {
 			return result;
 		}
 
-		try {
-			itemSkuDao.updateItemSku(skuList, modifyUser);
-			result.setResult(true);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(skuList) + "modifyUser:" + modifyUser, e);
+		result = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
+			public BooleanResult doInTransaction(TransactionStatus ts) {
+				BooleanResult res = new BooleanResult();
+				res.setResult(false);
 
-			result.setCode("更新SKU库存信息失败");
-			return result;
-		}
+				for (ItemSku itemSku : skuList) {
+					try {
+						itemSku.setModifyUser(modifyUser);
+						int c = itemSkuDao.updateItemSku(itemSku);
+						if (c != 1) {
+							ts.setRollbackOnly();
+
+							res.setCode("更新SKU库存信息失败");
+							return res;
+						}
+					} catch (Exception e) {
+						logger.error(LogUtil.parserBean(skuList), e);
+						ts.setRollbackOnly();
+
+						res.setCode("修改SKU库存信息失败");
+						return res;
+					}
+				}
+
+				res.setResult(true);
+				return res;
+			}
+		});
 
 		return result;
 	}

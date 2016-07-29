@@ -29,18 +29,16 @@
 	]]>		
 	</select>
 	
-	<update id="updateItemSku">
-		<foreach collection="skuList" item="itemSku" separator=";">
-		<![CDATA[
-			UPDATE dms.dms_tb_item_sku t
-			SET t.modify_date = NOW(),
-			  t.modify_user   = #{modifyUser},
-			  t.stock         = #{itemSku.stock}
-			WHERE t.state     = 'U'
-			AND t.item_id     = #{itemSku.itemId}
-			AND t.sku_id      = #{itemSku.skuId}
-		]]>
-		</foreach>
+	<update id="updateItemSku" parameterType="itemSku">
+	<![CDATA[
+		UPDATE dms.dms_tb_item_sku t
+		SET t.modify_date = NOW(),
+		  t.modify_user   = #{modifyUser},
+		  t.stock         = #{stock}
+		WHERE t.state     = 'U'
+		AND t.item_id     = #{itemId}
+		AND t.sku_id      = #{skuId}
+	]]>
 	</update>
 		
 </mapper>

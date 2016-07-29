@@ -10,6 +10,9 @@ import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.alibaba.fastjson.JSON;
 import com.hsh24.mall.api.item.IItemFileService;
@@ -35,6 +38,9 @@ import com.hsh24.mall.item.dao.IItemDao;
 public class ItemServiceImpl implements IItemService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(ItemServiceImpl.class);
+
+	@Resource
+	private TransactionTemplate transactionTemplate;
 
 	@Resource
 	private IItemFileService itemFileService;
@@ -361,7 +367,7 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	@Override
-	public BooleanResult updateItemStock(Long shopId, List<Item> itemList, String modifyUser) {
+	public BooleanResult updateItemStock(final Long shopId, final List<Item> itemList, final String modifyUser) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -380,15 +386,35 @@ public class ItemServiceImpl implements IItemService {
 			return result;
 		}
 
-		try {
-			itemDao.updateItem2(shopId, itemList, modifyUser);
-			result.setResult(true);
-		} catch (Exception e) {
-			logger.error("shopId:" + shopId + LogUtil.parserBean(itemList) + "modifyUser:" + modifyUser, e);
+		result = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
+			public BooleanResult doInTransaction(TransactionStatus ts) {
+				BooleanResult res = new BooleanResult();
+				res.setResult(false);
 
-			result.setCode("更新商品库存信息失败");
-			return result;
-		}
+				for (Item item : itemList) {
+					try {
+						item.setShopId(shopId);
+						item.setModifyUser(modifyUser);
+						int c = itemDao.updateItem2(item);
+						if (c != 1) {
+							ts.setRollbackOnly();
+
+							res.setCode("更新商品库存信息失败");
+							return res;
+						}
+					} catch (Exception e) {
+						logger.error(LogUtil.parserBean(itemList), e);
+						ts.setRollbackOnly();
+
+						res.setCode("修改商品库存信息失败");
+						return res;
+					}
+				}
+
+				res.setResult(true);
+				return res;
+			}
+		});
 
 		return result;
 	}

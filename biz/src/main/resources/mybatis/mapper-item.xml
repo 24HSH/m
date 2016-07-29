@@ -65,18 +65,16 @@
 		<foreach collection="itemId" item="code" open="(" close=")" separator=",">#{code}</foreach>
 	</update>
 	
-	<update id="updateItem2">
-		<foreach collection="itemList" item="item" separator=";">
-		<![CDATA[
-			UPDATE dms.dms_tb_item t
-			SET t.modify_date = NOW(),
-			  t.modify_user   = #{modifyUser},
-			  t.stock         = #{item.stock}
-			WHERE t.state     = 'U'
-			AND t.shop_id     = #{shopId}
-			AND t.item_id     = #{item.itemId}
-		]]>
-		</foreach>
+	<update id="updateItem2" parameterType="item">
+	<![CDATA[
+		UPDATE dms.dms_tb_item t
+		SET t.modify_date = NOW(),
+		  t.modify_user   = #{modifyUser},
+		  t.stock         = #{stock}
+		WHERE t.state     = 'U'
+		AND t.shop_id     = #{shopId}
+		AND t.item_id     = #{itemId}
+	]]>
 	</update>
 	
 </mapper>

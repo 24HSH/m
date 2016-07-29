@@ -46,12 +46,9 @@ public interface IItemDao {
 
 	/**
 	 * 
-	 * @param shopId
-	 * @param itemList
-	 * @param modifyUser
+	 * @param item
 	 * @return
 	 */
-	int updateItem2(@Param("shopId") Long shopId, @Param("itemList") List<Item> itemList,
-		@Param("modifyUser") String modifyUser);
+	int updateItem2(Item item);
 
 }
