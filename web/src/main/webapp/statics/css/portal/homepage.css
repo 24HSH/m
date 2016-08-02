@@ -112,6 +112,71 @@ a.component.type3 img {
 
 
 
+/* 首页 */
+.ch {
+    font-size: 14px;
+    line-height: 25px;
+    height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #70704e;
+    text-align: center;
+    position: relative;
+}
+
+.ch:before {
+    content: '';
+    height: 1px;
+    border-top: 1px solid #DEDEDE;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    left: 10%;
+    transform: scaleY(0.5);
+    -webkit-transform: scaleY(0.5);
+}
+
+.ch span {
+    position: relative;
+    padding: 0 10px;
+    background-color: #efeff4;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    font-size: 15px;
+    color: #666666;
+}
+
+.cw {
+    background: url(../../image/portal/index_shop_list.png) no-repeat;
+    width: 27px;
+    height: 25px;
+    background-position: 0px 0px;
+    background-size: 25px 60px;
+    vertical-align: top;
+}
+
+.ct, .aq span i.ct {
+    display: inline-block;
+    position: relative;
+}
+
+.bw {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: url(../../image/portal/icon_tuijian.png) no-repeat;
+    background-size: 100%;
+}
+
+
+
 /* 商品列表模块 */
 .demo-card-header-pic .card-header {
 	height: 50vw;

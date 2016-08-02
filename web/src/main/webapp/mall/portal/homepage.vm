@@ -50,30 +50,36 @@
 									<div class="swiper-slide">
                                         <img src="$!{env.imgUrl}/image/portal/ad-1.png" width="100%"></img>
 									</div>
+									<div class="swiper-slide">
+                                        <img src="$!{env.imgUrl}/image/portal/ad-6.jpg" width="100%"></img>
+									</div>
+									<div class="swiper-slide">
+                                        <img src="$!{env.imgUrl}/image/portal/ad-7.jpg" width="100%"></img>
+									</div>
 								</div>
 								<div class="swiper-pagination swiper-pagination-h"></div>
 							</div>
 							
 							<div class="" style="background-color:#ffffff;">
-								<ul class="mui-flex" style="padding: 0;">
+								<ul class="mui-flex" style="padding: 0; margin-top: 0;">
 									<li class="cell" style="">
 										<a class="component type3 tab-link" href="#view-2" id="view_2_click" style="padding:4px" 0px="" 0px;="">
-                                            <img class="" src="$!{env.imgUrl}/image/portal/lxsp.png" width="36" height="36"></img>冷鲜食品
+                                            <img class="" src="$!{env.imgUrl}/image/portal/lxsp.png" width="40" height="40"></img>冷鲜食品
 										</a>
 									</li>
 									<li class="cell" style="">
 										<a class="component type3" href="" style="padding:4px" 0px="" 0px;="">
-                                            <img class="" src="$!{env.imgUrl}/image/portal/lyfs.png" width="36" height="36"></img>粮油副食
+                                            <img class="" src="$!{env.imgUrl}/image/portal/lyfs.png" width="40" height="40"></img>粮油副食
 										</a>
 									</li>
 									<li class="cell" style="">
                                         <a class="component type3 external" href="$!{env.appUrl}/express/index.htm" style="padding:4px" 0px="" 0px;="">
-                                            <img class="" src="$!{env.imgUrl}/image/portal/kdsf.png" width="36" height="36"></img>快递收发
+                                            <img class="" src="$!{env.imgUrl}/image/portal/kdsf.png" width="40" height="40"></img>快递收发
                                         </a>
 									</li>
 									<li class="cell" style="">
                                         <a class="component type3" href="" style="padding:4px" 0px="" 0px;="">
-                                            <img class="" src="$!{env.imgUrl}/image/portal/shjf.png" width="36" height="36"></img>生活缴费
+                                            <img class="" src="$!{env.imgUrl}/image/portal/shjf.png" width="40" height="40"></img>生活缴费
                                         </a>
 									</li>
 								</ul>
@@ -83,12 +89,41 @@
                                 <div class="col-50"><img src="$!{env.imgUrl}/image/portal/ad-4.png" width="100%"></img></div>
 								<div class="col-50"><img src="$!{env.imgUrl}/image/portal/ad-5.png" width="100%"></img></div>
                             </div>
+							
 							<div class="list-block">
-								<img src="$!{env.imgUrl}/image/portal/ad-2.jpg" width="100%"></img>
+								<div class="ch"><span><i class="ct cw"></i>附近的店铺</span></div>
 							</div>
-							<div class="list-block">
-								<img src="$!{env.imgUrl}/image/portal/ad-3.jpg" width="100%"></img>
-							</div>
+							
+							<div class="list-block cards-list media-list">
+								<ul>
+									<li class="card" style="border-radius: 5px; margin: 10px 5px;">
+										<span class="bw"></span>
+										<div class="card-content">
+											<div class="card-content-inner" style="padding: 5px;">
+												<div class="item-content">
+    												<div class="item-media">
+                        								<img data-src="$!{env.imgUrl}/image/portal/logo.jpg" class="lazy" style="width: 50px; height: 50px;"></img>
+                        							</div>
+                        							<a href="$!{env.appUrl}/item/detail.htm?itemId=$!{item.itemId}" class="item-inner" style="color: inherit;" data-ignore-cache="true">
+                        								<div class="item-title-row" style="margin-top: 3px;">
+                                                            <div class="item-title" style="font-weight: 400;"><span class="little-tag">新店</span>好社惠便民亭－启迪科技园店</div>
+                        								</div>
+                        								<div class="item-title-row" style="margin-top: 3px;">
+                        									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">月售199单</div>
+                        								</div>
+                                                    </a>
+                                                </div>
+											</div>
+										</div>
+										<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
+                                            <span style="font-size: 12px;">
+												<i class="iconfont icon-notice" style="font-size: 15px;"></i>
+												满59元免5元运费
+											</span>
+										</div>
+									</li>
+								</ul>
+                            </div>
                         </div>
                     </div>
                 </div>
