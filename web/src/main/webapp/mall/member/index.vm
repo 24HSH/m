@@ -31,20 +31,28 @@
 			<div class="list-block" style="font-size: 15px;">
 				<ul class="page-settings after-height-0">
 					<li class="row" style="text-align: center;">
-						<a href="$!{env.appUrl}/trade/list.htm?type=topay" class="col-25 item-link" style="width: 25%;" data-ignore-cache="true">
-							<h3 id="member/index/topay">0</h3>
+						<a href="$!{env.appUrl}/trade/list.htm?type=topay" class="col-25 item-link" style="width: 25%; padding-top: 10px;" data-ignore-cache="true">
+							<i class="icon iconfont icon-recharge" style="font-size: 25px; color: #8e8e93;">
+    							<span id="member/index/topay" class="badge bg-red">0</span>
+    						</i>
 							<div class="color-gray">待付款</div>
                         </a>
-						<a href="$!{env.appUrl}/trade/list.htm?type=tosend" class="col-25 item-link" style="width: 25%;" data-ignore-cache="true">
-							<h3 id="member/index/tosend">0</h3>
+						<a href="$!{env.appUrl}/trade/list.htm?type=tosend" class="col-25 item-link" style="width: 25%; padding-top: 10px;" data-ignore-cache="true">
+							<i class="icon iconfont icon-present" style="font-size: 25px; color: #8e8e93;">
+    							<span id="member/index/tosend" class="badge bg-red">0</span>
+    						</i>
 							<div class="color-gray">待发货</div>
                         </a>
-						<a href="$!{env.appUrl}/trade/list.htm?type=send" class="col-25 item-link" style="width: 25%;" data-ignore-cache="true">
-							<h3 id="member/index/send">0</h3>
+						<a href="$!{env.appUrl}/trade/list.htm?type=send" class="col-25 item-link" style="width: 25%; padding-top: 10px;" data-ignore-cache="true">
+							<i class="icon iconfont icon-deliver" style="font-size: 25px; color: #8e8e93;">
+    							<span id="member/index/send" class="badge bg-red">0</span>
+    						</i>
 							<div class="color-gray">已发货</div>
                         </a>
-						<a href="$!{env.appUrl}/trade/list.htm?type=sign" class="col-25 item-link" style="width: 25%;" data-ignore-cache="true">
-							<h3 id="member/index/sign">0</h3>
+						<a href="$!{env.appUrl}/trade/list.htm?type=sign" class="col-25 item-link" style="width: 25%; padding-top: 10px;" data-ignore-cache="true">
+							<i class="icon iconfont icon-squarecheck" style="font-size: 25px; color: #8e8e93;">
+    							<span id="member/index/sign" class="badge bg-red">0</span>
+    						</i>
 							<div class="color-gray">已完成</div>
                         </a>
 					</li>
@@ -72,7 +80,7 @@
 					</li>
 					<li>
 						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-refund"></i></div>
+							<div class="item-media"><i class="iconfont icon-refund" style="color: #eb4f38;"></i></div>
 							<div class="item-inner">
 								<div class="item-title">我的返现</div>
 							</div>

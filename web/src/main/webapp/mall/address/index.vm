@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>好社惠 | 便民亭</title>
+		#ICON()
+		#CSSM(["framework7", "iconfont"])
+		<link rel="stylesheet" href="$!{env.imgUrl}/css/portal/homepage.css" />
+		#UA()
+	</head>
+	<body>
+		<!-- Views -->
+		<div class="views toolbar-through">
+			<div class="view view-main">
+				<!-- Top Navbar-->
+				<div class="navbar">
+					<div class="navbar-inner">
+						<!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+						<div class="center sliding">选择您的位置</div>
+						<div class="right">
+                			<!-- Right link contains only icon - additional "icon-only" class-->
+                			<a href="#" class="link icon-only"> <i class="iconfont icon-focus" style="font-size: 21px; color: #FF5500;"></i><span></span></a>
+                		</div>
+					</div>
+				</div>
+				<div class="pages navbar-through">
+    				<div data-page="address.index" class="page">
+						<!-- Search bar -->
+                		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init item-list-searchbar">
+							<div class="searchbar-input">
+                				<input type="search" placeholder="搜索" /><a href="#" class="searchbar-clear"></a>
+                			</div><a href="#" class="searchbar-cancel">取消</a>
+                		</form>
+                		
+                		<!-- Search bar overlay -->
+                		<div class="searchbar-overlay"></div>
+                			
+                		<!-- Scrollable page content-->
+                		<div class="page-content">
+                			<div class="list-block media-list list-block-search searchbar-found" style="font-size: 14px;">
+                				<ul>
+
+									<li>
+										<a href="$!{env.appUrl}/shop/select.htm?shopId=1321" class="item-content external" style="color: inherit;">
+                							<div class="item-media"><i class="iconfont icon-locationfill" style="color: #ddd;"></i></div>
+                							<div class="item-inner">
+												<div class="item-title-row" style="margin-top: 3px;">
+                									<div class="item-title" style="font-weight: 400;">启迪大厦</div>
+                								</div>
+                								<div class="item-title-row" style="margin-top: 3px;">
+                									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">上海市静安区广中西路777弄65号</div>
+                								</div>
+                                            </div>
+                						</a>
+                					</li>
+									<li>
+										<a href="$!{env.appUrl}/shop/select.htm?shopId=1321" class="item-content external" style="color: inherit;">
+                							<div class="item-media"><i class="iconfont icon-locationfill" style="color: #ddd;"></i></div>
+                							<div class="item-inner">
+												<div class="item-title-row" style="margin-top: 3px;">
+                									<div class="item-title" style="font-weight: 400;">上海启迪漕河泾科技园</div>
+                								</div>
+                								<div class="item-title-row" style="margin-top: 3px;">
+                									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">上海市松江区中创路68号</div>
+                								</div>
+                                            </div>
+                						</a>
+                					</li>
+									<li>
+										<a href="$!{env.appUrl}/shop/select.htm?shopId=1321" class="item-content external" style="color: inherit;">
+                							<div class="item-media"><i class="iconfont icon-locationfill" style="color: #ddd;"></i></div>
+                							<div class="item-inner">
+												<div class="item-title-row" style="margin-top: 3px;">
+                									<div class="item-title" style="font-weight: 400;">启迪大厦车库</div>
+                								</div>
+                								<div class="item-title-row" style="margin-top: 3px;">
+                									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">上海市静安区广中西路777弄55号启迪大厦</div>
+                								</div>
+                                            </div>
+                						</a>
+                					</li>
+
+                				</ul>
+                			</div>
+						</div>
+    				</div>
+                </div>
+			</div>
+		</div>
+		
+		#JSM(["framework7"])
+		#JS_ENV_VAL()
+		<script type="text/javascript" src="$!{env.imgUrl}/js/address/index.js"></script>
+	</body>
+</html>
