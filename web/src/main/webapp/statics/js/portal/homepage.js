@@ -38,7 +38,7 @@ var view2 = myApp.addView('#view-2', {
 $$('#href-2').on('click', function() {
 			if (view2.history.length == 1) {
 				view2.router.load({
-							url : appUrl + "/item/list.htm"
+							url : appUrl + "/group/list.htm"
 						});
 			}
 		});
@@ -120,8 +120,8 @@ myApp.onPageInit('portal.homepage', function(page) {
 			portal_homepage_cart_stats();
 		})
 
-function portal_homepage_shop() {
-	top.location.href = appUrl + "/shop/index.htm";
+function portal_homepage_address() {
+	top.location.href = appUrl + "/address/index.htm";
 }
 
 myApp.addNotification({

@@ -2,7 +2,7 @@
 <!-- Top Navbar-->
 <div class="navbar">
 	<div class="navbar-inner">
-		<div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+		<div class="left"><a href="#" data-panel="left" class="open-panel link"> <i class="iconfont icon-creative" style="font-size: 21px; color: #FF5500;"></i><span></span></a></div>
 		<div class="center sliding">团一团</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
@@ -11,7 +11,7 @@
 </div>
 <div class="pages">
 	<!-- Page, data-page contains page name-->
-	<div data-page="item.list" class="page no-tabbar">
+	<div data-page="group.list" class="page">
 		<!-- Search bar -->
 		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init item-list-searchbar">
 			<div class="searchbar-input">
