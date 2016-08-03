@@ -13,7 +13,7 @@
 	<!-- Page, data-page contains page name-->
 	<div data-page="group.list" class="page">
 		<!-- Search bar -->
-		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init item-list-searchbar">
+		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init group-list-searchbar">
 			<div class="searchbar-input">
 				<input type="search" placeholder="搜索" /><a href="#" class="searchbar-clear"></a>
 			</div><a href="#" class="searchbar-cancel">取消</a>
@@ -34,7 +34,7 @@
 								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
 								#end
 							</div>
-							<a href="$!{env.appUrl}/item/detail.htm?itemId=$!{item.itemId}" class="item-inner" style="color: inherit;" data-ignore-cache="true">
+							<a href="$!{env.appUrl}/group/detail.htm?itemId=$!{item.itemId}" class="item-inner" style="color: inherit;" data-ignore-cache="true">
 								<div class="item-title-row" style="margin-top: 3px;">
                                     <div class="item-title" style="font-weight: 400;"><span class="little-tag">新品</span>$!{item.itemName}</div>
 									<div class="item-after"></div>

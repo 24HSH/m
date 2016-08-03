@@ -668,6 +668,25 @@ a.component.type3 img {
     transition-duration: .4s;
 }
 
+.group-detail-overlay.group-detail-overlay-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.group-detail-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.4);
+    z-index: 13000;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition-duration: .4s;
+    transition-duration: .4s;
+}
+
 .sku-list-container .sku-sel-title {
     margin-top: 10px;
     margin-bottom: 5px;

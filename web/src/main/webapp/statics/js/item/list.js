@@ -1,4 +1,9 @@
 myApp.onPageInit('item.list', function(page) {
+
+			$$('.close-picker').on('click', function() {
+				$('.page-content .item-list-overlay')
+						.removeClass('item-list-overlay-visible');
+			});
 		});
 
 function item_list_scan() {
@@ -12,4 +17,9 @@ function item_list_scan() {
 			mySearchbar.search(result.split(',')[1]);
 		}
 	});
+}
+
+function item_list_picker() {
+	$('.page-content .item-list-overlay').addClass('item-list-overlay-visible');
+	myApp.pickerModal('.picker-item-list');
 }

@@ -34,7 +34,7 @@
 								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
 								#end
 							</div>
-							<a href="$!{env.appUrl}/item/detail.htm?itemId=$!{item.itemId}" class="item-inner" style="color: inherit;" data-ignore-cache="true">
+							<div class="item-inner">
 								<div class="item-title-row" style="margin-top: 3px;">
                                     <div class="item-title" style="font-weight: 400;"><span class="little-tag">新品</span>$!{item.itemName}</div>
 									<div class="item-after"></div>
@@ -54,14 +54,102 @@
 											<span style="">￥$!{item.origin}</span>
 										</del>
 									</div>
-									<div class="item-after"></div>
+									<div class="item-after">
+										<a href="#"><i class="iconfont icon-roundadd" style="font-size: 25px; color: #FF5500;"></i></a>
+									</div>
 								</div>
-                            </a>
+                            </div>
 						</div>
 					</li>
 					#end
 				</ul>
 			</div>
+			
+			<div class="item-list-overlay"></div>
+        </div>
+		
+		<div class="toolbar">
+			<div class="toolbar-inner" style="padding: 0;">
+				<div class="row no-gutter" style="width: 100%;">
+					<div class="col-66">
+						<a href="javascript:item_list_picker();" class="button button-big" style="border: 0; border-radius: 0; color: #8e8e93;">
+							<i class="iconfont icon-cart" style="color: #FF5500;"></i> 购物车是空的
+						</a>
+					</div>
+					<div class="col-33">
+						<a href="javascript:#" class="button button-big" style="background-color: #ff5000; border: 0; border-radius: 0; color: #fff;">立即购买</a>
+					</div>
+				</div>   
+			</div>
+		</div>
+		
+		<!-- Picker -->
+        <div class="picker-modal picker-item-list" style="background: #FFFFFF; z-index: 499; margin-bottom: 44px; height: initial;">
+            <div class="toolbar" style="background: #FFFFFF; border-bottom: 1px solid #e5e5e5;">
+            	<div class="toolbar-inner">
+                    <div class="left">
+                        <a href="#" style="color: inherit;">
+							<i class="iconfont icon-delete" style="font-size: 15px; color: #8e8e93;"></i>
+							<span style="font-size: 14px; color: #8e8e93;">删除全部</span></a>
+					</div>
+            		<div class="right">
+						<a href="#" class="close-picker"><i class="iconfont icon-close" style="font-size: 25px; color: #8e8e93;"></i></a>
+					</div>
+            	</div>
+            </div>
+            <div class="picker-modal-inner">
+				<div class="list-block" style="margin: -1px 0; font-size: 15px;">
+					<ul>
+						<li>
+        					<div class="item-content">
+        						<div class="item-inner">
+        							<div class="item-title">特仑苏纯牛奶利乐苗条装</div>
+        							<div class="item-after">
+        								<div class="quantity">
+        									<button class="minus" type="button"></button>
+                                            <input id="item/list/quantity" type="text" class="txt" value="1"></input>
+        									<button class="plus" type="button"></button>
+        									<div class="response-area response-area-minus" onclick="item_list_minus();"></div>
+        									<div class="response-area response-area-plus" onclick="item_list_plus();"></div>
+        								</div>
+        							</div>
+        						</div>
+                            </div>
+                        </li>
+						<li>
+        					<div class="item-content">
+        						<div class="item-inner">
+        							<div class="item-title">特仑苏纯牛奶利乐苗条装</div>
+        							<div class="item-after">
+        								<div class="quantity">
+        									<button class="minus" type="button"></button>
+                                            <input id="item/list/quantity" type="text" class="txt" value="1"></input>
+        									<button class="plus" type="button"></button>
+        									<div class="response-area response-area-minus" onclick="item_list_minus();"></div>
+        									<div class="response-area response-area-plus" onclick="item_list_plus();"></div>
+        								</div>
+        							</div>
+        						</div>
+                            </div>
+                        </li><li>
+        					<div class="item-content">
+        						<div class="item-inner">
+        							<div class="item-title">特仑苏纯牛奶利乐苗条装</div>
+        							<div class="item-after">
+        								<div class="quantity">
+        									<button class="minus" type="button"></button>
+                                            <input id="item/list/quantity" type="text" class="txt" value="1"></input>
+        									<button class="plus" type="button"></button>
+        									<div class="response-area response-area-minus" onclick="item_list_minus();"></div>
+        									<div class="response-area response-area-plus" onclick="item_list_plus();"></div>
+        								</div>
+        							</div>
+        						</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>

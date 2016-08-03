@@ -1,0 +1,188 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+		<div class="center sliding">商品</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="group.detail" class="page no-tabbar">
+		<!-- Scrollable page content-->
+		<div class="page-content" style="padding-bottom: 50px;">
+			<div class="card" style="margin: 0;">
+				<div valign="bottom" class="color-white no-border">
+					<!-- Slider -->
+					<div class="swiper-container swiper-init" data-pagination=".swiper-pagination-h">
+						<div class="swiper-wrapper">
+							#if($!{item.itemFileList.size()} > 0)
+								#foreach($file in $!{item.itemFileList})
+    							<div class="swiper-slide">
+    								<img data-src="$!{file.filePath}" class="lazy" width="100%"></img>
+    							</div>
+								#end
+							#end
+						</div>
+						<div class="swiper-pagination swiper-pagination-h"></div>
+					</div>
+				</div>
+				<div class="card-content">
+					<div class="list-block media-list" style="font-size: 15px;">
+        				<ul>
+                            <li>
+        						<div class="item-content">
+        							<div class="item-inner">
+        								<div class="item-title-row" style="margin-top: 3px;">
+                                            <div class="item-title" style="font-weight: 400;"><span class="little-tag">新品</span>$!{item.itemName}</div>
+        								</div>
+        								<div class="item-title-row" style="margin-top: 3px;">
+                                            <div class="item-title" style="font-weight: 400; color: #FF5500;">
+        										￥$!{item.priceRange}
+                                                <del style="font-size: 10px; color: #999; margin-left: 5px;">
+        											<span style="">￥$!{item.originRange}</span>
+        										</del>
+        									</div>
+        								</div>
+                                    </div>
+        						</div>
+        					</li>
+							#if($item.specCatList)
+							<li>
+        						<div class="item-content">
+        							<div class="item-inner">
+										#foreach($specCat in $item.specCatList)
+                    					<div class="item-title-row" style="margin-top: 3px;">
+                    						<span class="item-title" style="font-weight: 400;" id="group/detail/specItem/0/$!{specCat.specCId}">$!{specCat.specCName}：<span>
+                    					</div>
+                    					#end
+                                    </div>
+        						</div>
+							</li>
+							#end
+							<li>
+								<div class="item-content">
+        							<div class="item-inner">
+        								<div class="item-title-row" style="margin-top: 3px;">
+                                            <div class="item-title" style="font-weight: 400;">剩余：$!{item.stock}</div>
+        								</div>
+        								<div class="item-title-row" style="margin-top: 3px;">
+                                            <div class="item-title" style="font-weight: 400;">运费：免运费</div>
+        								</div>
+                                    </div>
+        						</div>
+        					</li>
+        				</ul>
+        			</div>
+				</div>
+			</div>
+			
+			<div class="group-detail-overlay"></div>
+        </div>
+		
+		<div class="toolbar">
+			<div class="toolbar-inner" style="padding: 0;">
+				<p class="buttons-row" style="width: 100%; margin: 0;">
+					<a href="#" class="button button-big" style="border: 1px solid #d9d9d9; border-right-width: 0px; color: #333;" disabled>收藏</a>
+					<a href="javascript:group_detail_picker('cart')" class="button button-big" style="background-color: #ff9402; border: 1px solid #d9d9d9; border-left-width: 0px; border-right-width: 0px; color: #fff;">加入购物车</a>
+					<a href="javascript:group_detail_picker('trade')" class="button button-big" style="background-color: #ff5000; border: 1px solid #d9d9d9; border-left-width: 0px; color: #fff;">立即购买</a>
+                </p>
+			</div>
+		</div>
+		
+		<!-- Picker -->
+        <div class="picker-modal picker-group-detail" style="background: #FFFFFF; height: initial;">
+            <div class="toolbar" style="background: #FFFFFF; border-bottom: 1px solid #e5e5e5;">
+            	<div class="toolbar-inner">
+                    <div class="left">$!{item.itemName}</div>
+            		<div class="right">
+						<span style="margin-right: 13px; color: #FF5500;" id="group/detail/price">￥$!{item.priceRange}</span>
+						<a href="#" class="close-picker"><i class="iconfont icon-close" style="font-size: 20px; color: #8e8e93;"></i></a>
+					</div>
+            	</div>
+            </div>
+            <div class="picker-modal-inner">
+            	<div class="content-block" style="margin-top: 0; margin-bottom: 0;">
+					<p>$!{item.remark}</p>
+            	</div>
+				<div class="list-block" style="margin-top: 0; margin-bottom: 0;">
+					#if($item.specCatList)
+					<div class="item-content">
+						<div class="item-inner">
+        					<dl class="sku-list-container" style="margin-top: 0;">
+        						#foreach($specCat in $item.specCatList)
+        						<dt class="sku-sel-title"><label>$!{specCat.specCName}</label></dt>
+        						<dd style="margin: 0;">
+									<ul class="sku-sel-list before-height-0 after-height-0" id="group/detail/specItem/$!{specCat.specCId}"></ul>
+								</dd>
+        						#end
+        					</dl>
+						</div>
+                    </div>
+					#end
+					<div class="item-content">
+						<div class="item-inner">
+							<div class="item-title">
+                                <div>购买数量：</div>
+                                <span style="font-size: 12px;" id="group/detail/stock">剩余$!{item.stock}件</span>
+							</div>
+							<div class="item-after">
+								<div class="quantity">
+									<button class="minus" type="button"></button>
+                                    <input id="group/detail/quantity" type="text" class="txt" value="1"></input>
+									<button class="plus" type="button"></button>
+									<div class="response-area response-area-minus" onclick="group_detail_minus();"></div>
+									<div class="response-area response-area-plus" onclick="group_detail_plus();"></div>
+								</div>
+							</div>
+						</div>
+                    </div>
+					<div class="item-content" style="margin: 20px 0;">
+						<div class="item-inner after-height-0">
+							<div class="row no-gutter" style="width: 100%;">
+								#if($!{item.stock} == 0)
+								<div class="col-100">
+									<a class="button button-big color-gray" disabled>商品已售罄</a>
+                                </div>
+								#else
+								<div class="col-100" id="picker/group/detail/trade">
+									<a href="javascript:group_detail_trade('$!{item.skuList.size()}');" class="button button-big color-orange">立即下单</a>
+								</div>
+								<div class="col-100" id="picker/group/detail/cart">
+									<a href="javascript:group_detail_cart('$!{item.skuList.size()}');" class="button button-big color-gray" style="margin-left: 10px;">添加购物车</a>
+								</div>
+								#end
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<!-- -->
+		#foreach($sku in $item.skuList)
+		<input type="hidden" id="group_detail_sku_$!{sku.properties}" value="$!{sku.skuId}" ></input>
+		<input type="hidden" id="group_detail_price_$!{sku.properties}" value="$!{sku.price}" ></input>
+		<input type="hidden" id="group_detail_stock_$!{sku.properties}" value="$!{sku.stock}" ></input>
+		#end
+		
+		<!-- -->
+		<input type="hidden" id="group/detail/specCat" value='$!{item.specCat}' ></input>
+		<input type="hidden" id="group/detail/specItem" value='$!{item.specItem}' ></input>
+		
+		<form id="group/detail/trade" action="$!{env.appUrl}/trade/create.htm" method="POST" class="ajax-submit group-detail-trade">
+			<input type="hidden" name="itemId" value='$!{item.itemId}'></input>
+			<input type="hidden" id="group_detail_trade_skuId" name="skuId"></input>
+			<input type="hidden" id="group_detail_trade_quantity" name="quantity"></input>
+        </form>
+		
+		<form id="group/detail/cart" action="$!{env.appUrl}/cart/add.htm" method="POST" class="ajax-submit group-detail-cart">
+			<input type="hidden" name="itemId" value='$!{item.itemId}'></input>
+			<input type="hidden" id="group_detail_cart_skuId" name="skuId"></input>
+			<input type="hidden" id="group_detail_cart_quantity" name="quantity"></input>
+        </form>
+    </div>
+</div>
