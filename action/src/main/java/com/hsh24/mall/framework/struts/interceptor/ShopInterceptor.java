@@ -61,11 +61,15 @@ public class ShopInterceptor implements Interceptor {
 		// 设置当前请求的URL
 		HttpServletRequest request = (HttpServletRequest) ctx.get(ServletActionContext.HTTP_REQUEST);
 		StringBuffer url = request.getRequestURL();
+		
+		System.out.println(url);
 
 		String queryString = request.getQueryString();
 		if (StringUtils.isNotEmpty(queryString)) {
 			return url.toString() + "?" + queryString;
 		}
+		
+		System.out.println(url);
 
 		return url.toString();
 	}
