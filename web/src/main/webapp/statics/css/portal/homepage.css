@@ -585,6 +585,25 @@ a.component.type3 img {
 	-webkit-appearance: none;
 }
 
+.a6r.light {
+    top: -13px;
+    height: 58px;
+    background-position: 10px -75px;
+    background-size: 50px 125px;
+}
+.a6r {
+    position: absolute;
+    z-index: 15;
+    left: 0;
+    top: 0;
+    width: 80px;
+    height: 48px;
+    background: url(../../image/item/cart.png) 10px 5px no-repeat;
+    background-size: 50px 125px;
+    transition: transform .5s ease-out 0s;
+    -webkit-transition: -webkit-transform .5s ease-out 0s;
+}
+
 
 
 .infinite-scroll-preloader {
