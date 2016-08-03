@@ -73,7 +73,7 @@
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-66">
 						<a href="javascript:item_list_picker();" class="button button-big" style="border: 0; border-radius: 0; color: #8e8e93;">
-							<i class="iconfont icon-cart" style="color: #FF5500;"></i> 购物车是空的
+							<i class="iconfont icon-cart" style="color: #FF5500;"></i> ￥$!formatUtil.getAmountFormat('3')
 						</a>
 					</div>
 					<div class="col-33">
@@ -98,13 +98,14 @@
             	</div>
             </div>
             <div class="picker-modal-inner">
-				<div class="list-block" style="margin: -1px 0; font-size: 15px;">
-					<ul>
+				<div class="list-block" style="margin-top: 0; font-size: 15px;">
+					<ul class="before-height-0 after-height-0">
 						<li>
         					<div class="item-content">
         						<div class="item-inner">
         							<div class="item-title">特仑苏纯牛奶利乐苗条装</div>
         							<div class="item-after">
+                                        <span style="padding-top: 3px; padding-right: 10px;">￥$!formatUtil.getAmountFormat('1')</span>
         								<div class="quantity">
         									<button class="minus" type="button"></button>
                                             <input id="item/list/quantity" type="text" class="txt" value="1"></input>
@@ -121,6 +122,7 @@
         						<div class="item-inner">
         							<div class="item-title">特仑苏纯牛奶利乐苗条装</div>
         							<div class="item-after">
+										<span style="padding-top: 3px; padding-right: 10px;">￥$!formatUtil.getAmountFormat('1')</span>
         								<div class="quantity">
         									<button class="minus" type="button"></button>
                                             <input id="item/list/quantity" type="text" class="txt" value="1"></input>
@@ -136,6 +138,7 @@
         						<div class="item-inner">
         							<div class="item-title">特仑苏纯牛奶利乐苗条装</div>
         							<div class="item-after">
+										<span style="padding-top: 3px; padding-right: 10px;">￥$!formatUtil.getAmountFormat('1')</span>
         								<div class="quantity">
         									<button class="minus" type="button"></button>
                                             <input id="item/list/quantity" type="text" class="txt" value="1"></input>

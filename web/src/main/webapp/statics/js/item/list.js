@@ -3,6 +3,8 @@ myApp.onPageInit('item.list', function(page) {
 			$$('.close-picker').on('click', function() {
 				$('.page-content .item-list-overlay')
 						.removeClass('item-list-overlay-visible');
+
+				item_list_picker_flag = false;
 			});
 		});
 
@@ -19,7 +21,20 @@ function item_list_scan() {
 	});
 }
 
+item_list_picker_flag = false;
+
 function item_list_picker() {
-	$('.page-content .item-list-overlay').addClass('item-list-overlay-visible');
-	myApp.pickerModal('.picker-item-list');
+	if (item_list_picker_flag) {
+		myApp.closeModal('.picker-modal.picker-item-list');
+		$('.page-content .item-list-overlay')
+				.removeClass('item-list-overlay-visible');
+
+		item_list_picker_flag = false;
+	} else {
+		$('.page-content .item-list-overlay')
+				.addClass('item-list-overlay-visible');
+		myApp.pickerModal('.picker-modal.picker-item-list');
+
+		item_list_picker_flag = true;
+	}
 }
