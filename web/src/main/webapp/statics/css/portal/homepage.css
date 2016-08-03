@@ -15,6 +15,10 @@
     display: none;
 }
 
+a {
+    color: inherit;
+}
+
 
 
 /* iconfont */

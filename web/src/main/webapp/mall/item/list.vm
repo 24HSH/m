@@ -88,7 +88,7 @@
             <div class="toolbar" style="background: #FFFFFF; border-bottom: 1px solid #e5e5e5;">
             	<div class="toolbar-inner">
                     <div class="left">
-                        <a href="#" style="color: inherit;">
+                        <a href="#">
 							<i class="iconfont icon-delete" style="font-size: 15px; color: #8e8e93;"></i>
 							<span style="font-size: 14px; color: #8e8e93;">删除全部</span></a>
 					</div>

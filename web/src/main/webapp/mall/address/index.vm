@@ -45,7 +45,7 @@
                 				<ul>
 									#foreach($address in $!{addressList})
 									<li>
-										<a href="$!{env.appUrl}/address/select.htm?addId=$!{address.addId}" class="item-content external" style="color: inherit;">
+										<a href="$!{env.appUrl}/address/select.htm?addId=$!{address.addId}" class="item-content external">
                 							<div class="item-media"><i class="iconfont icon-locationfill" style="color: #ddd;"></i></div>
                 							<div class="item-inner">
 												<div class="item-title-row" style="margin-top: 3px;">
