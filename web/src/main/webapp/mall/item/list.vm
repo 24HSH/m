@@ -72,8 +72,8 @@
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-66">
-						<a href="javascript:item_list_picker();" class="button button-big" style="border: 0; border-radius: 0; color: #8e8e93;">
-							<i class="iconfont icon-cart" style="color: #FF5500;"></i> ￥$!formatUtil.getAmountFormat('3')
+						<a href="javascript:item_list_picker();" class="button button-big" style="background-color: #ffffff; border: 0;">
+							<span style="font-size: 25px; color: #ff5000;">￥$!formatUtil.getAmountFormat('3')</span>
 						</a>
 					</div>
 					<div class="col-33">
