@@ -12,6 +12,7 @@
 
 		<action name="list" class="itemAction" method="list">
 			<interceptor-ref name="authenticationStack" />
+			<interceptor-ref name="shopStack" />
 			<result name="success">/mall/item/list.vm</result>
 		</action>
 		

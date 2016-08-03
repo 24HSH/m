@@ -5,8 +5,13 @@
 	<package name="{http://mall}mall$shop"
 		extends="{http://mall}mall$framework" namespace="/shop">
 
+		<action name="index" class="shopAction" method="index">
+			<result name="none" type="redirect">${redirectUrl}?shopId=${shopId}</result>
+			<result name="success">/mall/shop/index.vm</result>
+		</action>
+		
 		<action name="select" class="shopAction" method="select">
-			<result name="success" type="redirect">${env.appUrl}/homepage.htm</result>
+			<result name="success" type="redirect">${redirectUrl}?shopId=${shopId}</result>
 		</action>
 		
 	</package>

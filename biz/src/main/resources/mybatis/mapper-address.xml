@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.address.dao.IAddressDao">
+	
+	<select id="getAddressList" parameterType="address" resultType="address">
+	<![CDATA[
+		SELECT t.`ADD_ID` AS addId,
+			   t.`ADD_NAME` AS addName,
+			   t.`ADDRESS`,
+			   t.`BLOCK_ID` AS blockId
+		  FROM mdm.`mdm_tb_address` t
+		 WHERE t.state = 'U'
+		   AND t.`REGION_ID` = #{regionId}
+	]]>
+	</select>
+	
+	<select id="getAddress" parameterType="address" resultType="address">
+	<![CDATA[
+		SELECT t.`ADD_ID` AS addId,
+			   t.`ADD_NAME` AS addName,
+			   t.`ADDRESS`,
+			   t.`BLOCK_ID` AS blockId
+		  FROM mdm.mdm_tb_address t
+		 WHERE t.state = 'U'
+		   AND t.add_id = #{addId}
+	]]>
+	</select>
+	
+</mapper>

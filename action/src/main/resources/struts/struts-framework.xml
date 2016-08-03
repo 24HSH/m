@@ -23,6 +23,7 @@
 				/ -->
 
 			<interceptor name="authentication" class="authenticationInterceptor" />
+			<interceptor name="shop" class="shopInterceptor" />
 			<interceptor name="actionMonitor" class="actionMonitorInterceptor" />
 			
 			<interceptor-stack name="authenticationStack">
@@ -31,6 +32,12 @@
 				<interceptor-ref name="authentication" />
 				<!-- 操作日志 -->
 				<interceptor-ref name="actionMonitor" />
+			</interceptor-stack>
+			
+			<interceptor-stack name="shopStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="decodeParams" />
+				<interceptor-ref name="shop" />
 			</interceptor-stack>
 		</interceptors>
 
@@ -46,6 +53,7 @@
 			<result name="oauth2" type="redirect">${env.appUrl}/auth/authorize.htm</result>
 			<result name="resourceResult">/mall/framework/common/resourceResult.vm</result>
 			<result name="resultMessage">/mall/framework/common/resultMessage.vm</result>
+			<result name="address" type="redirect">${env.appUrl}/address/index.htm</result>
 			<result name="shop" type="redirect">${env.appUrl}/shop/index.htm</result>
 		</global-results>
 

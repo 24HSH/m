@@ -9,8 +9,11 @@
 		SELECT t.shop_id AS shopId,
 			   t.shop_name AS shopName,
 			   t.region_id AS regionId
-		  FROM mdm.mdm_tb_shop t
-		 WHERE t.state = 'U'
+		  FROM mdm.mdm_tb_shop t, mdm.mdm_tb_block_shop p
+		 WHERE t.shop_id = p.shop_id
+		   AND t.state = 'U'
+		   AND p.state = 'U'
+		   AND p.block_id = #{blockId}
 	]]>
 	</select>
 	

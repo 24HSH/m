@@ -33,10 +33,13 @@ public class ShopServiceImpl implements IShopService {
 	private IShopDao shopDao;
 
 	@Override
-	public List<Shop> getShopList(Shop shop) {
-		if (shop == null) {
+	public List<Shop> getShopList(Long blockId) {
+		if (blockId == null) {
 			return null;
 		}
+
+		Shop shop = new Shop();
+		shop.setBlockId(blockId);
 
 		try {
 			return shopDao.getShopList(shop);

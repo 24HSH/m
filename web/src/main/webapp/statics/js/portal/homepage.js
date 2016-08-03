@@ -86,16 +86,6 @@ $$('#href-5').on('click', function() {
 			}
 		});
 
-$$('#view_2_click').on('click', function() {
-			if (view2.history.length == 1) {
-				view2.router.load({
-							url : appUrl + "/item/list.htm"
-						});
-			}
-
-			$$('#href-2').addClass("active");
-		});
-
 // ==============================
 
 function portal_homepage_cart_stats() {
@@ -113,16 +103,6 @@ function portal_homepage_cart_stats() {
 portal_homepage_cart_stats();
 
 myApp.onPageInit('portal.homepage', function(page) {
-			$$('#view_2_click').on('click', function() {
-						if (view2.history.length == 1) {
-							view2.router.load({
-										url : appUrl + "/item/list.htm"
-									});
-						}
-
-						$$('#href-2').addClass("active");
-					});
-
 			portal_homepage_cart_stats();
 		})
 

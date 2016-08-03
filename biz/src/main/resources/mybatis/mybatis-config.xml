@@ -22,6 +22,7 @@
 	</settings>
 
 	<typeAliases>
+		<package name="com.hsh24.mall.api.address.bo" />
 		<package name="com.hsh24.mall.api.cart.bo" />
 		<package name="com.hsh24.mall.api.item.bo" />
 		<package name="com.hsh24.mall.api.monitor.bo" />
@@ -59,6 +60,7 @@
 
 	<mappers>
 		<mapper resource="mybatis/global.xml" />
+		<mapper resource="mybatis/mapper-address.xml" />
 		<mapper resource="mybatis/mapper-cart.xml" />
 		<mapper resource="mybatis/mapper-item.cat.xml" />
 		<mapper resource="mybatis/mapper-item.file.xml" />

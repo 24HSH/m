@@ -43,47 +43,21 @@
                 		<div class="page-content">
                 			<div class="list-block media-list list-block-search searchbar-found" style="font-size: 14px;">
                 				<ul>
-
+									#foreach($address in $!{addressList})
 									<li>
-										<a href="$!{env.appUrl}/shop/select.htm?shopId=1321" class="item-content external" style="color: inherit;">
+										<a href="$!{env.appUrl}/address/select.htm?addId=$!{address.addId}" class="item-content external" style="color: inherit;">
                 							<div class="item-media"><i class="iconfont icon-locationfill" style="color: #ddd;"></i></div>
                 							<div class="item-inner">
 												<div class="item-title-row" style="margin-top: 3px;">
-                									<div class="item-title" style="font-weight: 400;">启迪大厦</div>
+                									<div class="item-title" style="font-weight: 400;">$!{address.addName}</div>
                 								</div>
                 								<div class="item-title-row" style="margin-top: 3px;">
-                									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">上海市静安区广中西路777弄65号</div>
+                									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">$!{address.address}</div>
                 								</div>
                                             </div>
                 						</a>
                 					</li>
-									<li>
-										<a href="$!{env.appUrl}/shop/select.htm?shopId=1321" class="item-content external" style="color: inherit;">
-                							<div class="item-media"><i class="iconfont icon-locationfill" style="color: #ddd;"></i></div>
-                							<div class="item-inner">
-												<div class="item-title-row" style="margin-top: 3px;">
-                									<div class="item-title" style="font-weight: 400;">上海启迪漕河泾科技园</div>
-                								</div>
-                								<div class="item-title-row" style="margin-top: 3px;">
-                									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">上海市松江区中创路68号</div>
-                								</div>
-                                            </div>
-                						</a>
-                					</li>
-									<li>
-										<a href="$!{env.appUrl}/shop/select.htm?shopId=1321" class="item-content external" style="color: inherit;">
-                							<div class="item-media"><i class="iconfont icon-locationfill" style="color: #ddd;"></i></div>
-                							<div class="item-inner">
-												<div class="item-title-row" style="margin-top: 3px;">
-                									<div class="item-title" style="font-weight: 400;">启迪大厦车库</div>
-                								</div>
-                								<div class="item-title-row" style="margin-top: 3px;">
-                									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">上海市静安区广中西路777弄55号启迪大厦</div>
-                								</div>
-                                            </div>
-                						</a>
-                					</li>
-
+									#end
                 				</ul>
                 			</div>
 						</div>

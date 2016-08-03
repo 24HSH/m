@@ -9,5 +9,9 @@
 			<result name="success">/mall/address/index.vm</result>
 		</action>
 		
+		<action name="select" class="addressAction" method="select">
+			<result name="success" type="redirect">${env.appUrl}/homepage.htm</result>
+		</action>
+		
 	</package>
 </struts>

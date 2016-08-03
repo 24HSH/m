@@ -20,6 +20,10 @@ public class Shop implements Serializable {
 	 */
 	private Long regionId;
 
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	private Long blockId;
+
 	public Long getShopId() {
 		return shopId;
 	}
@@ -42,6 +46,14 @@ public class Shop implements Serializable {
 
 	public void setRegionId(Long regionId) {
 		this.regionId = regionId;
+	}
+
+	public Long getBlockId() {
+		return blockId;
+	}
+
+	public void setBlockId(Long blockId) {
+		this.blockId = blockId;
 	}
 
 }

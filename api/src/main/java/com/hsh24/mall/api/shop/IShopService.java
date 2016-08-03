@@ -16,7 +16,7 @@ public interface IShopService {
 	 * @param shop
 	 * @return
 	 */
-	List<Shop> getShopList(Shop shop);
+	List<Shop> getShopList(Long blockId);
 
 	/**
 	 * 

@@ -8,8 +8,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Component;
 
+import com.hsh24.mall.api.address.bo.Address;
 import com.hsh24.mall.api.ca.ICAService;
-import com.hsh24.mall.api.shop.bo.Shop;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
@@ -26,7 +26,7 @@ public class AuthenticationInterceptor implements Interceptor {
 
 	private static final String OAUTH = "oauth2";
 
-	private static final String SHOP = "shop";
+	private static final String ADDRESS = "address";
 
 	private ICAService caService;
 
@@ -46,10 +46,10 @@ public class AuthenticationInterceptor implements Interceptor {
 			return OAUTH;
 		}
 
-		Shop shop = (Shop) session.get("ACEGI_SECURITY_LAST_SHOP");
-		if (shop == null) {
+		Address address = (Address) session.get("ACEGI_SECURITY_LAST_ADDRESS");
+		if (address == null) {
 			// TODO
-			return SHOP;
+			return ADDRESS;
 		}
 
 		return invocation.invoke();
