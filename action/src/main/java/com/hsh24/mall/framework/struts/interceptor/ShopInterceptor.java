@@ -1,5 +1,7 @@
 package com.hsh24.mall.framework.struts.interceptor;
 
+import java.util.Properties;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,6 +26,9 @@ public class ShopInterceptor implements Interceptor {
 	private static final long serialVersionUID = -7498838714747075663L;
 
 	private static final String SHOP = "shop";
+
+	@Resource
+	protected Properties env;
 
 	@Resource
 	private IShopService shopService;
@@ -65,10 +70,10 @@ public class ShopInterceptor implements Interceptor {
 
 		String queryString = request.getQueryString();
 		if (StringUtils.isNotEmpty(queryString)) {
-			return url.substring(index, url.length()) + "?" + queryString;
+			return env.getProperty("appUrl") + url.substring(index, url.length()) + "?" + queryString;
 		}
 
-		return url.substring(index, url.length());
+		return env.getProperty("appUrl") + url.substring(index, url.length());
 	}
 
 }
