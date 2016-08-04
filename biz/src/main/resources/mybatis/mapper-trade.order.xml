@@ -12,6 +12,7 @@
 			TRADE_ID,
 			ITEM_ID,
 			ITEM_NAME,
+			ITEM_FILE_PATH,
 			SKU_ID,
 			PROPERTIES_NAME,
 			PRICE,
@@ -27,6 +28,7 @@
 		  (SELECT #{tradeId},
 			   t.item_id,
 			   t.item_name,
+			   k.file_path,
 			   #{skuId},
 			   q.properties_name,
 			   CASE WHEN q.price IS NULL THEN t.price ELSE q.price END,
@@ -39,11 +41,25 @@
 			   NOW(),
 			   #{modifyUser}
 		  FROM dms.dms_tb_item t
+
 		  LEFT JOIN(
 		SELECT qq.item_id, qq.properties_name, qq.price
 		  FROM dms.dms_tb_item_sku qq
 		 WHERE qq.state = 'U'
 		   AND qq.sku_id = #{skuId}) q ON t.item_id = q.item_id
+
+		  LEFT JOIN(
+		SELECT kkk.item_id,
+			   max(kk.file_path) AS file_path
+		  FROM dms.dms_tb_file kk,
+			   dms.dms_tb_item_file kkk
+		 WHERE kk.file_id= kkk.file_id
+		   AND kk.state = 'U'
+		   AND kkk.state = 'U'
+		   AND kk.shop_id = #{shopId}
+		 GROUP BY kkk.item_id
+		) k ON t.item_id = k.item_id
+
 		 WHERE t.state = 'U'
 		   AND t.shop_id = #{shopId}
 		   AND t.item_id = #{itemId}
@@ -59,6 +75,7 @@
 			TRADE_ID,
 			ITEM_ID,
 			ITEM_NAME,
+			ITEM_FILE_PATH,
 			SKU_ID,
 			PROPERTIES_NAME,
 			PRICE,
@@ -74,11 +91,12 @@
 		  (SELECT #{tradeId},
 			   t.item_id,
 			   p.item_name,
+			   k.file_path,
 			   t.sku_id,
 			   q.properties_name,
-			   CASE WHEN k.points_id IS NULL THEN CASE WHEN q.price IS NULL THEN p.price ELSE q.price END ELSE 0 END,
+			   CASE WHEN q.price IS NULL THEN p.price ELSE q.price END,
 			   0,
-			   IFNULL(k.points, 0),
+			   0,
 			   t.quantity,
 			   'U',
 			   NOW(),
@@ -86,17 +104,26 @@
 			   NOW(),
 			   #{modifyUser}
 		  FROM mall.mall_tb_cart t
+
 		  LEFT JOIN dms.dms_tb_item p ON t.item_id = p.item_id
+
 		  LEFT JOIN(
 		SELECT qq.item_id, qq.sku_id, qq.properties_name, qq.price
 		  FROM dms.dms_tb_item_sku qq
 		 WHERE qq.state = 'U') q ON t.sku_id = q.sku_id
+
 		  LEFT JOIN(
-		SELECT kk.points_id, kk.points
-		  FROM mall.mall_tb_points kk
-		 WHERE kk.state = 'U'
+		SELECT kkk.item_id,
+			   max(kk.file_path) AS file_path
+		  FROM dms.dms_tb_file kk,
+			   dms.dms_tb_item_file kkk
+		 WHERE kk.file_id= kkk.file_id
+		   AND kk.state = 'U'
+		   AND kkk.state = 'U'
 		   AND kk.shop_id = #{shopId}
-				 ) k ON t.points_id = k.points_id
+		 GROUP BY kkk.item_id
+		) k ON t.item_id = k.item_id
+
 		 WHERE t.state = 'U'
 		   AND p.state = 'U'
 		   AND p.shop_id = #{shopId}
@@ -112,6 +139,7 @@
 	<![CDATA[
 		SELECT t.order_id AS orderId,
 			   t.item_name AS itemName,
+			   t.item_file_path AS itemFilePath,
 			   t.properties_name AS propertiesName,
 			   t.quantity,
 			   t.price,
@@ -138,6 +166,7 @@
 	<![CDATA[
 		SELECT t.order_id AS orderId,
 			   t.item_name AS itemName,
+			   t.item_file_path AS itemFilePath,
 			   t.properties_name AS propertiesName,
 			   t.quantity,
 			   t.price,

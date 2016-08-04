@@ -28,12 +28,14 @@ public class Order extends SearchInfo {
 	 */
 	private Long itemId;
 
-	private Long skuId;
-
 	/**
 	 * 商品名称.
 	 */
 	private String itemName;
+
+	private String itemFilePath;
+
+	private Long skuId;
 
 	/**
 	 * sku所对应的销售属性的中文名字串，格式如：Pid1:vid1:pid_name1:vid_name1;Pid2:vid2:pid_name2:vid_name2.
@@ -109,20 +111,28 @@ public class Order extends SearchInfo {
 		this.itemId = itemId;
 	}
 
-	public Long getSkuId() {
-		return skuId;
-	}
-
-	public void setSkuId(Long skuId) {
-		this.skuId = skuId;
-	}
-
 	public String getItemName() {
 		return itemName;
 	}
 
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
+	}
+
+	public String getItemFilePath() {
+		return itemFilePath;
+	}
+
+	public void setItemFilePath(String itemFilePath) {
+		this.itemFilePath = itemFilePath;
+	}
+
+	public Long getSkuId() {
+		return skuId;
+	}
+
+	public void setSkuId(Long skuId) {
+		this.skuId = skuId;
 	}
 
 	public String getPropertiesName() {

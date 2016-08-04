@@ -80,7 +80,7 @@
 						<div class="item-content">
 							#set($order = $!{trade.orderList.get(0)})
 							<div class="item-media" style="padding-top: 7px; padding-bottom: 8px;">
-								<img src="$!{env.imgUrl}/image/item/detail-3.jpg" style="width: 50px;"></img>
+								<img data-src="$!{order.itemFilePath}" class="lazy" style="width: 50px; height: 50px;"></img>
 							</div>
 							<div class="item-inner">
 								<div class="item-title-row" style="margin-top: 3px;">
