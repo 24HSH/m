@@ -14,7 +14,7 @@ public interface IUserDao {
 	 * @param user
 	 * @return
 	 */
-	Long createUser(User user);
+	int createUser(User user);
 
 	/**
 	 * 

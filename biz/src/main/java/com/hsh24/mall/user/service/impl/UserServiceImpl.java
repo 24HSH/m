@@ -49,8 +49,8 @@ public class UserServiceImpl implements IUserService {
 		user.setModifyUser(modifyUser);
 
 		try {
-			Long userId = userDao.createUser(user);
-			result.setCode(userId.toString());
+			userDao.createUser(user);
+			result.setCode(user.getUserId().toString());
 			result.setResult(true);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(user), e);
