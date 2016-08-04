@@ -136,7 +136,7 @@
     				<div class="list-block" style="margin-top: 0; margin-bottom: 5px; font-size: 15px;">
     					<ul class="before-height-0 after-height-0" id="item_list_cart">
     						#foreach($cart in $!{cartList})
-    						<li>
+    						<li id="item_list_cart_$!{cart.cartId}">
 								<div class="item-content">
     								<input type="hidden" name="cartIds" value="$!{cart.cartId}" />
             						<div class="item-inner">
@@ -162,10 +162,11 @@
             </div>
         </div>
 		
-		<form id="item/list/cart" action="$!{env.appUrl}/cart/add.htm" method="POST" class="ajax-submit item-list-cart">
+		<form id="item/list/cart" method="POST" class="ajax-submit item-list-cart">
 			<input type="hidden" id="item_list_cart_itemId" name="itemId"></input>
 			<input type="hidden" id="item_list_cart_skuId" name="skuId"></input>
 			<input type="hidden" id="item_list_cart_quantity" name="quantity"></input>
+			<input type="hidden" id="item_list_cart_cartId" name="cartIds"></input>
         </form>
     </div>
 </div>

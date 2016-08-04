@@ -32,7 +32,8 @@ myApp.onPageInit('cart.index', function(page) {
 			cart_index_check();
 			$$('#cart/index/check').prop('checked', true)
 
-			$$("input[name='cartIds']").on('change', function(e) {
+			$("input[name='cartIds']", $$('#cart/index/form')).on('change',
+					function(e) {
 						cart_index_stats();
 					});
 		});
@@ -41,7 +42,7 @@ function cart_index_stats() {
 	var total = 0;
 	var count = 0;
 
-	$$("input[name='cartIds']").each(function(e) {
+	$("input[name='cartIds']", $$('#cart/index/form')).each(function(e) {
 		if (this.checked) {
 			total = dcmAdd(total, dcmMul($$("#cart/index/price/" + this.value)
 									.val(), $$("#cart/index/quantity/"
