@@ -131,8 +131,8 @@
 					</div>
             	</div>
             </div>
-            <div class="picker-modal-inner">
-				<div class="list-block" style="margin-top: 0; font-size: 15px;">
+            <div class="picker-modal-inner" style="max-height: 330px; overflow:auto">
+				<div class="list-block" style="margin-top: 0; margin-bottom: 5px; font-size: 15px;">
 					<ul class="before-height-0 after-height-0">
 						#foreach($cart in $!{cartList})
 						<li>
