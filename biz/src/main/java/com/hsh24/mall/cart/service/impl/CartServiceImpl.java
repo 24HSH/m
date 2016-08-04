@@ -116,7 +116,14 @@ public class CartServiceImpl implements ICartService {
 
 		// 1. 更新购物车(相同规格商品 只增加数量)
 		if (checkCart(cart) == 1) {
-			result.setCode("0");
+			// 获取 cartId
+			List<Cart> cartList = getCartList(cart);
+			if (cartList == null || cartList.size() == 0) {
+				result.setCode("0");
+			} else {
+				result.setCode(cartList.get(0).getCartId().toString());
+			}
+
 			result.setResult(true);
 			return result;
 		}
@@ -183,13 +190,7 @@ public class CartServiceImpl implements ICartService {
 		cart.setUserId(userId);
 		cart.setShopId(shopId);
 
-		List<Cart> cartList = null;
-
-		try {
-			cartList = cartDao.getCartList(cart);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(cart), e);
-		}
+		List<Cart> cartList = getCartList(cart);
 
 		if (cartList == null || cartList.size() == 0) {
 			return null;
@@ -422,6 +423,21 @@ public class CartServiceImpl implements ICartService {
 
 		result.setResult(true);
 		return result;
+	}
+
+	/**
+	 * 
+	 * @param cart
+	 * @return
+	 */
+	private List<Cart> getCartList(Cart cart) {
+		try {
+			return cartDao.getCartList(cart);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(cart), e);
+		}
+
+		return null;
 	}
 
 	/**

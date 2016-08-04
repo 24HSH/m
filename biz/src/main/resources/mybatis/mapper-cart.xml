@@ -73,6 +73,14 @@
 		 WHERE t.state = 'U'
 		   AND t.user_id = #{userId}
 		   AND t.shop_id = #{shopId}
+	]]>
+		<if test="itemId != null and itemId != ''">
+		<![CDATA[ AND t.item_id = #{itemId} ]]>
+		</if>
+		<if test="skuId != null and skuId != ''">
+		<![CDATA[ AND t.sku_id  = #{skuId} ]]>
+		</if>
+	<![CDATA[
 		 ORDER BY t.create_date DESC
 	]]>
 	</select>

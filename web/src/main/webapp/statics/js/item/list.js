@@ -137,6 +137,12 @@ function item_list_cart_remove() {
 }
 
 function item_list_cart_update_a(cartId, itemName, price) {
+	var obj = $$('#item/list/quantity/' + cartId);
+	if (obj.length == 1) {
+		obj.val(dcmAdd(obj.val(), 1));
+		return;
+	}
+
 	var hmtl = '<li id="item_list_cart_'
 			+ cartId
 			+ '">'
