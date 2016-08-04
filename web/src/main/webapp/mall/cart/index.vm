@@ -38,7 +38,9 @@
 								</label>
 								
 								<div class="item-media" style="padding-top: 7px; padding-bottom: 8px;">
-									<img src="$!{env.imgUrl}/image/item/detail-3.jpg" class="lazy" style="width: 60px; height: 60px;"></img>
+									#if($!{cart.itemFileList.size()} > 0)
+									<img data-src="$!{cart.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
+									#end
 								</div>
     							<div class="item-inner">
     								<div class="item-title-row" style="margin-top: 3px;">

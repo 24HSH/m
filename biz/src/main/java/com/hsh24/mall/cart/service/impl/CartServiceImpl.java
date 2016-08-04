@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.hsh24.mall.api.cart.ICartService;
 import com.hsh24.mall.api.cart.bo.Cart;
+import com.hsh24.mall.api.item.IItemFileService;
 import com.hsh24.mall.api.item.IItemService;
 import com.hsh24.mall.api.item.IItemSkuService;
 import com.hsh24.mall.api.item.bo.Item;
@@ -37,6 +38,9 @@ public class CartServiceImpl implements ICartService {
 
 	@Resource
 	private IItemSkuService itemSkuService;
+
+	@Resource
+	private IItemFileService itemFileService;
 
 	@Resource
 	private ICartDao cartDao;
@@ -216,7 +220,7 @@ public class CartServiceImpl implements ICartService {
 		Map<Long, ItemSku> itemSkuMap = j == 0 ? new HashMap<Long, ItemSku>() : itemSkuService.getItemSku(skuId);
 
 		// 4. 获取商品文件信息
-		Map<String, List<ItemFile>> itemFileMap = null;// itemFileService.getItemFileList(shopId,
+		Map<Long, List<ItemFile>> itemFileMap = itemFileService.getItemFileList(shopId, itemId);
 
 		for (Cart ca : cartList) {
 			// 商品名称 & 商品价格

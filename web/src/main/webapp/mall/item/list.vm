@@ -26,7 +26,9 @@
 		<div class="page-content">
 			<div class="list-block media-list list-block-search searchbar-found" style="font-size: 15px;">
 				<ul>
-					#foreach($item in $!{itemList})
+				#foreach($item in $!{itemList})
+					#if($!{item.skuList.size()} > 0)
+					#foreach($itemSku in $!{item.skuList})
                     <li>
 						<div class="item-content">
 							<div class="item-media">
@@ -41,10 +43,40 @@
 								</div>
 								<div class="item-title-row" style="margin-top: 3px;">
 									<div class="item-subtitle" style="font-size: 13px; color: #8e8e93;">
-										#if($!{item.skuList.size()} > 0)
-										$!{item.skuList.get(0).propertiesName} ...
-										#end
+										$!{itemSku.propertiesName}
 									</div>
+									<div class="item-after"></div>
+								</div>
+								<div class="item-title-row" style="margin-top: 3px;">
+                                    <div class="item-title" style="font-weight: 400; color: #FF5500;">
+										￥$!{itemSku.price}
+                                        <del style="font-size: 10px; color: #999; margin-left: 5px;">
+											<span style="">￥$!{itemSku.origin}</span>
+										</del>
+									</div>
+									<div class="item-after">
+										<a href="javascript:item_list_cart_add('$!{item.itemId}','$!{itemSku.skuId}','1');"><i class="iconfont icon-roundadd" style="font-size: 25px; color: #FF5500;"></i></a>
+									</div>
+								</div>
+                            </div>
+						</div>
+					</li>
+					#end
+					#else
+					<li>
+						<div class="item-content">
+							<div class="item-media">
+								#if($!{item.itemFileList.size()} > 0)
+								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
+								#end
+							</div>
+							<div class="item-inner">
+								<div class="item-title-row" style="margin-top: 3px;">
+                                    <div class="item-title" style="font-weight: 400;"><span class="little-tag">新品</span>$!{item.itemName}</div>
+									<div class="item-after"></div>
+								</div>
+								<div class="item-title-row" style="margin-top: 3px;">
+									<div class="item-subtitle" style="font-size: 13px; color: #8e8e93;"></div>
 									<div class="item-after"></div>
 								</div>
 								<div class="item-title-row" style="margin-top: 3px;">
@@ -55,13 +87,14 @@
 										</del>
 									</div>
 									<div class="item-after">
-										<a href="#"><i class="iconfont icon-roundadd" style="font-size: 25px; color: #FF5500;"></i></a>
+										<a href="javascript:item_list_cart_add('$!{item.itemId}','0','1');"><i class="iconfont icon-roundadd" style="font-size: 25px; color: #FF5500;"></i></a>
 									</div>
 								</div>
                             </div>
 						</div>
 					</li>
 					#end
+				#end
 				</ul>
 			</div>
 			
@@ -101,15 +134,16 @@
             <div class="picker-modal-inner">
 				<div class="list-block" style="margin-top: 0; font-size: 15px;">
 					<ul class="before-height-0 after-height-0">
+						#foreach($cart in $!{cartList})
 						<li>
         					<div class="item-content">
         						<div class="item-inner">
-        							<div class="item-title">特仑苏纯牛奶利乐苗条装</div>
+        							<div class="item-title">$!{cart.itemName}</div>
         							<div class="item-after">
-                                        <span style="padding-top: 3px; padding-right: 10px;">￥$!formatUtil.getAmountFormat('1')</span>
+                                        <span style="padding-top: 3px; padding-right: 10px;">￥$!formatUtil.getAmountFormat($!{cart.price})</span>
         								<div class="quantity">
         									<button class="minus" type="button"></button>
-                                            <input id="item/list/quantity" type="text" class="txt" value="1"></input>
+                                            <input id="item/list/quantity" type="text" class="txt" value="$!{cart.quantity}"></input>
         									<button class="plus" type="button"></button>
         									<div class="response-area response-area-minus" onclick="item_list_minus();"></div>
         									<div class="response-area response-area-plus" onclick="item_list_plus();"></div>
@@ -118,42 +152,19 @@
         						</div>
                             </div>
                         </li>
-						<li>
-        					<div class="item-content">
-        						<div class="item-inner">
-        							<div class="item-title">特仑苏纯牛奶利乐苗条装</div>
-        							<div class="item-after">
-										<span style="padding-top: 3px; padding-right: 10px;">￥$!formatUtil.getAmountFormat('1')</span>
-        								<div class="quantity">
-        									<button class="minus" type="button"></button>
-                                            <input id="item/list/quantity" type="text" class="txt" value="1"></input>
-        									<button class="plus" type="button"></button>
-        									<div class="response-area response-area-minus" onclick="item_list_minus();"></div>
-        									<div class="response-area response-area-plus" onclick="item_list_plus();"></div>
-        								</div>
-        							</div>
-        						</div>
-                            </div>
-                        </li><li>
-        					<div class="item-content">
-        						<div class="item-inner">
-        							<div class="item-title">特仑苏纯牛奶利乐苗条装</div>
-        							<div class="item-after">
-										<span style="padding-top: 3px; padding-right: 10px;">￥$!formatUtil.getAmountFormat('1')</span>
-        								<div class="quantity">
-        									<button class="minus" type="button"></button>
-                                            <input id="item/list/quantity" type="text" class="txt" value="1"></input>
-        									<button class="plus" type="button"></button>
-        									<div class="response-area response-area-minus" onclick="item_list_minus();"></div>
-        									<div class="response-area response-area-plus" onclick="item_list_plus();"></div>
-        								</div>
-        							</div>
-        						</div>
-                            </div>
-                        </li>
+						#end
                     </ul>
                 </div>
             </div>
         </div>
+		
+		<form id="item/list/trade" action="$!{env.appUrl}/trade/create.htm" method="POST" class="ajax-submit item-list-trade">
+        </form>
+		
+		<form id="item/list/cart" action="$!{env.appUrl}/cart/add.htm" method="POST" class="ajax-submit item-list-cart">
+			<input type="hidden" id="item_list_cart_itemId" name="itemId"></input>
+			<input type="hidden" id="item_list_cart_skuId" name="skuId"></input>
+			<input type="hidden" id="item_list_cart_quantity" name="quantity"></input>
+        </form>
     </div>
 </div>

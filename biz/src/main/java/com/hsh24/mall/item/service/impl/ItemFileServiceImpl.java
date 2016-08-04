@@ -1,6 +1,8 @@
 package com.hsh24.mall.item.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -37,6 +39,36 @@ public class ItemFileServiceImpl implements IItemFileService {
 		file.setItemId(itemId);
 
 		return getItemFileList(file);
+	}
+
+	@Override
+	public Map<Long, List<ItemFile>> getItemFileList(Long shopId, String[] itemId) {
+		if (itemId == null || itemId.length == 0) {
+			return null;
+		}
+
+		Map<Long, List<ItemFile>> map = new HashMap<Long, List<ItemFile>>();
+
+		// 调用接口 getItemFileList(Long shopId, Long itemId)
+		for (String id : itemId) {
+			Long ietmId = null;
+
+			try {
+				ietmId = Long.valueOf(id);
+			} catch (NumberFormatException e) {
+				logger.error(e);
+
+				continue;
+			}
+
+			if (map.containsKey(ietmId)) {
+				continue;
+			}
+
+			map.put(ietmId, getItemFileList(shopId, ietmId));
+		}
+
+		return map;
 	}
 
 	/**

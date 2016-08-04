@@ -66,7 +66,7 @@
 							<div class="" style="background-color:#ffffff;">
 								<ul class="mui-flex" style="padding: 0; margin-top: 0;">
 									<li class="cell" style="">
-										<a class="component type3" href="$!{env.appUrl}/item/list.htm" style="padding:4px" 0px="" 0px;="">
+										<a class="component type3" href="$!{env.appUrl}/item/list.htm" style="padding:4px" 0px="" 0px;="" data-ignore-cache="true">
                                             <img class="" src="$!{env.imgUrl}/image/portal/lxsp.png" width="40" height="40"></img>冷鲜食品
 										</a>
 									</li>
@@ -108,7 +108,7 @@
     												<div class="item-media">
                         								<img data-src="$!{env.imgUrl}/image/portal/logo.jpg" class="lazy" style="width: 50px; height: 50px;  border-radius: 5px;"></img>
                         							</div>
-                        							<a class="item-inner" href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}">
+                        							<a class="item-inner" href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
                         								<div class="item-title-row" style="margin-top: 3px;">
                                                             <div class="item-title" style="font-weight: 400;"><span class="little-tag">新店</span>$!{shop.shopName}</div>
                         								</div>

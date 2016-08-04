@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hsh24.mall.api.cart.ICartService;
+import com.hsh24.mall.api.cart.bo.Cart;
 import com.hsh24.mall.api.item.IItemService;
 import com.hsh24.mall.api.item.bo.Item;
 import com.hsh24.mall.framework.action.BaseAction;
@@ -25,7 +27,12 @@ public class ItemAction extends BaseAction {
 	@Resource
 	private IItemService itemService;
 
+	@Resource
+	private ICartService cartService;
+
 	private List<Item> itemList;
+
+	private List<Cart> cartList;
 
 	private String itemId;
 
@@ -36,7 +43,11 @@ public class ItemAction extends BaseAction {
 	 * @return
 	 */
 	public String list() {
-		itemList = itemService.getItemList(this.getShop().getShopId(), new Item());
+		Long shopId = this.getShop().getShopId();
+
+		itemList = itemService.getItemList(shopId, new Item());
+
+		cartList = cartService.getCartList(this.getUser().getUserId(), shopId);
 
 		return SUCCESS;
 	}
@@ -57,6 +68,14 @@ public class ItemAction extends BaseAction {
 
 	public void setItemList(List<Item> itemList) {
 		this.itemList = itemList;
+	}
+
+	public List<Cart> getCartList() {
+		return cartList;
+	}
+
+	public void setCartList(List<Cart> cartList) {
+		this.cartList = cartList;
 	}
 
 	public String getItemId() {
