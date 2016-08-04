@@ -116,7 +116,7 @@ public class CartServiceImpl implements ICartService {
 
 		// 1. 更新购物车(相同规格商品 只增加数量)
 		if (checkCart(cart) == 1) {
-			result.setCode("添加成功");
+			result.setCode("0");
 			result.setResult(true);
 			return result;
 		}
@@ -132,7 +132,7 @@ public class CartServiceImpl implements ICartService {
 		}
 
 		if (result.getResult()) {
-			result.setCode("添加成功");
+			result.setCode(cart.getCartId().toString());
 		}
 		return result;
 	}

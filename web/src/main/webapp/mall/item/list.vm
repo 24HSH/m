@@ -141,12 +141,13 @@
         							<div class="item-title">$!{cart.itemName}</div>
         							<div class="item-after">
                                         <span style="padding-top: 3px; padding-right: 10px;">￥$!formatUtil.getAmountFormat($!{cart.price})</span>
-        								<div class="quantity">
+        								<input type="hidden" id="item/list/price/$!{cart.cartId}" value="$!{cart.price}"></input>
+										<div class="quantity">
         									<button class="minus" type="button"></button>
-                                            <input id="item/list/quantity" type="text" class="txt" value="$!{cart.quantity}"></input>
+                                            <input id="item/list/quantity/$!{cart.cartId}" type="text" class="txt" value="$!{cart.quantity}"></input>
         									<button class="plus" type="button"></button>
-        									<div class="response-area response-area-minus" onclick="item_list_minus();"></div>
-        									<div class="response-area response-area-plus" onclick="item_list_plus();"></div>
+        									<div class="response-area response-area-minus" onclick="item_list_minus('$!{cart.cartId}');"></div>
+        									<div class="response-area response-area-plus" onclick="item_list_plus('$!{cart.cartId}');"></div>
         								</div>
         							</div>
         						</div>
