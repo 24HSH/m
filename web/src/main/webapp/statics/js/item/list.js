@@ -25,14 +25,16 @@ myApp.onPageInit('item.list', function(page) {
 			});
 
 			$$('form.ajax-submit.item-list-cart').on('submitted', function(e) {
-						myApp.hideIndicator();
-						var xhr = e.detail.xhr;
-						if (xhr.responseText != '0') {
-							alert(xhr.responseText);
-						}
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				if (xhr.responseText != '0') {
+					item_list_cart_update(xhr.responseText, item_list_itemName,
+							item_list_price);
+				}
 
-						portal_homepage_cart_stats();
-					});
+				item_list_stats();
+				portal_homepage_cart_stats();
+			});
 
 			$$('form.ajax-submit.item-list-form').on('submitError',
 					function(e) {
@@ -51,6 +53,9 @@ myApp.onPageInit('item.list', function(page) {
 			// 合计金额
 			item_list_stats();
 
+			// 购物车
+			item_list_picker_flag = false;
+
 			$$('.close-picker').on('click', function() {
 				$('.page-content .item-list-overlay')
 						.removeClass('item-list-overlay-visible');
@@ -58,11 +63,20 @@ myApp.onPageInit('item.list', function(page) {
 				item_list_picker_flag = false;
 			});
 
-			item_list_picker_flag = false;
+			// 根据 合计金额判断 是否 自动 弹出 购物车
+			if ($$("#item/list/price").html() != '购物车是空的') {
+				item_list_picker();
+			}
 		});
 
-function item_list_cart_add(itemId, skuId, quantity) {
+var item_list_itemName;
+var item_list_price;
+
+function item_list_cart_add(itemId, skuId, quantity, itemName, price) {
 	myApp.showIndicator();
+
+	item_list_itemName = itemName;
+	item_list_price = price;
 
 	$$('#item_list_cart_itemId').val(itemId);
 	$$('#item_list_cart_skuId').val(skuId);
@@ -96,20 +110,39 @@ function item_list_cart_remove() {
 			});
 }
 
-function item_list_picker() {
-	if (item_list_picker_flag) {
-		myApp.closeModal('.picker-modal.picker-item-list');
-		$('.page-content .item-list-overlay')
-				.removeClass('item-list-overlay-visible');
+function item_list_cart_update(cartId, itemName, price) {
+	var hmtl = '<li>'
+			+ '<div class="item-content">'
+			+ '<input type="hidden" name="cartIds" value="'
+			+ cartId
+			+ '" />'
+			+ '<div class="item-inner">'
+			+ '<div class="item-title">'
+			+ itemName
+			+ '</div>'
+			+ '<div class="item-after">'
+			+ '<span style="padding-top: 3px; padding-right: 10px; color: #ff5000;">￥'
+			+ Number.format(price, 2)
+			+ '</span>'
+			+ '<input type="hidden" id="item/list/price/'
+			+ cartId
+			+ '" value="'
+			+ price
+			+ '" />'
+			+ '<div class="quantity">'
+			+ '<button class="minus" type="button"></button>'
+			+ '<input id="item/list/quantity/'
+			+ cartId
+			+ '" type="text" class="txt" value="1" />'
+			+ '<button class="plus" type="button"></button>'
+			+ '<div class="response-area response-area-minus" onclick="item_list_minus('
+			+ cartId
+			+ ');" />'
+			+ '<div class="response-area response-area-plus" onclick="item_list_plus('
+			+ cartId + ');" />' + '</div>' + '</div>' + '</div>' + '</div>'
+			+ '</li>';
 
-		item_list_picker_flag = false;
-	} else {
-		$('.page-content .item-list-overlay')
-				.addClass('item-list-overlay-visible');
-		myApp.pickerModal('.picker-modal.picker-item-list');
-
-		item_list_picker_flag = true;
-	}
+	$$('#item_list_cart').prepend(hmtl);
 }
 
 function item_list_stats() {
@@ -121,7 +154,11 @@ function item_list_stats() {
 						$$("#item/list/quantity/" + this.value).val()));
 	});
 
-	$$("#item/list/price").html("￥" + Number.format(total, 2));
+	if (total > 0) {
+		$$("#item/list/price").html("￥" + Number.format(total, 2));
+	} else {
+		$$("#item/list/price").html("购物车是空的");
+	}
 }
 
 function item_list_minus(cartId) {
@@ -147,6 +184,22 @@ function item_list_num(cartId, quantity) {
 				$$('#item/list/quantity/' + cartId).val(data);
 				item_list_stats();
 			});
+}
+
+function item_list_picker() {
+	if (item_list_picker_flag) {
+		myApp.closeModal('.picker-modal.picker-item-list');
+		$('.page-content .item-list-overlay')
+				.removeClass('item-list-overlay-visible');
+
+		item_list_picker_flag = false;
+	} else {
+		$('.page-content .item-list-overlay')
+				.addClass('item-list-overlay-visible');
+		myApp.pickerModal('.picker-modal.picker-item-list');
+
+		item_list_picker_flag = true;
+	}
 }
 
 function item_list_scan() {
