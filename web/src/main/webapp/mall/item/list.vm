@@ -148,8 +148,8 @@
                                                 <button class="minus" type="button"></button>
                                                 <input id="item/list/quantity/$!{cart.cartId}" type="text" class="txt" value="$!{cart.quantity}" />
                                                 <button class="plus" type="button"></button>
-            									<div class="response-area response-area-minus" onclick="item_list_minus('$!{cart.cartId}');" />
-            									<div class="response-area response-area-plus" onclick="item_list_plus('$!{cart.cartId}');" />
+                                                <div class="response-area response-area-minus" onclick="item_list_minus('$!{cart.cartId}');"></div>
+                                                <div class="response-area response-area-plus" onclick="item_list_plus('$!{cart.cartId}');"></div>
             								</div>
             							</div>
             						</div>

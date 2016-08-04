@@ -137,9 +137,9 @@ function item_list_cart_update(cartId, itemName, price) {
 			+ '<button class="plus" type="button"></button>'
 			+ '<div class="response-area response-area-minus" onclick="item_list_minus('
 			+ cartId
-			+ ');" />'
+			+ ');"></div>'
 			+ '<div class="response-area response-area-plus" onclick="item_list_plus('
-			+ cartId + ');" />' + '</div>' + '</div>' + '</div>' + '</div>'
+			+ cartId + ');"></div>' + '</div>' + '</div>' + '</div>' + '</div>'
 			+ '</li>';
 
 	$$('#item_list_cart').prepend(hmtl);
