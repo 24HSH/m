@@ -1,5 +1,5 @@
 myApp.onPageInit('item.list', function(page) {
-			$$('form.ajax-submit.item-list-trade').on('beforeSubmit',
+			$$('form.ajax-submit.item-list-form').on('beforeSubmit',
 					function(e) {
 					});
 
@@ -7,12 +7,21 @@ myApp.onPageInit('item.list', function(page) {
 					function(e) {
 					});
 
-			$$('form.ajax-submit.item-list-trade').on('submitted', function(e) {
+			$$('form.ajax-submit.item-list-form').on('submitted', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
 
-				view2.router.loadPage(appUrl + "/pay/index.htm?tradeNo="
-						+ xhr.responseText);
+				if (item_list_flag == "create") {
+					mainView.router.load({
+								url : appUrl + "/pay/index.htm?tradeNo="
+										+ xhr.responseText
+							});
+				} else if (item_list_flag == "remove") {
+					mainView.router.refreshPage();
+
+					// 更新首页购物车标记
+					portal_homepage_cart_stats();
+				}
 			});
 
 			$$('form.ajax-submit.item-list-cart').on('submitted', function(e) {
@@ -25,7 +34,7 @@ myApp.onPageInit('item.list', function(page) {
 						portal_homepage_cart_stats();
 					});
 
-			$$('form.ajax-submit.item-list-trade').on('submitError',
+			$$('form.ajax-submit.item-list-form').on('submitError',
 					function(e) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
@@ -39,12 +48,17 @@ myApp.onPageInit('item.list', function(page) {
 						myApp.alert(xhr.responseText, '错误');
 					});
 
+			// 合计金额
+			item_list_stats();
+
 			$$('.close-picker').on('click', function() {
 				$('.page-content .item-list-overlay')
 						.removeClass('item-list-overlay-visible');
 
 				item_list_picker_flag = false;
 			});
+
+			item_list_picker_flag = false;
 		});
 
 function item_list_cart_add(itemId, skuId, quantity) {
@@ -57,7 +71,30 @@ function item_list_cart_add(itemId, skuId, quantity) {
 	$$('#item/list/cart').trigger("submit");
 }
 
-item_list_picker_flag = false;
+var item_list_flag;
+
+function item_list_trade_create() {
+	item_list_flag = "create";
+
+	myApp.showIndicator();
+
+	$$('#item/list/form').attr("action", appUrl + "/trade/create.htm");
+
+	$$('#item/list/form').trigger("submit");
+}
+
+function item_list_cart_remove() {
+	myApp.confirm('清空购物车中所有商品？', '提示', function() {
+				item_list_flag = "remove";
+
+				myApp.showIndicator();
+
+				$$('#item/list/form').attr("action",
+						appUrl + "/cart/remove.htm");
+
+				$$('#item/list/form').trigger("submit");
+			});
+}
 
 function item_list_picker() {
 	if (item_list_picker_flag) {
@@ -73,6 +110,18 @@ function item_list_picker() {
 
 		item_list_picker_flag = true;
 	}
+}
+
+function item_list_stats() {
+	var total = 0;
+
+	$$("input[name='cartIds']").each(function(e) {
+		total = dcmAdd(total, dcmMul(
+						$$("#item/list/price/" + this.value).val(),
+						$$("#item/list/quantity/" + this.value).val()));
+	});
+
+	$$("#item/list/price").html("￥" + Number.format(total, 2));
 }
 
 function item_list_minus(cartId) {
@@ -96,6 +145,7 @@ function item_list_num(cartId, quantity) {
 				quantity : quantity
 			}, function(data) {
 				$$('#item/list/quantity/' + cartId).val(data);
+				item_list_stats();
 			});
 }
 

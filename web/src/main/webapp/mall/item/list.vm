@@ -107,11 +107,11 @@
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-66">
 						<a href="javascript:item_list_picker();" class="button button-big" style="background-color: #ffffff; border: 0;">
-							<span style="font-size: 25px; color: #ff5000;">￥$!formatUtil.getAmountFormat('3')</span>
+							<span style="font-size: 25px; color: #ff5000;" id="item/list/price"></span>
 						</a>
 					</div>
 					<div class="col-33">
-						<a href="javascript:#" class="button button-big" style="background-color: #ff5000; border: 0; border-radius: 0; color: #fff;">立即购买</a>
+						<a href="javascript:item_list_trade_create();" class="button button-big" style="background-color: #ff5000; border: 0; border-radius: 0; color: #fff;">立即购买</a>
 					</div>
 				</div>   
 			</div>
@@ -122,7 +122,7 @@
             <div class="toolbar" style="background: #FFFFFF; border-bottom: 1px solid #e5e5e5;">
             	<div class="toolbar-inner">
                     <div class="left">
-                        <a href="#">
+                        <a href="javascript:item_list_cart_remove();">
 							<i class="iconfont icon-delete" style="font-size: 15px; color: #8e8e93;"></i>
 							<span style="font-size: 14px; color: #8e8e93;">删除全部</span></a>
 					</div>
@@ -132,35 +132,35 @@
             	</div>
             </div>
             <div class="picker-modal-inner" style="max-height: 330px; overflow:auto">
-				<div class="list-block" style="margin-top: 0; margin-bottom: 5px; font-size: 15px;">
-					<ul class="before-height-0 after-height-0">
-						#foreach($cart in $!{cartList})
-						<li>
-        					<div class="item-content">
-        						<div class="item-inner">
-        							<div class="item-title">$!{cart.itemName}</div>
-        							<div class="item-after">
-                                        <span style="padding-top: 3px; padding-right: 10px;">￥$!formatUtil.getAmountFormat($!{cart.price})</span>
-        								<input type="hidden" id="item/list/price/$!{cart.cartId}" value="$!{cart.price}"></input>
-										<div class="quantity">
-        									<button class="minus" type="button"></button>
-                                            <input id="item/list/quantity/$!{cart.cartId}" type="text" class="txt" value="$!{cart.quantity}"></input>
-        									<button class="plus" type="button"></button>
-        									<div class="response-area response-area-minus" onclick="item_list_minus('$!{cart.cartId}');"></div>
-        									<div class="response-area response-area-plus" onclick="item_list_plus('$!{cart.cartId}');"></div>
-        								</div>
-        							</div>
-        						</div>
-                            </div>
-                        </li>
-						#end
-                    </ul>
-                </div>
+				<form id="item/list/form" method="POST" class="ajax-submit item-list-form">
+    				<div class="list-block" style="margin-top: 0; margin-bottom: 5px; font-size: 15px;">
+    					<ul class="before-height-0 after-height-0">
+    						#foreach($cart in $!{cartList})
+    						<li>
+								<div class="item-content">
+    								<input type="hidden" name="cartIds" value="$!{cart.cartId}"></input>
+            						<div class="item-inner">
+            							<div class="item-title">$!{cart.itemName}</div>
+            							<div class="item-after">
+                                            <span style="padding-top: 3px; padding-right: 10px;">￥$!formatUtil.getAmountFormat($!{cart.price})</span>
+            								<input type="hidden" id="item/list/price/$!{cart.cartId}" value="$!{cart.price}"></input>
+    										<div class="quantity">
+            									<button class="minus" type="button"></button>
+                                                <input id="item/list/quantity/$!{cart.cartId}" type="text" class="txt" value="$!{cart.quantity}"></input>
+            									<button class="plus" type="button"></button>
+            									<div class="response-area response-area-minus" onclick="item_list_minus('$!{cart.cartId}');"></div>
+            									<div class="response-area response-area-plus" onclick="item_list_plus('$!{cart.cartId}');"></div>
+            								</div>
+            							</div>
+            						</div>
+                                </div>
+                            </li>
+    						#end
+                        </ul>
+                    </div>
+				</form>
             </div>
         </div>
-		
-		<form id="item/list/trade" action="$!{env.appUrl}/trade/create.htm" method="POST" class="ajax-submit item-list-trade">
-        </form>
 		
 		<form id="item/list/cart" action="$!{env.appUrl}/cart/add.htm" method="POST" class="ajax-submit item-list-cart">
 			<input type="hidden" id="item_list_cart_itemId" name="itemId"></input>
