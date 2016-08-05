@@ -17,7 +17,7 @@
 		AND p.state     = 'U'
 		AND p.item_id   = #{itemId}
 	]]>
-		<if test="shopId != null and shopId != ''">
+		<if test="shopId != null">
 		<![CDATA[ AND t.shop_id = #{shopId} ]]>
 		</if>
 	</select>

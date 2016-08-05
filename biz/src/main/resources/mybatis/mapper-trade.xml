@@ -150,7 +150,7 @@
 		  FROM mall.mall_tb_trade t
 		 WHERE t.trade_no = #{tradeNo}
 	]]>
-		<if test="userId != null and userId != ''">
+		<if test="userId != null">
 		<![CDATA[ AND t.user_id = #{userId} ]]>
 		</if>
 	</select>
@@ -223,13 +223,13 @@
 	<![CDATA[
 		WHERE t.state       = 'U'
 	]]>
-		<if test="tradeId != null and tradeId != ''">
+		<if test="tradeId != null">
 		<![CDATA[ AND t.trade_id = #{tradeId} ]]>
 		</if>
 		<if test="tradeNo != null and tradeNo != ''">
 		<![CDATA[ AND t.trade_no = #{tradeNo} ]]>
 		</if>
-		<if test="userId != null and userId != ''">
+		<if test="userId != null">
 		<![CDATA[ AND t.user_id = #{userId} ]]>
 		</if>
 		<if test="type != null and type != ''">

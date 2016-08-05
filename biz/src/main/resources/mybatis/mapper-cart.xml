@@ -73,13 +73,13 @@
 		 WHERE t.state = 'U'
 		   AND t.user_id = #{userId}
 	]]>
-		<if test="shopId != null and shopId != ''">
+		<if test="shopId != null">
 		<![CDATA[ AND t.shop_id = #{shopId} ]]>
 		</if>
-		<if test="itemId != null and itemId != ''">
+		<if test="itemId != null">
 		<![CDATA[ AND t.item_id = #{itemId} ]]>
 		</if>
-		<if test="skuId != null and skuId != ''">
+		<if test="skuId != null">
 		<![CDATA[ AND t.sku_id  = #{skuId} ]]>
 		</if>
 	<![CDATA[

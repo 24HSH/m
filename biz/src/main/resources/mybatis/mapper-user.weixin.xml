@@ -15,7 +15,7 @@
 		<if test="openId != null and openId != ''">
 		<![CDATA[ AND t.open_id = #{openId} ]]>
 		</if>
-		<if test="userId != null and userId != ''">
+		<if test="userId != null">
 		<![CDATA[ AND t.user_id = #{userId} ]]>
 		</if>
 	</select>

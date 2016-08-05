@@ -13,7 +13,7 @@
 		WHERE t.state = 'U'
 		AND t.shop_id = #{shopId}
 	]]>
-		<if test="specCId != null and specCId != ''">
+		<if test="specCId != null">
 		<![CDATA[ AND t.spec_cid = #{specCId} ]]>
 		</if>
 		<if test="codes != null and codes.length > 0">

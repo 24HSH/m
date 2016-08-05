@@ -18,7 +18,7 @@
 		FROM dms.dms_tb_item t
 		WHERE t.state = 'U'
 	]]>
-		<if test="shopId != null and shopId != ''">
+		<if test="shopId != null">
 		<![CDATA[ AND t.shop_id = #{shopId} ]]>
 		</if>
 		<if test="codes != null and codes.length > 0">
