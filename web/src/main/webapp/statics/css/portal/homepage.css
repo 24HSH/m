@@ -8,6 +8,10 @@
     font-size: 14px;
 }
 
+.notifications.list-block {
+    margin: 0;
+}
+
 .tabbar a.active {
     color: #ff5500;
 }
