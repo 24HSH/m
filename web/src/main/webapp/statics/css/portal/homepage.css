@@ -1,6 +1,7 @@
 /* 整体布局 */
 .navbar .navbar-inner .center {
 	color: #ff5500;
+    font-weight: 400 !important;
 }
 
 .page-content .list-block {
