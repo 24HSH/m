@@ -1,0 +1,99 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"></div>
+		<div class="center sliding">购物车</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="cart.index" class="page">
+		<!-- Scrollable page content-->
+		<div class="page-content" style="padding-bottom: 100px;">
+			#if($!{cartList})
+			<form id="cart/index/form" method="POST" class="ajax-submit cart-index-form">
+    			<div class="list-block media-list" style="font-size: 14px;">
+    				<ul>
+    					<li>
+    						<div class="item-content">
+    							<div class="item-inner" style="display: inherit;">
+    								<div class="item-title" style="font-weight: 400;">店铺：$!{shop.shopName}</div>
+    								<div class="item-after">
+    									<a id="cart/index/edit" href="javascript:cart_index_edit();" style="margin: -10px 0px; padding: 10px 0px;">编辑</a>
+    									<a id="cart/index/edited" href="javascript:cart_index_edited();" style="margin: -10px 0px; padding: 10px 0px; display: none;">完成</a>
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+    					#foreach($cart in $!{cartList})
+    					<li>
+    						<div class="item-content">
+								<label class="label-checkbox">
+                                    <input type="checkbox" name="cartIds" value="$!{cart.cartId}"></input>
+									<div class="item-media" style="width: 28px;"><i class="icon icon-form-checkbox"></i></div>
+								</label>
+								
+								<div class="item-media" style="padding-top: 7px; padding-bottom: 8px;">
+									#if($!{cart.itemFileList.size()} > 0)
+									<img data-src="$!{cart.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
+									#end
+								</div>
+    							<div class="item-inner">
+    								<div class="item-title-row" style="margin-top: 3px;">
+    									<div class="item-title" style="font-weight: 400;">$!{cart.itemName}</div>
+    									<div class="item-after">￥$!formatUtil.getAmountFormat($!{cart.price})</div>
+                                        <input type="hidden" id="cart/index/price/$!{cart.cartId}" value="$!{cart.price}"></input>
+    								</div>
+    								<div class="item-title-row" style="margin-top: 3px;">
+    									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">$!{cart.propertiesName}</div>
+    									<div id="cart/index/quantity/edited/$!{cart.cartId}" class="item-after">×$!{cart.quantity}</div>
+    									<div id="cart/index/quantity/edit" class="item-after" style="display: none;">
+    										<div class="quantity">
+    											<button class="minus" type="button"></button>
+                                                <input id="cart/index/quantity/$!{cart.cartId}" type="text" class="txt" value="$!{cart.quantity}"></input>
+    											<button class="plus" type="button"></button>
+    											<div class="response-area response-area-minus" onclick="cart_index_minus('$!{cart.cartId}');"></div>
+    											<div class="response-area response-area-plus" onclick="cart_index_plus('$!{cart.cartId}');"></div>
+    										</div>
+    									</div>
+    								</div>
+    							</div>
+                            </div>
+    					</li>
+    					#end
+    				</ul>
+    			</div>
+            </form>
+			#else
+			<div class="empty-list">
+				<div class="empty-list-header">
+					<h4>进货车快饿瘪了 T.T</h4>
+					<span>快给我挑点宝贝</span>
+				</div>
+				<div class="empty-list-content">
+				</div>
+			</div>
+			#end
+		</div>
+		
+		#if($!{cartList})
+		<div class="bottom-fix" style="padding:0; margin-bottom: 50px;">
+    		<div class="bottom-cart">
+				<div id="cart/index/select" class="select-all checked">
+					<label class="label-checkbox">
+                        <input id="cart/index/check" type="checkbox"></input>
+						<div class="item-media" onclick="cart_index_check();"><i class="icon icon-form-checkbox" style="margin: -5px 5px 0 0;"></i>全选</div>
+                    </label>
+				</div>
+    			<div id="cart/index/price" class="total-price">合计：<span class="js-total-price">0</span>元</div>
+    			<a id="cart/index/btn/create" href="javascript:cart_index_create();" class="btn btn-orange-dark" data-ignore-cache="true">结算</a>
+				<a id="cart/index/btn/delete" href="javascript:cart_index_remove();" class="btn btn-red" style="display: none;" data-ignore-cache="true">删除</a>
+    		</div>
+        </div>
+		#end
+    </div>
+</div>
