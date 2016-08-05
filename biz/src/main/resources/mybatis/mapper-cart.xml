@@ -53,27 +53,26 @@
 	</update>
 	
 	<select id="getCartCount" parameterType="cart" resultType="java.lang.Integer">
-	<![CDATA[
-		SELECT COUNT(1)
-		  FROM mall.mall_tb_cart t
-	]]>
-		<if test="blockId != null">
-		<![CDATA[ , mdm.mdm_tb_block_shop p ]]>
-		</if>
-	<![CDATA[
-		 WHERE t.STATE = 'U'
-		   AND t.user_id = #{userId}
-	]]>
-		<if test="blockId != null">
+		<if test="shopId != null">
 		<![CDATA[
-			   AND t.shop_id = p.shop_id
-			   AND p.state = 'U'
-			   AND p.block_id = #{blockId}
-			 GROUP BY t.shop_id
+			SELECT COUNT(1)
+			  FROM mall.mall_tb_cart t
+			 WHERE t.STATE = 'U'
+			   AND t.user_id = #{userId}
+			   AND t.shop_id = #{shopId}
 		]]>
 		</if>
-		<if test="shopId != null">
-		<![CDATA[ AND t.shop_id = #{shopId} ]]>
+		<if test="blockId != null">
+		<![CDATA[ 
+			SELECT COUNT(DISTINCT(t.shop_id))
+			  FROM mall.mall_tb_cart t,
+				   mdm.mdm_tb_block_shop p
+			 WHERE t.shop_id = p.shop_id
+			   AND t.STATE = 'U'
+			   AND p.state = 'U'
+			   AND t.user_id = #{userId}
+			   AND p.block_id = #{blockId}
+		]]>
 		</if>
 	</select>
 	
