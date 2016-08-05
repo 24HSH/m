@@ -183,8 +183,8 @@
 						<span class="tabbar-label">购物车</span>
                     </a>
 					<a id="href-5" href="#view-5" class="tab-link">
-                        <i class="icon iconfont icon-my" style="font-size: 25px;"></i>
-						<span class="tabbar-label">会员中心</span>
+                        <i class="icon iconfont icon-emoji" style="font-size: 25px;"></i>
+						<span class="tabbar-label">我的</span>
                     </a>
                 </div>
             </div>

@@ -160,6 +160,26 @@ public class CartServiceImpl implements ICartService {
 	}
 
 	@Override
+	public int getCartCountByBlock(Long userId, Long blockId) {
+		// userId 必填
+		if (userId == null || blockId == null) {
+			return 0;
+		}
+
+		Cart cart = new Cart();
+		cart.setUserId(userId);
+		cart.setBlockId(blockId);
+
+		try {
+			return cartDao.getCartCount(cart);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(cart), e);
+		}
+
+		return 0;
+	}
+
+	@Override
 	public int getCartCountByShop(Long userId, Long shopId) {
 		// userId 必填
 		if (userId == null || shopId == null) {

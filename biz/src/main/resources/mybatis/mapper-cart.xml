@@ -56,10 +56,25 @@
 	<![CDATA[
 		SELECT COUNT(1)
 		  FROM mall.mall_tb_cart t
+	]]>
+		<if test="blockId != null">
+		<![CDATA[ , mdm.mdm_tb_block_shop p ]]>
+		</if>
+	<![CDATA[
 		 WHERE t.STATE = 'U'
 		   AND t.user_id = #{userId}
-		   AND t.shop_id = #{shopId}
 	]]>
+		<if test="blockId != null">
+		<![CDATA[
+			   AND t.shop_id = p.shop_id
+			   AND p.state = 'U'
+			   AND p.block_id = #{blockId}
+			 GROUP BY t.shop_id
+		]]>
+		</if>
+		<if test="shopId != null">
+		<![CDATA[ AND t.shop_id = #{shopId} ]]>
+		</if>
 	</select>
 	
 	<select id="getCartList" parameterType="cart" resultType="cart">

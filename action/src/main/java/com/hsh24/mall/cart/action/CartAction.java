@@ -48,9 +48,14 @@ public class CartAction extends BaseAction {
 
 	private String quantity;
 
+	/**
+	 * 统计某一个 block 购物车.
+	 * 
+	 * @return
+	 */
 	public String stats() {
-		this.setResourceResult(String.valueOf(cartService.getCartCountByShop(this.getUser().getUserId(), this.getShop()
-			.getShopId())));
+		this.setResourceResult(String.valueOf(cartService.getCartCountByBlock(this.getUser().getUserId(), this
+			.getAddress().getBlockId())));
 
 		return RESOURCE_RESULT;
 	}
