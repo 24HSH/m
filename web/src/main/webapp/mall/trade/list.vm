@@ -19,7 +19,7 @@
 				<div class="pull-to-refresh-arrow"></div>
 			</div>
 			
-			<div class="list-block" style="font-size: 15px;">
+			<div class="list-block">
 				<ul class="page-settings">
 					<li class="row" style="text-align: center;">
 						<a href="javascript:trade_list('topay');" class="col-25 item-link" style="width: 25%;">
@@ -62,7 +62,7 @@
 			
 		#if($!{tradeList})
 			#foreach($trade in $!{tradeList})
-			<div class="list-block media-list" style="font-size: 14px;">
+			<div class="list-block media-list">
 				<ul>
 					<li>
 						<div class="item-content">

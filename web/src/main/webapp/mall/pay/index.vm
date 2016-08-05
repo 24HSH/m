@@ -52,7 +52,7 @@
 					</li>
 				</ul>
             </div>
-			<div class="list-block media-list" style="font-size: 15px;">
+			<div class="list-block media-list">
 				<ul>
 					<li>
 						<div class="item-content">
@@ -113,7 +113,7 @@
 					</li>
 				</ul>
             </div>
-			<div class="list-block" style="font-size: 15px;">
+			<div class="list-block">
 				<ul>
 					<li>
 						#if($!{trade.type} == 'check')
@@ -133,7 +133,7 @@
 					</li>
 				</ul>
             </div>
-			<div class="list-block" style="font-size: 15px;">
+			<div class="list-block">
 				<ul>
 					<li>
 						<div class="item-content">
@@ -150,7 +150,7 @@
 					</li>
 				</ul>
             </div>
-			<div class="list-block" style="font-size: 15px;">
+			<div class="list-block">
 				<ul>
 					<li>
 						<div class="item-content">

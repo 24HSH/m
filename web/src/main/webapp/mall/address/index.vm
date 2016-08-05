@@ -41,7 +41,7 @@
                 			
                 		<!-- Scrollable page content-->
                 		<div class="page-content">
-                			<div class="list-block media-list list-block-search searchbar-found" style="font-size: 14px;">
+                			<div class="list-block media-list list-block-search searchbar-found">
                 				<ul>
 									#foreach($address in $!{addressList})
 									<li>

@@ -14,7 +14,7 @@
 	<div data-page="item.cat" class="page">
 		<!-- Scrollable page content-->
 		<div class="page-content">
-			<div class="list-block" style="font-size: 15px;">
+			<div class="list-block">
 				<ul>
 					<li>
 						<a href="#" class="item-link item-content close-panel">
