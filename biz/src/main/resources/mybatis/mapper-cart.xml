@@ -72,8 +72,10 @@
 		  FROM mall.mall_tb_cart t
 		 WHERE t.state = 'U'
 		   AND t.user_id = #{userId}
-		   AND t.shop_id = #{shopId}
 	]]>
+		<if test="shopId != null and shopId != ''">
+		<![CDATA[ AND t.shop_id = #{shopId} ]]>
+		</if>
 		<if test="itemId != null and itemId != ''">
 		<![CDATA[ AND t.item_id = #{itemId} ]]>
 		</if>

@@ -17,8 +17,10 @@
 		  t.remark
 		FROM dms.dms_tb_item t
 		WHERE t.state = 'U'
-		AND t.shop_id = #{shopId}
 	]]>
+		<if test="shopId != null and shopId != ''">
+		<![CDATA[ AND t.shop_id = #{shopId} ]]>
+		</if>
 		<if test="codes != null and codes.length > 0">
 		<![CDATA[ AND t.item_id IN ]]>
 			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>

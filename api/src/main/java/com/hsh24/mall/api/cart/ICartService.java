@@ -33,7 +33,15 @@ public interface ICartService {
 	 * @param shopId
 	 * @return
 	 */
-	int getCartCount(Long userId, Long shopId);
+	int getCartCountByShop(Long userId, Long shopId);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param blockId
+	 * @return
+	 */
+	List<Cart> getCartListByBlock(Long userId, Long blockId);
 
 	/**
 	 * 获取用户购物车.
@@ -42,7 +50,7 @@ public interface ICartService {
 	 * @param shopId
 	 * @return
 	 */
-	List<Cart> getCartList(Long userId, Long shopId);
+	List<Cart> getCartListByShop(Long userId, Long shopId);
 
 	/**
 	 * 移除购物车.

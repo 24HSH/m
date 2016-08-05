@@ -93,6 +93,11 @@ public class Cart extends SearchInfo {
 	 */
 	private BigDecimal points;
 
+	/**
+	 * 所属块.
+	 */
+	private Long blockId;
+
 	public Long getCartId() {
 		return cartId;
 	}
@@ -211,6 +216,14 @@ public class Cart extends SearchInfo {
 
 	public void setPoints(BigDecimal points) {
 		this.points = points;
+	}
+
+	public Long getBlockId() {
+		return blockId;
+	}
+
+	public void setBlockId(Long blockId) {
+		this.blockId = blockId;
 	}
 
 }

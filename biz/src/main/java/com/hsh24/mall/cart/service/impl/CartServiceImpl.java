@@ -160,7 +160,7 @@ public class CartServiceImpl implements ICartService {
 	}
 
 	@Override
-	public int getCartCount(Long userId, Long shopId) {
+	public int getCartCountByShop(Long userId, Long shopId) {
 		// userId 必填
 		if (userId == null || shopId == null) {
 			return 0;
@@ -180,7 +180,27 @@ public class CartServiceImpl implements ICartService {
 	}
 
 	@Override
-	public List<Cart> getCartList(Long userId, Long shopId) {
+	public List<Cart> getCartListByBlock(Long userId, Long blockId) {
+		// userId 必填
+		if (userId == null || blockId == null) {
+			return null;
+		}
+
+		Cart cart = new Cart();
+		cart.setUserId(userId);
+		cart.setBlockId(blockId);
+
+		List<Cart> cartList = getCartList(cart);
+
+		if (cartList == null || cartList.size() == 0) {
+			return null;
+		}
+
+		return getCartList(null, cartList);
+	}
+
+	@Override
+	public List<Cart> getCartListByShop(Long userId, Long shopId) {
 		// userId 必填
 		if (userId == null || shopId == null) {
 			return null;
@@ -196,6 +216,10 @@ public class CartServiceImpl implements ICartService {
 			return null;
 		}
 
+		return getCartList(shopId, cartList);
+	}
+
+	private List<Cart> getCartList(Long shopId, List<Cart> cartList) {
 		// 商品信息
 		String[] itemId = new String[cartList.size()];
 		int i = 0;

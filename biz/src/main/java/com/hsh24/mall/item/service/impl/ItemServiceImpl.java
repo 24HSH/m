@@ -241,7 +241,7 @@ public class ItemServiceImpl implements IItemService {
 
 	@Override
 	public Map<Long, Item> getItem(Long shopId, String[] itemId) {
-		if (shopId == null || itemId == null || itemId.length == 0) {
+		if (itemId == null || itemId.length == 0) {
 			return null;
 		}
 

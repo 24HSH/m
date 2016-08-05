@@ -47,7 +47,7 @@ public class ItemAction extends BaseAction {
 
 		itemList = itemService.getItemList(shopId, new Item());
 
-		cartList = cartService.getCartList(this.getUser().getUserId(), shopId);
+		cartList = cartService.getCartListByShop(this.getUser().getUserId(), shopId);
 
 		return SUCCESS;
 	}

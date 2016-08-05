@@ -15,9 +15,11 @@
 		WHERE t.file_id = p.file_id
 		AND t.state     = 'U'
 		AND p.state     = 'U'
-		AND t.shop_id   = #{shopId}
 		AND p.item_id   = #{itemId}
 	]]>
+		<if test="shopId != null and shopId != ''">
+		<![CDATA[ AND t.shop_id = #{shopId} ]]>
+		</if>
 	</select>
 	
 </mapper>

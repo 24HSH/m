@@ -43,7 +43,7 @@ public class CartAction extends BaseAction {
 	private String quantity;
 
 	public String stats() {
-		this.setResourceResult(String.valueOf(cartService.getCartCount(this.getUser().getUserId(), this.getShop()
+		this.setResourceResult(String.valueOf(cartService.getCartCountByShop(this.getUser().getUserId(), this.getShop()
 			.getShopId())));
 
 		return RESOURCE_RESULT;
@@ -54,7 +54,7 @@ public class CartAction extends BaseAction {
 	 * @return
 	 */
 	public String index() {
-		cartList = cartService.getCartList(this.getUser().getUserId(), this.getShop().getShopId());
+		cartList = cartService.getCartListByShop(this.getUser().getUserId(), this.getShop().getShopId());
 
 		return SUCCESS;
 	}
