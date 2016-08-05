@@ -9,12 +9,25 @@
 		SELECT t.shop_id AS shopId,
 			   t.shop_name AS shopName,
 			   t.region_id AS regionId
-		  FROM mdm.mdm_tb_shop t, mdm.mdm_tb_block_shop p
-		 WHERE t.shop_id = p.shop_id
-		   AND t.state = 'U'
-		   AND p.state = 'U'
-		   AND p.block_id = #{blockId}
+		  FROM mdm.mdm_tb_shop t
 	]]>
+		<if test="blockId != null">
+		<![CDATA[ , mdm.mdm_tb_block_shop p ]]>
+		</if>
+	<![CDATA[
+		 WHERE t.state = 'U'
+	]]>
+		<if test="blockId != null">
+		<![CDATA[
+			AND t.shop_id  = p.shop_id
+			AND p.state    = 'U'
+			AND p.block_id = #{blockId}
+		]]>
+		</if>
+		<if test="codes != null and codes.length > 0">
+		<![CDATA[ AND t.shop_id IN ]]>
+			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
+		</if>
 	</select>
 	
 	<select id="getShop" parameterType="shop" resultType="shop">

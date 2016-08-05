@@ -1,5 +1,6 @@
 package com.hsh24.mall.cart.action;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 
 import com.hsh24.mall.api.cart.ICartService;
 import com.hsh24.mall.api.cart.bo.Cart;
+import com.hsh24.mall.api.shop.IShopService;
+import com.hsh24.mall.api.shop.bo.Shop;
 import com.hsh24.mall.framework.action.BaseAction;
 import com.hsh24.mall.framework.bo.BooleanResult;
 
@@ -27,7 +30,10 @@ public class CartAction extends BaseAction {
 	@Resource
 	private ICartService cartService;
 
-	private List<Cart> cartList;
+	@Resource
+	private IShopService shopService;
+
+	private List<Shop> shopList;
 
 	private String itemId;
 
@@ -54,7 +60,37 @@ public class CartAction extends BaseAction {
 	 * @return
 	 */
 	public String index() {
-		cartList = cartService.getCartListByShop(this.getUser().getUserId(), this.getShop().getShopId());
+		List<Cart> cartList =
+			cartService.getCartListByBlock(this.getUser().getUserId(), this.getAddress().getBlockId());
+
+		if (cartList == null || cartList.size() == 0) {
+			return SUCCESS;
+		}
+
+		String[] sohpId = new String[cartList.size()];
+		int i = 0;
+		for (Cart cart : cartList) {
+			sohpId[i++] = cart.getShopId().toString();
+		}
+
+		shopList = shopService.getShopList(sohpId);
+
+		if (shopList == null || shopList.size() == 0) {
+			return SUCCESS;
+		}
+
+		for (Shop shop : shopList) {
+			Long shopId = shop.getShopId();
+			List<Cart> list = new ArrayList<Cart>();
+
+			for (Cart cart : cartList) {
+				if (shopId.equals(cart.getShopId())) {
+					list.add(cart);
+				}
+			}
+
+			shop.setCartList(list);
+		}
 
 		return SUCCESS;
 	}
@@ -115,12 +151,12 @@ public class CartAction extends BaseAction {
 		return RESOURCE_RESULT;
 	}
 
-	public List<Cart> getCartList() {
-		return cartList;
+	public List<Shop> getShopList() {
+		return shopList;
 	}
 
-	public void setCartList(List<Cart> cartList) {
-		this.cartList = cartList;
+	public void setShopList(List<Shop> shopList) {
+		this.shopList = shopList;
 	}
 
 	public String getItemId() {

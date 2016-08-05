@@ -52,6 +52,25 @@ public class ShopServiceImpl implements IShopService {
 	}
 
 	@Override
+	public List<Shop> getShopList(String[] shopId) {
+		if (shopId == null || shopId.length == 0) {
+			return null;
+		}
+
+		Shop shop = new Shop();
+		shop.setCodes(shopId);
+
+		try {
+			return shopDao.getShopList(shop);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(shop), e);
+
+		}
+
+		return null;
+	}
+
+	@Override
 	public Shop getShop(String shopId) {
 		if (StringUtils.isBlank(shopId)) {
 			return null;

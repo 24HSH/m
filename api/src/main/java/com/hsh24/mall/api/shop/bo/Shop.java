@@ -1,13 +1,16 @@
 package com.hsh24.mall.api.shop.bo;
 
-import java.io.Serializable;
+import java.util.List;
+
+import com.hsh24.mall.api.cart.bo.Cart;
+import com.hsh24.mall.framework.bo.SearchInfo;
 
 /**
  * 
  * @author JiakunXu
  * 
  */
-public class Shop implements Serializable {
+public class Shop extends SearchInfo {
 
 	private static final long serialVersionUID = 6554392084181055320L;
 
@@ -23,6 +26,8 @@ public class Shop implements Serializable {
 	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
 
 	private Long blockId;
+
+	private List<Cart> cartList;
 
 	public Long getShopId() {
 		return shopId;
@@ -54,6 +59,14 @@ public class Shop implements Serializable {
 
 	public void setBlockId(Long blockId) {
 		this.blockId = blockId;
+	}
+
+	public List<Cart> getCartList() {
+		return cartList;
+	}
+
+	public void setCartList(List<Cart> cartList) {
+		this.cartList = cartList;
 	}
 
 }

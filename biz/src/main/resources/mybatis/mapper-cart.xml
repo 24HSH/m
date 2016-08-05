@@ -65,14 +65,27 @@
 	<select id="getCartList" parameterType="cart" resultType="cart">
 	<![CDATA[
 		SELECT t.cart_id AS cartId,
+			   t.shop_id AS shopId,
 			   t.item_id AS itemId,
 			   t.sku_id AS skuId,
 			   t.points_id AS pointsId,
 			   t.quantity
 		  FROM mall.mall_tb_cart t
+	]]>
+		<if test="blockId != null">
+		<![CDATA[ , mdm.mdm_tb_block_shop p ]]>
+		</if>
+	<![CDATA[
 		 WHERE t.state = 'U'
 		   AND t.user_id = #{userId}
 	]]>
+		<if test="blockId != null">
+		<![CDATA[
+			AND t.shop_id  = p.shop_id
+			AND p.state    = 'U'
+			AND p.block_id = #{blockId}
+		]]>
+		</if>
 		<if test="shopId != null">
 		<![CDATA[ AND t.shop_id = #{shopId} ]]>
 		</if>

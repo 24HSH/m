@@ -23,6 +23,13 @@ public interface IShopService {
 	 * @param shopId
 	 * @return
 	 */
+	List<Shop> getShopList(String[] shopId);
+
+	/**
+	 * 
+	 * @param shopId
+	 * @return
+	 */
 	Shop getShop(String shopId);
 
 }

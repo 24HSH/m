@@ -3,7 +3,7 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="left"></div>
-		<div class="center sliding">购物车</div>
+		<div class="center sliding">$!{address.addName}（当前地址）</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
 		</div>
@@ -13,68 +13,49 @@
 	<!-- Page, data-page contains page name-->
 	<div data-page="cart.index" class="page">
 		<!-- Scrollable page content-->
-		<div class="page-content" style="padding-bottom: 100px;">
-			#if($!{cartList})
+		<div class="page-content">
+			#if($!{shopList})
 			<div class="list-block cards-list media-list">
 				#foreach($shop in $!{shopList})
 				<ul>
 					<li class="card" style="border-radius: 5px; margin: 10px 5px;">
-						<span class="bw"></span>
 						<div class="card-content">
 							<div class="card-content-inner" style="padding: 0;">
 								<div class="item-content">
 									<div class="item-media">
-        								<img data-src="$!{env.imgUrl}/image/portal/logo.jpg" class="lazy" style="width: 50px; height: 50px;  border-radius: 5px;"></img>
+        								<img data-src="$!{env.imgUrl}/image/portal/logo.jpg" class="lazy" style="width: 40px; height: 40px;  border-radius: 5px;"></img>
         							</div>
         							<a class="item-inner" href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
-        								<div class="item-title-row" style="margin-top: 3px;">
-                                            <div class="item-title" style="font-weight: 400;"><span class="little-tag">新店</span>$!{shop.shopName}</div>
+        								<div class="item-title-row" style="margin-top: 2px;">
+                                            <div class="item-title" style="font-weight: 400;">$!{shop.shopName}</div>
         								</div>
-        								<div class="item-title-row" style="margin-top: 3px;">
-        									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">月售199单</div>
+        								<div class="item-title-row" style="margin-top: 2px;">
+        									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">$!{shop.cartList.size()}件商品 | ￥1.00</div>
         								</div>
                                     </a>
                                 </div>
 							</div>
 						</div>
 						<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
-                            
+							<div class="a7w">
+								<ul style="padding-left: 0; width: $!{velocityMath.mul($!{shop.cartList.size()},60)}px;">
+                                    #foreach($cart in $!{shop.cartList})
+                					<li>
+										<a href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
+            								#if($!{cart.itemFileList.size()} > 0)
+            								<img data-src="$!{cart.itemFileList.get(0).filePath}" class="lazy"></img>
+    										#end
+                                            <em>￥$!{cart.price}</em>
+                                        </a>
+                					</li>
+									#end
+                                </ul>
+							</div>
 						</div>
 					</li>
 				</ul>
 				#end
             </div>
-			<div class="list-block media-list" style="font-size: 14px;">
-				<ul>
-					<li>
-						<div class="item-content">
-							<div class="item-inner" style="display: inherit;">
-								<div class="item-title" style="font-weight: 400;">店铺：$!{shop.shopName}</div>
-								<div class="item-after">
-									<a id="cart/index/edit" href="javascript:cart_index_edit();" style="margin: -10px 0px; padding: 10px 0px;">编辑</a>
-									<a id="cart/index/edited" href="javascript:cart_index_edited();" style="margin: -10px 0px; padding: 10px 0px; display: none;">完成</a>
-								</div>
-							</div>
-						</div>
-					</li>
-					#foreach($cart in $!{cartList})
-					<li>
-						<div class="item-content">
-							<label class="label-checkbox">
-                                <input type="checkbox" name="cartIds" value="$!{cart.cartId}"></input>
-								<div class="item-media" style="width: 28px;"><i class="icon icon-form-checkbox"></i></div>
-							</label>
-							
-							<div class="item-media" style="padding-top: 7px; padding-bottom: 8px;">
-								#if($!{cart.itemFileList.size()} > 0)
-								<img data-src="$!{cart.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
-								#end
-							</div>
-                        </div>
-					</li>
-					#end
-				</ul>
-			</div>
 			#else
 			<div class="empty-list">
 				<div class="empty-list-header">
@@ -86,6 +67,5 @@
 			</div>
 			#end
 		</div>
-		
     </div>
 </div>
