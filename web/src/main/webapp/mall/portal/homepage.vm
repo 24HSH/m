@@ -118,7 +118,7 @@
                                                     </a>
 													<div class="item-after">
 														<a href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
-															<i class="iconfont icon-cart" style="font-size: 25px; color: #FF5500;"></i>
+															<i class="iconfont icon-cart" style="font-size: 30px; color: #FF5500;"></i>
 														</a>
 													</div>
                                                 </div>

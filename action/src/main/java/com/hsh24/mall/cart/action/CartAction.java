@@ -94,10 +94,10 @@ public class CartAction extends BaseAction {
 			for (Cart cart : cartList) {
 				if (shopId.equals(cart.getShopId())) {
 					list.add(cart);
-				}
 
-				quantity += cart.getQuantity();
-				price = price.add(cart.getPrice().multiply(new BigDecimal(cart.getQuantity())));
+					quantity += cart.getQuantity();
+					price = price.add(cart.getPrice().multiply(new BigDecimal(cart.getQuantity())));
+				}
 			}
 
 			shop.setQuantity(quantity);
