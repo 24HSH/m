@@ -624,7 +624,7 @@ a.component.type3 img {
     display: inline-block;
     vertical-align: top;
     width: 53px;
-    padding-right: 10px;
+    margin-right: 5px;
     text-align: center;
     font-size: 12px;
     line-height: 30px;
@@ -644,6 +644,21 @@ a.component.type3 img {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.a7w i {
+    position: absolute;
+    right: -6px;
+    top: -5px;
+    min-width: 15px;
+    height: 15px;
+    text-align: center;
+    color: #ff5757;
+    font-size: 10px;
+    line-height: 15px;
+    border: 1px solid #ff5757;
+    border-radius: 15px;
+    background-color: #fff;
 }
 
 

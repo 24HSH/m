@@ -38,15 +38,18 @@
 						</div>
 						<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
 							<div class="a7w">
-								<ul style="padding-left: 0; width: $!{velocityMath.mul($!{shop.cartList.size()},60)}px;">
+								<ul style="padding-left: 0; width: $!{velocityMath.mul($!{shop.cartList.size()},63)}px;">
                                     #foreach($cart in $!{shop.cartList})
                 					<li>
 										<a href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
             								#if($!{cart.itemFileList.size()} > 0)
             								<img data-src="$!{cart.itemFileList.get(0).filePath}" class="lazy"></img>
     										#end
-                                            <em>￥$!{cart.price}</em>
                                         </a>
+                                        <em>￥$!{cart.price}</em>
+										#if($!{cart.quantity} > 1)
+											<i>$!{cart.quantity}</i>
+										#end
                 					</li>
 									#end
                                 </ul>
