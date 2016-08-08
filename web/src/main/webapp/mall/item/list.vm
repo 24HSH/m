@@ -142,7 +142,7 @@
             						<div class="item-inner">
             							<div class="item-title">$!{cart.itemName}</div>
             							<div class="item-after">
-                                            <span style="padding-top: 3px; padding-right: 10px; color: #ff5000;">￥$!formatUtil.getAmountFormat($!{cart.price})</span>
+                                            <span style="padding-top: 3px; padding-right: 10px; color: #ff5000;">￥$!{cart.price}</span>
             								<input type="hidden" id="item/list/price/$!{cart.cartId}" value="$!{cart.price}" />
     										<div class="quantity">
                                                 <button class="minus" type="button"></button>
