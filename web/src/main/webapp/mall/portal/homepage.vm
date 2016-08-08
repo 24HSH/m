@@ -116,6 +116,11 @@
                         									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">月售199单</div>
                         								</div>
                                                     </a>
+													<div class="item-after">
+														<a href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
+															<i class="iconfont icon-cart" style="font-size: 25px; color: #FF5500;"></i>
+														</a>
+													</div>
                                                 </div>
 											</div>
 										</div>
