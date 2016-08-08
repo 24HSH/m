@@ -26,7 +26,7 @@
 							#if("topay" == $!{type})
 							<h3 id="trade/list/topay" style="color: #FF5500;">0</h3>
 							#else
-							<h3 id="trade/list/topay" style="color: #8e8e93;">0</h3>
+							<h3 id="trade/list/topay" class="color-gray">0</h3>
 							#end
 							<div class="color-gray">待付款</div>
                         </a>
@@ -34,7 +34,7 @@
 							#if("tosend" == $!{type})
 							<h3 id="trade/list/tosend" style="color: #FF5500;">0</h3>
 							#else
-							<h3 id="trade/list/tosend" style="color: #8e8e93;">0</h3>
+							<h3 id="trade/list/tosend" class="color-gray">0</h3>
 							#end
 							<div class="color-gray">待发货</div>
                         </a>
@@ -42,7 +42,7 @@
 							#if("send" == $!{type})
 							<h3 id="trade/list/send" style="color: #FF5500;">0</h3>
 							#else
-							<h3 id="trade/list/send" style="color: #8e8e93;">0</h3>
+							<h3 id="trade/list/send" class="color-gray">0</h3>
 							#end
 							<div class="color-gray">已发货</div>
                         </a>
@@ -50,7 +50,7 @@
 							#if("sign" == $!{type})
 							<h3 id="trade/list/sign" style="color: #FF5500;">0</h3>
 							#else
-							<h3 id="trade/list/sign" style="color: #8e8e93;">0</h3>
+							<h3 id="trade/list/sign" class="color-gray">0</h3>
 							#end
 							<div class="color-gray">已完成</div>
                         </a>
@@ -88,7 +88,7 @@
 									<div class="item-after">￥$!formatUtil.getAmountFormat($!{order.price})</div>
 								</div>
 								<div class="item-title-row" style="margin-top: 3px;">
-									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">$!{order.propertiesName}</div>
+									<div class="item-subtitle color-gray" style="font-size: 12px;">$!{order.propertiesName}</div>
 									<div class="item-after">×$!{order.quantity}</div>
 								</div>
 							</div>

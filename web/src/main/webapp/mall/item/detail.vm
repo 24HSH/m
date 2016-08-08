@@ -100,7 +100,7 @@
                     <div class="left">$!{item.itemName}</div>
             		<div class="right">
 						<span style="margin-right: 13px; color: #FF5500;" id="item/detail/price">￥$!{item.priceRange}</span>
-						<a href="#" class="close-picker"><i class="iconfont icon-close" style="font-size: 20px; color: #8e8e93;"></i></a>
+						<a href="#" class="close-picker"><i class="iconfont icon-close color-gray" style="font-size: 20px;"></i></a>
 					</div>
             	</div>
             </div>

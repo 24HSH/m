@@ -52,7 +52,7 @@
                 									<div class="item-title" style="font-weight: 400;">$!{address.addName}</div>
                 								</div>
                 								<div class="item-title-row" style="margin-top: 3px;">
-                									<div class="item-subtitle" style="font-size: 12px; color: #8e8e93;">$!{address.address}</div>
+                									<div class="item-subtitle color-gray" style="font-size: 12px;">$!{address.address}</div>
                 								</div>
                                             </div>
                 						</a>

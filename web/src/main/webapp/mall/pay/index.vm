@@ -73,7 +73,7 @@
 									<div class="item-after">￥$!formatUtil.getAmountFormat($!{order.price})</div>
 								</div>
 								<div class="item-title-row" style="margin-top: 3px;">
-									<div class="item-subtitle" style="font-size: 13px; color: #8e8e93;">$!{order.propertiesName}</div>
+									<div class="item-subtitle color-gray" style="font-size: 13px;">$!{order.propertiesName}</div>
 									<div class="item-after">×$!{order.quantity}</div>
 								</div>
 							</div>
