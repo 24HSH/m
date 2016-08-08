@@ -83,38 +83,33 @@ public interface ITradeService {
 	BooleanResult createTrade(Long userId, Long shopId, String[] cartId);
 
 	/**
-	 * 买家查询某店铺交易.
+	 * 买家查询交易.
 	 * 
 	 * @param userId
-	 *            必填.
-	 * @param shopId
 	 *            必填.
 	 * @param type
 	 * @return
 	 */
-	int getTradeCount(Long userId, Long shopId, String[] type);
+	int getTradeCount(Long userId, String[] type);
 
 	/**
-	 * 买家查询某店铺交易.
+	 * 买家查询交易.
 	 * 
 	 * @param userId
-	 *            必填.
-	 * @param shopId
 	 *            必填.
 	 * @param type
 	 * @return
 	 */
-	List<Trade> getTradeList(Long userId, Long shopId, String[] type);
+	List<Trade> getTradeList(Long userId, String[] type);
 
 	/**
 	 * 买家查看订单.
 	 * 
 	 * @param userId
-	 * @param shopId
 	 * @param tradeNo
 	 * @return
 	 */
-	Trade getTrade(Long userId, Long shopId, String tradeNo);
+	Trade getTrade(Long userId, String tradeNo);
 
 	/**
 	 * 
@@ -134,34 +129,31 @@ public interface ITradeService {
 	 * @param tradeNo
 	 * @return
 	 */
-	BooleanResult cancelTrade(Long userId, Long shopId, String tradeNo);
+	BooleanResult cancelTrade(Long userId, String tradeNo);
 
 	/**
 	 * 临时订单 -> 待付款订单.
 	 * 
 	 * @param userId
-	 * @param shopId
 	 * @param tradeNo
 	 * @param remark
 	 * @return
 	 */
-	BooleanResult topayTrade(Long userId, Long shopId, String tradeNo, String remark);
+	BooleanResult topayTrade(Long userId, String tradeNo, String remark);
 
 	/**
 	 * 获取某一交易某一订单明细信息(用于退款).
 	 * 
 	 * @param userId
-	 * @param shopId
 	 * @param tradeNo
 	 * @param orderId
 	 * @return
 	 */
-	Trade getOrder(Long userId, Long shopId, String tradeNo, String orderId);
+	Trade getOrder(Long userId, String tradeNo, String orderId);
 
 	/**
 	 * 退款申请.
 	 * 
-	 * @param shopId
 	 * @param tradeNo
 	 * @param refundNo
 	 * @param orderId
@@ -169,17 +161,16 @@ public interface ITradeService {
 	 * @param modifyUser
 	 * @return
 	 */
-	BooleanResult createOrderRefund(Long shopId, String tradeNo, String refundNo, Long orderId,
-		OrderRefund orderRefund, String modifyUser);
+	BooleanResult createOrderRefund(String tradeNo, String refundNo, Long orderId, OrderRefund orderRefund,
+		String modifyUser);
 
 	/**
 	 * 确认收货.
 	 * 
 	 * @param userId
-	 * @param shopId
 	 * @param tradeNo
 	 * @return
 	 */
-	BooleanResult signTrade(Long userId, Long shopId, String tradeNo);
+	BooleanResult signTrade(Long userId, String tradeNo);
 
 }

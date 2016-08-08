@@ -75,18 +75,12 @@ public class PayServiceImpl implements IPayService {
 	private IUserWeixinService userWeixinService;
 
 	@Override
-	public BooleanResult pay(final Long userId, final Long shopId, final String tradeNo, final String remark,
-		String payType, String ip) {
+	public BooleanResult pay(final Long userId, final String tradeNo, final String remark, String payType, String ip) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
 		if (userId == null) {
 			result.setCode("用户信息不能为空");
-			return result;
-		}
-
-		if (shopId == null) {
-			result.setCode("店铺信息不能为空");
 			return result;
 		}
 
@@ -116,7 +110,7 @@ public class PayServiceImpl implements IPayService {
 		}
 
 		// 0. 查询交易订单
-		Trade trade = tradeService.getTrade(userId, shopId, tradeNo);
+		Trade trade = tradeService.getTrade(userId, tradeNo);
 		if (trade == null) {
 			result.setCode("当前订单不存在");
 
@@ -140,7 +134,7 @@ public class PayServiceImpl implements IPayService {
 		// 2. 临时订单
 		if (ITradeService.CHECK.equals(type)) {
 			// 3. 判断库存
-			List<Order> orderList = orderService.getOrderList(userId, shopId, trade.getTradeId());
+			List<Order> orderList = orderService.getOrderList(userId, trade.getTradeId());
 			if (orderList == null || orderList.size() == 0) {
 				result.setCode("当前订单明细不存在");
 
@@ -223,7 +217,7 @@ public class PayServiceImpl implements IPayService {
 						}
 
 						// 4.1.1.2 更新 还有 sku 的 item 合计库存数
-						res0 = itemService.updateItemStock(shopId, itemId, modifyUser);
+						res0 = itemService.updateItemStock(itemId, modifyUser);
 						if (!res0.getResult()) {
 							ts.setRollbackOnly();
 
@@ -234,7 +228,7 @@ public class PayServiceImpl implements IPayService {
 					// 4.1.2 不存在 item_sku
 					if (itemList != null && itemList.size() > 0) {
 						// 4.1.2.1 更新 item stock
-						res0 = itemService.updateItemStock(shopId, itemList, modifyUser);
+						res0 = itemService.updateItemStock(itemList, modifyUser);
 						if (!res0.getResult()) {
 							ts.setRollbackOnly();
 
@@ -243,7 +237,7 @@ public class PayServiceImpl implements IPayService {
 					}
 
 					// 4.2 修改交易状态 -> topay
-					res0 = tradeService.topayTrade(userId, shopId, tradeNo, remark);
+					res0 = tradeService.topayTrade(userId, tradeNo, remark);
 					if (!res0.getResult()) {
 						ts.setRollbackOnly();
 
@@ -252,7 +246,7 @@ public class PayServiceImpl implements IPayService {
 
 					// 4.3. 修改购物车状态
 					if (cartId != null && cartId.length > 0) {
-						res0 = cartService.finishCart(userId, shopId, cartId);
+						res0 = cartService.finishCart(userId, cartId);
 						if (!res0.getResult()) {
 							ts.setRollbackOnly();
 
@@ -307,18 +301,12 @@ public class PayServiceImpl implements IPayService {
 	}
 
 	@Override
-	public BooleanResult refund(final Long userId, final Long shopId, final String tradeNo, String orderId,
-		final OrderRefund orderRefund) {
+	public BooleanResult refund(final Long userId, final String tradeNo, String orderId, final OrderRefund orderRefund) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
 		if (userId == null) {
 			result.setCode("用户信息不能为空");
-			return result;
-		}
-
-		if (shopId == null) {
-			result.setCode("店铺信息不能为空");
 			return result;
 		}
 
@@ -355,7 +343,7 @@ public class PayServiceImpl implements IPayService {
 		}
 
 		// 0. 查询交易订单
-		final Trade trade = tradeService.getTrade(userId, shopId, tradeNo);
+		final Trade trade = tradeService.getTrade(userId, tradeNo);
 		if (trade == null) {
 			result.setCode("当前订单不存在");
 
@@ -386,7 +374,7 @@ public class PayServiceImpl implements IPayService {
 			result = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
 				public BooleanResult doInTransaction(TransactionStatus ts) {
 					BooleanResult res0 =
-						tradeService.createOrderRefund(shopId, trade.getTradeNo(), refundNo, ordreId, orderRefund,
+						tradeService.createOrderRefund(trade.getTradeNo(), refundNo, ordreId, orderRefund,
 							userId.toString());
 
 					if (!res0.getResult()) {

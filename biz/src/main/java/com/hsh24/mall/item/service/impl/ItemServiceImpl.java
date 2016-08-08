@@ -334,14 +334,9 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	@Override
-	public BooleanResult updateItemStock(Long shopId, String[] itemId, String modifyUser) {
+	public BooleanResult updateItemStock(String[] itemId, String modifyUser) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
-
-		if (shopId == null) {
-			result.setCode("店铺信息不能为空");
-			return result;
-		}
 
 		if (itemId == null || itemId.length == 0) {
 			result.setCode("商品信息不能为空");
@@ -354,10 +349,10 @@ public class ItemServiceImpl implements IItemService {
 		}
 
 		try {
-			itemDao.updateItem1(shopId, itemId, modifyUser);
+			itemDao.updateItem1(itemId, modifyUser);
 			result.setResult(true);
 		} catch (Exception e) {
-			logger.error("shopId:" + shopId + LogUtil.parserBean(itemId) + "modifyUser:" + modifyUser, e);
+			logger.error(LogUtil.parserBean(itemId) + "modifyUser:" + modifyUser, e);
 
 			result.setCode("更新商品库存信息失败");
 			return result;
@@ -367,14 +362,9 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	@Override
-	public BooleanResult updateItemStock(final Long shopId, final List<Item> itemList, final String modifyUser) {
+	public BooleanResult updateItemStock(final List<Item> itemList, final String modifyUser) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
-
-		if (shopId == null) {
-			result.setCode("店铺信息不能为空");
-			return result;
-		}
 
 		if (itemList == null || itemList.size() == 0) {
 			result.setCode("商品信息不能为空");
@@ -393,7 +383,6 @@ public class ItemServiceImpl implements IItemService {
 
 				for (Item item : itemList) {
 					try {
-						item.setShopId(shopId);
 						item.setModifyUser(modifyUser);
 						int c = itemDao.updateItem2(item);
 						if (c != 1) {

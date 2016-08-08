@@ -61,7 +61,6 @@
 		  AND p.item_id = t.item_id
 		  )
 		WHERE t.state  = 'U'
-		AND t.shop_id  = #{shopId}
 		AND t.item_id IN
 	]]>
 		<foreach collection="itemId" item="code" open="(" close=")" separator=",">#{code}</foreach>
@@ -74,7 +73,6 @@
 		  t.modify_user   = #{modifyUser},
 		  t.stock         = #{stock}
 		WHERE t.state     = 'U'
-		AND t.shop_id     = #{shopId}
 		AND t.item_id     = #{itemId}
 	]]>
 	</update>

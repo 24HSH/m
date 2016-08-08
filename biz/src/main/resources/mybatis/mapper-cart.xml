@@ -122,7 +122,6 @@
 			   t.state = #{state}
 		 WHERE t.state = 'U'
 		   AND t.user_id = #{userId}
-		   AND t.shop_id = #{shopId}
 		   AND t.cart_id IN
 	]]>
 		<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>

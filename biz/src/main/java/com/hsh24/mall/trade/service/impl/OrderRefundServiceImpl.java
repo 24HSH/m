@@ -27,8 +27,8 @@ public class OrderRefundServiceImpl implements IOrderRefundService {
 	private IOrderRefundDao orderRefundDao;
 
 	@Override
-	public BooleanResult createOrderRefund(Long shopId, String tradeNo, String refundNo, Long orderId,
-		OrderRefund orderRefund, String modifyUser) {
+	public BooleanResult createOrderRefund(String tradeNo, String refundNo, Long orderId, OrderRefund orderRefund,
+		String modifyUser) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 

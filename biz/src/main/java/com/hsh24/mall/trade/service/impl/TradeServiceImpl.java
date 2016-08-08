@@ -296,14 +296,13 @@ public class TradeServiceImpl implements ITradeService {
 	}
 
 	@Override
-	public int getTradeCount(Long userId, Long shopId, String[] type) {
-		if (userId == null || shopId == null) {
+	public int getTradeCount(Long userId, String[] type) {
+		if (userId == null) {
 			return 0;
 		}
 
 		Trade trade = new Trade();
 		trade.setUserId(userId);
-		trade.setShopId(shopId);
 		trade.setCodes(type);
 
 		return getTradeCount(trade);
@@ -325,14 +324,13 @@ public class TradeServiceImpl implements ITradeService {
 	}
 
 	@Override
-	public List<Trade> getTradeList(Long userId, Long shopId, String[] type) {
-		if (userId == null || shopId == null) {
+	public List<Trade> getTradeList(Long userId, String[] type) {
+		if (userId == null) {
 			return null;
 		}
 
 		Trade t = new Trade();
 		t.setUserId(userId);
-		t.setShopId(shopId);
 		t.setCodes(type);
 
 		// 暂不分页
@@ -348,7 +346,7 @@ public class TradeServiceImpl implements ITradeService {
 		}
 
 		for (Trade trade : tradeList) {
-			trade.setOrderList(orderService.getOrderList(userId, shopId, trade.getTradeId()));
+			trade.setOrderList(orderService.getOrderList(userId, trade.getTradeId()));
 		}
 
 		return tradeList;
@@ -370,14 +368,13 @@ public class TradeServiceImpl implements ITradeService {
 	}
 
 	@Override
-	public Trade getTrade(Long userId, Long shopId, String tradeNo) {
-		if (userId == null || shopId == null || StringUtils.isBlank(tradeNo)) {
+	public Trade getTrade(Long userId, String tradeNo) {
+		if (userId == null || StringUtils.isBlank(tradeNo)) {
 			return null;
 		}
 
 		Trade t = new Trade();
 		t.setUserId(userId);
-		t.setShopId(shopId);
 		t.setTradeNo(tradeNo.trim());
 
 		Trade trade = getTrade(t);
@@ -386,7 +383,7 @@ public class TradeServiceImpl implements ITradeService {
 			return null;
 		}
 
-		List<Order> orderList = orderService.getOrderList(userId, shopId, trade.getTradeId());
+		List<Order> orderList = orderService.getOrderList(userId, trade.getTradeId());
 
 		if (orderList != null && orderList.size() > 0) {
 			trade.setOrderList(orderList);
@@ -429,7 +426,7 @@ public class TradeServiceImpl implements ITradeService {
 	}
 
 	@Override
-	public BooleanResult cancelTrade(Long userId, Long shopId, String tradeNo) {
+	public BooleanResult cancelTrade(Long userId, String tradeNo) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -441,12 +438,6 @@ public class TradeServiceImpl implements ITradeService {
 		}
 		trade.setUserId(userId);
 		trade.setModifyUser(userId.toString());
-
-		if (shopId == null) {
-			result.setCode("店铺信息不能为空");
-			return result;
-		}
-		trade.setShopId(shopId);
 
 		if (StringUtils.isBlank(tradeNo)) {
 			result.setCode("订单信息不能为空");
@@ -492,7 +483,7 @@ public class TradeServiceImpl implements ITradeService {
 	}
 
 	@Override
-	public BooleanResult topayTrade(Long userId, Long shopId, String tradeNo, String remark) {
+	public BooleanResult topayTrade(Long userId, String tradeNo, String remark) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -505,12 +496,6 @@ public class TradeServiceImpl implements ITradeService {
 			return result;
 		}
 		trade.setUserId(userId);
-
-		if (shopId == null) {
-			result.setCode("店铺信息不能为空");
-			return result;
-		}
-		trade.setShopId(shopId);
 
 		if (StringUtils.isBlank(tradeNo)) {
 			result.setCode("交易订单不能为空");
@@ -528,8 +513,8 @@ public class TradeServiceImpl implements ITradeService {
 	}
 
 	@Override
-	public Trade getOrder(Long userId, Long shopId, String tradeNo, String orderId) {
-		if (userId == null || shopId == null || StringUtils.isBlank(tradeNo) || StringUtils.isBlank(orderId)) {
+	public Trade getOrder(Long userId, String tradeNo, String orderId) {
+		if (userId == null || StringUtils.isBlank(tradeNo) || StringUtils.isBlank(orderId)) {
 			return null;
 		}
 
@@ -545,7 +530,6 @@ public class TradeServiceImpl implements ITradeService {
 
 		Trade t = new Trade();
 		t.setUserId(userId);
-		t.setShopId(shopId);
 		t.setTradeNo(tradeNo.trim());
 
 		Trade trade = getTrade(t);
@@ -554,7 +538,7 @@ public class TradeServiceImpl implements ITradeService {
 			return null;
 		}
 
-		Order order = orderService.getOrder(userId, shopId, trade.getTradeId(), id);
+		Order order = orderService.getOrder(userId, trade.getTradeId(), id);
 
 		if (order != null) {
 			List<Order> orderList = new ArrayList<Order>();
@@ -566,13 +550,13 @@ public class TradeServiceImpl implements ITradeService {
 	}
 
 	@Override
-	public BooleanResult createOrderRefund(Long shopId, String tradeNo, String refundNo, Long orderId,
-		OrderRefund orderRefund, String modifyUser) {
-		return orderRefundService.createOrderRefund(shopId, tradeNo, refundNo, orderId, orderRefund, modifyUser);
+	public BooleanResult createOrderRefund(String tradeNo, String refundNo, Long orderId, OrderRefund orderRefund,
+		String modifyUser) {
+		return orderRefundService.createOrderRefund(tradeNo, refundNo, orderId, orderRefund, modifyUser);
 	}
 
 	@Override
-	public BooleanResult signTrade(Long userId, Long shopId, String tradeNo) {
+	public BooleanResult signTrade(Long userId, String tradeNo) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -585,12 +569,6 @@ public class TradeServiceImpl implements ITradeService {
 			return result;
 		}
 		trade.setUserId(userId);
-
-		if (shopId == null) {
-			result.setCode("店铺信息不能为空");
-			return result;
-		}
-		trade.setShopId(shopId);
 
 		if (StringUtils.isBlank(tradeNo)) {
 			result.setCode("交易订单不能为空");
@@ -665,7 +643,7 @@ public class TradeServiceImpl implements ITradeService {
 			f = true;
 
 			// 1. 判断库存
-			List<Order> orderList = orderService.getOrderList(trade.getUserId(), trade.getShopId(), trade.getTradeId());
+			List<Order> orderList = orderService.getOrderList(trade.getUserId(), trade.getTradeId());
 			if (orderList == null || orderList.size() == 0) {
 				BooleanResult result = new BooleanResult();
 				result.setResult(false);
@@ -754,7 +732,7 @@ public class TradeServiceImpl implements ITradeService {
 						}
 
 						// 2.1.2 更新 还有 sku 的 item 合计库存数
-						result = itemService.updateItemStock(trade.getShopId(), itemId, modifyUser);
+						result = itemService.updateItemStock(itemId, modifyUser);
 						if (!result.getResult()) {
 							ts.setRollbackOnly();
 
@@ -765,7 +743,7 @@ public class TradeServiceImpl implements ITradeService {
 					// 2.2 不存在 item_sku
 					if (itemList != null && itemList.size() > 0) {
 						// 2.2.1 更新 item stock
-						result = itemService.updateItemStock(trade.getShopId(), itemList, modifyUser);
+						result = itemService.updateItemStock(itemList, modifyUser);
 						if (!result.getResult()) {
 							ts.setRollbackOnly();
 

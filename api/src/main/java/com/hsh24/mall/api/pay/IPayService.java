@@ -18,26 +18,24 @@ public interface IPayService {
 	 * 支付.
 	 * 
 	 * @param userId
-	 * @param shopId
 	 * @param tradeNo
 	 * @param remark
 	 * @param payType
 	 * @param ip
 	 * @return
 	 */
-	BooleanResult pay(Long userId, Long shopId, String tradeNo, String remark, String payType, String ip);
+	BooleanResult pay(Long userId, String tradeNo, String remark, String payType, String ip);
 
 	/**
 	 * 申请退款.
 	 * 
 	 * @param userId
-	 * @param shopId
 	 * @param tradeNo
 	 * @param orderId
 	 * @param orderRefund
 	 *            退款信息.
 	 * @return
 	 */
-	BooleanResult refund(Long userId, Long shopId, String tradeNo, String orderId, OrderRefund orderRefund);
+	BooleanResult refund(Long userId, String tradeNo, String orderId, OrderRefund orderRefund);
 
 }

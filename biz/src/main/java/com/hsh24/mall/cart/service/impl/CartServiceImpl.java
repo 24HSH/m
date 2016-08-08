@@ -432,7 +432,7 @@ public class CartServiceImpl implements ICartService {
 	}
 
 	@Override
-	public BooleanResult finishCart(Long userId, Long shopId, String[] cartId) {
+	public BooleanResult finishCart(Long userId, String[] cartId) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -444,12 +444,6 @@ public class CartServiceImpl implements ICartService {
 		}
 		cart.setUserId(userId);
 		cart.setModifyUser(userId.toString());
-
-		if (shopId == null) {
-			result.setCode("店铺信息不能为空");
-			return result;
-		}
-		cart.setShopId(shopId);
 
 		if (cartId == null || cartId.length == 0) {
 			result.setCode("购物车商品信息不能为空");

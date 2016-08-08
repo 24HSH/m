@@ -41,20 +41,18 @@ public interface IOrderService {
 	 * 买家查询(首先调用 ITradeService.getTrade).
 	 * 
 	 * @param userId
-	 * @param shopId
 	 * @param tradeId
 	 * @return
 	 */
-	List<Order> getOrderList(Long userId, Long shopId, Long tradeId);
+	List<Order> getOrderList(Long userId, Long tradeId);
 
 	/**
 	 * 
 	 * @param userId
-	 * @param shopId
 	 * @param tradeId
 	 * @param orderId
 	 * @return
 	 */
-	Order getOrder(Long userId, Long shopId, Long tradeId, Long orderId);
+	Order getOrder(Long userId, Long tradeId, Long orderId);
 
 }

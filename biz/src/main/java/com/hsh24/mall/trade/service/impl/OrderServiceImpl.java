@@ -150,13 +150,12 @@ public class OrderServiceImpl implements IOrderService {
 	}
 
 	@Override
-	public List<Order> getOrderList(Long userId, Long shopId, Long tradeId) {
-		if (userId == null || shopId == null || tradeId == null) {
+	public List<Order> getOrderList(Long userId, Long tradeId) {
+		if (userId == null || tradeId == null) {
 			return null;
 		}
 
 		Order order = new Order();
-		order.setShopId(shopId);
 		order.setTradeId(tradeId);
 
 		try {
@@ -169,13 +168,12 @@ public class OrderServiceImpl implements IOrderService {
 	}
 
 	@Override
-	public Order getOrder(Long userId, Long shopId, Long tradeId, Long orderId) {
-		if (userId == null || shopId == null || tradeId == null) {
+	public Order getOrder(Long userId, Long tradeId, Long orderId) {
+		if (userId == null || tradeId == null) {
 			return null;
 		}
 
 		Order order = new Order();
-		order.setShopId(shopId);
 		order.setTradeId(tradeId);
 		order.setOrderId(orderId);
 

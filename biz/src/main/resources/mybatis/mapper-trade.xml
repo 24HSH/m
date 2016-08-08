@@ -71,7 +71,6 @@
 		SELECT COUNT(1)
 		  FROM mall.mall_tb_trade t
 		 WHERE t.STATE = 'U'
-		   AND t.shop_id = #{shopId}
 		   AND t.user_id = #{userId}
 	]]>
 		<if test="codes != null and codes.length > 0">
@@ -104,7 +103,6 @@
 			   t.feedback_type AS feedbackType
 		  FROM mall.mall_tb_trade t
 		 WHERE t.state = 'U'
-		   AND t.shop_id = #{shopId}
 		   AND t.user_id = #{userId}
 	]]>
 		<if test="codes != null and codes.length > 0">
@@ -206,7 +204,7 @@
 		<![CDATA[ , t.receiver_tel = #{receiverTel} ]]>
 		</if>
 		<if test="receiverRemark != null and receiverRemark != ''">
-		<![CDATA[ , t.receiver_remark = #receiverRemark# ]]>
+		<![CDATA[ , t.receiver_remark = #{receiverRemark} ]]>
 		</if>
 		<if test="shipment != null and shipment != ''">
 		<![CDATA[ , t.shipment = #{shipment} ]]>

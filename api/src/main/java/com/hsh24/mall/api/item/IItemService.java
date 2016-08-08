@@ -57,20 +57,18 @@ public interface IItemService {
 
 	/**
 	 * 
-	 * @param shopId
 	 * @param itemId
 	 * @param modifyUser
 	 * @return
 	 */
-	BooleanResult updateItemStock(Long shopId, String[] itemId, String modifyUser);
+	BooleanResult updateItemStock(String[] itemId, String modifyUser);
 
 	/**
 	 * 
-	 * @param shopId
 	 * @param itemList
 	 * @param modifyUser
 	 * @return
 	 */
-	BooleanResult updateItemStock(Long shopId, List<Item> itemList, String modifyUser);
+	BooleanResult updateItemStock(List<Item> itemList, String modifyUser);
 
 }

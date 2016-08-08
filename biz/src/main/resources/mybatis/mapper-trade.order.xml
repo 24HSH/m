@@ -157,7 +157,6 @@
 		 WHERE p.item_id is not null
 		   AND t.state = 'U'
 		   AND p.state = 'U'
-		   AND p.shop_id = #{shopId}
 		   AND t.trade_id = #{tradeId}
 	]]>
 	</select>

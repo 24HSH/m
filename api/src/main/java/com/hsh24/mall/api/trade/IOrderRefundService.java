@@ -12,7 +12,6 @@ public interface IOrderRefundService {
 
 	/**
 	 * 
-	 * @param shopId
 	 * @param tradeNo
 	 * @param refundNo
 	 * @param orderId
@@ -20,7 +19,7 @@ public interface IOrderRefundService {
 	 * @param modifyUser
 	 * @return
 	 */
-	BooleanResult createOrderRefund(Long shopId, String tradeNo, String refundNo, Long orderId,
-		OrderRefund orderRefund, String modifyUser);
+	BooleanResult createOrderRefund(String tradeNo, String refundNo, Long orderId, OrderRefund orderRefund,
+		String modifyUser);
 
 }
