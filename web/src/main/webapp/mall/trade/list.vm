@@ -28,7 +28,7 @@
 							#else
 							<h3 id="trade/list/topay" class="color-gray">0</h3>
 							#end
-							<div class="color-gray">待付款</div>
+							<div class="color-gray color-gray-0">待付款</div>
                         </a>
 						<a href="javascript:trade_list('tosend');" class="col-25 item-link" style="width: 25%;">
 							#if("tosend" == $!{type})
@@ -36,7 +36,7 @@
 							#else
 							<h3 id="trade/list/tosend" class="color-gray">0</h3>
 							#end
-							<div class="color-gray">待发货</div>
+							<div class="color-gray color-gray-0">待发货</div>
                         </a>
 						<a href="javascript:trade_list('send');" class="col-25 item-link" style="width: 25%;">
 							#if("send" == $!{type})
@@ -44,7 +44,7 @@
 							#else
 							<h3 id="trade/list/send" class="color-gray">0</h3>
 							#end
-							<div class="color-gray">已发货</div>
+							<div class="color-gray color-gray-0">已发货</div>
                         </a>
 						<a href="javascript:trade_list('sign');" class="col-25 item-link" style="width: 25%;">
 							#if("sign" == $!{type})
@@ -52,7 +52,7 @@
 							#else
 							<h3 id="trade/list/sign" class="color-gray">0</h3>
 							#end
-							<div class="color-gray">已完成</div>
+							<div class="color-gray color-gray-0">已完成</div>
                         </a>
 					</li>
                 </ul>
