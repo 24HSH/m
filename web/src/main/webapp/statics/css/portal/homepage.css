@@ -211,16 +211,11 @@ a.component.type3 img {
     left: 0;
     bottom: 0;
     z-index: 10;
-    padding-bottom: 62px;
+    padding-bottom: 60px;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     background-color: #f4f4f4;
-}
-
-.a3v {
-    color: #666666;
-    font-size: 13px;
 }
 
 .a3y {

@@ -61,7 +61,7 @@ myApp.onPageInit('item.list', function(page) {
 			item_list_picker_flag = false;
 
 			$$('.close-picker').on('click', function() {
-				$('.page-content .item-list-overlay')
+				$$('.page-content .item-list-overlay')
 						.removeClass('item-list-overlay-visible');
 
 				item_list_picker_flag = false;
@@ -248,12 +248,12 @@ function item_list_picker() {
 
 	if (item_list_picker_flag) {
 		myApp.closeModal('.picker-modal.picker-item-list');
-		$('.page-content .item-list-overlay')
+		$$('.page-content .item-list-overlay')
 				.removeClass('item-list-overlay-visible');
 
 		item_list_picker_flag = false;
 	} else {
-		$('.page-content .item-list-overlay')
+		$$('.page-content .item-list-overlay')
 				.addClass('item-list-overlay-visible');
 		myApp.pickerModal('.picker-modal.picker-item-list');
 
