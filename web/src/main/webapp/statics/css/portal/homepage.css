@@ -1,3 +1,13 @@
+/* 基本颜色 */
+.color-base {
+  color: #FF5500;
+}
+
+/* 链接 */
+a {
+    color: inherit;
+}
+
 /* 整体布局 */
 .navbar .navbar-inner .center {
     font-weight: 400 !important;
@@ -16,21 +26,16 @@
     font-weight: 400 !important;
 }
 
+.item-title-row {
+    margin-top: 3px;
+}
+
 .tabbar a.active {
     color: #ff5500;
 }
 
 .tabbar.tabbar-hidden, .tabbar.toolbar-hidden, .toolbar.tabbar-hidden, .toolbar.toolbar-hidden {
     display: none;
-}
-
-/* 链接 */
-a {
-    color: inherit;
-}
-
-.color-base {
-  color: #FF5500;
 }
 
 

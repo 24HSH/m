@@ -68,11 +68,11 @@
 								<img data-src="$!{order.itemFilePath}" class="lazy" style="width: 50px; height: 50px;"></img>
 							</div>
 							<div class="item-inner">
-								<div class="item-title-row" style="margin-top: 3px;">
+								<div class="item-title-row">
 									<div class="item-title">$!{order.itemName}</div>
 									<div class="item-after">￥$!formatUtil.getAmountFormat($!{order.price})</div>
 								</div>
-								<div class="item-title-row" style="margin-top: 3px;">
+								<div class="item-title-row">
 									<div class="item-subtitle color-gray" style="font-size: 13px;">$!{order.propertiesName}</div>
 									<div class="item-after">×$!{order.quantity}</div>
 								</div>

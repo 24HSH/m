@@ -15,7 +15,7 @@
 		<!-- Search bar -->
 		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init item-list-searchbar">
 			<div class="searchbar-input">
-				<input type="search" placeholder="搜索" /><a href="#" class="searchbar-clear"></a>
+				<input type="search" placeholder="搜索店内商品" /><a href="#" class="searchbar-clear"></a>
 			</div><a href="#" class="searchbar-cancel">取消</a>
 		</form>
 		
@@ -26,6 +26,9 @@
 		<div class="page-content">
 			<div class="a47">
 				<ul class="a3u" style="margin-top: 0; padding: 0; list-style: none;">
+					<li class="a3v a3x">
+						<span class="a3y u k">全部商品</span>
+                    </li>
 					#foreach($itemCat in $!{itemCatList})
 					<li class="a3v">
 						<span class="a3y u k">$!{itemCat.itemCName}</span>
@@ -42,21 +45,21 @@
     						<div class="item-content">
     							<div class="item-media">
     								#if($!{item.itemFileList.size()} > 0)
-    								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
+    								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px; border-radius: 2px;"></img>
     								#end
     							</div>
     							<div class="item-inner">
-    								<div class="item-title-row" style="margin-top: 3px;">
+    								<div class="item-title-row">
                                         <div class="item-title"><span class="little-tag">新品</span>$!{item.itemName}</div>
     									<div class="item-after"></div>
     								</div>
-    								<div class="item-title-row" style="margin-top: 3px;">
+    								<div class="item-title-row">
     									<div class="item-subtitle color-gray" style="font-size: 13px;">
     										$!{itemSku.propertiesName}
     									</div>
     									<div class="item-after"></div>
     								</div>
-    								<div class="item-title-row" style="margin-top: 3px;">
+    								<div class="item-title-row">
                                         <div class="item-title color-base">
     										￥$!{itemSku.price}
                                             <del style="font-size: 10px; color: #999; margin-left: 5px;">
@@ -84,15 +87,15 @@
     								#end
     							</div>
     							<div class="item-inner">
-    								<div class="item-title-row" style="margin-top: 3px;">
+    								<div class="item-title-row">
                                         <div class="item-title"><span class="little-tag">新品</span>$!{item.itemName}</div>
     									<div class="item-after"></div>
     								</div>
-    								<div class="item-title-row" style="margin-top: 3px;">
+    								<div class="item-title-row">
     									<div class="item-subtitle color-gray" style="font-size: 13px;"></div>
     									<div class="item-after"></div>
     								</div>
-    								<div class="item-title-row" style="margin-top: 3px;">
+    								<div class="item-title-row">
                                         <div class="item-title color-base">
     										￥$!{item.price}
                                             <del style="font-size: 10px; color: #999; margin-left: 5px;">

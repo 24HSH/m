@@ -36,10 +36,10 @@
                             <li>
         						<div class="item-content">
         							<div class="item-inner">
-        								<div class="item-title-row" style="margin-top: 3px;">
+        								<div class="item-title-row">
                                             <div class="item-title"><span class="little-tag">新品</span>$!{item.itemName}</div>
         								</div>
-        								<div class="item-title-row" style="margin-top: 3px;">
+        								<div class="item-title-row">
                                             <div class="item-title color-base">
         										￥$!{item.priceRange}
                                                 <del style="font-size: 10px; color: #999; margin-left: 5px;">
@@ -55,7 +55,7 @@
         						<div class="item-content">
         							<div class="item-inner">
 										#foreach($specCat in $item.specCatList)
-                    					<div class="item-title-row" style="margin-top: 3px;">
+                    					<div class="item-title-row">
                     						<span class="item-title" id="item/detail/specItem/0/$!{specCat.specCId}">$!{specCat.specCName}：<span>
                     					</div>
                     					#end
@@ -66,10 +66,10 @@
 							<li>
 								<div class="item-content">
         							<div class="item-inner">
-        								<div class="item-title-row" style="margin-top: 3px;">
+        								<div class="item-title-row">
                                             <div class="item-title">剩余：$!{item.stock}</div>
         								</div>
-        								<div class="item-title-row" style="margin-top: 3px;">
+        								<div class="item-title-row">
                                             <div class="item-title">运费：免运费</div>
         								</div>
                                     </div>

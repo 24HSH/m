@@ -21,19 +21,19 @@
     						<div class="item-content">
 								#set($order = $!{trade.orderList.get(0)})
     							<div class="item-inner">
-    								<div class="item-title-row" style="margin-top: 3px;">
+    								<div class="item-title-row">
     									<div class="item-title">商品名称</div>
     									<div class="item-after">$!{order.itemName}</div>
     								</div>
-    								<div class="item-title-row" style="margin-top: 3px;">
+    								<div class="item-title-row">
     									<div class="item-title">订单金额</div>
     									<div class="item-after">$!{order.total}</div>
     								</div>
-									<div class="item-title-row" style="margin-top: 3px;">
+									<div class="item-title-row">
     									<div class="item-title">订单编号</div>
     									<div class="item-after">$!{tradeNo}</div>
     								</div>
-									<div class="item-title-row" style="margin-top: 3px;">
+									<div class="item-title-row">
     									<div class="item-title">交易时间</div>
     									<div class="item-after">$!{trade.createDate}</div>
     								</div>

@@ -48,10 +48,10 @@
 										<a href="$!{env.appUrl}/address/select.htm?addId=$!{address.addId}" class="item-content external">
                 							<div class="item-media"><i class="iconfont icon-locationfill" style="color: #ddd;"></i></div>
                 							<div class="item-inner">
-												<div class="item-title-row" style="margin-top: 3px;">
+												<div class="item-title-row">
                 									<div class="item-title">$!{address.addName}</div>
                 								</div>
-                								<div class="item-title-row" style="margin-top: 3px;">
+                								<div class="item-title-row">
                 									<div class="item-subtitle color-gray" style="font-size: 12px;">$!{address.address}</div>
                 								</div>
                                             </div>

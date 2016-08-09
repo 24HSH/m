@@ -80,14 +80,14 @@
 						<div class="item-content">
 							#set($order = $!{trade.orderList.get(0)})
 							<div class="item-media" style="padding-top: 7px; padding-bottom: 8px;">
-								<img data-src="$!{order.itemFilePath}" class="lazy" style="width: 50px; height: 50px;"></img>
+								<img data-src="$!{order.itemFilePath}" class="lazy" style="width: 50px; height: 50px; border-radius: 2px;"></img>
 							</div>
 							<div class="item-inner">
-								<div class="item-title-row" style="margin-top: 3px;">
+								<div class="item-title-row">
 									<div class="item-title">$!{order.itemName}</div>
 									<div class="item-after">￥$!formatUtil.getAmountFormat($!{order.price})</div>
 								</div>
-								<div class="item-title-row" style="margin-top: 3px;">
+								<div class="item-title-row">
 									<div class="item-subtitle color-gray" style="font-size: 12px;">$!{order.propertiesName}</div>
 									<div class="item-after">×$!{order.quantity}</div>
 								</div>

@@ -26,10 +26,10 @@
         								<img data-src="$!{env.imgUrl}/image/portal/logo.jpg" class="lazy" style="width: 40px; height: 40px;  border-radius: 5px;"></img>
         							</div>
         							<a class="item-inner" href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
-        								<div class="item-title-row" style="margin-top: 2px;">
+        								<div class="item-title-row">
                                             <div class="item-title">$!{shop.shopName}</div>
         								</div>
-        								<div class="item-title-row" style="margin-top: 2px;">
+        								<div class="item-title-row">
         									<div class="item-subtitle color-gray" style="font-size: 12px;">$!{shop.quantity}件商品 | ￥$!{shop.price}</div>
         								</div>
                                     </a>
