@@ -38,7 +38,7 @@
 							</div>
 							<div class="item-inner">
 								<div class="item-title-row" style="margin-top: 3px;">
-                                    <div class="item-title" style="font-weight: 400;"><span class="little-tag">新品</span>$!{item.itemName}</div>
+                                    <div class="item-title"><span class="little-tag">新品</span>$!{item.itemName}</div>
 									<div class="item-after"></div>
 								</div>
 								<div class="item-title-row" style="margin-top: 3px;">
@@ -48,14 +48,16 @@
 									<div class="item-after"></div>
 								</div>
 								<div class="item-title-row" style="margin-top: 3px;">
-                                    <div class="item-title" style="font-weight: 400; color: #FF5500;">
+                                    <div class="item-title color-base">
 										￥$!{itemSku.price}
                                         <del style="font-size: 10px; color: #999; margin-left: 5px;">
 											<span style="">￥$!{itemSku.origin}</span>
 										</del>
 									</div>
 									<div class="item-after">
-										<a href="javascript:item_list_cart_add('$!{item.itemId}','$!{itemSku.skuId}','1','$!{item.itemName}','$!{itemSku.price}');"><i class="iconfont icon-roundadd" style="font-size: 25px; color: #FF5500;"></i></a>
+										<a href="javascript:item_list_cart_add('$!{item.itemId}','$!{itemSku.skuId}','1','$!{item.itemName}','$!{itemSku.price}');">
+											<i class="iconfont icon-roundadd color-base" style="font-size: 25px;"></i>
+										</a>
 									</div>
 								</div>
                             </div>
@@ -72,7 +74,7 @@
 							</div>
 							<div class="item-inner">
 								<div class="item-title-row" style="margin-top: 3px;">
-                                    <div class="item-title" style="font-weight: 400;"><span class="little-tag">新品</span>$!{item.itemName}</div>
+                                    <div class="item-title"><span class="little-tag">新品</span>$!{item.itemName}</div>
 									<div class="item-after"></div>
 								</div>
 								<div class="item-title-row" style="margin-top: 3px;">
@@ -80,14 +82,16 @@
 									<div class="item-after"></div>
 								</div>
 								<div class="item-title-row" style="margin-top: 3px;">
-                                    <div class="item-title" style="font-weight: 400; color: #FF5500;">
+                                    <div class="item-title color-base">
 										￥$!{item.price}
                                         <del style="font-size: 10px; color: #999; margin-left: 5px;">
 											<span style="">￥$!{item.origin}</span>
 										</del>
 									</div>
 									<div class="item-after">
-										<a href="javascript:item_list_cart_add('$!{item.itemId}','0','1','$!{item.itemName}','$!{item.price}');"><i class="iconfont icon-roundadd" style="font-size: 25px; color: #FF5500;"></i></a>
+										<a href="javascript:item_list_cart_add('$!{item.itemId}','0','1','$!{item.itemName}','$!{item.price}');">
+											<i class="iconfont icon-roundadd color-base" style="font-size: 25px;"></i>
+										</a>
 									</div>
 								</div>
                             </div>

@@ -18,7 +18,7 @@
 				<ul>
 					<li>
 						<div class="item-content">
-							<div class="item-media"><i class="iconfont icon-text" style="font-size: 20px;"></i></div>
+							<div class="item-media"><i class="iconfont icon-text"></i></div>
 							<div class="item-inner" style="font-size: 12px;">
 								<div class="item-title">
 									您于 $!{trade.createDate} 下的订单<br />
@@ -37,7 +37,7 @@
 						#else
 						<div class="item-content">
 						#end
-							<div class="item-media"><i class="iconfont icon-location" style="font-size: 20px;"></i></div>
+							<div class="item-media"><i class="iconfont icon-location"></i></div>
 							<div class="item-inner" style="font-size: 14px;">
 								<div class="item-title">
 									收货人：$!{trade.receiverName}<span style="float: right;">$!{trade.receiverTel}</span><br />
@@ -57,7 +57,7 @@
 					<li>
 						<div class="item-content">
 							<div class="item-inner" style="display: inherit;">
-								<div class="item-title" style="font-weight: 400;">店铺：好社惠</div>
+								<div class="item-title">店铺：好社惠</div>
 							</div>
 						</div>
 					</li>
@@ -69,7 +69,7 @@
 							</div>
 							<div class="item-inner">
 								<div class="item-title-row" style="margin-top: 3px;">
-									<div class="item-title" style="font-weight: 400;">$!{order.itemName}</div>
+									<div class="item-title">$!{order.itemName}</div>
 									<div class="item-after">￥$!formatUtil.getAmountFormat($!{order.price})</div>
 								</div>
 								<div class="item-title-row" style="margin-top: 3px;">
@@ -83,7 +83,7 @@
 					<li>
 						<div class="item-content">
 							<div class="item-inner" style="display: inherit;">
-								<div class="item-title" style="font-weight: 400;">运费</div>
+								<div class="item-title">运费</div>
 								<div class="item-after">￥$!formatUtil.getAmountFormat($!{trade.postage})</div>
 							</div>
 						</div>
@@ -96,7 +96,7 @@
 									<input type="text" style="font-size: 13px;" id="pay_index_input_remark" placeholder="给卖家留言..." />
 								</div>
 								#else
-								<div class="item-title" style="font-weight: 400; font-size: 13px;">
+								<div class="item-title" style="font-size: 13px;">
 									买家留言：#if($!stringUtil.isNotEmpty($!{trade.receiverRemark})) $!{trade.receiverRemark} #else 无 #end
 								</div>
 								#end
@@ -106,8 +106,8 @@
 					<li>
 						<div class="item-content">
 							<div class="item-inner" style="display: inherit;">
-								<div class="item-title" style="font-weight: 400;">合计</div>
-								<div class="item-after" style="color: #ff5500;">￥$!formatUtil.getAmountFormat($!{trade.price})</div>
+								<div class="item-title">合计</div>
+								<div class="item-after color-base">￥$!formatUtil.getAmountFormat($!{trade.price})</div>
 							</div>
 						</div>
 					</li>
@@ -157,7 +157,7 @@
 							<div class="item-inner">
 								<div class="item-title" style="width: 100%; text-align: center;">
 									<div>￥$!formatUtil.getAmountFormat($!{trade.tradePrice}) + ￥$!formatUtil.getAmountFormat($!{trade.postage}) 运费</div>
-									<div style="font-size: 16px; color: #ff5500;">需付：￥$!formatUtil.getAmountFormat($!{trade.price})</div>
+									<div class="color-base" style="font-size: 16px;">需付：￥$!formatUtil.getAmountFormat($!{trade.price})</div>
 								</div>
 							</div>
 						</div>

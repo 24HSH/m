@@ -12,6 +12,10 @@
     margin: 0;
 }
 
+.list-block.media-list .item-title {
+    font-weight: 400 !important;
+}
+
 .tabbar a.active {
     color: #ff5500;
 }
@@ -22,6 +26,10 @@
 
 a {
     color: inherit;
+}
+
+.color-base {
+  color: #FF5500;
 }
 
 

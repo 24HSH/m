@@ -36,7 +36,7 @@
 						<div class="left"></div>
 						<!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
 						<div class="center sliding">
-							<i class="iconfont icon-locationfill" style="color: #ff5500;"></i>
+							<i class="iconfont icon-locationfill color-base"></i>
                             <a class="external" href="$!{env.appUrl}/address/index.htm">$!{address.addName}</a>
 						</div>
 					</div>
@@ -110,7 +110,7 @@
                         							</div>
                         							<a class="item-inner" href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
                         								<div class="item-title-row" style="margin-top: 3px;">
-                                                            <div class="item-title" style="font-weight: 400;"><span class="little-tag">新店</span>$!{shop.shopName}</div>
+                                                            <div class="item-title"><span class="little-tag">新店</span>$!{shop.shopName}</div>
                         								</div>
                         								<div class="item-title-row" style="margin-top: 3px;">
                         									<div class="item-subtitle color-gray" style="font-size: 12px;">月售199单</div>
@@ -118,7 +118,7 @@
                                                     </a>
 													<div class="item-after">
 														<a href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
-															<i class="iconfont icon-cart" style="font-size: 30px; color: #FF5500;"></i>
+															<i class="iconfont icon-cart color-base" style="font-size: 30px;"></i>
 														</a>
 													</div>
                                                 </div>

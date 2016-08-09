@@ -22,19 +22,19 @@
 								#set($order = $!{trade.orderList.get(0)})
     							<div class="item-inner">
     								<div class="item-title-row" style="margin-top: 3px;">
-    									<div class="item-title" style="font-weight: 400;">商品名称</div>
+    									<div class="item-title">商品名称</div>
     									<div class="item-after">$!{order.itemName}</div>
     								</div>
     								<div class="item-title-row" style="margin-top: 3px;">
-    									<div class="item-title" style="font-weight: 400;">订单金额</div>
+    									<div class="item-title">订单金额</div>
     									<div class="item-after">$!{order.total}</div>
     								</div>
 									<div class="item-title-row" style="margin-top: 3px;">
-    									<div class="item-title" style="font-weight: 400;">订单编号</div>
+    									<div class="item-title">订单编号</div>
     									<div class="item-after">$!{tradeNo}</div>
     								</div>
 									<div class="item-title-row" style="margin-top: 3px;">
-    									<div class="item-title" style="font-weight: 400;">交易时间</div>
+    									<div class="item-title">交易时间</div>
     									<div class="item-after">$!{trade.createDate}</div>
     								</div>
     							</div>
@@ -43,7 +43,7 @@
     					<li>
     						<div class="item-content">
     							<div class="item-inner" style="display: inherit;">
-    								<div class="item-title label" style="font-weight: 400;">处理方式</div>
+    								<div class="item-title label">处理方式</div>
 									<div class="item-input">
     									<select style="font-size: 15px;" name="orderRefund." >
 											<option selected>请选择处理方式</option>
@@ -56,7 +56,7 @@
     					<li>
     						<div class="item-content">
     							<div class="item-inner" style="display: inherit;">
-    								<div class="item-title label" style="font-weight: 400;">退款原因</div>
+    								<div class="item-title label">退款原因</div>
     								<div class="item-input">
     									<select style="font-size: 15px;" name="orderRefund." >
 											<option selected>请选择退款原因</option>
@@ -73,7 +73,7 @@
     					<li>
     						<div class="item-content">
     							<div class="item-inner" style="display: inherit;">
-    								<div class="item-title label" style="font-weight: 400;">退款金额</div>
+    								<div class="item-title label">退款金额</div>
     								<div class="item-input">
     									<input type="text" style="font-size: 15px;" name="orderRefund.refundFee" value="$!{order.total}" />
     								</div>

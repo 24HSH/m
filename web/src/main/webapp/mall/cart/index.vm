@@ -27,7 +27,7 @@
         							</div>
         							<a class="item-inner" href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
         								<div class="item-title-row" style="margin-top: 2px;">
-                                            <div class="item-title" style="font-weight: 400;">$!{shop.shopName}</div>
+                                            <div class="item-title">$!{shop.shopName}</div>
         								</div>
         								<div class="item-title-row" style="margin-top: 2px;">
         									<div class="item-subtitle color-gray" style="font-size: 12px;">$!{shop.quantity}件商品 | ￥$!{shop.price}</div>
