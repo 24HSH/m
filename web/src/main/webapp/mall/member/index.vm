@@ -17,7 +17,7 @@
 			<div class="list-block">
 				<ul>
 					<li>
-						<a href="$!{env.appUrl}/user/detail.htm" class="item-link item-content" data-ignore-cache="true">
+						<a class="item-link item-content" href="$!{env.appUrl}/user/detail.htm" data-ignore-cache="true">
 							<div class="item-media">
 								<img src="$!{user.headImgUrl}" class="lazy" style="width: 60px; height: 60px; border-radius: 6px;"></img>
 							</div>
