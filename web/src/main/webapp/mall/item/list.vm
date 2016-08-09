@@ -24,83 +24,95 @@
 			
 		<!-- Scrollable page content-->
 		<div class="page-content">
-			<div class="list-block media-list list-block-search searchbar-found">
-				<ul>
+			<div class="a47">
+				<ul class="a3u" style="margin-top: 0; padding: 0; list-style: none;">
+					#foreach($itemCat in $!{itemCatList})
+					<li class="a3v">
+						<span class="a3y u k">$!{itemCat.itemCName}</span>
+                    </li>
+					#end
+                </ul>
+				
+    			<div class="a43 list-block media-list list-block-search searchbar-found" style="margin: 0;">
 				#foreach($item in $!{itemList})
 					#if($!{item.skuList.size()} > 0)
 					#foreach($itemSku in $!{item.skuList})
-                    <li>
-						<div class="item-content">
-							<div class="item-media">
-								#if($!{item.itemFileList.size()} > 0)
-								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
-								#end
-							</div>
-							<div class="item-inner">
-								<div class="item-title-row" style="margin-top: 3px;">
-                                    <div class="item-title"><span class="little-tag">新品</span>$!{item.itemName}</div>
-									<div class="item-after"></div>
-								</div>
-								<div class="item-title-row" style="margin-top: 3px;">
-									<div class="item-subtitle color-gray" style="font-size: 13px;">
-										$!{itemSku.propertiesName}
-									</div>
-									<div class="item-after"></div>
-								</div>
-								<div class="item-title-row" style="margin-top: 3px;">
-                                    <div class="item-title color-base">
-										￥$!{itemSku.price}
-                                        <del style="font-size: 10px; color: #999; margin-left: 5px;">
-											<span style="">￥$!{itemSku.origin}</span>
-										</del>
-									</div>
-									<div class="item-after">
-										<a href="javascript:item_list_cart_add('$!{item.itemId}','$!{itemSku.skuId}','1','$!{item.itemName}','$!{itemSku.price}');">
-											<i class="iconfont icon-roundadd color-base" style="font-size: 25px;"></i>
-										</a>
-									</div>
-								</div>
-                            </div>
-						</div>
-					</li>
+					<ul class="before-height-0">
+                        <li>
+    						<div class="item-content">
+    							<div class="item-media">
+    								#if($!{item.itemFileList.size()} > 0)
+    								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
+    								#end
+    							</div>
+    							<div class="item-inner">
+    								<div class="item-title-row" style="margin-top: 3px;">
+                                        <div class="item-title"><span class="little-tag">新品</span>$!{item.itemName}</div>
+    									<div class="item-after"></div>
+    								</div>
+    								<div class="item-title-row" style="margin-top: 3px;">
+    									<div class="item-subtitle color-gray" style="font-size: 13px;">
+    										$!{itemSku.propertiesName}
+    									</div>
+    									<div class="item-after"></div>
+    								</div>
+    								<div class="item-title-row" style="margin-top: 3px;">
+                                        <div class="item-title color-base">
+    										￥$!{itemSku.price}
+                                            <del style="font-size: 10px; color: #999; margin-left: 5px;">
+    											<span style="">￥$!{itemSku.origin}</span>
+    										</del>
+    									</div>
+    									<div class="item-after">
+    										<a href="javascript:item_list_cart_add('$!{item.itemId}','$!{itemSku.skuId}','1','$!{item.itemName}','$!{itemSku.price}');">
+    											<i class="iconfont icon-roundadd color-base" style="font-size: 25px;"></i>
+    										</a>
+    									</div>
+    								</div>
+                                </div>
+    						</div>
+    					</li>
+					</ul>
 					#end
 					#else
-					<li>
-						<div class="item-content">
-							<div class="item-media">
-								#if($!{item.itemFileList.size()} > 0)
-								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
-								#end
-							</div>
-							<div class="item-inner">
-								<div class="item-title-row" style="margin-top: 3px;">
-                                    <div class="item-title"><span class="little-tag">新品</span>$!{item.itemName}</div>
-									<div class="item-after"></div>
-								</div>
-								<div class="item-title-row" style="margin-top: 3px;">
-									<div class="item-subtitle color-gray" style="font-size: 13px;"></div>
-									<div class="item-after"></div>
-								</div>
-								<div class="item-title-row" style="margin-top: 3px;">
-                                    <div class="item-title color-base">
-										￥$!{item.price}
-                                        <del style="font-size: 10px; color: #999; margin-left: 5px;">
-											<span style="">￥$!{item.origin}</span>
-										</del>
-									</div>
-									<div class="item-after">
-										<a href="javascript:item_list_cart_add('$!{item.itemId}','0','1','$!{item.itemName}','$!{item.price}');">
-											<i class="iconfont icon-roundadd color-base" style="font-size: 25px;"></i>
-										</a>
-									</div>
-								</div>
-                            </div>
-						</div>
-					</li>
+					<ul class="before-height-0">
+    					<li>
+    						<div class="item-content">
+    							<div class="item-media">
+    								#if($!{item.itemFileList.size()} > 0)
+    								<img data-src="$!{item.itemFileList.get(0).filePath}" class="lazy" style="width: 60px; height: 60px;"></img>
+    								#end
+    							</div>
+    							<div class="item-inner">
+    								<div class="item-title-row" style="margin-top: 3px;">
+                                        <div class="item-title"><span class="little-tag">新品</span>$!{item.itemName}</div>
+    									<div class="item-after"></div>
+    								</div>
+    								<div class="item-title-row" style="margin-top: 3px;">
+    									<div class="item-subtitle color-gray" style="font-size: 13px;"></div>
+    									<div class="item-after"></div>
+    								</div>
+    								<div class="item-title-row" style="margin-top: 3px;">
+                                        <div class="item-title color-base">
+    										￥$!{item.price}
+                                            <del style="font-size: 10px; color: #999; margin-left: 5px;">
+    											<span style="">￥$!{item.origin}</span>
+    										</del>
+    									</div>
+    									<div class="item-after">
+    										<a href="javascript:item_list_cart_add('$!{item.itemId}','0','1','$!{item.itemName}','$!{item.price}');">
+    											<i class="iconfont icon-roundadd color-base" style="font-size: 25px;"></i>
+    										</a>
+    									</div>
+    								</div>
+                                </div>
+    						</div>
+    					</li>
+					</ul>
 					#end
 				#end
-				</ul>
-			</div>
+    			</div>
+            </div>
 			
 			<div class="item-list-overlay"></div>
         </div>

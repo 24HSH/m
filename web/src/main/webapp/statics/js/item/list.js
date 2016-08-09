@@ -74,6 +74,17 @@ myApp.onPageInit('item.list', function(page) {
 			if ($$("#item/list/price").html() != '购物车是空的') {
 				item_list_picker();
 			}
+
+			// 商品类目
+			$$('.a47 .a3u').find('li').each(function() {
+						$$(this).click(function() {
+									$$('.a47 .a3u').find('li').each(function() {
+												$$(this).removeClass("a3x");
+											});
+
+									$$(this).addClass("a3x");
+								});
+					});
 		});
 
 var item_list_flag;

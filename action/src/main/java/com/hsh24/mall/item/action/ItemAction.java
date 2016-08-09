@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 
 import com.hsh24.mall.api.cart.ICartService;
 import com.hsh24.mall.api.cart.bo.Cart;
+import com.hsh24.mall.api.item.IItemCatService;
 import com.hsh24.mall.api.item.IItemService;
 import com.hsh24.mall.api.item.bo.Item;
+import com.hsh24.mall.api.item.bo.ItemCat;
 import com.hsh24.mall.framework.action.BaseAction;
 
 /**
@@ -30,9 +32,14 @@ public class ItemAction extends BaseAction {
 	@Resource
 	private ICartService cartService;
 
+	@Resource
+	private IItemCatService itemCatService;
+
 	private List<Item> itemList;
 
 	private List<Cart> cartList;
+
+	private List<ItemCat> itemCatList;
 
 	private String itemId;
 
@@ -48,6 +55,8 @@ public class ItemAction extends BaseAction {
 		itemList = itemService.getItemList(shopId, new Item());
 
 		cartList = cartService.getCartListByShop(this.getUser().getUserId(), shopId);
+
+		itemCatList = itemCatService.getItemCatList("0");
 
 		return SUCCESS;
 	}
@@ -76,6 +85,14 @@ public class ItemAction extends BaseAction {
 
 	public void setCartList(List<Cart> cartList) {
 		this.cartList = cartList;
+	}
+
+	public List<ItemCat> getItemCatList() {
+		return itemCatList;
+	}
+
+	public void setItemCatList(List<ItemCat> itemCatList) {
+		this.itemCatList = itemCatList;
 	}
 
 	public String getItemId() {

@@ -24,6 +24,7 @@
     display: none;
 }
 
+/* 链接 */
 a {
     color: inherit;
 }
@@ -195,6 +196,123 @@ a.component.type3 img {
 
 
 /* 商品列表模块 */
+.a47 {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #FFF;
+}
+
+.a3u {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    padding-bottom: 62px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    background-color: #f4f4f4;
+}
+
+.a3v {
+    color: #666666;
+    font-size: 13px;
+}
+
+.a3y {
+    display: -webkit-box;
+    display: -moz-box;
+    width: 70px;
+    height: 46px;
+    padding-left: 10px;
+    padding-right: 4px;
+    line-height: 20px;
+    background-color: #EEE;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -moz-line-clamp: 2;
+    -moz-box-orient: vertical;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    box-pack: center;
+}
+
+.a3x .a3y {
+    width: 68px;
+    background: #fff;
+    color: #ff5500;
+    border-left: 2px solid #ff5500;
+}
+
+.k, .u {
+    position: relative;
+}
+
+.a3v .u::before {
+    border-color: #CFCFCF;
+    bottom: 0;
+}
+
+.u::before {
+    height: 1px;
+    content: '';
+    width: 100%;
+    border-bottom: 1px solid #e8e8e8;
+    position: absolute;
+    bottom: -1px;
+    right: 0;
+    transform: scaleY(0.5);
+    -webkit-transform: scaleY(0.5);
+    z-index: 10;
+}
+
+.a3v .k::after {
+    right: 0;
+}
+
+.a3u .k::after {
+    border-color: #CFCFCF;
+}
+
+.k::after {
+    height: 100%;
+    content: '';
+    width: 1px;
+    border-right: 1px solid #e8e8e8;
+    position: absolute;
+    top: 0;
+    right: -1px;
+    transform: scaleX(0.5);
+    -webkit-transform: scaleX(0.5);
+    z-index: 10;
+}
+
+.a3x .k::after {
+    border-right: 1px solid #fff;
+}
+
+.a47 .a43 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 84px;
+    right: 0;
+    padding-top: 0;
+    z-index: 100;
+    background-color: #FFF;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+
+/* 团购列表模块 */
 .demo-card-header-pic .card-header {
 	height: 50vw;
 	background-size: cover;
