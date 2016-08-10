@@ -188,6 +188,8 @@ public class Trade extends SearchInfo {
 
 	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
 
+	private String shopName;
+
 	/**
 	 * 公司id.
 	 */
@@ -521,6 +523,14 @@ public class Trade extends SearchInfo {
 
 	public void setPayType(String payType) {
 		this.payType = payType;
+	}
+
+	public String getShopName() {
+		return shopName;
+	}
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
 	}
 
 	public String getCompanyId() {

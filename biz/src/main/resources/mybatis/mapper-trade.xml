@@ -124,6 +124,7 @@
 	<![CDATA[
 		SELECT t.trade_id AS tradeId,
 			   t.trade_no AS tradeNo,
+			   t.shop_id  AS shopId,
 			   t.type,
 			   t.pay_type AS payType,
 			   t.trade_price AS tradePrice,

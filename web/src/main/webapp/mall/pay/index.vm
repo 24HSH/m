@@ -57,7 +57,7 @@
 					<li>
 						<div class="item-content">
 							<div class="item-inner" style="display: inherit;">
-								<div class="item-title">店铺：好社惠</div>
+								<div class="item-title">店铺：$!{trade.shopName}</div>
 							</div>
 						</div>
 					</li>

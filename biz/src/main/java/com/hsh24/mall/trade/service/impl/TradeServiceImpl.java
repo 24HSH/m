@@ -21,6 +21,8 @@ import com.hsh24.mall.api.item.IItemService;
 import com.hsh24.mall.api.item.IItemSkuService;
 import com.hsh24.mall.api.item.bo.Item;
 import com.hsh24.mall.api.item.bo.ItemSku;
+import com.hsh24.mall.api.shop.IShopService;
+import com.hsh24.mall.api.shop.bo.Shop;
 import com.hsh24.mall.api.trade.IOrderRefundService;
 import com.hsh24.mall.api.trade.IOrderService;
 import com.hsh24.mall.api.trade.ITradeService;
@@ -71,6 +73,9 @@ public class TradeServiceImpl implements ITradeService {
 
 	@Resource
 	private IItemSkuService itemSkuService;
+
+	@Resource
+	private IShopService shopService;
 
 	@Resource
 	private ITradeDao tradeDao;
@@ -382,6 +387,10 @@ public class TradeServiceImpl implements ITradeService {
 		if (trade == null) {
 			return null;
 		}
+
+		// 获取 shop 信息
+		Shop shop = shopService.getShop(trade.getShopId());
+		trade.setShopName(shop != null ? shop.getShopName() : "店铺");
 
 		List<Order> orderList = orderService.getOrderList(userId, trade.getTradeId());
 

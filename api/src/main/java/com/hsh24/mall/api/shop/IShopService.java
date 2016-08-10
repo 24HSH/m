@@ -30,6 +30,13 @@ public interface IShopService {
 	 * @param shopId
 	 * @return
 	 */
+	Shop getShop(Long shopId);
+
+	/**
+	 * 
+	 * @param shopId
+	 * @return
+	 */
 	Shop getShop(String shopId);
 
 }

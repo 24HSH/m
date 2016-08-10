@@ -71,12 +71,12 @@ public class ShopServiceImpl implements IShopService {
 	}
 
 	@Override
-	public Shop getShop(String shopId) {
-		if (StringUtils.isBlank(shopId)) {
+	public Shop getShop(Long shopId) {
+		if (shopId == null) {
 			return null;
 		}
 
-		String key = shopId.trim();
+		Long key = shopId;
 
 		Shop shop = null;
 
@@ -91,13 +91,7 @@ public class ShopServiceImpl implements IShopService {
 		}
 
 		shop = new Shop();
-		try {
-			shop.setShopId(Long.valueOf(shopId));
-		} catch (NumberFormatException e) {
-			logger.error(e);
-
-			return null;
-		}
+		shop.setShopId(shopId);
 
 		try {
 			shop = shopDao.getShop(shop);
@@ -119,6 +113,21 @@ public class ShopServiceImpl implements IShopService {
 		}
 
 		return shop;
+	}
+
+	@Override
+	public Shop getShop(String shopId) {
+		if (StringUtils.isBlank(shopId)) {
+			return null;
+		}
+
+		try {
+			return getShop(Long.valueOf(shopId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+		}
+
+		return null;
 	}
 
 }
