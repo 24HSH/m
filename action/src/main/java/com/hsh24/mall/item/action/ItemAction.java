@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -14,6 +15,8 @@ import com.hsh24.mall.api.item.IItemService;
 import com.hsh24.mall.api.item.bo.Item;
 import com.hsh24.mall.api.item.bo.ItemCat;
 import com.hsh24.mall.framework.action.BaseAction;
+import com.hsh24.mall.framework.log.Logger4jCollection;
+import com.hsh24.mall.framework.log.Logger4jExtend;
 
 /**
  * 
@@ -25,6 +28,8 @@ import com.hsh24.mall.framework.action.BaseAction;
 public class ItemAction extends BaseAction {
 
 	private static final long serialVersionUID = -8497315926605513479L;
+
+	private Logger4jExtend logger = Logger4jCollection.getLogger(ItemAction.class);
 
 	@Resource
 	private IItemService itemService;
@@ -41,6 +46,11 @@ public class ItemAction extends BaseAction {
 
 	private List<ItemCat> itemCatList;
 
+	/**
+	 * 商品类目.
+	 */
+	private String itemCId;
+
 	private String itemId;
 
 	private Item item;
@@ -52,7 +62,17 @@ public class ItemAction extends BaseAction {
 	public String list() {
 		Long shopId = this.getShop().getShopId();
 
-		itemList = itemService.getItemList(shopId, new Item());
+		Item ietm = new Item();
+
+		if (StringUtils.isNotBlank(itemCId)) {
+			try {
+				ietm.setItemCId(Long.valueOf(itemCId));
+			} catch (NumberFormatException e) {
+				logger.error(e);
+			}
+		}
+
+		itemList = itemService.getItemList(shopId, ietm);
 
 		cartList = cartService.getCartListByShop(this.getUser().getUserId(), shopId);
 
@@ -93,6 +113,14 @@ public class ItemAction extends BaseAction {
 
 	public void setItemCatList(List<ItemCat> itemCatList) {
 		this.itemCatList = itemCatList;
+	}
+
+	public String getItemCId() {
+		return itemCId;
+	}
+
+	public void setItemCId(String itemCId) {
+		this.itemCId = itemCId;
 	}
 
 	public String getItemId() {

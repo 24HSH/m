@@ -64,7 +64,7 @@ public class Item extends SearchInfo {
 	/**
 	 * 商品所属类目ID.
 	 */
-	private String itemCid;
+	private Long itemCId;
 
 	/**
 	 * 原价格区间.
@@ -215,12 +215,12 @@ public class Item extends SearchInfo {
 		this.quota = quota;
 	}
 
-	public String getItemCid() {
-		return itemCid;
+	public Long getItemCId() {
+		return itemCId;
 	}
 
-	public void setItemCid(String itemCid) {
-		this.itemCid = itemCid;
+	public void setItemCId(Long itemCId) {
+		this.itemCId = itemCId;
 	}
 
 	public BigDecimal getOrigin() {

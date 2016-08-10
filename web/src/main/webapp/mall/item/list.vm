@@ -26,11 +26,19 @@
 		<div class="page-content">
 			<div class="a47">
 				<ul class="a3u" style="margin-top: 0; padding-left: 0; list-style: none;">
+					#if($!{itemCId} == 'undefined')
 					<li class="a3v a3x">
+					#else
+					<li class="a3v" data-shopId="$!{shop.shopId}" data-itemCId="">
+					#end
 						<span class="a3y u k">全部商品</span>
                     </li>
 					#foreach($itemCat in $!{itemCatList})
-					<li class="a3v">
+					#if($!{itemCId} == $!{itemCat.itemCId})
+					<li class="a3v a3x">
+					#else
+					<li class="a3v" data-shopId="$!{shop.shopId}" data-itemCId="$!{itemCat.itemCId}">
+					#end
 						<span class="a3y u k">$!{itemCat.itemCName}</span>
                     </li>
 					#end

@@ -12,12 +12,12 @@ myApp.onPageInit('item.list', function(page) {
 				var xhr = e.detail.xhr;
 
 				if (item_list_flag == "create") {
-					mainView.router.load({
+					myApp.getCurrentView().router.load({
 								url : appUrl + "/pay/index.htm?tradeNo="
 										+ xhr.responseText
 							});
 				} else if (item_list_flag == "remove") {
-					mainView.router.refreshPage();
+					myApp.getCurrentView().router.refreshPage();
 
 					// 更新首页购物车标记
 					portal_homepage_cart_stats();
@@ -80,14 +80,17 @@ myApp.onPageInit('item.list', function(page) {
 
 			// 商品类目
 			$$('.a47 .a3u').find('li').each(function() {
-						$$(this).click(function() {
-									$$('.a47 .a3u').find('li').each(function() {
-												$$(this).removeClass("a3x");
-											});
+				$$(this).click(function() {
+					if ($$(this).hasClass("a3x")) {
+						return;
+					}
 
-									$$(this).addClass("a3x");
-								});
-					});
+					var url = appUrl + "/item/list.htm?shopId="
+							+ $$(this).data("shopId") + "&itemCId="
+							+ $$(this).data("itemCId");
+					myApp.getCurrentView().router.reloadPage(url);
+				});
+			});
 		});
 
 var item_list_flag;

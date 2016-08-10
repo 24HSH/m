@@ -21,6 +21,9 @@
 		<if test="shopId != null">
 		<![CDATA[ AND t.shop_id = #{shopId} ]]>
 		</if>
+		<if test="itemCId != null">
+		<![CDATA[ AND t.item_cid = #{itemCId} ]]>
+		</if>
 		<if test="codes != null and codes.length > 0">
 		<![CDATA[ AND t.item_id IN ]]>
 			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
