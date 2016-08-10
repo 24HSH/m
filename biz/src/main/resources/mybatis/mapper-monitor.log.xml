@@ -42,7 +42,7 @@
 		<include refid="global.paginationEnd" />
 	</select>
 	
-	<insert id="createLogMonitor" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+	<insert id="createLogMonitor" parameterType="java.util.List">
 	<![CDATA[
 		INSERT
 		INTO BASIS_TB_MONITOR_LOG

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.hsh24.mall.monitor.dao.IActionMonitorDao">
 	
-	<insert id="createActionMonitor" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+	<insert id="createActionMonitor" parameterType="java.util.List">
 	<![CDATA[
 		INSERT
 		INTO BASIS_TB_MONITOR_ACTION
