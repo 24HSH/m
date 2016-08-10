@@ -65,7 +65,7 @@
 					<li>
 						<div class="item-content">
 							<div class="item-media" style="padding-top: 7px; padding-bottom: 8px;">
-								<img data-src="$!{order.itemFilePath}" class="lazy" style="width: 50px; height: 50px;"></img>
+								<img data-src="$!{order.itemFilePath}" class="lazy" style="width: 50px; height: 50px; border-radius: 2px;"></img>
 							</div>
 							<div class="item-inner">
 								<div class="item-title-row">
