@@ -216,7 +216,7 @@ a.component.type3 img {
     left: 0;
     bottom: 0;
     z-index: 10;
-    padding-bottom: 60px;
+    padding-bottom: 50px;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -761,7 +761,7 @@ a.component.type3 img {
     vertical-align: top;
     width: 51px;
     height: 51px;
-    border-radius: 5px;
+    border-radius: 2px;
     border: 1px solid #ececec;
 }
 

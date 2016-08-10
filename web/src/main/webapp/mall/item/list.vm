@@ -25,7 +25,7 @@
 		<!-- Scrollable page content-->
 		<div class="page-content">
 			<div class="a47">
-				<ul class="a3u" style="margin-top: 0; padding: 0; list-style: none;">
+				<ul class="a3u" style="margin-top: 0; padding-left: 0; list-style: none;">
 					<li class="a3v a3x">
 						<span class="a3y u k">全部商品</span>
                     </li>
@@ -36,7 +36,7 @@
 					#end
                 </ul>
 				
-    			<div class="a43 list-block media-list list-block-search searchbar-found" style="margin: 0;">
+    			<div class="a43 list-block media-list list-block-search searchbar-found" style="margin: 0 0 44px 0;">
 				#foreach($item in $!{itemList})
 					#if($!{item.skuList.size()} > 0)
 					#foreach($itemSku in $!{item.skuList})
