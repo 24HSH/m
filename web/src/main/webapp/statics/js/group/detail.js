@@ -67,10 +67,11 @@ myApp.onPageInit('group.detail', function(page) {
 			//
 			group_detail_skuId = "0";
 
-			$$('.close-picker').on('click', function() {
-				$('.page-content .group-detail-overlay')
-						.removeClass('group-detail-overlay-visible');
-			});
+			$$('.picker-modal.picker-group-detail .close-picker').on('click',
+					function() {
+						$('.page-content .group-detail-overlay')
+								.removeClass('group-detail-overlay-visible');
+					});
 		});
 
 function group_detail_change(tag) {

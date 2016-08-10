@@ -60,12 +60,15 @@ myApp.onPageInit('item.list', function(page) {
 			// 购物车
 			item_list_picker_flag = false;
 
-			$$('.close-picker').on('click', function() {
-				$$('.page-content .item-list-overlay')
-						.removeClass('item-list-overlay-visible');
+			$$('.picker-modal.picker-item-list .close-picker').on('click',
+					function() {
+						item_list_overlay_removeClass();
+					});
 
-				item_list_picker_flag = false;
-			});
+			$$('.page-content .item-list-overlay').on('click', function() {
+						myApp.closeModal('.picker-modal.picker-item-list');
+						item_list_overlay_removeClass();
+					});
 
 			// 合计金额
 			item_list_stats();
@@ -248,17 +251,25 @@ function item_list_picker() {
 
 	if (item_list_picker_flag) {
 		myApp.closeModal('.picker-modal.picker-item-list');
-		$$('.page-content .item-list-overlay')
-				.removeClass('item-list-overlay-visible');
-
-		item_list_picker_flag = false;
+		item_list_overlay_removeClass();
 	} else {
-		$$('.page-content .item-list-overlay')
-				.addClass('item-list-overlay-visible');
+		item_list_overlay_addClass();
 		myApp.pickerModal('.picker-modal.picker-item-list');
-
-		item_list_picker_flag = true;
 	}
+}
+
+function item_list_overlay_removeClass() {
+	$$('.page-content .item-list-overlay')
+			.removeClass('item-list-overlay-visible');
+
+	item_list_picker_flag = false;
+}
+
+function item_list_overlay_addClass() {
+	$$('.page-content .item-list-overlay')
+			.addClass('item-list-overlay-visible');
+
+	item_list_picker_flag = true;
 }
 
 function item_list_scan() {
