@@ -26,7 +26,7 @@
 		<div class="page-content">
 			<div class="a47">
 				<ul class="a3u" style="margin-top: 0; padding-left: 0; list-style: none;">
-					#if($!{itemCId} == 'undefined')
+					#if(!$!{itemCId} || $!{itemCId} == 'undefined')
 					<li class="a3v a3x">
 					#else
 					<li class="a3v" data-shopId="$!{shop.shopId}" data-itemCId="">
