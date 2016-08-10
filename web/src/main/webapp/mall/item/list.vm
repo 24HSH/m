@@ -24,12 +24,12 @@
 			
 		<!-- Scrollable page content-->
 		<div class="page-content">
-			<div class="a47">
+			<div class="a47" data-itemCId="$!{itemCId}">
 				<ul class="a3u" style="margin-top: 0; padding-left: 0; list-style: none;">
-					#if(!$!{itemCId} || $!{itemCId} == 'undefined')
+					#if(!$!{itemCId})
 					<li class="a3v a3x">
 					#else
-					<li class="a3v" data-shopId="$!{shop.shopId}" data-itemCId="">
+					<li class="a3v" data-shopId="$!{shop.shopId}">
 					#end
 						<span class="a3y u k">全部商品</span>
                     </li>

@@ -75,7 +75,10 @@ myApp.onPageInit('item.list', function(page) {
 
 			// 根据 合计金额判断 是否 自动 弹出 购物车
 			if ($$("#item/list/price").html() != '购物车是空的') {
-				item_list_picker();
+				var itemCId = $$('.a47').data("itemCId");
+				if (itemCId == undefined) {
+					item_list_picker();
+				}
 			}
 
 			// 商品类目
@@ -85,9 +88,15 @@ myApp.onPageInit('item.list', function(page) {
 						return;
 					}
 
-					var url = appUrl + "/item/list.htm?shopId="
-							+ $$(this).data("shopId") + "&itemCId="
-							+ $$(this).data("itemCId");
+					var itemCId = $$(this).data("itemCId");
+					if (itemCId == undefined) {
+						var url = appUrl + "/item/list.htm?shopId="
+								+ $$(this).data("shopId");
+					} else {
+						var url = appUrl + "/item/list.htm?shopId="
+								+ $$(this).data("shopId") + "&itemCId="
+								+ itemCId;
+					}
 					myApp.getCurrentView().router.reloadPage(url);
 				});
 			});
