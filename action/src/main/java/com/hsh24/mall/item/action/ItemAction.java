@@ -77,39 +77,42 @@ public class ItemAction extends BaseAction {
 
 		itemList = itemService.getItemList(shopId, ietm);
 
+		// 购物车
 		cartList = cartService.getCartListByShop(this.getUser().getUserId(), shopId);
-
-		if (cartList != null && cartList.size() > 0) {
-			Map<String, Cart> map = new HashMap<String, Cart>();
-			for (Cart cart : cartList) {
-				String key = cart.getItemId() + "&" + cart.getSkuId();
-				map.put(key, cart);
-			}
-
-			for (Item itme : itemList) {
-				List<ItemSku> list = itme.getSkuList();
-				if (list != null && list.size() > 0) {
-					for (ItemSku sku : list) {
-						String key = itme.getItemId() + "&" + sku.getSkuId();
-						if (map.containsKey(key)) {
-							Cart cart = map.get(key);
-							sku.setCartId(cart.getCartId());
-							sku.setQuantity(cart.getQuantity());
-						}
-					}
-				} else {
-					String key = itme.getItemId() + "&0";
-					if (map.containsKey(key)) {
-						Cart cart = map.get(key);
-						itme.setCartId(cart.getCartId());
-						itme.setQuantity(cart.getQuantity());
-					}
-				}
-			}
-		}
 
 		// 商品类目
 		itemCatList = itemCatService.getItemCatList("0");
+
+		if (itemList == null || itemList.size() == 0 || cartList == null || cartList.size() == 0) {
+			return SUCCESS;
+		}
+
+		Map<String, Cart> map = new HashMap<String, Cart>();
+		for (Cart cart : cartList) {
+			String key = cart.getItemId() + "&" + cart.getSkuId();
+			map.put(key, cart);
+		}
+
+		for (Item itme : itemList) {
+			List<ItemSku> list = itme.getSkuList();
+			if (list != null && list.size() > 0) {
+				for (ItemSku sku : list) {
+					String key = itme.getItemId() + "&" + sku.getSkuId();
+					if (map.containsKey(key)) {
+						Cart cart = map.get(key);
+						sku.setCartId(cart.getCartId());
+						sku.setQuantity(cart.getQuantity());
+					}
+				}
+			} else {
+				String key = itme.getItemId() + "&0";
+				if (map.containsKey(key)) {
+					Cart cart = map.get(key);
+					itme.setCartId(cart.getCartId());
+					itme.setQuantity(cart.getQuantity());
+				}
+			}
+		}
 
 		return SUCCESS;
 	}
