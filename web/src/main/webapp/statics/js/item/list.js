@@ -34,14 +34,14 @@ myApp.onPageInit('item.list', function(page) {
 								item_list_itemId, item_list_skuId,
 								item_list_itemName, item_list_price);
 					}
-
-					item_list_stats();
-					portal_homepage_cart_stats();
 				} else if (item_list_flag == "delete") {
 					item_list_cart_update_d(item_list_cartId);
-
-					item_list_stats();
 				}
+
+				item_list_stats();
+
+				// 更新首页购物车标记
+				portal_homepage_cart_stats();
 			});
 
 			$$('form.ajax-submit.item-list-form').on('submitError',
