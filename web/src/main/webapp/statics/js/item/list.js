@@ -192,8 +192,8 @@ function item_list_cart_update_a(cartId, itemId, skuId, itemName, price) {
 			+ '<div class="response-area response-area-plus" onclick="item_list_plus('
 			+ cartId + ');"></div>' + '</div>';
 
-	$$('.a43 .item-after-op-' + itemId + '-' + skuId).append(hmtl0);
 	$$('.a43 .a-op-' + itemId + '-' + skuId).hide();
+	$$('.a43 .item-after-op-' + itemId + '-' + skuId).append(hmtl0);
 
 	var hmtl1 = '<li id="item_list_cart_'
 			+ cartId
