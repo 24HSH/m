@@ -1,6 +1,8 @@
 package com.hsh24.mall.item.action;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -14,6 +16,7 @@ import com.hsh24.mall.api.item.IItemCatService;
 import com.hsh24.mall.api.item.IItemService;
 import com.hsh24.mall.api.item.bo.Item;
 import com.hsh24.mall.api.item.bo.ItemCat;
+import com.hsh24.mall.api.item.bo.ItemSku;
 import com.hsh24.mall.framework.action.BaseAction;
 import com.hsh24.mall.framework.log.Logger4jCollection;
 import com.hsh24.mall.framework.log.Logger4jExtend;
@@ -76,6 +79,36 @@ public class ItemAction extends BaseAction {
 
 		cartList = cartService.getCartListByShop(this.getUser().getUserId(), shopId);
 
+		if (cartList != null && cartList.size() > 0) {
+			Map<String, Cart> map = new HashMap<String, Cart>();
+			for (Cart cart : cartList) {
+				String key = cart.getItemId() + "&" + cart.getSkuId();
+				map.put(key, cart);
+			}
+
+			for (Item itme : itemList) {
+				List<ItemSku> list = itme.getSkuList();
+				if (list != null && list.size() > 0) {
+					for (ItemSku sku : list) {
+						String key = itme.getItemId() + "&" + sku.getSkuId();
+						if (map.containsKey(key)) {
+							Cart cart = map.get(key);
+							sku.setCartId(cart.getCartId());
+							sku.setQuantity(cart.getQuantity());
+						}
+					}
+				} else {
+					String key = itme.getItemId() + "&0";
+					if (map.containsKey(key)) {
+						Cart cart = map.get(key);
+						itme.setCartId(cart.getCartId());
+						itme.setQuantity(cart.getQuantity());
+					}
+				}
+			}
+		}
+
+		// 商品类目
 		itemCatList = itemCatService.getItemCatList("0");
 
 		return SUCCESS;

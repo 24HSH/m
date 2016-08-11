@@ -143,6 +143,16 @@ public class Item extends SearchInfo {
 
 	private int uv;
 
+	/**
+	 * 购物车ID.
+	 */
+	private Long cartId;
+
+	/**
+	 * 购物车商品数量.
+	 */
+	private int quantity;
+
 	public Long getItemId() {
 		return itemId;
 	}
@@ -367,6 +377,22 @@ public class Item extends SearchInfo {
 
 	public void setUv(int uv) {
 		this.uv = uv;
+	}
+
+	public Long getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(Long cartId) {
+		this.cartId = cartId;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }

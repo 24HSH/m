@@ -45,8 +45,8 @@
                 </ul>
 				
     			<div class="a43 list-block media-list list-block-search searchbar-found" style="margin: 0 0 44px 0;">
-				#foreach($item in $!{itemList})
-					#if($!{item.skuList.size()} > 0)
+			#foreach($item in $!{itemList})
+				#if($!{item.skuList.size()} > 0)
 					#foreach($itemSku in $!{item.skuList})
 					<ul class="before-height-0">
                         <li>
@@ -74,10 +74,23 @@
     											<span style="">￥$!{itemSku.origin}</span>
     										</del>
     									</div>
-    									<div class="item-after">
-    										<a href="javascript:item_list_cart_add('$!{item.itemId}','$!{itemSku.skuId}','1','$!{item.itemName}','$!{itemSku.price}');">
+    									<div class="item-after item-after-op-$!{itemSku.itemId}-$!{itemSku.skuId}">
+											#if($!{itemSku.cartId})
+											<div class="quantity quantity-op-$!{itemSku.cartId}" data-itemId="$!{itemSku.itemId}" data-skuId="$!{itemSku.skuId}">
+                                                <button class="minus" type="button"></button>
+                                                <input id="item/list/quantity/0/$!{itemSku.cartId}" type="text" class="txt" value="$!{itemSku.quantity}" />
+                                                <button class="plus" type="button"></button>
+                                                <div class="response-area response-area-minus" onclick="item_list_minus('$!{itemSku.cartId}');"></div>
+                                                <div class="response-area response-area-plus" onclick="item_list_plus('$!{itemSku.cartId}');"></div>
+            								</div>
+											<a style="display: none;" class="a-op-$!{itemSku.itemId}-$!{itemSku.skuId}" href="javascript:item_list_cart_add('$!{item.itemId}','$!{itemSku.skuId}','1','$!{item.itemName}','$!{itemSku.price}');">
     											<i class="iconfont icon-roundadd color-base" style="font-size: 25px;"></i>
     										</a>
+											#else
+											<a class="a-op-$!{itemSku.itemId}-$!{itemSku.skuId}" href="javascript:item_list_cart_add('$!{item.itemId}','$!{itemSku.skuId}','1','$!{item.itemName}','$!{itemSku.price}');">
+    											<i class="iconfont icon-roundadd color-base" style="font-size: 25px;"></i>
+    										</a>
+											#end
     									</div>
     								</div>
                                 </div>
@@ -85,7 +98,7 @@
     					</li>
 					</ul>
 					#end
-					#else
+				#else
 					<ul class="before-height-0">
     					<li>
     						<div class="item-content">
@@ -110,18 +123,31 @@
     											<span style="">￥$!{item.origin}</span>
     										</del>
     									</div>
-    									<div class="item-after">
-    										<a href="javascript:item_list_cart_add('$!{item.itemId}','0','1','$!{item.itemName}','$!{item.price}');">
+										<div class="item-after item-after-op-$!{item.itemId}-0">
+											#if($!{item.cartId})
+											<div class="quantity quantity-op-$!{item.cartId}" data-itemId="$!{item.itemId}" data-skuId="0">
+                                                <button class="minus" type="button"></button>
+                                                <input id="item/list/quantity/0/$!{item.cartId}" type="text" class="txt" value="$!{item.quantity}" />
+                                                <button class="plus" type="button"></button>
+                                                <div class="response-area response-area-minus" onclick="item_list_minus('$!{item.cartId}');"></div>
+                                                <div class="response-area response-area-plus" onclick="item_list_plus('$!{item.cartId}');"></div>
+            								</div>
+											<a style="display: none;" class="a-op-$!{item.itemId}-0" href="javascript:item_list_cart_add('$!{item.itemId}','0','1','$!{item.itemName}','$!{item.price}');">
     											<i class="iconfont icon-roundadd color-base" style="font-size: 25px;"></i>
     										</a>
+											#else
+											<a class="a-op-$!{item.itemId}-0" href="javascript:item_list_cart_add('$!{item.itemId}','0','1','$!{item.itemName}','$!{item.price}');">
+    											<i class="iconfont icon-roundadd color-base" style="font-size: 25px;"></i>
+    										</a>
+											#end
     									</div>
     								</div>
                                 </div>
     						</div>
     					</li>
 					</ul>
-					#end
 				#end
+			#end
     			</div>
             </div>
 			

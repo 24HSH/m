@@ -31,6 +31,7 @@ myApp.onPageInit('item.list', function(page) {
 				if (item_list_flag == "add") {
 					if (xhr.responseText != '0') {
 						item_list_cart_update_a(xhr.responseText,
+								item_list_itemId, item_list_skuId,
 								item_list_itemName, item_list_price);
 					}
 
@@ -104,6 +105,8 @@ myApp.onPageInit('item.list', function(page) {
 
 var item_list_flag;
 
+var item_list_itemId;
+var item_list_skuId;
 var item_list_itemName;
 var item_list_price;
 var item_list_cartId;
@@ -113,6 +116,8 @@ function item_list_cart_add(itemId, skuId, quantity, itemName, price) {
 
 	myApp.showIndicator();
 
+	item_list_itemId = itemId;
+	item_list_skuId = skuId;
 	item_list_itemName = itemName;
 	item_list_price = price;
 
@@ -162,14 +167,35 @@ function item_list_cart_remove() {
 			});
 }
 
-function item_list_cart_update_a(cartId, itemName, price) {
+function item_list_cart_update_a(cartId, itemId, skuId, itemName, price) {
 	var obj = $$('#item/list/quantity/' + cartId);
 	if (obj.length == 1) {
 		obj.val(dcmAdd(obj.val(), 1));
 		return;
 	}
 
-	var hmtl = '<li id="item_list_cart_'
+	var hmtl0 = '<div class="quantity quantity-op-'
+			+ cartId
+			+ '" data-itemId="'
+			+ itemId
+			+ '" data-skuId="'
+			+ skuId
+			+ '">'
+			+ '<button class="minus" type="button"></button>'
+			+ '<input id="item/list/quantity/0/'
+			+ cartId
+			+ '" type="text" class="txt" value="1" />'
+			+ '<button class="plus" type="button"></button>'
+			+ '<div class="response-area response-area-minus" onclick="item_list_minus('
+			+ cartId
+			+ ');"></div>'
+			+ '<div class="response-area response-area-plus" onclick="item_list_plus('
+			+ cartId + ');"></div>' + '</div>';
+
+	$$('.a43 .item-after-op-' + itemId + '-' + skuId).append(hmtl0);
+	$$('.a43 .a-op-' + itemId + '-' + skuId).hide();
+
+	var hmtl1 = '<li id="item_list_cart_'
 			+ cartId
 			+ '">'
 			+ '<div class="item-content">'
@@ -202,10 +228,17 @@ function item_list_cart_update_a(cartId, itemName, price) {
 			+ cartId + ');"></div>' + '</div>' + '</div>' + '</div>' + '</div>'
 			+ '</li>';
 
-	$$('#item_list_cart').prepend(hmtl);
+	$$('#item_list_cart').prepend(hmtl1);
 }
 
 function item_list_cart_update_d(cartId) {
+	var q_op = $$('.a43 .quantity-op-' + cartId);
+	var itemId = q_op.data("itemId");
+	var skuId = q_op.data("skuId");
+
+	$$('.a43 .quantity-op-' + cartId).remove();
+	$$('.a43 .a-op-' + itemId + '-' + skuId).show();
+
 	$$('#item_list_cart_' + cartId).remove();
 }
 
@@ -250,6 +283,7 @@ function item_list_num(cartId, quantity) {
 				cartId : cartId,
 				quantity : quantity
 			}, function(data) {
+				$$('#item/list/quantity/0/' + cartId).val(data);
 				$$('#item/list/quantity/' + cartId).val(data);
 				item_list_stats();
 			});

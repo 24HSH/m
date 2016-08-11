@@ -67,11 +67,6 @@ public class ItemSku extends SearchInfo {
 	private String verId;
 
 	/**
-	 * 店铺 id 查询用.
-	 */
-	private String shopId;
-
-	/**
 	 * 状态 D:删除 U:正常.
 	 */
 	private String state;
@@ -80,6 +75,18 @@ public class ItemSku extends SearchInfo {
 	 * 操作人ID.
 	 */
 	private String modifyUser;
+
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	/**
+	 * 购物车ID.
+	 */
+	private Long cartId;
+
+	/**
+	 * 购物车商品数量.
+	 */
+	private int quantity;
 
 	public Long getSkuId() {
 		return skuId;
@@ -169,14 +176,6 @@ public class ItemSku extends SearchInfo {
 		this.verId = verId;
 	}
 
-	public String getShopId() {
-		return shopId;
-	}
-
-	public void setShopId(String shopId) {
-		this.shopId = shopId;
-	}
-
 	public String getState() {
 		return state;
 	}
@@ -191,6 +190,22 @@ public class ItemSku extends SearchInfo {
 
 	public void setModifyUser(String modifyUser) {
 		this.modifyUser = modifyUser;
+	}
+
+	public Long getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(Long cartId) {
+		this.cartId = cartId;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }
