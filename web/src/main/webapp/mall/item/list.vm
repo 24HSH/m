@@ -160,7 +160,7 @@
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-66">
 						<a href="javascript:item_list_picker();" class="button button-big" style="background-color: #ffffff; border: 0;">
-							<span style="color: #ff5000;" id="item/list/price"></span>
+							<span class="color-base" style="font-size: 18px;" id="item/list/price"></span>
 						</a>
 					</div>
 					<div class="col-33">
@@ -195,7 +195,7 @@
             						<div class="item-inner">
             							<div class="item-title">$!{cart.itemName}</div>
             							<div class="item-after">
-                                            <span style="padding-top: 3px; padding-right: 10px; color: #ff5000;">￥$!{cart.price}</span>
+                                            <span class="color-base" style="padding-top: 3px; padding-right: 10px;">￥$!{cart.price}</span>
             								<input type="hidden" id="item/list/price/$!{cart.cartId}" value="$!{cart.price}" />
     										<div class="quantity">
                                                 <button class="minus" type="button"></button>

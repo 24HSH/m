@@ -37,7 +37,8 @@
 						<!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
 						<div class="center sliding">
 							<i class="iconfont icon-locationfill color-base"></i>
-                            <a class="external" href="$!{env.appUrl}/address/index.htm">$!{address.addName}</a>
+                            <a class="external" style="margin: 0 3px;" href="$!{env.appUrl}/address/index.htm">$!{address.addName}</a>
+							<i class="iconfont icon-unfold color-gray" style="font-size: 13px;"></i>
 						</div>
 					</div>
 				</div>
