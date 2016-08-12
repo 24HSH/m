@@ -196,7 +196,7 @@
             </div>
         </div>
 		
-		#JSM(["framework7", "weixin", "jquery", "common"])
+		#JSM(["framework7", "weixin", "common"])
 		#JS_ENV_VAL()
 		<script src="$!{env.imgUrl}/js/portal/homepage.js"></script>
 		<script src="$!{env.imgUrl}/js/group/list.js" async="async"></script>

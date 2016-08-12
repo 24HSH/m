@@ -246,13 +246,18 @@ function item_list_stats() {
 	var num = 0;
 	var total = 0;
 
-	$("input[name='cartIds']", $$('#item/list/form')).each(function(e) {
-		var q = $$("#item/list/quantity/" + this.value).val();
-		num = dcmAdd(num, q);
+	var cartIds = document.getElementById("item/list/form")
+			.getElementsByTagName("INPUT");
+	for (var i = 0; i < cartIds.length; i++) {
+		var v = cartIds[i];
+		if (v.name == 'cartIds') {
+			var q = $$("#item/list/quantity/" + v.value).val();
+			num = dcmAdd(num, q);
 
-		total = dcmAdd(total, dcmMul(
-						$$("#item/list/price/" + this.value).val(), q));
-	});
+			total = dcmAdd(total, dcmMul($$("#item/list/price/" + v.value)
+									.val(), q));
+		}
+	}
 
 	if (num > 0) {
 		$$(".toolbar .toolbar-inner .a6s").html(num);
