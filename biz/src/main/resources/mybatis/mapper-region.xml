@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsh24.mall.region.dao.IRegionDao">
+	
+	<select id="getRegion" parameterType="region" resultType="region">
+	<![CDATA[
+		SELECT t.region_id AS regionId,
+			   t.parent_region_id AS parentRegionId,
+			   t.region_name AS regionName
+		  FROM mdm.mdm_tb_region t
+		 WHERE t.state = 'U'
+		   AND t.region_id = #{regionId}
+	]]>
+	</select>
+	
+</mapper>

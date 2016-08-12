@@ -8,7 +8,7 @@
 </div>
 <div class="pages">
 	<!-- Page, data-page contains page name-->
-	<div data-page="user.address" class="page">
+	<div data-page="user.address" class="page no-tabbar">
 		<!-- Scrollable page content-->
 		<div class="page-content">
 			<form id="user/address/create" action="$!{env.appUrl}/address/create.htm" method="POST" class="ajax-submit user-address-form">

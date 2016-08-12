@@ -34,20 +34,39 @@
 					<li>
 						#if($!{trade.type} == 'check')
 						<a href="$!{env.appUrl}/user/address.htm?tradeNo=$!{tradeNo}" class="item-link item-content" data-ignore-cache="true">
-						#else
-						<div class="item-content">
-						#end
-							<div class="item-media"><i class="iconfont icon-location"></i></div>
-							<div class="item-inner" style="font-size: 14px;">
+							<div class="item-inner">
 								<div class="item-title">
 									收货人：$!{trade.receiverName}<span style="float: right;">$!{trade.receiverTel}</span><br />
 									收货地址：$!{trade.receiverProvince}$!{trade.receiverCity}$!{trade.receiverArea}$!{trade.receiverAddress}
 								</div>
 							</div>
-						#if($!{trade.type} == 'check')
 						</a>
 						#else
+						<div class="item-content">
+							<div class="item-inner">
+								<div class="item-title">
+									收货人：$!{trade.receiverName}<span style="float: right;">$!{trade.receiverTel}</span><br />
+									收货地址：$!{trade.receiverProvince}$!{trade.receiverCity}$!{trade.receiverArea}$!{trade.receiverAddress}
+								</div>
+							</div>
 						</div>
+						#end
+					</li>
+					<li>
+						#if($!{trade.type} == 'check')
+						<a href="#" class="item-link item-content">
+							<div class="item-inner">
+								<div class="item-title">送达时间</div>
+								<div class="item-after">立即送达</div>
+							</div>
+                        </a>
+						#else
+						<div class="item-content">
+							<div class="item-inner">
+								<div class="item-title">送达时间</div>
+								<div class="item-after">立即送达</div>
+							</div>
+                        </div>
 						#end
 					</li>
 				</ul>
@@ -118,17 +137,18 @@
 					<li>
 						#if($!{trade.type} == 'check')
 						<a href="#" class="item-link item-content">
-						#else
-						<div class="item-content">
-						#end
 							<div class="item-inner">
 								<div class="item-title">优惠</div>
 								<div class="item-after">使用优惠</div>
 							</div>
-						#if($!{trade.type} == 'check')
-						</a>
+                        </a>
 						#else
-						</div>
+						<div class="item-content">
+							<div class="item-inner">
+								<div class="item-title">优惠</div>
+								<div class="item-after">使用优惠</div>
+							</div>
+                        </div>
 						#end
 					</li>
 				</ul>

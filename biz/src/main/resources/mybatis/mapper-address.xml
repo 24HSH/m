@@ -9,10 +9,10 @@
 		SELECT t.`ADD_ID` AS addId,
 			   t.`ADD_NAME` AS addName,
 			   t.`ADDRESS`,
+			   t.`REGION_ID` AS regionId,
 			   t.`BLOCK_ID` AS blockId
 		  FROM mdm.`mdm_tb_address` t
 		 WHERE t.state = 'U'
-		   AND t.`REGION_ID` = #{regionId}
 	]]>
 	</select>
 	

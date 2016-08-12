@@ -26,6 +26,7 @@
 		<package name="com.hsh24.mall.api.cart.bo" />
 		<package name="com.hsh24.mall.api.item.bo" />
 		<package name="com.hsh24.mall.api.monitor.bo" />
+		<package name="com.hsh24.mall.api.region.bo" />
 		<package name="com.hsh24.mall.api.shop.bo" />
 		<package name="com.hsh24.mall.api.spec.bo" />
 		<package name="com.hsh24.mall.api.trade.bo" />
@@ -69,6 +70,7 @@
 		<mapper resource="mybatis/mapper-monitor.action.xml" />
 		<mapper resource="mybatis/mapper-monitor.log.xml" />
 		<mapper resource="mybatis/mapper-monitor.method.xml" />
+		<mapper resource="mybatis/mapper-region.xml" />
 		<mapper resource="mybatis/mapper-shop.xml" />
 		<mapper resource="mybatis/mapper-spec.cat.xml" />
 		<mapper resource="mybatis/mapper-spec.item.xml" />
