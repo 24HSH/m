@@ -243,17 +243,22 @@ function item_list_cart_update_d(cartId) {
 }
 
 function item_list_stats() {
+	var num = 0;
 	var total = 0;
 
 	$("input[name='cartIds']", $$('#item/list/form')).each(function(e) {
+		var q = $$("#item/list/quantity/" + this.value).val();
+		num = dcmAdd(num, q);
+
 		total = dcmAdd(total, dcmMul(
-						$$("#item/list/price/" + this.value).val(),
-						$$("#item/list/quantity/" + this.value).val()));
+						$$("#item/list/price/" + this.value).val(), q));
 	});
 
-	if (total > 0) {
+	if (num > 0) {
+		$$(".toolbar .toolbar-inner .a6s").html(num);
 		$$("#item/list/price").html("￥" + Number.format(total, 2));
 	} else {
+		$$(".toolbar .toolbar-inner .a6s").html("0");
 		$$("#item/list/price").html("购物车是空的");
 		// 如果 弹出购物车 则 自动关闭
 		if (item_list_picker_flag) {
@@ -285,6 +290,7 @@ function item_list_num(cartId, quantity) {
 			}, function(data) {
 				$$('#item/list/quantity/0/' + cartId).val(data);
 				$$('#item/list/quantity/' + cartId).val(data);
+
 				item_list_stats();
 			});
 }

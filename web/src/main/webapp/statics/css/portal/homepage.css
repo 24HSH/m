@@ -735,6 +735,21 @@ a.component.type3 img {
     -webkit-transition: -webkit-transform .5s ease-out 0s;
 }
 
+.a6s {
+    position: absolute;
+    top: 0px;
+    left: 44px;
+    padding: 0 5px;
+    height: 15px;
+    line-height: 15px;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+    background-color: #47b34f;
+    border-radius: 7px;
+    font-size: 10px;
+}
+
 .a7w {
     position: relative;
     z-index: 3;

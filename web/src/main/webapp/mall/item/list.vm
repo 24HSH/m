@@ -156,7 +156,9 @@
 		
 		<div class="toolbar">
 			<div class="toolbar-inner" style="padding: 0;">
-                <a href="javascript:item_list_picker();" class="a6r light" style="position: absolute;"></a>
+                <a href="javascript:item_list_picker();" class="a6r light" style="position: absolute;">
+					<i class="a6s">0</i>
+				</a>
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-66">
 						<a href="javascript:item_list_picker();" class="button button-big" style="background-color: #ffffff; border: 0;">
