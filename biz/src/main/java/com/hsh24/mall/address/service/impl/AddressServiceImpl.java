@@ -28,20 +28,13 @@ public class AddressServiceImpl implements IAddressService {
 	private IAddressDao addressDao;
 
 	@Override
-	public List<Address> getAddressList(String regionId, String search) {
-		if (StringUtils.isBlank(regionId)) {
+	public List<Address> getAddressList(String city, String search) {
+		if (StringUtils.isBlank(city)) {
 			return null;
 		}
 
 		Address address = new Address();
-
-		try {
-			address.setRegionId(Long.valueOf(regionId));
-		} catch (NumberFormatException e) {
-			logger.error(regionId, e);
-
-			return null;
-		}
+		address.setCity(city.trim());
 
 		if (StringUtils.isNotBlank(search)) {
 			address.setSearch(search.trim());

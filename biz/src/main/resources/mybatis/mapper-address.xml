@@ -8,9 +8,7 @@
 	<![CDATA[
 		SELECT t.`ADD_ID` AS addId,
 			   t.`ADD_NAME` AS addName,
-			   t.`ADDRESS`,
-			   t.`REGION_ID` AS regionId,
-			   t.`BLOCK_ID` AS blockId
+			   t.`ADDRESS`
 		  FROM mdm.`mdm_tb_address` t
 		 WHERE t.state = 'U'
 	]]>
@@ -20,7 +18,10 @@
 	<![CDATA[
 		SELECT t.`ADD_ID` AS addId,
 			   t.`ADD_NAME` AS addName,
-			   t.`ADDRESS`,
+			   t.`PROVINCE`,
+			   t.`CITY`,
+			   t.`AREA`,
+			   t.`BACK_CODE` AS backCode,
 			   t.`BLOCK_ID` AS blockId
 		  FROM mdm.mdm_tb_address t
 		 WHERE t.state = 'U'

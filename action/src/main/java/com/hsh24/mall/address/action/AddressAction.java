@@ -28,7 +28,7 @@ public class AddressAction extends BaseAction {
 
 	private List<Address> addressList;
 
-	private String regionId;
+	private String city;
 
 	private String search;
 
@@ -40,8 +40,8 @@ public class AddressAction extends BaseAction {
 	 */
 	public String index() {
 		// test
-		regionId = "0";
-		addressList = addressService.getAddressList(regionId, search);
+		city = "杭州市";
+		addressList = addressService.getAddressList(city, search);
 
 		return SUCCESS;
 	}
@@ -61,12 +61,12 @@ public class AddressAction extends BaseAction {
 		this.addressList = addressList;
 	}
 
-	public String getRegionId() {
-		return regionId;
+	public String getCity() {
+		return city;
 	}
 
-	public void setRegionId(String regionId) {
-		this.regionId = regionId;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getSearch() {

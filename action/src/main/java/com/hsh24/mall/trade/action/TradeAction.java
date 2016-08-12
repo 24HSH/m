@@ -68,9 +68,11 @@ public class TradeAction extends BaseAction {
 		if (cartIds == null || cartIds.length == 0) {
 			result =
 				tradeService.createTrade(this.getUser().getUserId(), this.getShop().getShopId(), itemId, skuId,
-					quantity);
+					quantity, this.getAddress());
 		} else {
-			result = tradeService.createTrade(this.getUser().getUserId(), this.getShop().getShopId(), cartIds);
+			result =
+				tradeService.createTrade(this.getUser().getUserId(), this.getShop().getShopId(), cartIds,
+					this.getAddress());
 		}
 
 		if (result.getResult()) {

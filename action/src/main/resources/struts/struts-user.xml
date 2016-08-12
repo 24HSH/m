@@ -18,8 +18,8 @@
 		
 	</package>
 	
-	<package name="{http://mall}mall$address"
-		extends="{http://mall}mall$framework" namespace="/address">
+	<package name="{http://mall}mall$user/address"
+		extends="{http://mall}mall$framework" namespace="/user/address">
 		<action name="create" class="userAddressAction" method="create">
 			<interceptor-ref name="authenticationStack" />
 		</action>

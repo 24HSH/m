@@ -2,6 +2,7 @@ package com.hsh24.mall.api.trade;
 
 import java.util.List;
 
+import com.hsh24.mall.api.address.bo.Address;
 import com.hsh24.mall.api.trade.bo.OrderRefund;
 import com.hsh24.mall.api.trade.bo.Trade;
 import com.hsh24.mall.framework.bo.BooleanResult;
@@ -67,7 +68,7 @@ public interface ITradeService {
 	 * @param quantity
 	 * @return
 	 */
-	BooleanResult createTrade(Long userId, Long shopId, String itemId, String skuId, String quantity);
+	BooleanResult createTrade(Long userId, Long shopId, String itemId, String skuId, String quantity, Address address);
 
 	/**
 	 * 买家下单交易.
@@ -80,7 +81,7 @@ public interface ITradeService {
 	 *            购物车id.
 	 * @return
 	 */
-	BooleanResult createTrade(Long userId, Long shopId, String[] cartId);
+	BooleanResult createTrade(Long userId, Long shopId, String[] cartId, Address address);
 
 	/**
 	 * 买家查询交易.
@@ -114,12 +115,11 @@ public interface ITradeService {
 	/**
 	 * 
 	 * @param userId
-	 * @param shopId
 	 * @param tradeNo
 	 * @param trade
 	 * @return
 	 */
-	BooleanResult updateReceiver(Long userId, Long shopId, String tradeNo, Trade trade);
+	BooleanResult updateReceiver(Long userId, String tradeNo, Trade trade);
 
 	/**
 	 * 取消订单.

@@ -14,19 +14,19 @@ public interface IUserAddressService {
 	 * 获取用户默认收货地址.
 	 * 
 	 * @param userId
+	 * @param mdmAddId
 	 * @return
 	 */
-	UserAddress getDefaultUserAddress(Long userId);
+	UserAddress getUserAddress(Long userId, Long mdmAddId);
 
 	/**
 	 * 新增收货地址 设置默认收货地址 并 修改交易记录.
 	 * 
 	 * @param userId
 	 * @param userAddress
-	 * @param shopId
 	 * @param tradeNo
 	 * @return
 	 */
-	BooleanResult createUserAddress(Long userId, UserAddress userAddress, Long shopId, String tradeNo);
+	BooleanResult createUserAddress(Long userId, UserAddress userAddress, String tradeNo);
 
 }

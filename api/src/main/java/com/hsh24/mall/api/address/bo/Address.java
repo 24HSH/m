@@ -15,9 +15,27 @@ public class Address extends SearchInfo {
 
 	private String addName;
 
-	private String address;
+	/**
+	 * 省.
+	 */
+	private String province;
 
-	private Long regionId;
+	/**
+	 * 市.
+	 */
+	private String city;
+
+	/**
+	 * 区.
+	 */
+	private String area;
+
+	/**
+	 * 区 对应id.
+	 */
+	private String backCode;
+
+	private String address;
 
 	/**
 	 * 所属块.
@@ -40,20 +58,44 @@ public class Address extends SearchInfo {
 		this.addName = addName;
 	}
 
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public String getBackCode() {
+		return backCode;
+	}
+
+	public void setBackCode(String backCode) {
+		this.backCode = backCode;
+	}
+
 	public String getAddress() {
 		return address;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public Long getRegionId() {
-		return regionId;
-	}
-
-	public void setRegionId(Long regionId) {
-		this.regionId = regionId;
 	}
 
 	public Long getBlockId() {

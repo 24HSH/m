@@ -14,6 +14,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.hsh24.mall.api.address.bo.Address;
 import com.hsh24.mall.api.cache.IMemcachedCacheService;
 import com.hsh24.mall.api.cart.ICartService;
 import com.hsh24.mall.api.cart.bo.Cart;
@@ -82,7 +83,7 @@ public class TradeServiceImpl implements ITradeService {
 
 	@Override
 	public BooleanResult createTrade(final Long userId, final Long shopId, final String itemId, final String skuId,
-		final String quantity) {
+		final String quantity, final Address address) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -119,6 +120,11 @@ public class TradeServiceImpl implements ITradeService {
 			return result;
 		}
 
+		if (address == null) {
+			result.setCode("地址信息不能为空");
+			return result;
+		}
+
 		try {
 			result = itemService.validate(shopId, Long.valueOf(itemId), Long.valueOf(skuId));
 		} catch (NumberFormatException e) {
@@ -135,7 +141,7 @@ public class TradeServiceImpl implements ITradeService {
 		final BigDecimal price = new BigDecimal(result.getCode()).multiply(new BigDecimal(quantity));
 
 		// 获取默认收货地址
-		final UserAddress userAddress = userAddressService.getDefaultUserAddress(userId);
+		final UserAddress userAddress = userAddressService.getUserAddress(userId, address.getAddId());
 
 		BooleanResult res = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
 			public BooleanResult doInTransaction(TransactionStatus ts) {
@@ -166,6 +172,11 @@ public class TradeServiceImpl implements ITradeService {
 					trade.setReceiverAddress(userAddress.getAddress());
 					trade.setReceiverZip(userAddress.getPostalCode());
 					trade.setReceiverTel(userAddress.getTel());
+				} else {
+					trade.setReceiverProvince(address.getProvince());
+					trade.setReceiverCity(address.getCity());
+					trade.setReceiverArea(address.getArea());
+					trade.setReceiverBackCode(address.getBackCode());
 				}
 
 				// 14位日期 ＋ 11位随机数
@@ -199,7 +210,7 @@ public class TradeServiceImpl implements ITradeService {
 	}
 
 	@Override
-	public BooleanResult createTrade(final Long userId, final Long shopId, final String[] cartId) {
+	public BooleanResult createTrade(final Long userId, final Long shopId, final String[] cartId, final Address address) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -218,6 +229,11 @@ public class TradeServiceImpl implements ITradeService {
 			return result;
 		}
 
+		if (address == null) {
+			result.setCode("地址信息不能为空");
+			return result;
+		}
+
 		// 获取选中商品总计价格，兑换积分，运费
 		final Cart cart = cartService.getCartStats(userId, shopId, cartId);
 
@@ -228,7 +244,7 @@ public class TradeServiceImpl implements ITradeService {
 		}
 
 		// 获取默认收货地址
-		final UserAddress userAddress = userAddressService.getDefaultUserAddress(userId);
+		final UserAddress userAddress = userAddressService.getUserAddress(userId, address.getAddId());
 
 		BooleanResult res = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
 			public BooleanResult doInTransaction(TransactionStatus ts) {
@@ -259,6 +275,11 @@ public class TradeServiceImpl implements ITradeService {
 					trade.setReceiverAddress(userAddress.getAddress());
 					trade.setReceiverZip(userAddress.getPostalCode());
 					trade.setReceiverTel(userAddress.getTel());
+				} else {
+					trade.setReceiverProvince(address.getProvince());
+					trade.setReceiverCity(address.getCity());
+					trade.setReceiverArea(address.getArea());
+					trade.setReceiverBackCode(address.getBackCode());
 				}
 
 				// 14位日期 ＋ 11位随机数
@@ -402,17 +423,12 @@ public class TradeServiceImpl implements ITradeService {
 	}
 
 	@Override
-	public BooleanResult updateReceiver(Long userId, Long shopId, String tradeNo, Trade trade) {
+	public BooleanResult updateReceiver(Long userId, String tradeNo, Trade trade) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
 		if (userId == null) {
 			result.setCode("用户信息不能为空");
-			return result;
-		}
-
-		if (shopId == null) {
-			result.setCode("店铺信息不能为空");
 			return result;
 		}
 
@@ -428,7 +444,6 @@ public class TradeServiceImpl implements ITradeService {
 
 		trade.setUserId(userId);
 		trade.setModifyUser(userId.toString());
-		trade.setShopId(shopId);
 		trade.setTradeNo(tradeNo.trim());
 
 		return updateTrade(trade);

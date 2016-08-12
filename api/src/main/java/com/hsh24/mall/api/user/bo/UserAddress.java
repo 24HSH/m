@@ -19,6 +19,11 @@ public class UserAddress {
 	private Long userId;
 
 	/**
+	 * 主数据 地址库.
+	 */
+	private Long mdmAddId;
+
+	/**
 	 * 收货人.
 	 */
 	private String contactName;
@@ -77,6 +82,14 @@ public class UserAddress {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public Long getMdmAddId() {
+		return mdmAddId;
+	}
+
+	public void setMdmAddId(Long mdmAddId) {
+		this.mdmAddId = mdmAddId;
 	}
 
 	public String getContactName() {

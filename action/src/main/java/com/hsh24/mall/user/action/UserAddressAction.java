@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hsh24.mall.api.address.bo.Address;
 import com.hsh24.mall.api.user.IUserAddressService;
 import com.hsh24.mall.api.user.bo.UserAddress;
 import com.hsh24.mall.framework.action.BaseAction;
@@ -32,15 +33,41 @@ public class UserAddressAction extends BaseAction {
 	private String tradeNo;
 
 	public String index() {
-		userAddress = userAddressService.getDefaultUserAddress(this.getUser().getUserId());
+		Address address = this.getAddress();
+
+		userAddress = userAddressService.getUserAddress(this.getUser().getUserId(), address.getAddId());
+
+		if (userAddress != null) {
+			return SUCCESS;
+		}
+
+		userAddress = new UserAddress();
+
+		userAddress.setProvince(address.getProvince());
+		userAddress.setCity(address.getCity());
+		userAddress.setArea(address.getArea());
+		userAddress.setBackCode(address.getBackCode());
 
 		return SUCCESS;
 	}
 
+	/**
+	 * 创建修改收货地址.
+	 * 
+	 * @return
+	 */
 	public String create() {
-		BooleanResult result =
-			userAddressService.createUserAddress(this.getUser().getUserId(), userAddress, this.getShop().getShopId(),
-				tradeNo);
+		if (userAddress != null) {
+			Address address = this.getAddress();
+
+			userAddress.setMdmAddId(address.getAddId());
+			userAddress.setProvince(address.getProvince());
+			userAddress.setCity(address.getCity());
+			userAddress.setArea(address.getArea());
+			userAddress.setBackCode(address.getBackCode());
+		}
+
+		BooleanResult result = userAddressService.createUserAddress(this.getUser().getUserId(), userAddress, tradeNo);
 
 		if (result.getResult()) {
 			this.setResourceResult(result.getCode());

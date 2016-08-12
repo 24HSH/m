@@ -38,13 +38,14 @@ public class UserAddressServiceImpl implements IUserAddressService {
 	private IUserAddressDao userAddressDao;
 
 	@Override
-	public UserAddress getDefaultUserAddress(Long userId) {
-		if (userId == null) {
+	public UserAddress getUserAddress(Long userId, Long mdmAddId) {
+		if (userId == null || mdmAddId == null) {
 			return null;
 		}
 
 		UserAddress userAddress = new UserAddress();
 		userAddress.setUserId(userId);
+		userAddress.setMdmAddId(mdmAddId);
 		userAddress.setDefaults("Y");
 
 		try {
@@ -57,12 +58,11 @@ public class UserAddressServiceImpl implements IUserAddressService {
 	}
 
 	@Override
-	public BooleanResult createUserAddress(final Long userId, final UserAddress userAddress, final Long shopId,
-		final String tradeNo) {
+	public BooleanResult createUserAddress(final Long userId, final UserAddress userAddress, final String tradeNo) {
 		BooleanResult res = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
 			public BooleanResult doInTransaction(TransactionStatus ts) {
 				// remove 默认收货地址
-				BooleanResult result = removeDefaultUserAddress(userId);
+				BooleanResult result = removeUserAddress(userId, userAddress.getMdmAddId());
 				if (!result.getResult()) {
 					ts.setRollbackOnly();
 
@@ -88,7 +88,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
 				trade.setReceiverZip(userAddress.getPostalCode());
 				trade.setReceiverTel(userAddress.getTel());
 
-				result = tradeService.updateReceiver(userId, shopId, tradeNo, trade);
+				result = tradeService.updateReceiver(userId, tradeNo, trade);
 				if (!result.getResult()) {
 					ts.setRollbackOnly();
 
@@ -180,7 +180,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
 	 * @param userId
 	 * @return
 	 */
-	private BooleanResult removeDefaultUserAddress(Long userId) {
+	private BooleanResult removeUserAddress(Long userId, Long mdmAddId) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -190,11 +190,16 @@ public class UserAddressServiceImpl implements IUserAddressService {
 			result.setCode("用户信息不能为空");
 			return result;
 		}
-
 		userAddress.setUserId(userId);
 
+		if (mdmAddId == null) {
+			result.setCode("地址信息不能为空");
+			return result;
+		}
+		userAddress.setMdmAddId(mdmAddId);
+
 		try {
-			userAddressDao.removeDefaultUserAddress(userAddress);
+			userAddressDao.removeUserAddress(userAddress);
 			result.setResult(true);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(userAddress), e);

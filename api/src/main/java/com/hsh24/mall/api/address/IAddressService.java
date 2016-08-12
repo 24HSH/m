@@ -13,11 +13,11 @@ public interface IAddressService {
 
 	/**
 	 * 
-	 * @param regionId
+	 * @param city
 	 * @param search
 	 * @return
 	 */
-	List<Address> getAddressList(String regionId, String search);
+	List<Address> getAddressList(String city, String search);
 
 	/**
 	 * 

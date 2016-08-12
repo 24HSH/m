@@ -1,12 +1,4 @@
 myApp.onPageInit('user.address', function(page) {
-			$.fn.cityTools({
-						provinceId : "user_address_province",
-						cityId : "user_address_city",
-						countyId : "user_address_area",
-						dfCode : $$('#user_address_backCode').val(),
-						backCodeId : "user_address_backCode"
-					});
-
 			$$('form.ajax-submit.user-address-form').on('beforeSubmit',
 					function(e) {
 					});

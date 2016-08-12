@@ -28,6 +28,6 @@ public interface IUserAddressDao {
 	 * @param userAddress
 	 * @return
 	 */
-	int removeDefaultUserAddress(UserAddress userAddress);
+	int removeUserAddress(UserAddress userAddress);
 
 }
