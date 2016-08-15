@@ -179,8 +179,8 @@ public class TradeServiceImpl implements ITradeService {
 					trade.setReceiverBackCode(address.getBackCode());
 				}
 
-				// 14位日期 ＋ 11位随机数
-				trade.setTradeNo(DateUtil.getNowDateminStr() + UUIDUtil.generate().substring(9));
+				// 14位日期 ＋ 6位随机数
+				trade.setTradeNo(DateUtil.getNowDateminStr() + UUIDUtil.generate().substring(14));
 
 				try {
 					tradeDao.createTrade(trade);
@@ -282,8 +282,8 @@ public class TradeServiceImpl implements ITradeService {
 					trade.setReceiverBackCode(address.getBackCode());
 				}
 
-				// 14位日期 ＋ 11位随机数
-				trade.setTradeNo(DateUtil.getNowDateminStr() + UUIDUtil.generate().substring(9));
+				// 14位日期 ＋ 6位随机数
+				trade.setTradeNo(DateUtil.getNowDateminStr() + UUIDUtil.generate().substring(14));
 
 				// 交易订单 关联 购物车
 				StringBuilder sb = new StringBuilder();
