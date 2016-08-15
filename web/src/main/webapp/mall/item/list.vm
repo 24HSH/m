@@ -6,6 +6,7 @@
 		<div class="center sliding">$!{shop.shopName}</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
+			<a href="#" class="link icon-only"> <i class="iconfont icon-more color-gray"></i><span></span></a>
 		</div>
 	</div>
 </div>
@@ -176,19 +177,18 @@
         <div class="picker-modal picker-item-list" style="background: #FFFFFF; z-index: 499; margin-bottom: 44px; height: initial;">
             <div class="toolbar" style="background: #FFFFFF; border-bottom: 1px solid #e5e5e5;">
             	<div class="toolbar-inner">
-                    <div class="left">
+					<div class="left"></div>
+                    <div class="right">
                         <a href="javascript:item_list_cart_remove();">
 							<i class="iconfont icon-delete color-gray" style="font-size: 15px;"></i>
-							<span class="color-gray" style="font-size: 14px;">删除全部</span></a>
-					</div>
-            		<div class="right">
-						<a href="#" class="close-picker"><i class="iconfont icon-close color-gray" style="font-size: 25px;"></i></a>
+							<span class="color-gray" style="font-size: 14px;">删除全部</span>
+						</a>
 					</div>
             	</div>
             </div>
             <div class="picker-modal-inner" style="max-height: 330px; overflow:auto">
 				<form id="item/list/form" method="POST" class="ajax-submit item-list-form">
-    				<div class="list-block" style="margin-top: 0; margin-bottom: 5px;">
+    				<div class="list-block" style="margin-top: 0; margin-bottom: 15px;">
     					<ul class="before-height-0 after-height-0" id="item_list_cart">
     						#foreach($cart in $!{cartList})
     						<li id="item_list_cart_$!{cart.cartId}">

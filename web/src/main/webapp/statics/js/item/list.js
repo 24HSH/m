@@ -61,11 +61,6 @@ myApp.onPageInit('item.list', function(page) {
 			// 购物车
 			item_list_picker_flag = false;
 
-			$$('.picker-modal.picker-item-list .close-picker').on('click',
-					function() {
-						item_list_overlay_removeClass();
-					});
-
 			$$('.page-content .item-list-overlay').on('click', function() {
 						myApp.closeModal('.picker-modal.picker-item-list');
 						item_list_overlay_removeClass();
