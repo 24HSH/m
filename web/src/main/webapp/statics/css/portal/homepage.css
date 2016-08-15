@@ -198,6 +198,18 @@ a.component.type3 img {
     background-size: 100%;
 }
 
+.by {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: url(../../image/portal/icon_changguang.png) no-repeat;
+    background-size: 100%;
+}
+
 
 
 /* 商品列表模块 */
