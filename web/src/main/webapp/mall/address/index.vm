@@ -23,7 +23,7 @@
 						<div class="center sliding">选择您的位置</div>
 						<div class="right">
                 			<!-- Right link contains only icon - additional "icon-only" class-->
-                			<a href="#" class="link icon-only"> <i class="iconfont icon-focus color-base"></i><span></span></a>
+                			<a href="javascript:address_index_getLocation();" class="link icon-only"> <i class="iconfont icon-focus color-base"></i><span></span></a>
                 		</div>
 					</div>
 				</div>
@@ -66,8 +66,18 @@
 			</div>
 		</div>
 		
-		#JSM(["framework7"])
+		#JSM(["framework7", "weixin"])
 		#JS_ENV_VAL()
 		<script type="text/javascript" src="$!{env.imgUrl}/js/address/index.js"></script>
+		<script>
+        wx.config({
+        			debug : false,
+        			appId : '$!{ticket.appId}',
+        			timestamp : $!{ticket.timestamp},
+        			nonceStr : '$!{ticket.nonceStr}',
+        			signature : '$!{ticket.signature}',
+        			jsApiList : ['openLocation', 'getLocation']
+        		});
+        </script>
 	</body>
 </html>
