@@ -25,20 +25,19 @@ myApp.onPageInit('deliver.time', function(page) {
 						return;
 					}
 
-					$$('.content-block-inner .date').find('p').each(function() {
-						if ($$(this).hasClass("cur")) {
-							// 1. 日期
-							$$(this).removeClass("cur");
-							// 2. 时间
-							var tab = $$(this).data("tab");
-							$$('.content-block-inner .time').find('div').each(
-									function() {
-										if (tab == $$(this).data("tab")) {
-											$$(this).hide();
-										}
-									});
-						}
-					});
+					var date = $$('.date  .sendDate.cur');
+					// 1. 日期
+					date.removeClass("cur");
+					// 2. 时间
+					var tab = date.data("tab");
+					$$('.content-block-inner .time').find('div').each(
+							function() {
+								if (tab == $$(this).data("tab")) {
+									$$(this).hide();
+								}
+							});
+					// 3. 时间
+					$$('.time .sendTime.cur').removeClass("cur");
 
 					// 1. 日期
 					$$(this).addClass("cur");
@@ -59,12 +58,8 @@ myApp.onPageInit('deliver.time', function(page) {
 										return;
 									}
 
-									$$('.time .time_div').find('p').each(
-											function() {
-												if ($$(this).hasClass("cur")) {
-													$$(this).removeClass("cur");
-												}
-											});
+									$$('.time .sendTime.cur')
+											.removeClass("cur");
 
 									$$(this).addClass("cur");
 								});
