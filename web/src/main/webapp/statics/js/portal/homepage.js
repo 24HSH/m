@@ -79,6 +79,19 @@ var view5 = myApp.addView('#view-5', {
 $$('#href-5').on('click', function() {
 			if (view5.history.length == 1) {
 				view5.router.load({
+							url : appUrl + "/trade/list.htm",
+							ignoreCache : true,
+							reload : true
+						});
+			}
+		});
+
+var view6 = myApp.addView('#view-6', {
+			dynamicNavbar : true
+		});
+$$('#href-6').on('click', function() {
+			if (view6.history.length == 1) {
+				view6.router.load({
 							url : appUrl + "/member/index.htm",
 							ignoreCache : true,
 							reload : true
