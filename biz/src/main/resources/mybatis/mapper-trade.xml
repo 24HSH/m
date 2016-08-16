@@ -210,6 +210,17 @@
 		<if test="shipment != null and shipment != ''">
 		<![CDATA[ , t.shipment = #{shipment} ]]>
 		</if>
+		
+		<if test="deliverDate != null and deliverDate != ''">
+		<![CDATA[ , t.deliver_date = #{deliverDate} ]]>
+		</if>
+		<if test="deliverStartTime != null and deliverStartTime != ''">
+		<![CDATA[ , t.deliver_start_time = #{deliverStartTime} ]]>
+		</if>
+		<if test="deliverEndTime != null and deliverEndTime != ''">
+		<![CDATA[ , t.deliver_end_time = #{deliverEndTime} ]]>
+		</if>
+		
 		<if test="payType != null and payType != ''">
 		<![CDATA[ , t.pay_type = #{payType} ]]>
 		</if>

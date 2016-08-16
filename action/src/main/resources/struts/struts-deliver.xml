@@ -10,5 +10,9 @@
 			<result name="success">/mall/deliver/time.vm</result>
 		</action>
 		
+		<action name="set" class="deliverTimeAction" method="set">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 	</package>
 </struts>

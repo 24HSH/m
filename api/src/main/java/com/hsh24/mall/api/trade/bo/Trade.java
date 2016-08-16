@@ -182,6 +182,15 @@ public class Trade extends SearchInfo {
 	private String cartId;
 
 	/**
+	 * 送达时间.
+	 */
+	private String deliverDate;
+
+	private String deliverStartTime;
+
+	private String deliverEndTime;
+
+	/**
 	 * 支付方式.
 	 */
 	private String payType;
@@ -515,6 +524,30 @@ public class Trade extends SearchInfo {
 
 	public void setCartId(String cartId) {
 		this.cartId = cartId;
+	}
+
+	public String getDeliverDate() {
+		return deliverDate;
+	}
+
+	public void setDeliverDate(String deliverDate) {
+		this.deliverDate = deliverDate;
+	}
+
+	public String getDeliverStartTime() {
+		return deliverStartTime;
+	}
+
+	public void setDeliverStartTime(String deliverStartTime) {
+		this.deliverStartTime = deliverStartTime;
+	}
+
+	public String getDeliverEndTime() {
+		return deliverEndTime;
+	}
+
+	public void setDeliverEndTime(String deliverEndTime) {
+		this.deliverEndTime = deliverEndTime;
 	}
 
 	public String getPayType() {

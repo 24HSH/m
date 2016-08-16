@@ -438,7 +438,34 @@ public class TradeServiceImpl implements ITradeService {
 		}
 
 		if (trade == null) {
-			result.setCode("联系人信息不能为空");
+			result.setCode("订单信息不能为空");
+			return result;
+		}
+
+		trade.setUserId(userId);
+		trade.setModifyUser(userId.toString());
+		trade.setTradeNo(tradeNo.trim());
+
+		return updateTrade(trade);
+	}
+
+	@Override
+	public BooleanResult updateDeliverTime(Long userId, String tradeNo, Trade trade) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		if (StringUtils.isBlank(tradeNo)) {
+			result.setCode("订单信息不能为空");
+			return result;
+		}
+
+		if (trade == null) {
+			result.setCode("订单信息不能为空");
 			return result;
 		}
 
@@ -632,6 +659,7 @@ public class TradeServiceImpl implements ITradeService {
 		try {
 			int c = tradeDao.updateTrade(trade);
 			if (c == 1) {
+				result.setCode("操作成功");
 				result.setResult(true);
 			} else {
 				result.setCode("更新交易失败");

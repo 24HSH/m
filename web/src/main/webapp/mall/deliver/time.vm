@@ -57,8 +57,15 @@
                 </div>
             </div>
 			<div class="content-block">
-				<p><a href="javascript:void;" class="button button-big button-fill weui_btn_primary">确定</a></p>
+				<p><a href="javascript:deliver_time_set();" class="button button-big button-fill weui_btn_primary">确定</a></p>
             </div>
-        </div>
+        
+			<form id="deliver/time/set" action="$!{env.appUrl}/deliver/time/set.htm" method="POST" class="ajax-submit deliver-time-form">
+				<input type="hidden" name="tradeNo" id="deliver_time_tradeNo" value="$!{tradeNo}" />
+				<input type="hidden" name="date" id="deliver_time_date" />
+				<input type="hidden" name="startTime" id="deliver_time_startTime" />
+				<input type="hidden" name="endTime" id="deliver_time_endTime" />
+            </form>
+		</div>
     </div>
 </div>

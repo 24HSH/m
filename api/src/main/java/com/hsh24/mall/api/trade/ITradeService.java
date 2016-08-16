@@ -122,6 +122,15 @@ public interface ITradeService {
 	BooleanResult updateReceiver(Long userId, String tradeNo, Trade trade);
 
 	/**
+	 * 
+	 * @param userId
+	 * @param tradeNo
+	 * @param trade
+	 * @return
+	 */
+	BooleanResult updateDeliverTime(Long userId, String tradeNo, Trade trade);
+
+	/**
 	 * 取消订单.
 	 * 
 	 * @param userId
