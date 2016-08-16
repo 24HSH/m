@@ -32,25 +32,25 @@
 				<ul class="page-settings after-height-0">
 					<li class="row" style="text-align: center;">
 						<a href="$!{env.appUrl}/trade/list.htm?type=topay" class="col-25 item-link" style="width: 25%; padding-top: 10px;" data-ignore-cache="true">
-							<i class="icon iconfont icon-recharge color-gray" style="font-size: 25px;">
+							<i class="icon iconfont icon-recharge" style="font-size: 25px; color: #A6D344;">
     							<span id="member/index/topay" class="badge bg-red">0</span>
     						</i>
 							<div class="color-gray color-gray-0">待付款</div>
                         </a>
 						<a href="$!{env.appUrl}/trade/list.htm?type=tosend" class="col-25 item-link" style="width: 25%; padding-top: 10px;" data-ignore-cache="true">
-							<i class="icon iconfont icon-present color-gray" style="font-size: 25px;">
+							<i class="icon iconfont icon-present" style="font-size: 25px; color: #EB5D5D;">
     							<span id="member/index/tosend" class="badge bg-red">0</span>
     						</i>
 							<div class="color-gray color-gray-0">待发货</div>
                         </a>
 						<a href="$!{env.appUrl}/trade/list.htm?type=send" class="col-25 item-link" style="width: 25%; padding-top: 10px;" data-ignore-cache="true">
-							<i class="icon iconfont icon-deliver color-gray" style="font-size: 25px;">
+							<i class="icon iconfont icon-deliver" style="font-size: 25px; color: #F6B639;">
     							<span id="member/index/send" class="badge bg-red">0</span>
     						</i>
 							<div class="color-gray color-gray-0">已发货</div>
                         </a>
 						<a href="$!{env.appUrl}/trade/list.htm?type=sign" class="col-25 item-link" style="width: 25%; padding-top: 10px;" data-ignore-cache="true">
-							<i class="icon iconfont icon-squarecheck color-gray" style="font-size: 25px;">
+							<i class="icon iconfont icon-squarecheck" style="font-size: 25px; color: #4DB4F9;">
     							<span id="member/index/sign" class="badge bg-red">0</span>
     						</i>
 							<div class="color-gray color-gray-0">已完成</div>
@@ -60,7 +60,7 @@
 				<ul>
 					<li>
 						<a href="$!{env.appUrl}/trade/list.htm" class="item-link item-content" data-ignore-cache="true">
-							<div class="item-media"><i class="iconfont icon-text"></i></div>
+							<div class="item-media"><i class="iconfont icon-text color-gray"></i></div>
 							<div class="item-inner">
 								<div class="item-title">全部订单</div>
 							</div>
@@ -72,7 +72,7 @@
 				<ul>
 					<li>
 						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-time"></i></div>
+							<div class="item-media"><i class="iconfont icon-time" style="color: #A6D344;"></i></div>
 							<div class="item-inner">
 								<div class="item-title">我的购物记录</div>
 							</div>
@@ -80,7 +80,7 @@
 					</li>
 					<li>
 						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-refund" style="color: #eb4f38;"></i></div>
+							<div class="item-media"><i class="iconfont icon-refund" style="color: #EB5D5D;"></i></div>
 							<div class="item-inner">
 								<div class="item-title">我的返现</div>
 							</div>
@@ -92,7 +92,7 @@
 				<ul>
 					<li>
 						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-present"></i></div>
+							<div class="item-media"><i class="iconfont icon-present" style="color: #F6B639;"></i></div>
 							<div class="item-inner">
 								<div class="item-title">我收到的礼物</div>
 							</div>
@@ -100,7 +100,7 @@
 					</li>
 					<li>
 						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-ticket"></i></div>
+							<div class="item-media"><i class="iconfont icon-ticket" style="color: #4DB439;"></i></div>
 							<div class="item-inner">
 								<div class="item-title">我的优惠券</div>
 							</div>
@@ -108,7 +108,7 @@
 					</li>
 					<li>
 						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-vipcard"></i></div>
+							<div class="item-media"><i class="iconfont icon-vipcard" style="color: #A6D344;"></i></div>
 							<div class="item-inner">
 								<div class="item-title">我的优惠码</div>
 							</div>
@@ -116,7 +116,7 @@
 					</li>
 					<li>
 						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-goods"></i></div>
+							<div class="item-media"><i class="iconfont icon-goods" style="color: #EB5D5D;"></i></div>
 							<div class="item-inner">
 								<div class="item-title">我的赠品</div>
 							</div>
