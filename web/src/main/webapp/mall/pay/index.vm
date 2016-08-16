@@ -136,7 +136,7 @@
 				<ul>
 					<li>
 						#if($!{trade.type} == 'check')
-						<a href="#" class="item-link item-content">
+						<a href="$!{env.appUrl}/coupon/index.htm" class="item-link item-content">
 							<div class="item-inner">
 								<div class="item-title">优惠</div>
 								<div class="item-after">使用优惠</div>
