@@ -1,0 +1,14 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://mall}mall$coupon"
+		extends="{http://mall}mall$framework" namespace="/coupon">
+		
+		<action name="index" class="couponAction" method="index">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/coupon/index.vm</result>
+		</action>
+		
+	</package>
+</struts>

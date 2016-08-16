@@ -1,0 +1,64 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
+		<div class="center sliding">送达时间</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="deliver.time" class="page no-tabbar">
+		<!-- Scrollable page content-->
+		<div class="page-content">
+			<div class="content-block-title">日期选择</div>
+			<div class="content-block">
+				<div class="content-block-inner">
+    				<div class="date">
+					#set($flag0 = 0)
+					#foreach($promiseTime in $!{promiseTimeList})
+						#if($flag0 == 0) #set($flag0 = 1)
+    					<p class="sendDate cur" data-tab="$!{promiseTime.date}">$!{promiseTime.dateText}</p>
+						#else
+						<p class="sendDate" data-tab="$!{promiseTime.date}">$!{promiseTime.dateText}</p>
+						#end
+					#end
+    				</div>
+                </div>
+            </div>
+    		<div class="content-block-title">时间选择 (以支付时间为准)</div>
+    		<div class="content-block">
+    			<div class="content-block-inner">
+    				<div class="time">
+					#set($flag1 = 0)
+					#foreach($promiseTime in $!{promiseTimeList})
+						#if($flag1 == 0) #set($flag1 = 1)
+    					<div class="time_div" data-tab="$!{promiseTime.date}" style="display: block;">
+							#foreach($promiseTimeItem in $!{promiseTime.promiseTimeItemList})
+							<p class="sendTime" data-starttime="$!{promiseTimeItem.startTime}" data-endtime="$!{promiseTimeItem.endTime}" data-time="$!{promiseTimeItem.timeText}">
+								<em>$!{promiseTimeItem.timeText}</em>
+							</p>
+							#end
+						</div>
+						#else
+						<div class="time_div" data-tab="$!{promiseTime.date}" style="display: none;">
+							#foreach($promiseTimeItem in $!{promiseTime.promiseTimeItemList})
+							<p class="sendTime" data-starttime="$!{promiseTimeItem.startTime}" data-endtime="$!{promiseTimeItem.endTime}" data-time="$!{promiseTimeItem.timeText}">
+								<em>$!{promiseTimeItem.timeText}</em>
+							</p>
+							#end
+						</div>
+						#end
+					#end
+    				</div>
+                </div>
+            </div>
+			<div class="content-block">
+				<p><a href="javascript:void;" class="button button-big button-fill weui_btn_primary">确定</a></p>
+            </div>
+        </div>
+    </div>
+</div>

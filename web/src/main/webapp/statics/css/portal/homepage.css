@@ -40,6 +40,26 @@ a {
 
 
 
+/* 去掉下划线 */
+.list-block .before-height-0:before {
+	height: 0;
+}
+
+.list-block .after-height-0:after {
+	height: 0;
+}
+
+
+
+/* 下拉 */
+.infinite-scroll-preloader {
+	margin-top: -20px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+
+
 /* iconfont */
 .iconfont {
     font-size: 20px;
@@ -816,14 +836,6 @@ a.component.type3 img {
 
 
 
-.infinite-scroll-preloader {
-	margin-top: -20px;
-	margin-bottom: 10px;
-	text-align: center;
-}
-
-
-
 /* 会员中心 */
 .page-settings .row h3 {
     margin: 0.6rem 0 0 0;
@@ -847,17 +859,6 @@ a.component.type3 img {
 .page-settings .col-50 + .col-50 {
     border-left: 1px solid #ccc;
     border-left-style: dashed;
-}
-
-
-
-/* 去掉下划线 */
-.list-block .before-height-0:before {
-	height: 0;
-}
-
-.list-block .after-height-0:after {
-	height: 0;
 }
 
 
@@ -958,6 +959,45 @@ a.component.type3 img {
     color: #fff;
     background-color: #f60;
     border-color: #f60;
+}
+
+
+
+/* 送达时间 */
+.date p, .time p {
+    border: 1px solid #d4d4d4;
+    background: #ffffff;
+    margin: 1%;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    line-height: 18px;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    width: 21.9%;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.date p {
+    padding: 10px 5px;
+    white-space: nowrap;
+}
+
+.time p {
+    margin: 3%;
+    width: 43.3%;
+}
+
+.date p.cur, .time p.cur {
+    border: 2px solid #FF5500;
+    color: #FF5500;
+    padding: 9px;
+}
+
+.date p.cur {
+    padding: 9px 4px;
 }
 
 

@@ -1,0 +1,14 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://mall}mall$deliver/time"
+		extends="{http://mall}mall$framework" namespace="/deliver/time">
+		
+		<action name="index" class="deliverTimeAction" method="index">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/deliver/time.vm</result>
+		</action>
+		
+	</package>
+</struts>

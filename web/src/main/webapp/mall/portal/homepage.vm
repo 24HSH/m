@@ -207,6 +207,7 @@
 		<script src="$!{env.imgUrl}/js/trade/list.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/trade/refund.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/user/address.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/deliver/time.js" async="async"></script>
 		<script>
         wx.config({
         			debug : false,

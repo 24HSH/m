@@ -25,12 +25,12 @@
 			
 		<!-- Scrollable page content-->
 		<div class="page-content">
-			<div class="a47" data-itemCId="$!{itemCId}">
+			<div class="a47" data-itemcid="$!{itemCId}">
 				<ul class="a3u" style="margin-top: 0; padding-left: 0; list-style: none;">
 					#if(!$!{itemCId})
 					<li class="a3v a3x">
 					#else
-					<li class="a3v" data-shopId="$!{shop.shopId}">
+					<li class="a3v" data-shopid="$!{shop.shopId}">
 					#end
 						<span class="a3y u k">全部商品</span>
                     </li>
@@ -38,7 +38,7 @@
 					#if($!{itemCId} == $!{itemCat.itemCId})
 					<li class="a3v a3x">
 					#else
-					<li class="a3v" data-shopId="$!{shop.shopId}" data-itemCId="$!{itemCat.itemCId}">
+					<li class="a3v" data-shopid="$!{shop.shopId}" data-shopid="$!{itemCat.itemCId}">
 					#end
 						<span class="a3y u k">$!{itemCat.itemCName}</span>
                     </li>
@@ -77,7 +77,7 @@
     									</div>
     									<div class="item-after item-after-op-$!{itemSku.itemId}-$!{itemSku.skuId}">
 											#if($!{itemSku.cartId})
-											<div class="quantity quantity-op-$!{itemSku.cartId}" data-itemId="$!{itemSku.itemId}" data-skuId="$!{itemSku.skuId}">
+											<div class="quantity quantity-op-$!{itemSku.cartId}" data-itemid="$!{itemSku.itemId}" data-skuid="$!{itemSku.skuId}">
                                                 <button class="minus" type="button"></button>
                                                 <input id="item/list/quantity/0/$!{itemSku.cartId}" type="text" class="txt" value="$!{itemSku.quantity}" />
                                                 <button class="plus" type="button"></button>
@@ -126,7 +126,7 @@
     									</div>
 										<div class="item-after item-after-op-$!{item.itemId}-0">
 											#if($!{item.cartId})
-											<div class="quantity quantity-op-$!{item.cartId}" data-itemId="$!{item.itemId}" data-skuId="0">
+											<div class="quantity quantity-op-$!{item.cartId}" data-itemid="$!{item.itemId}" data-skuid="0">
                                                 <button class="minus" type="button"></button>
                                                 <input id="item/list/quantity/0/$!{item.cartId}" type="text" class="txt" value="$!{item.quantity}" />
                                                 <button class="plus" type="button"></button>

@@ -7,6 +7,8 @@
 	<include file="struts/struts-auth.xml" />
 	<include file="struts/struts-address.xml" />
 	<include file="struts/struts-cart.xml" />
+	<include file="struts/struts-coupon.xml" />
+	<include file="struts/struts-deliver.xml" />
 	<include file="struts/struts-error.xml" />
 	<include file="struts/struts-express.xml" />
 	<include file="struts/struts-facebook.xml" />

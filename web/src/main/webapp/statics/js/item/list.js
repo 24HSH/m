@@ -71,7 +71,7 @@ myApp.onPageInit('item.list', function(page) {
 
 			// 根据 合计金额判断 是否 自动 弹出 购物车
 			if ($$("#item/list/price").html() != '购物车是空的') {
-				var itemCId = $$('.a47').data("itemCId");
+				var itemCId = $$('.a47').data("itemcid");
 				if (itemCId == undefined) {
 					item_list_picker();
 				}
@@ -84,13 +84,13 @@ myApp.onPageInit('item.list', function(page) {
 						return;
 					}
 
-					var itemCId = $$(this).data("itemCId");
+					var itemCId = $$(this).data("itemcid");
 					if (itemCId == undefined) {
 						var url = appUrl + "/item/list.htm?shopId="
-								+ $$(this).data("shopId");
+								+ $$(this).data("shopid");
 					} else {
 						var url = appUrl + "/item/list.htm?shopId="
-								+ $$(this).data("shopId") + "&itemCId="
+								+ $$(this).data("shopid") + "&itemCId="
 								+ itemCId;
 					}
 					myApp.getCurrentView().router.reloadPage(url);
@@ -228,8 +228,8 @@ function item_list_cart_update_a(cartId, itemId, skuId, itemName, price) {
 
 function item_list_cart_update_d(cartId) {
 	var q_op = $$('.a43 .quantity-op-' + cartId);
-	var itemId = q_op.data("itemId");
-	var skuId = q_op.data("skuId");
+	var itemId = q_op.data("itemid");
+	var skuId = q_op.data("skuid");
 
 	$$('.a43 .quantity-op-' + cartId).remove();
 	$$('.a43 .a-op-' + itemId + '-' + skuId).show();
