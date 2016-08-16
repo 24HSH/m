@@ -38,7 +38,7 @@
 					#if($!{itemCId} == $!{itemCat.itemCId})
 					<li class="a3v a3x">
 					#else
-					<li class="a3v" data-shopid="$!{shop.shopId}" data-shopid="$!{itemCat.itemCId}">
+					<li class="a3v" data-shopid="$!{shop.shopId}" data-itemcid="$!{itemCat.itemCId}">
 					#end
 						<span class="a3y u k">$!{itemCat.itemCName}</span>
                     </li>
