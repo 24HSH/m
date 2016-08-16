@@ -8,9 +8,9 @@ myApp.onPageInit('deliver.time', function(page) {
 
 					$$('.content-block-inner .date').find('p').each(function() {
 						if ($$(this).hasClass("cur")) {
-
+							// 1. 日期
 							$$(this).removeClass("cur");
-
+							// 2. 时间
 							var tab = $$(this).data("tab");
 							$$('.content-block-inner .time').find('div').each(
 									function() {
@@ -21,7 +21,9 @@ myApp.onPageInit('deliver.time', function(page) {
 						}
 					});
 
+					// 1. 日期
 					$$(this).addClass("cur");
+					// 2. 时间
 					var tab = $$(this).data("tab");
 					$$('.content-block-inner .time').find('div').each(
 							function() {

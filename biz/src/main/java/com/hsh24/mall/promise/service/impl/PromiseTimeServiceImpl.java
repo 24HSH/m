@@ -56,6 +56,11 @@ public class PromiseTimeServiceImpl implements IPromiseTimeService {
 			item1.setStartTime("14:00");
 			item1.setEndTime("17:00");
 			timeItemList.add(item1);
+
+			PromiseTimeItem item2 = new PromiseTimeItem();
+			item2.setStartTime("17:00");
+			item2.setEndTime("20:00");
+			timeItemList.add(item2);
 			// settime
 
 			time.setPromiseTimeItemList(timeItemList);
