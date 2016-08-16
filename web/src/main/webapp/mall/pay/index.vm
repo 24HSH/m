@@ -35,7 +35,7 @@
 						#if($!{trade.type} == 'check')
 						<a href="$!{env.appUrl}/user/address.htm?tradeNo=$!{tradeNo}" class="item-link item-content" data-ignore-cache="true">
 							<div class="item-inner">
-								<div class="item-title">
+								<div class="item-title" style="line-height: 22px;">
 									收货人：$!{trade.receiverName}<span style="float: right;">$!{trade.receiverTel}</span><br />
 									收货地址：$!{trade.receiverProvince}$!{trade.receiverCity}$!{trade.receiverArea}$!{trade.receiverAddress}
 								</div>
@@ -44,7 +44,7 @@
 						#else
 						<div class="item-content">
 							<div class="item-inner">
-								<div class="item-title">
+								<div class="item-title" style="line-height: 22px;">
 									收货人：$!{trade.receiverName}<span style="float: right;">$!{trade.receiverTel}</span><br />
 									收货地址：$!{trade.receiverProvince}$!{trade.receiverCity}$!{trade.receiverArea}$!{trade.receiverAddress}
 								</div>

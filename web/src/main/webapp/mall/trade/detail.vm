@@ -18,8 +18,8 @@
 				<ul>
 					<li>
 						<div class="item-content">
-							<div class="item-inner" style="font-size: 14px;">
-								<div class="item-title">
+							<div class="item-inner">
+								<div class="item-title" style="line-height: 22px;">
 									收货人：$!{trade.receiverName}<span style="float: right;">$!{trade.receiverTel}</span><br />
 									收货地址：$!{trade.receiverProvince}$!{trade.receiverCity}$!{trade.receiverArea}$!{trade.receiverAddress}
 								</div>
