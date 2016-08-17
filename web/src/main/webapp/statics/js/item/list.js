@@ -98,32 +98,37 @@ myApp.onPageInit('item.list', function(page) {
 			});
 
 			// 全选按钮
-			$$('.picker-modal.picker-item-list .left').on('click', function() {
-				if ($$('#item/list/check').prop('checked')) {
-					var cartIds = document.getElementById("item/list/form")
-							.getElementsByTagName("INPUT");
-					for (var i = 0; i < cartIds.length; i++) {
-						var v = cartIds[i];
-						if (v.name == 'cartIds') {
-							$$(v).prop('checked', false);
-						}
-					}
+			$$('.picker-modal.picker-item-list .left .response-area').on(
+					'click', function() {
+						if ($$('#item/list/check').prop('checked')) {
+							$$('#item/list/check').prop('checked', false);
 
-					$$("#item/list/price").html("￥0.00");
-				} else {
-					var cartIds = document.getElementById("item/list/form")
-							.getElementsByTagName("INPUT");
-					for (var i = 0; i < cartIds.length; i++) {
-						var v = cartIds[i];
-						if (v.name == 'cartIds') {
-							$$(v).prop('checked', true);
-						}
-					}
+							var cartIds = document
+									.getElementById("item/list/form")
+									.getElementsByTagName("INPUT");
+							for (var i = 0; i < cartIds.length; i++) {
+								var v = cartIds[i];
+								if (v.name == 'cartIds') {
+									$$(v).prop('checked', false);
+								}
+							}
 
-					// 重新计算
-					item_list_stats();
-				}
-			});
+							$$("#item/list/price").html("￥0.00");
+						} else {
+							var cartIds = document
+									.getElementById("item/list/form")
+									.getElementsByTagName("INPUT");
+							for (var i = 0; i < cartIds.length; i++) {
+								var v = cartIds[i];
+								if (v.name == 'cartIds') {
+									$$(v).prop('checked', true);
+								}
+							}
+
+							// 重新计算
+							item_list_stats();
+						}
+					});
 
 			// 监听 checkbox
 			var cartIds = document.getElementById("item/list/form")
@@ -132,6 +137,7 @@ myApp.onPageInit('item.list', function(page) {
 				var v = cartIds[i];
 				if (v.name == 'cartIds') {
 					v.onchange = function(e) {
+						// 重新计算
 						item_list_stats();
 					}
 				}
@@ -298,6 +304,8 @@ function item_list_stats() {
 
 	var cartIds = document.getElementById("item/list/form")
 			.getElementsByTagName("INPUT");
+	// 控制全选按钮状态
+	var checked_flag = true;
 	for (var i = 0; i < cartIds.length; i++) {
 		var v = cartIds[i];
 		if (v.name == 'cartIds') {
@@ -306,8 +314,16 @@ function item_list_stats() {
 			if (v.checked) {
 				total = dcmAdd(total, dcmMul($$("#item/list/price/" + v.value)
 										.val(), q));
+			} else {
+				checked_flag = false;
 			}
 		}
+	}
+
+	if (checked_flag) {
+		$$('#item/list/check').prop('checked', true);
+	} else {
+		$$('#item/list/check').prop('checked', false);
 	}
 
 	if (num > 0) {
