@@ -183,7 +183,7 @@
     						<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
                         </label>
 					</div>
-					<div style="position: absolute; margin-left: 35px;">
+					<div style="position: fixed; margin-left: 35px;">
 						<span class="color-gray" style="font-size: 14px;">全选</span>
                     </div>
                     <div class="right">
