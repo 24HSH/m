@@ -12,7 +12,7 @@ myApp.onPageInit('item.detail', function(page) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
 
-						view2.router.loadPage(appUrl
+						myApp.getCurrentView().router.loadPage(appUrl
 								+ "/pay/index.htm?tradeNo=" + xhr.responseText);
 					});
 
