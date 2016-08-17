@@ -8,7 +8,14 @@ myApp.onPageInit('deliver.time', function(page) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
 						myApp.alert(xhr.responseText, '信息', function() {
-									myApp.getCurrentView().router.back();
+									myApp.getCurrentView().router.back({
+												url : appUrl
+														+ "/pay/index.htm?tradeNo="
+														+ $$('#deliver_time_tradeNo')
+																.val(),
+												force : true,
+												ignoreCache : true
+											});
 								});
 					});
 
