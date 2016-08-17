@@ -18,9 +18,13 @@
 			<div class="content-block">
 				<div class="content-block-inner">
     				<div class="date">
-					#set($flag0 = 0)
+					#if($!{date} != '')
+						#set($flag0 = 1)
+					#else
+						#set($flag0 = 0)
+					#end
 					#foreach($promiseTime in $!{promiseTimeList})
-						#if($flag0 == 0) #set($flag0 = 1)
+						#if($flag0 == 0 || $!{promiseTime.date} == $!{date}) #set($flag0 = 1)
     					<p class="sendDate cur" data-tab="$!{promiseTime.date}">$!{promiseTime.dateText}</p>
 						#else
 						<p class="sendDate" data-tab="$!{promiseTime.date}">$!{promiseTime.dateText}</p>
@@ -33,14 +37,24 @@
     		<div class="content-block">
     			<div class="content-block-inner">
     				<div class="time">
-					#set($flag1 = 0)
+					#if($!{date} != '')
+						#set($flag1 = 1)
+					#else
+						#set($flag1 = 0)
+					#end
 					#foreach($promiseTime in $!{promiseTimeList})
-						#if($flag1 == 0) #set($flag1 = 1)
+						#if($flag1 == 0 || $!{promiseTime.date} == $!{date}) #set($flag1 = 1)
     					<div class="time_div" data-tab="$!{promiseTime.date}" style="display: block;">
 							#foreach($promiseTimeItem in $!{promiseTime.promiseTimeItemList})
-							<p class="sendTime" data-starttime="$!{promiseTimeItem.startTime}" data-endtime="$!{promiseTimeItem.endTime}" data-time="$!{promiseTimeItem.timeText}">
-								<em>$!{promiseTimeItem.timeText}</em>
-							</p>
+    							#if($!{promiseTimeItem.startTime} == $!{startTime} && $!{promiseTimeItem.endTime} == $!{endTime})
+    							<p class="sendTime cur" data-starttime="$!{promiseTimeItem.startTime}" data-endtime="$!{promiseTimeItem.endTime}" data-time="$!{promiseTimeItem.timeText}">
+    								<em>$!{promiseTimeItem.timeText}</em>
+    							</p>
+    							#else
+								<p class="sendTime" data-starttime="$!{promiseTimeItem.startTime}" data-endtime="$!{promiseTimeItem.endTime}" data-time="$!{promiseTimeItem.timeText}">
+    								<em>$!{promiseTimeItem.timeText}</em>
+    							</p>
+    							#end
 							#end
 						</div>
 						#else

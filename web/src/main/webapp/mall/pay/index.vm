@@ -54,7 +54,7 @@
 					</li>
 					<li>
 						#if($!{trade.type} == 'check')
-						<a href="$!{env.appUrl}/deliver/time/index.htm?tradeNo=$!{tradeNo}" class="item-link item-content" data-ignore-cache="true">
+						<a href="$!{env.appUrl}/deliver/time/index.htm?tradeNo=$!{tradeNo}&date=$!{trade.deliverDate}&startTime=$!{trade.deliverStartTime}&endTime=$!{trade.deliverEndTime}" class="item-link item-content" data-ignore-cache="true">
 							<div class="item-inner">
 								<div class="item-title">送达时间</div>
 								<div class="item-after">$!{trade.deliverDate} $!{trade.deliverStartTime}-$!{trade.deliverEndTime}</div>

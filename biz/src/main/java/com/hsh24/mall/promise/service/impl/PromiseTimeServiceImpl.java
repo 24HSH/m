@@ -45,22 +45,37 @@ public class PromiseTimeServiceImpl implements IPromiseTimeService {
 			}
 
 			// settime
+			int h = Integer.parseInt(DateUtil.datetime(today, "HH"));
+
 			List<PromiseTimeItem> timeItemList = new ArrayList<PromiseTimeItem>();
 
 			PromiseTimeItem item0 = new PromiseTimeItem();
-			item0.setStartTime("11:00");
-			item0.setEndTime("14:00");
-			timeItemList.add(item0);
+			item0.setStartTime("08:00");
+			item0.setEndTime("11:00");
+			if (i > 0 || h < 11) {
+				timeItemList.add(item0);
+			}
 
 			PromiseTimeItem item1 = new PromiseTimeItem();
-			item1.setStartTime("14:00");
-			item1.setEndTime("17:00");
-			timeItemList.add(item1);
+			item1.setStartTime("11:00");
+			item1.setEndTime("14:00");
+			if (i > 0 || h < 14) {
+				timeItemList.add(item1);
+			}
 
 			PromiseTimeItem item2 = new PromiseTimeItem();
-			item2.setStartTime("17:00");
-			item2.setEndTime("20:00");
-			timeItemList.add(item2);
+			item2.setStartTime("14:00");
+			item2.setEndTime("17:00");
+			if (i > 0 || h < 17) {
+				timeItemList.add(item2);
+			}
+
+			PromiseTimeItem item3 = new PromiseTimeItem();
+			item3.setStartTime("17:00");
+			item3.setEndTime("20:00");
+			if (i > 0 || h < 20) {
+				timeItemList.add(item3);
+			}
 			// settime
 
 			time.setPromiseTimeItemList(timeItemList);
