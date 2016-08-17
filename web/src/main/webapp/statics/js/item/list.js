@@ -96,6 +96,46 @@ myApp.onPageInit('item.list', function(page) {
 					myApp.getCurrentView().router.reloadPage(url);
 				});
 			});
+
+			// 全选按钮
+			$$('.picker-modal.picker-item-list .left').on('click', function() {
+				if ($$('#item/list/check').prop('checked')) {
+					var cartIds = document.getElementById("item/list/form")
+							.getElementsByTagName("INPUT");
+					for (var i = 0; i < cartIds.length; i++) {
+						var v = cartIds[i];
+						if (v.name == 'cartIds') {
+							$$(v).prop('checked', false);
+						}
+					}
+
+					$$("#item/list/price").html("￥0.00");
+				} else {
+					var cartIds = document.getElementById("item/list/form")
+							.getElementsByTagName("INPUT");
+					for (var i = 0; i < cartIds.length; i++) {
+						var v = cartIds[i];
+						if (v.name == 'cartIds') {
+							$$(v).prop('checked', true);
+						}
+					}
+
+					// 重新计算
+					item_list_stats();
+				}
+			});
+
+			// 监听 checkbox
+			var cartIds = document.getElementById("item/list/form")
+					.getElementsByTagName("INPUT");
+			for (var i = 0; i < cartIds.length; i++) {
+				var v = cartIds[i];
+				if (v.name == 'cartIds') {
+					v.onchange = function(e) {
+						item_list_stats();
+					}
+				}
+			}
 		});
 
 var item_list_flag;
@@ -165,7 +205,19 @@ function item_list_cart_remove() {
 function item_list_cart_update_a(cartId, itemId, skuId, itemName, price) {
 	var obj = $$('#item/list/quantity/' + cartId);
 	if (obj.length == 1) {
+		// 1. 数量增加
 		obj.val(dcmAdd(obj.val(), 1));
+
+		// 2. $$(v).prop('checked', true);
+		var cartIds = document.getElementById("item/list/form")
+				.getElementsByTagName("INPUT");
+		for (var i = 0; i < cartIds.length; i++) {
+			var v = cartIds[i];
+			if (v.name == 'cartIds' && v.value == cartId) {
+				$$(v).prop('checked', true);
+			}
+		}
+
 		return;
 	}
 
@@ -194,9 +246,12 @@ function item_list_cart_update_a(cartId, itemId, skuId, itemName, price) {
 			+ cartId
 			+ '">'
 			+ '<div class="item-content">'
-			+ '<input type="hidden" name="cartIds" value="'
+			+ '<label class="label-checkbox">'
+			+ '<input type="checkbox" name="cartIds" value="'
 			+ cartId
-			+ '" />'
+			+ '" checked></input>'
+			+ '<div class="item-media" style="width: 28px;"><i class="icon icon-form-checkbox"></i></div>'
+			+ '</label>'
 			+ '<div class="item-inner">'
 			+ '<div class="item-title">'
 			+ itemName
@@ -248,15 +303,17 @@ function item_list_stats() {
 		if (v.name == 'cartIds') {
 			var q = $$("#item/list/quantity/" + v.value).val();
 			num = dcmAdd(num, q);
-
-			total = dcmAdd(total, dcmMul($$("#item/list/price/" + v.value)
-									.val(), q));
+			if (v.checked) {
+				total = dcmAdd(total, dcmMul($$("#item/list/price/" + v.value)
+										.val(), q));
+			}
 		}
 	}
 
 	if (num > 0) {
 		$$(".toolbar .toolbar-inner .a6s").html(num);
-		$$("#item/list/price").html("￥" + Number.format(total, 2));
+		$$("#item/list/price").html("￥"
+				+ (total == 0 ? '0.00' : Number.format(total, 2)));
 	} else {
 		$$(".toolbar .toolbar-inner .a6s").html("0");
 		$$("#item/list/price").html("购物车是空的");
@@ -288,8 +345,19 @@ function item_list_num(cartId, quantity) {
 				cartId : cartId,
 				quantity : quantity
 			}, function(data) {
+				// 1. 更新
 				$$('#item/list/quantity/0/' + cartId).val(data);
 				$$('#item/list/quantity/' + cartId).val(data);
+
+				// 2. $$(v).prop('checked', true);
+				var cartIds = document.getElementById("item/list/form")
+						.getElementsByTagName("INPUT");
+				for (var i = 0; i < cartIds.length; i++) {
+					var v = cartIds[i];
+					if (v.name == 'cartIds' && v.value == cartId) {
+						$$(v).prop('checked', true);
+					}
+				}
 
 				item_list_stats();
 			});

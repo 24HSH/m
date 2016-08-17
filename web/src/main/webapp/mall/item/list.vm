@@ -177,7 +177,15 @@
         <div class="picker-modal picker-item-list" style="background: #FFFFFF; z-index: 499; margin-bottom: 44px; height: initial;">
             <div class="toolbar" style="background: #FFFFFF; border-bottom: 1px solid #e5e5e5;">
             	<div class="toolbar-inner">
-					<div class="left"></div>
+					<div class="left" style="padding-left: 7px;">
+    					<label class="label-checkbox">
+                            <input id="item/list/check" type="checkbox" checked></input>
+    						<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                        </label>
+					</div>
+					<div style="position: absolute; margin-left: 35px;">
+						<span class="color-gray" style="font-size: 14px;">全选</span>
+                    </div>
                     <div class="right">
                         <a href="javascript:item_list_cart_remove();">
 							<i class="iconfont icon-delete color-gray" style="font-size: 15px;"></i>
@@ -193,7 +201,10 @@
     						#foreach($cart in $!{cartList})
     						<li id="item_list_cart_$!{cart.cartId}">
 								<div class="item-content">
-    								<input type="hidden" name="cartIds" value="$!{cart.cartId}" />
+									<label class="label-checkbox">
+                                        <input type="checkbox" name="cartIds" value="$!{cart.cartId}" checked></input>
+    									<div class="item-media" style="width: 28px;"><i class="icon icon-form-checkbox"></i></div>
+    								</label>
             						<div class="item-inner">
             							<div class="item-title">$!{cart.itemName}</div>
             							<div class="item-after">
