@@ -79,7 +79,7 @@ var view5 = myApp.addView('#view-5', {
 $$('#href-5').on('click', function() {
 			if (view5.history.length == 1) {
 				view5.router.load({
-							url : appUrl + "/trade/list.htm",
+							url : appUrl + "/trade/list.htm?code=view",
 							ignoreCache : true,
 							reload : true
 						});

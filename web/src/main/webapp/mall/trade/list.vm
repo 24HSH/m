@@ -2,7 +2,11 @@
 <!-- Top Navbar-->
 <div class="navbar">
 	<div class="navbar-inner">
-		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
+		<div class="left">
+			#if("view" != $!{code})
+			<a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a>
+			#end
+		</div>
 		<div class="center sliding">订单</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
@@ -11,7 +15,11 @@
 </div>
 <div class="pages">
 	<!-- Page, data-page contains page name-->
+	#if("view" != $!{code})
 	<div data-page="trade.list" class="page no-tabbar">
+	#else
+	<div data-page="trade.list" class="page">
+	#end
 		<!-- Scrollable page content-->
 		<div class="page-content pull-to-refresh-content infinite-scroll">
 			<div class="pull-to-refresh-layer">
