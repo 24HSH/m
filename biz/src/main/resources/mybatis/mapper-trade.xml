@@ -83,10 +83,13 @@
 	<![CDATA[
 		SELECT t.trade_id AS tradeId,
 			   t.trade_no AS tradeNo,
+			   t.shop_id  AS shopId,
+			   t.type,
 			   t.trade_price AS tradePrice,
 			   t.coupon_price AS couponPrice,
 			   t.postage,
 			   t.change,
+			   t.trade_points AS tradePoints,
 			   t.receiver_name AS receiverName,
 			   t.receiver_tel AS receiverTel,
 			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate,
@@ -96,9 +99,7 @@
 			   DATE_FORMAT(t.sign_date, '%Y-%m-%d %T') AS signDate,
 			   DATE_FORMAT(t.feedback_date, '%Y-%m-%d %T') AS feedbackDate,
 			   DATE_FORMAT(t.feedbacked_date, '%Y-%m-%d %T') AS feedbackedDate,
-			   t.type,
 			   IFNULL(t.score, 0),
-			   t.trade_points AS tradePoints,
 			   t.shipment,
 			   t.feedback_type AS feedbackType
 		  FROM mall.mall_tb_trade t

@@ -372,6 +372,10 @@ public class TradeServiceImpl implements ITradeService {
 		}
 
 		for (Trade trade : tradeList) {
+			// 获取 shop 信息
+			Shop shop = shopService.getShop(trade.getShopId());
+			trade.setShopName(shop != null ? shop.getShopName() : "店铺");
+
 			trade.setOrderList(orderService.getOrderList(userId, trade.getTradeId()));
 		}
 

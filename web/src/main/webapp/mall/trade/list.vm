@@ -77,7 +77,11 @@
 					<li>
 						<div class="item-content">
 							<div class="item-inner" style="display: inherit;">
-								<div class="item-title">订单号：$!{trade.tradeNo}</div>
+								<div class="item-title">
+									<a href="$!{env.appUrl}/item/list.htm?shopId=$!{trade.shopId}" data-ignore-cache="true">
+										店铺：$!{trade.shopName} <i class="iconfont icon-right color-gray" style="font-size: 14px;"></i>
+                                    </a>
+								</div>
 								<div class="item-after">
 									#if($!{trade.type} == 'check' || $!{trade.type} == 'topay')
 									<a href="javascript:trade_list_cancel('$!{trade.tradeNo}');">取消</a>
@@ -87,38 +91,47 @@
 						</div>
 					</li>
 					<li>
-						<div class="item-content">
-							#set($order = $!{trade.orderList.get(0)})
-							<div class="item-media" style="padding-top: 7px; padding-bottom: 8px;">
-								<img data-src="$!{order.itemFilePath}" class="lazy" style="width: 50px; height: 50px; border-radius: 2px;"></img>
-							</div>
-							<div class="item-inner">
-								<div class="item-title-row">
-									<div class="item-title">$!{order.itemName}</div>
-									<div class="item-after">￥$!formatUtil.getAmountFormat($!{order.price})</div>
-								</div>
-								<div class="item-title-row">
-									<div class="item-subtitle color-gray" style="font-size: 12px;">$!{order.propertiesName}</div>
-									<div class="item-after">×$!{order.quantity}</div>
-								</div>
-							</div>
-                        </div>
-					</li>
-					<li>
 						#if($!{trade.type} == 'check' || $!{trade.type} == 'topay')
-						<a href="$!{env.appUrl}/pay/index.htm?tradeNo=$!{trade.tradeNo}" class="item-link item-content" style="min-height: 0;" data-ignore-cache="true">
+						<a href="$!{env.appUrl}/pay/index.htm?tradeNo=$!{trade.tradeNo}" class="item-content" data-ignore-cache="true">
 						#else
-						<a href="$!{env.appUrl}/trade/detail.htm?tradeNo=$!{trade.tradeNo}" class="item-link item-content" style="min-height: 0;" data-ignore-cache="true">
+						<a href="$!{env.appUrl}/trade/detail.htm?tradeNo=$!{trade.tradeNo}" class="item-content" data-ignore-cache="true">
 						#end
-							<div class="item-inner" style="display: inherit; min-height: 0; text-align: center; padding-top: 7px; padding-bottom: 6px;">
-								<div class="item-title" style="font-size: 13px; width: 100%;">查看全部$!{trade.orderList.size()}件商品</div>
+							<div class="item-inner row no-gutter" style="display: flex;">
+								<div class="col-80">
+        							<div class="a7w" style="height: 100%; padding: 5px 0;">
+        								<ul style="padding-left: 0; width: $!{velocityMath.mul($!{trade.orderList.size()},63)}px;">
+											#set($quantity = 0)
+                                            #foreach($order in $!{trade.orderList})
+                        					<li>
+                    							<img data-src="$!{order.itemFilePath}" class="lazy"></img>
+        										#if($!{order.quantity} > 1)
+        											<i>$!{order.quantity}</i>
+												#end
+												#set($quantity = $quantity + $!{order.quantity})
+                        					</li>
+        									#end
+                                        </ul>
+        							</div>
+                                </div>
+								<div class="col-20">
+    								<div class="item-title-row">
+    									<div class="item-title"></div>
+    									<div class="item-after" style="font-size: 16px;">
+											<span class="color-base">￥$!formatUtil.getAmountFormat($!{trade.price})</span>
+										</div>
+    								</div>
+    								<div class="item-title-row">
+    									<div class="item-subtitle"></div>
+    									<div class="item-after">共$quantity件</div>
+    								</div>
+                                </div>
 							</div>
-						</a>
+                        </a>
 					</li>
 					<li>
 						<div class="item-content">
 							<div class="item-inner" style="display: inherit;">
-                                <div class="item-title">总价：<span class="color-base">￥$!formatUtil.getAmountFormat($!{trade.price})</span></div>
+                                <div class="item-title">$!{trade.createDate}</div>
 								<div class="item-after">
 									#if($!{trade.type} == 'check' || $!{trade.type} == 'topay')
 									<a href="$!{env.appUrl}/pay/index.htm?tradeNo=$!{trade.tradeNo}" class="button color-orange" data-ignore-cache="true">付款</a>
