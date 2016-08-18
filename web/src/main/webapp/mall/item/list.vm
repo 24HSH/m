@@ -200,7 +200,7 @@
             </div>
             <div class="picker-modal-inner" style="max-height: 330px; overflow:auto">
 				<form id="item/list/form" method="POST" class="ajax-submit item-list-form">
-    				<div class="list-block" style="margin-top: 0; margin-bottom: 20px;">
+    				<div class="list-block" style="margin-top: 0; margin-bottom: 30px;">
     					<ul class="before-height-0 after-height-0" id="item_list_cart">
     						#foreach($cart in $!{cartList})
     						<li id="item_list_cart_$!{cart.cartId}">
