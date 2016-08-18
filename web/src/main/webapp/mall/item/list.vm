@@ -207,7 +207,7 @@
 								<div class="item-content">
 									<label class="label-checkbox">
                                         <input type="checkbox" name="cartIds" value="$!{cart.cartId}" checked></input>
-    									<div class="item-media" style="width: 29px;"><i class="icon icon-form-checkbox"></i></div>
+    									<div class="item-media" style="width: 30px;"><i class="icon icon-form-checkbox"></i></div>
     								</label>
             						<div class="item-inner">
             							<div class="item-title">$!{cart.itemName}</div>
