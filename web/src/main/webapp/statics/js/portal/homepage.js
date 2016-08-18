@@ -118,13 +118,3 @@ portal_homepage_cart_stats();
 myApp.onPageInit('portal.homepage', function(page) {
 			portal_homepage_cart_stats();
 		})
-
-myApp.addNotification({
-			title : '来自好社惠的消息',
-			subtitle : '',
-			message : '好社惠商城即将上线，敬请期待。',
-			media : '<img width="33" height="33" style="border-radius:100%" src="'
-					+ imgUrl + '/image/portal/logo.jpg">'
-		});
-
-setTimeout("myApp.closeNotification('.notifications')", 3000);
