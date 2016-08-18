@@ -59,9 +59,9 @@ myApp.onPageInit('trade.list', function(page) {
 			trade_list_stats();
 		});
 
-function trade_list(type) {
+function trade_list(type, code) {
 	myApp.getCurrentView().router.load({
-				url : appUrl + "/trade/list.htm?type=" + type,
+				url : appUrl + "/trade/list.htm?type=" + type + "&code=" + code,
 				ignoreCache : true,
 				reload : true
 			});

@@ -30,7 +30,7 @@
 			<div class="list-block">
 				<ul class="page-settings">
 					<li class="row" style="text-align: center;">
-						<a href="javascript:trade_list('topay');" class="col-25 item-link" style="width: 25%;">
+						<a href="javascript:trade_list('topay', '$!{code}');" class="col-25 item-link" style="width: 25%;">
 							#if("topay" == $!{type})
 							<h3 id="trade/list/topay" class="color-base">0</h3>
 							#else
@@ -38,7 +38,7 @@
 							#end
 							<div class="color-gray color-gray-0">待付款</div>
                         </a>
-						<a href="javascript:trade_list('tosend');" class="col-25 item-link" style="width: 25%;">
+						<a href="javascript:trade_list('tosend', '$!{code}');" class="col-25 item-link" style="width: 25%;">
 							#if("tosend" == $!{type})
 							<h3 id="trade/list/tosend" class="color-base">0</h3>
 							#else
@@ -46,7 +46,7 @@
 							#end
 							<div class="color-gray color-gray-0">待发货</div>
                         </a>
-						<a href="javascript:trade_list('send');" class="col-25 item-link" style="width: 25%;">
+						<a href="javascript:trade_list('send', '$!{code}');" class="col-25 item-link" style="width: 25%;">
 							#if("send" == $!{type})
 							<h3 id="trade/list/send" class="color-base">0</h3>
 							#else
@@ -54,7 +54,7 @@
 							#end
 							<div class="color-gray color-gray-0">已发货</div>
                         </a>
-						<a href="javascript:trade_list('sign');" class="col-25 item-link" style="width: 25%;">
+						<a href="javascript:trade_list('sign', '$!{code}');" class="col-25 item-link" style="width: 25%;">
 							#if("sign" == $!{type})
 							<h3 id="trade/list/sign" class="color-base">0</h3>
 							#else
