@@ -28,8 +28,8 @@
 					</li>
 				</ul>
             </div>
+			<!--
 			<div class="list-block">
-				<!--
 				<ul class="page-settings after-height-0">
 					<li class="row" style="text-align: center;">
 						<a href="$!{env.appUrl}/trade/list.htm?type=topay" class="col-25 item-link" style="width: 25%; padding-top: 10px;" data-ignore-cache="true">
@@ -58,7 +58,6 @@
                         </a>
 					</li>
                 </ul>
-				-->
 				<ul>
 					<li>
 						<a href="$!{env.appUrl}/trade/list.htm" class="item-link item-content" data-ignore-cache="true">
@@ -70,6 +69,7 @@
 					</li>
 				</ul>
             </div>
+			-->
 			<div class="list-block">
 				<ul>
 					<li>
