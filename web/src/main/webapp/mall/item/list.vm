@@ -184,7 +184,7 @@
                         </label>
 						<div class="response-area" style="height: 80px; width: 80px; top: -50px; left: -5px; position: absolute;"></div>
 					</div>
-					<div style="position: absolute; top: 11px; margin-left: 35px;">
+					<div style="position: absolute; top: 10px; margin-left: 35px;">
 						<span class="color-gray" style="font-size: 14px;">全选</span>
                     </div>
 					<div style="margin-left: 70px;">
@@ -207,7 +207,7 @@
 								<div class="item-content">
 									<label class="label-checkbox">
                                         <input type="checkbox" name="cartIds" value="$!{cart.cartId}" checked></input>
-    									<div class="item-media" style="width: 28px;"><i class="icon icon-form-checkbox"></i></div>
+    									<div class="item-media" style="width: 29px;"><i class="icon icon-form-checkbox"></i></div>
     								</label>
             						<div class="item-inner">
             							<div class="item-title">$!{cart.itemName}</div>
