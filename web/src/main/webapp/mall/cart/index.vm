@@ -18,7 +18,7 @@
 			<div class="list-block cards-list media-list">
 				#foreach($shop in $!{shopList})
 				<ul>
-					<li class="card" style="border-radius: 5px; margin: 10px 5px;">
+					<li class="card" style="border-radius: 5px; margin: 10px;">
 						<div class="card-content">
 							<div class="card-content-inner" style="padding: 0;">
 								<div class="item-content">

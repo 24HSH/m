@@ -829,15 +829,14 @@ a.component.type3 img {
     position: absolute;
     right: -6px;
     top: -5px;
-    min-width: 15px;
-    height: 15px;
+    min-width: 18px;
+    height: 18px;
     text-align: center;
-    color: #ff5757;
+    color: #ffffff;
     font-size: 10px;
-    line-height: 15px;
-    border: 1px solid #ff5757;
+    line-height: 18px;
     border-radius: 15px;
-    background-color: #fff;
+    background-color: #ff3b30;
 }
 
 
