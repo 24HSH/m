@@ -94,7 +94,11 @@ myApp.onPageInit('item.list', function(page) {
 								+ $$(this).data("shopid") + "&itemCId="
 								+ itemCId;
 					}
-					myApp.getCurrentView().router.reloadPage(url);
+					myApp.getCurrentView().router.load({
+								url : url,
+								ignoreCache : true,
+								reload : true
+							});
 				});
 			});
 
