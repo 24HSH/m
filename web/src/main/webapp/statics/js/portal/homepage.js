@@ -117,4 +117,4 @@ portal_homepage_cart_stats();
 
 myApp.onPageInit('portal.homepage', function(page) {
 			portal_homepage_cart_stats();
-		})
+		});

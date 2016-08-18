@@ -72,7 +72,7 @@ myApp.onPageInit('item.list', function(page) {
 			// 根据 合计金额判断 是否 自动 弹出 购物车
 			if ($$("#item/list/price").html() != '购物车是空的') {
 				var itemCId = $$('.a47').data("itemcid");
-				if (itemCId == undefined) {
+				if (itemCId === undefined) {
 					item_list_picker();
 				}
 			}
@@ -85,11 +85,12 @@ myApp.onPageInit('item.list', function(page) {
 					}
 
 					var itemCId = $$(this).data("itemcid");
-					if (itemCId == undefined) {
-						var url = appUrl + "/item/list.htm?shopId="
+					var url;
+					if (itemCId === undefined) {
+						url = appUrl + "/item/list.htm?shopId="
 								+ $$(this).data("shopid");
 					} else {
-						var url = appUrl + "/item/list.htm?shopId="
+						url = appUrl + "/item/list.htm?shopId="
 								+ $$(this).data("shopid") + "&itemCId="
 								+ itemCId;
 					}
@@ -140,7 +141,7 @@ myApp.onPageInit('item.list', function(page) {
 					v.onchange = function(e) {
 						// 重新计算
 						item_list_stats();
-					}
+					};
 				}
 			}
 		});
