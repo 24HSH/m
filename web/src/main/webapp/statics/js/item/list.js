@@ -113,6 +113,7 @@ myApp.onPageInit('item.list', function(page) {
 								}
 							}
 
+							$$('.picker-modal.picker-item-list .a86').html("");
 							$$("#item/list/price").html("￥0.00");
 						} else {
 							var cartIds = document
@@ -300,6 +301,7 @@ function item_list_cart_update_d(cartId) {
 
 function item_list_stats() {
 	var num = 0;
+	var num_ = 0;
 	var total = 0;
 
 	var cartIds = document.getElementById("item/list/form")
@@ -312,6 +314,7 @@ function item_list_stats() {
 			var q = $$("#item/list/quantity/" + v.value).val();
 			num = dcmAdd(num, q);
 			if (v.checked) {
+				num_ = dcmAdd(num_, q);
 				total = dcmAdd(total, dcmMul($$("#item/list/price/" + v.value)
 										.val(), q));
 			} else {
@@ -328,10 +331,16 @@ function item_list_stats() {
 
 	if (num > 0) {
 		$$(".toolbar .toolbar-inner .a6s").html(num);
+		if (num_ > 0) {
+			$$('.picker-modal.picker-item-list .a86').html("(已选" + num_ + "件)");
+		} else {
+			$$('.picker-modal.picker-item-list .a86').html("");
+		}
 		$$("#item/list/price").html("￥"
 				+ (total == 0 ? '0.00' : Number.format(total, 2)));
 	} else {
 		$$(".toolbar .toolbar-inner .a6s").html("0");
+		$$('.picker-modal.picker-item-list .a86').html("");
 		$$("#item/list/price").html("购物车是空的");
 		// 如果 弹出购物车 则 自动关闭
 		if (item_list_picker_flag) {
