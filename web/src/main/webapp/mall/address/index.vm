@@ -33,7 +33,7 @@
 						<!-- Search bar -->
                 		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init item-list-searchbar" style="background: #ffffff;">
 							<div class="x2">
-                                <a href="#" data-popup=".popup-region" class="open-popup">杭州市</a>
+                                <a href="#" data-popup=".popup-region" class="open-popup" style="padding-right: 15px;">杭州市</a>
 							</div>
 							<div class="searchbar-input" style="border-radius: 5px; border: 1px solid #eaeaea;">
                 				<input type="search" placeholder="搜索写字楼、小区、学校" /><a href="#" class="searchbar-clear"></a>
