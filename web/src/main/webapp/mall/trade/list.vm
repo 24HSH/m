@@ -84,7 +84,17 @@
 								</div>
 								<div class="item-after">
 									#if($!{trade.type} == 'check' || $!{trade.type} == 'topay')
-									<a href="javascript:trade_list_cancel('$!{trade.tradeNo}');">取消</a>
+									待付款
+									#elseif($!{trade.type} == 'tosend')
+									待发货
+									#elseif($!{trade.type} == 'send')
+									已发货
+									#elseif($!{trade.type} == 'sign')
+									已完成
+									#elseif($!{trade.type} == 'refund')
+									已退款
+									#elseif($!{trade.type} == 'cancel')
+									已取消
 									#end
 								</div>
 							</div>
@@ -131,14 +141,19 @@
 					<li>
 						<div class="item-content">
 							<div class="item-inner" style="display: inherit;">
-                                <div class="item-title">$!{trade.createDate}</div>
+                                <div class="item-title">
+									$!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'MM-dd HH:mm')}
+								</div>
 								<div class="item-after">
 									#if($!{trade.type} == 'check' || $!{trade.type} == 'topay')
+									<a href="javascript:trade_list_cancel('$!{trade.tradeNo}');" class="button color-gray" style="margin-right: 5px;">取消订单</a>
 									<a href="$!{env.appUrl}/pay/index.htm?tradeNo=$!{trade.tradeNo}" class="button color-orange" data-ignore-cache="true">付款</a>
 									#elseif($!{trade.type} == 'send')
 									<a href="javascript:trade_list_sign('$!{trade.tradeNo}');" class="button color-gray">确认收货</a>
     								#elseif($!{trade.type} == 'sign')
     								<a href="#" class="button color-gray" style="margin-left: 5px;">评价</a>
+									#elseif($!{trade.type} == 'cancel')
+									<a href="#" class="button color-gray" style="margin-left: 5px;">再次购买</a>
 									#end
 								</div>
 							</div>

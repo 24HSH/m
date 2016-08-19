@@ -175,7 +175,7 @@
 					<li>
 						<div class="item-content">
 							<div class="item-inner">
-								<div class="item-title" style="width: 100%; text-align: center;">
+								<div class="item-title" style="width: 100%; text-align: center; line-height: 22px;">
 									<div>￥$!formatUtil.getAmountFormat($!{trade.tradePrice}) + ￥$!formatUtil.getAmountFormat($!{trade.postage}) 运费</div>
 									<div class="color-base" style="font-size: 16px;">需付：￥$!formatUtil.getAmountFormat($!{trade.price})</div>
 								</div>
