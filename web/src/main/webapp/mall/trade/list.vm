@@ -98,7 +98,7 @@
 						#end
 							<div class="item-inner row no-gutter" style="display: flex;">
 								<div class="col-80">
-        							<div class="a7w" style="height: 100%; padding: 5px 0;">
+        							<div class="a7w" style="padding: 5px 0;">
         								<ul style="padding-left: 0; width: $!{velocityMath.mul($!{trade.orderList.size()},63)}px;">
 											#set($quantity = 0)
                                             #foreach($order in $!{trade.orderList})

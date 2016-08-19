@@ -28,11 +28,17 @@ public class PromiseTimeServiceImpl implements IPromiseTimeService {
 		List<PromiseTime> timeList = new ArrayList<PromiseTime>();
 
 		Date today = new Date();
+		int h = Integer.parseInt(DateUtil.datetime(today, "HH"));
 
 		for (int i = 0; i < 4; i++) {
 			PromiseTime time = new PromiseTime();
 
 			if (i == 0) {
+				// 超过今天送达时间
+				if (h >= 20) {
+					continue;
+				}
+
 				time.setDateText("今天");
 				time.setDate(DateUtil.datetime(today, DateUtil.DEFAULT_DATE_FORMAT));
 			} else if (i == 1) {
@@ -45,8 +51,6 @@ public class PromiseTimeServiceImpl implements IPromiseTimeService {
 			}
 
 			// settime
-			int h = Integer.parseInt(DateUtil.datetime(today, "HH"));
-
 			List<PromiseTimeItem> timeItemList = new ArrayList<PromiseTimeItem>();
 
 			PromiseTimeItem item0 = new PromiseTimeItem();
