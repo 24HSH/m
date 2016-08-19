@@ -10,6 +10,7 @@
 		#ICON()
 		#CSSM(["framework7", "iconfont"])
 		<link rel="stylesheet" href="$!{env.imgUrl}/css/portal/homepage.css" />
+		<link rel="stylesheet" href="$!{env.imgUrl}/css/address/index.css" />
 		#UA()
 	</head>
 	<body>
@@ -30,9 +31,12 @@
 				<div class="pages navbar-through">
     				<div data-page="address.index" class="page">
 						<!-- Search bar -->
-                		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init item-list-searchbar">
-							<div class="searchbar-input">
-                				<input type="search" placeholder="搜索" /><a href="#" class="searchbar-clear"></a>
+                		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init item-list-searchbar" style="background: #ffffff;">
+							<div class="x2">
+                                <a href="#" data-popup=".popup-region" class="open-popup">杭州市</a>
+							</div>
+							<div class="searchbar-input" style="border-radius: 5px; border: 1px solid #eaeaea;">
+                				<input type="search" placeholder="搜索写字楼、小区、学校" /><a href="#" class="searchbar-clear"></a>
                 			</div><a href="#" class="searchbar-cancel">取消</a>
                 		</form>
                 		
@@ -65,6 +69,17 @@
                 </div>
 			</div>
 		</div>
+		
+		<div class="popup popup-region" style="background: #efeff4;">
+			<div class="content-block">
+				<h2 class="xm"><span>已开通城市</span></h2>
+				<ul class="xn scroller">
+					<li data-city="北京市">北京市</li>
+					<li data-city="上海市">上海市</li>
+					<li class="curr" data-city="杭州市">杭州市</li>
+				</ul>
+    		</div>
+    	</div>
 		
 		#JSM(["framework7", "weixin"])
 		#JS_ENV_VAL()

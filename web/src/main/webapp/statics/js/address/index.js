@@ -25,6 +25,19 @@ var mainView = myApp.addView('.view-main', {
 			dynamicNavbar : true
 		});
 
+// ==============================
+
+$$('.popup.popup-region ul li').on('click', function() {
+			if (!$$(this).hasClass('curr')) {
+				$$('.popup.popup-region .curr').removeClass('curr');
+				$$(this).addClass('curr');
+				$$('.x2 .open-popup').html($$(this).data('city'));
+			}
+			myApp.closeModal($$('.popup.popup-region'));
+		});
+
+// ==============================
+
 function address_index_getLocation() {
 	wx.getLocation({
 				type : 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
