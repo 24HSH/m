@@ -654,7 +654,7 @@ myApp.onPageInit('trade.list', function(page) {
 				var xhr = e.detail.xhr;
 				myApp.alert(xhr.responseText, '信息', function() {
 							member_index_stats();
-							myApp.getCurrentView().router.back();
+							myApp.getCurrentView().router.refreshPage();
 						});
 			});
 
@@ -663,7 +663,7 @@ myApp.onPageInit('trade.list', function(page) {
 				var xhr = e.detail.xhr;
 				myApp.alert(xhr.responseText, '信息', function() {
 							member_index_stats();
-							myApp.getCurrentView().router.back();
+							myApp.getCurrentView().router.refreshPage();
 						});
 			});
 
