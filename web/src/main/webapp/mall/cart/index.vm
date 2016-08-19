@@ -48,12 +48,12 @@
                 					<li>
 										<a href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
             								#if($!{cart.itemFileList.size()} > 0)
-            								<img data-src="$!{cart.itemFileList.get(0).filePath}" class="lazy"></img>
+            								<img src="$!{cart.itemFileList.get(0).filePath}"></img>
     										#end
                                         </a>
                                         <em>￥$!{cart.price}</em>
 										#if($!{cart.quantity} > 1)
-											<i>$!{cart.quantity}</i>
+										<i>$!{cart.quantity}</i>
 										#end
                 					</li>
 									#end

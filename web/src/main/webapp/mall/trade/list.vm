@@ -113,9 +113,9 @@
 											#set($quantity = 0)
                                             #foreach($order in $!{trade.orderList})
                         					<li>
-                    							<img data-src="$!{order.itemFilePath}" class="lazy"></img>
+                    							<img src="$!{order.itemFilePath}"></img>
         										#if($!{order.quantity} > 1)
-        											<i>$!{order.quantity}</i>
+        										<i>$!{order.quantity}</i>
 												#end
 												#set($quantity = $quantity + $!{order.quantity})
                         					</li>
