@@ -14,6 +14,7 @@
 	<div data-page="pay.index" class="page no-tabbar">
 		<!-- Scrollable page content-->
 		<div class="page-content">
+			<!--
 			<div class="list-block" style="margin-top: -1px;">
 				<ul>
 					<li>
@@ -29,6 +30,7 @@
 					</li>
                 </ul>
             </div>
+			-->
 			<div class="list-block">
 				<ul>
 					<li>
@@ -107,7 +109,7 @@
 						<div class="item-content">
 							<div class="item-inner">
 								<div class="item-title">运费</div>
-								<div class="item-after">￥$!formatUtil.getAmountFormat($!{trade.postage})</div>
+                                <div class="item-after"><span class="color-base">￥$!formatUtil.getAmountFormat($!{trade.postage})</span></div>
 							</div>
 						</div>
 					</li>
@@ -130,7 +132,7 @@
 						<div class="item-content">
 							<div class="item-inner">
 								<div class="item-title">合计</div>
-								<div class="item-after color-base">￥$!formatUtil.getAmountFormat($!{trade.price})</div>
+                                <div class="item-after"><span class="color-base">￥$!formatUtil.getAmountFormat($!{trade.price})</span></div>
 							</div>
 						</div>
 					</li>
