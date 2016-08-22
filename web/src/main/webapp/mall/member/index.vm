@@ -28,7 +28,6 @@
 					</li>
 				</ul>
             </div>
-			<!--
 			<div class="list-block">
 				<ul class="page-settings after-height-0">
 					<li class="row" style="text-align: center;">
@@ -69,34 +68,13 @@
 					</li>
 				</ul>
             </div>
-			-->
 			<div class="list-block">
 				<ul>
 					<li>
 						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-time" style="color: #A6D344;"></i></div>
+							<div class="item-media"><i class="iconfont icon-location" style="color: #F6B639;"></i></div>
 							<div class="item-inner">
-								<div class="item-title">我的购物记录</div>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-refund" style="color: #EB5D5D;"></i></div>
-							<div class="item-inner">
-								<div class="item-title">我的返现</div>
-							</div>
-						</a>
-					</li>
-				</ul>
-            </div>
-			<div class="list-block">
-				<ul>
-					<li>
-						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-present" style="color: #F6B639;"></i></div>
-							<div class="item-inner">
-								<div class="item-title">我收到的礼物</div>
+								<div class="item-title">收货地址管理</div>
 							</div>
 						</a>
 					</li>
@@ -105,22 +83,6 @@
 							<div class="item-media"><i class="iconfont icon-ticket" style="color: #4DB439;"></i></div>
 							<div class="item-inner">
 								<div class="item-title">我的优惠券</div>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-vipcard" style="color: #A6D344;"></i></div>
-							<div class="item-inner">
-								<div class="item-title">我的优惠码</div>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#" class="item-link item-content">
-							<div class="item-media"><i class="iconfont icon-goods" style="color: #EB5D5D;"></i></div>
-							<div class="item-inner">
-								<div class="item-title">我的赠品</div>
 							</div>
 						</a>
 					</li>
