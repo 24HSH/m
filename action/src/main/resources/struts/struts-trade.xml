@@ -37,4 +37,12 @@
 		</action>
 		
 	</package>
+	
+	<package name="{http://mall}mall$order"
+		extends="{http://mall}mall$framework" namespace="/order">
+		<action name="detail" class="tradeAction" method="detail">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/trade/order/detail.vm</result>
+		</action>
+	</package>
 </struts>

@@ -1,0 +1,50 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
+		<div class="center sliding">商品清单</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="trade.order.detail" class="page no-tabbar">
+		<!-- Scrollable page content-->
+		<div class="page-content">
+			<div class="list-block media-list">
+				<ul>
+					#foreach($order in $!{trade.orderList})
+					<li>
+						<div class="item-content">
+							<div class="item-media" style="padding-top: 7px; padding-bottom: 8px;">
+								<img data-src="$!{order.itemFilePath}" class="lazy" style="width: 50px; height: 50px; border-radius: 2px;"></img>
+							</div>
+							<div class="item-inner">
+								<div class="item-title-row">
+									<div class="item-title">$!{order.itemName}</div>
+									<div class="item-after">￥$!formatUtil.getAmountFormat($!{order.price})</div>
+								</div>
+								<div class="item-title-row">
+									<div class="item-subtitle color-gray" style="font-size: 13px;">$!{order.propertiesName}</div>
+									<div class="item-after">×$!{order.quantity}</div>
+								</div>
+								#if($!{trade.type} == 'tosend' || $!{trade.type} == 'send')
+								<div class="item-title-row">
+									<div class="item-title"></div>
+									<div class="item-after">
+										<a href="$!{env.appUrl}/trade/refund.htm?tradeNo=$!{trade.tradeNo}&orderId=$!{order.orderId}" class="button color-red" data-ignore-cache="true">申请退款</a>
+									</div>
+								</div>
+								#end
+							</div>
+						</div>
+					</li>
+					#end
+				</ul>
+            </div>
+        </div>
+    </div>
+</div>
