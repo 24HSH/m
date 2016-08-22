@@ -557,7 +557,7 @@ function item_list_scan() {
 }
 
 myApp.onPageInit('member.index', function(page) {
-			// member_index_stats();
+			member_index_stats();
 		});
 
 function member_index_stats() {
