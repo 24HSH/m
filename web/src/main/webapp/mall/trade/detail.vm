@@ -163,12 +163,12 @@
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-33">
-						<div class="button button-big" style="background: #ffffff; border: 0; color: #000;">
-							合计：<span class="color-base">￥$!formatUtil.getAmountFormat($!{trade.price})</span>
-                        </div>
+						<a href="#" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">
+                            <i class="iconfont icon-delete"></i><span style="margin-left: 3px;">删除</span>
+                        </a>
 					</div>
 					<div class="col-66">
-						<a href="javascript:pay_index_pay();" class="button button-big" style="background: #ff5000; border: 0; border-radius: 0; color: #fff;">再次购买</a>
+						<a href="#" class="button button-big color-gray" style="background: #fff; border: 0;">再次购买</a>
 					</div>
 				</div>   
 			</div>
