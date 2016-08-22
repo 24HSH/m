@@ -118,7 +118,7 @@
 							<div class="item-inner">
 								#if($!{trade.type} == 'check')
 								<div class="item-input">
-									<input type="text" style="font-size: 13px;" id="pay_index_input_remark" placeholder="给卖家留言..." />
+									<input type="text" style="font-size: 13px;" id="pay_index_input_remark" placeholder="点击给卖家留言..." />
 								</div>
 								#else
 								<div class="item-title" style="font-size: 13px;">
