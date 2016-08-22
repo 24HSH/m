@@ -162,12 +162,12 @@
 				</a>
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-66">
-						<a href="javascript:item_list_picker();" class="button button-big" style="background-color: #ffffff; border: 0;">
+						<a href="javascript:item_list_picker();" class="button button-big" style="background: #ffffff; border: 0;">
 							<span class="color-base" style="font-size: 18px;" id="item/list/price"></span>
 						</a>
 					</div>
 					<div class="col-33">
-						<a href="javascript:item_list_trade_create();" class="button button-big" style="background-color: #ff5000; border: 0; border-radius: 0; color: #fff;">去结算</a>
+						<a href="javascript:item_list_trade_create();" class="button button-big" style="background: #ff5000; border: 0; border-radius: 0; color: #fff;">去结算</a>
 					</div>
 				</div>   
 			</div>

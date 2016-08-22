@@ -210,12 +210,12 @@
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-66">
-						<div class="button button-big" style="background-color: #ffffff; border: 0; color: #000;">
+						<div class="button button-big" style="background: #ffffff; border: 0; color: #000;">
 							合计：<span class="color-base">￥$!formatUtil.getAmountFormat($!{trade.price})</span>
                         </div>
 					</div>
 					<div class="col-33">
-						<a href="javascript:pay_index_pay();" class="button button-big" style="background-color: #ff5000; border: 0; border-radius: 0; color: #fff;">去支付</a>
+						<a href="javascript:pay_index_pay();" class="button button-big" style="background: #ff5000; border: 0; border-radius: 0; color: #fff;">去支付</a>
 					</div>
 				</div>   
 			</div>

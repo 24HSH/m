@@ -13,7 +13,7 @@
 	<!-- Page, data-page contains page name-->
 	<div data-page="trade.detail" class="page no-tabbar">
 		<!-- Scrollable page content-->
-		<div class="page-content">
+		<div class="page-content" style="padding-bottom: 44px;">
 			<div class="list-block">
 				<ul>
 					<li>
@@ -158,5 +158,20 @@
 				</ul>
             </div>
         </div>
+		
+		<div class="toolbar">
+			<div class="toolbar-inner" style="padding: 0;">
+				<div class="row no-gutter" style="width: 100%;">
+					<div class="col-33">
+						<div class="button button-big" style="background: #ffffff; border: 0; color: #000;">
+							合计：<span class="color-base">￥$!formatUtil.getAmountFormat($!{trade.price})</span>
+                        </div>
+					</div>
+					<div class="col-66">
+						<a href="javascript:pay_index_pay();" class="button button-big" style="background: #ff5000; border: 0; border-radius: 0; color: #fff;">再次购买</a>
+					</div>
+				</div>   
+			</div>
+		</div>
     </div>
 </div>
