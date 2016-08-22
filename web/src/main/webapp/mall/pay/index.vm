@@ -182,7 +182,7 @@
 						<div class="item-content">
 							<div class="item-inner">
 								<div class="item-title-row">
-									<div class="item-title">商品价格</div>
+									<div class="item-title">商品金额</div>
 									<div class="item-after">￥$!formatUtil.getAmountFormat($!{trade.tradePrice})</div>
                                 </div>
 								<div class="item-title-row">

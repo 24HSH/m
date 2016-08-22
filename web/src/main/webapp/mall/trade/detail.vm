@@ -102,16 +102,14 @@
 					<li>
 						<div class="item-content">
 							<div class="item-inner">
-								<div class="item-title" style="width: 100%; text-align: center;">
-                                    <div>￥$!formatUtil.getAmountFormat($!{trade.tradePrice}) + ￥$!formatUtil.getAmountFormat($!{trade.postage}) 运费</div>
-									<div class="color-base" style="font-size: 16px;">
-										#if($!{trade.type} == 'check' || $!{trade.type} == 'topay' || $!{trade.type} == 'cancel')
-										应付：￥$!formatUtil.getAmountFormat($!{trade.price})
-										#else
-										实付：￥$!formatUtil.getAmountFormat($!{trade.price})
-										#end
-									</div>
-								</div>
+								<div class="item-title-row">
+									<div class="item-title">商品金额</div>
+									<div class="item-after">￥$!formatUtil.getAmountFormat($!{trade.tradePrice})</div>
+                                </div>
+								<div class="item-title-row">
+									<div class="item-title">运费</div>
+									<div class="item-after">+ ￥$!formatUtil.getAmountFormat($!{trade.postage})</div>
+                                </div>
 							</div>
 						</div>
 					</li>
@@ -119,13 +117,32 @@
 						<div class="item-content">
 							<div class="item-inner">
 								<div class="item-title-row">
-									<div class="item-title">订单号码：$!{tradeNo}</div>
+                                    <div class="item-title">
+    									#if($!{trade.type} == 'check' || $!{trade.type} == 'topay' || $!{trade.type} == 'cancel')
+    									应付金额
+    									#else
+    									实付金额
+    									#end
+    								</div>
+    								<div class="item-after">
+    									<span class="color-base">￥$!formatUtil.getAmountFormat($!{trade.price})</span>
+    								</div>
+                                </div>
+							</div>
+						</div>
+					</li>
+                </ul>
+            </div>
+			<div class="list-block media-list">
+				<ul>
+					<li>
+						<div class="item-content">
+							<div class="item-inner">
+								<div class="item-title-row">
+									<div class="item-title">订单编号：$!{tradeNo}</div>
                                 </div>
 								<div class="item-title-row">
-									<div class="item-title color-gray">订单时间：$!{trade.createDate}</div>
-                                </div>
-								<div class="item-title-row">
-									<div class="item-title color-gray">支付方式：在线支付</div>
+									<div class="item-title color-gray">创建时间：$!{trade.createDate}</div>
                                 </div>
 								#if($!{trade.payDate})
 								<div class="item-title-row">
