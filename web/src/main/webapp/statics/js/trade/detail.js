@@ -6,17 +6,16 @@ myApp.onPageInit('trade.detail', function(page) {
 			});
 
 	$$('form.ajax-submit.trade-detail-delete').on('submitted', function(e) {
-				myApp.hideIndicator();
-				var xhr = e.detail.xhr;
-				myApp.alert(xhr.responseText, '信息', function() {
-							// member_index_stats();
-							myApp.getCurrentView().router.back({
-										url : myApp.getCurrentView().history[0],
-										force : true,
-										ignoreCache : true
-									});
-						});
-			});
+		myApp.hideIndicator();
+		var xhr = e.detail.xhr;
+		// member_index_stats();
+		myApp.getCurrentView().router.back({
+			url : myApp.getCurrentView().history[myApp.getCurrentView().history.length
+					- 2],
+			force : true,
+			ignoreCache : true
+		});
+	});
 
 	$$('form.ajax-submit.trade-detail-copy').on('submitted', function(e) {
 				myApp.hideIndicator();

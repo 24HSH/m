@@ -1,5 +1,7 @@
 package com.hsh24.mall.user.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
@@ -38,6 +40,44 @@ public class UserAddressServiceImpl implements IUserAddressService {
 	private IUserAddressDao userAddressDao;
 
 	@Override
+	public List<UserAddress> getUserAddressList(Long userId) {
+		if (userId == null) {
+			return null;
+		}
+
+		UserAddress userAddress = new UserAddress();
+		userAddress.setUserId(userId);
+
+		try {
+			return userAddressDao.getUserAddressList(userAddress);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(userAddress), e);
+		}
+
+		return null;
+	}
+
+	@Override
+	public UserAddress getUserAddress(Long userId, String addId) {
+		if (userId == null || StringUtils.isBlank(addId)) {
+			return null;
+		}
+
+		UserAddress userAddress = new UserAddress();
+		userAddress.setUserId(userId);
+
+		try {
+			userAddress.setAddId(Long.valueOf(addId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			return null;
+		}
+
+		return getUserAddress(userAddress);
+	}
+
+	@Override
 	public UserAddress getUserAddress(Long userId, Long mdmAddId) {
 		if (userId == null || mdmAddId == null) {
 			return null;
@@ -48,13 +88,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
 		userAddress.setMdmAddId(mdmAddId);
 		userAddress.setDefaults("Y");
 
-		try {
-			return userAddressDao.getUserAddress(userAddress);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(userAddress), e);
-		}
-
-		return null;
+		return getUserAddress(userAddress);
 	}
 
 	@Override
@@ -103,6 +137,54 @@ public class UserAddressServiceImpl implements IUserAddressService {
 			res.setCode("保存成功");
 		}
 		return res;
+	}
+
+	@Override
+	public BooleanResult updateUserAddress(Long userId, UserAddress userAddress) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		if (userAddress == null) {
+			result.setCode("地址信息不能为空");
+			return result;
+		}
+
+		userAddress.setUserId(userId);
+
+		try {
+			int c = userAddressDao.updateUserAddress(userAddress);
+			if (c == 1) {
+				result.setResult(true);
+			} else {
+				result.setCode("收货地址信息修改失败，请稍后再试");
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(userAddress), e);
+
+			result.setCode("收货地址信息修改失败，请稍后再试");
+		}
+
+		return result;
+	}
+
+	/**
+	 * 
+	 * @param userAddress
+	 * @return
+	 */
+	private UserAddress getUserAddress(UserAddress userAddress) {
+		try {
+			return userAddressDao.getUserAddress(userAddress);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(userAddress), e);
+		}
+
+		return null;
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package com.hsh24.mall.user.action;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
@@ -25,12 +27,41 @@ public class UserAddressAction extends BaseAction {
 	@Resource
 	private IUserAddressService userAddressService;
 
+	private List<UserAddress> userAddressList;
+
+	private String addId;
+
 	private UserAddress userAddress;
 
 	/**
 	 * 创建收货地址并修改订单.
 	 */
 	private String tradeNo;
+
+	public String list() {
+		userAddressList = userAddressService.getUserAddressList(this.getUser().getUserId());
+
+		return SUCCESS;
+	}
+
+	public String detail() {
+		userAddress = userAddressService.getUserAddress(this.getUser().getUserId(), addId);
+
+		return SUCCESS;
+	}
+
+	public String update() {
+		BooleanResult result = userAddressService.updateUserAddress(this.getUser().getUserId(), userAddress);
+
+		if (result.getResult()) {
+			this.setResourceResult(result.getCode());
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
+	}
 
 	public String index() {
 		Address address = this.getAddress();
@@ -77,6 +108,22 @@ public class UserAddressAction extends BaseAction {
 		}
 
 		return RESOURCE_RESULT;
+	}
+
+	public List<UserAddress> getUserAddressList() {
+		return userAddressList;
+	}
+
+	public void setUserAddressList(List<UserAddress> userAddressList) {
+		this.userAddressList = userAddressList;
+	}
+
+	public String getAddId() {
+		return addId;
+	}
+
+	public void setAddId(String addId) {
+		this.addId = addId;
 	}
 
 	public UserAddress getUserAddress() {

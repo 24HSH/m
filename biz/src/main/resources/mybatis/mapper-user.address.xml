@@ -4,6 +4,23 @@
 
 <mapper namespace="com.hsh24.mall.user.dao.IUserAddressDao">
 	
+	<select id="getUserAddressList" parameterType="userAddress" resultType="userAddress">
+	<![CDATA[
+		SELECT t.add_id AS addId,
+			   t.contact_name AS contactName,
+			   t.province,
+			   t.city,
+			   t.area,
+			   t.back_code AS backCode,
+			   t.address,
+			   t.postal_code AS postalCode,
+			   t.tel
+		  FROM mall.mall_tb_user_address t
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+	]]>
+	</select>
+	
 	<select id="getUserAddress" parameterType="userAddress" resultType="userAddress">
 	<![CDATA[
 		SELECT t.add_id AS addId,
@@ -17,10 +34,17 @@
 			   t.tel
 		  FROM mall.mall_tb_user_address t
 		 WHERE t.state = 'U'
-		   AND t.defaults = #{defaults}
 		   AND t.user_id = #{userId}
-		   AND t.mdm_add_id = #{mdmAddId}
 	]]>
+		<if test="defaults != null and defaults != ''">
+		<![CDATA[ AND t.defaults = #{defaults} ]]>
+		</if>
+		<if test="mdmAddId != null">
+		<![CDATA[ AND t.mdm_add_id = #{mdmAddId} ]]>
+		</if>
+		<if test="addId != null">
+		<![CDATA[ AND t.add_id = #{addId} ]]>
+		</if>
 	</select>
 	
 	<insert id="createUserAddress" parameterType="userAddress" useGeneratedKeys="true" keyProperty="addId">
@@ -79,6 +103,21 @@
 		AND t.defaults    = 'Y'
 		AND t.user_id     = #{userId}
 		AND t.mdm_add_id  = #{mdmAddId}
+	]]>
+	</update>
+	
+	<update id="updateUserAddress" parameterType="userAddress">
+	<![CDATA[
+		UPDATE mall.mall_tb_user_address t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{userId},
+			   t.`CONTACT_NAME` = #{contactName},
+			   t.`ADDRESS` = #{address},
+			   t.`POSTAL_CODE` = #{postalCode},
+			   t.`TEL` = #{tel}
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.add_id = #{addId}
 	]]>
 	</update>
 	

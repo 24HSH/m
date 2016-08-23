@@ -1,5 +1,7 @@
 package com.hsh24.mall.user.dao;
 
+import java.util.List;
+
 import com.hsh24.mall.api.user.bo.UserAddress;
 
 /**
@@ -8,6 +10,13 @@ import com.hsh24.mall.api.user.bo.UserAddress;
  * 
  */
 public interface IUserAddressDao {
+
+	/**
+	 * 
+	 * @param userAddress
+	 * @return
+	 */
+	List<UserAddress> getUserAddressList(UserAddress userAddress);
 
 	/**
 	 * 
@@ -29,5 +38,12 @@ public interface IUserAddressDao {
 	 * @return
 	 */
 	int removeUserAddress(UserAddress userAddress);
+
+	/**
+	 * 
+	 * @param userAddress
+	 * @return
+	 */
+	int updateUserAddress(UserAddress userAddress);
 
 }

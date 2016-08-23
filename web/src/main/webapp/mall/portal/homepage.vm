@@ -224,8 +224,10 @@
 		<script src="$!{env.imgUrl}/js/member/index.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/pay/index.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/trade/list.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/trade/detail.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/trade/refund.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/user/address.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/user/address/detail.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/deliver/time.js" async="async"></script>
 		-->
 		<script>

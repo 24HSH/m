@@ -20,8 +20,24 @@
 	
 	<package name="{http://mall}mall$user/address"
 		extends="{http://mall}mall$framework" namespace="/user/address">
+		
+		<action name="list" class="userAddressAction" method="list">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/user/address/list.vm</result>
+		</action>
+		
+		<action name="detail" class="userAddressAction" method="detail">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/user/address/detail.vm</result>
+		</action>
+		
+		<action name="update" class="userAddressAction" method="update">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 		<action name="create" class="userAddressAction" method="create">
 			<interceptor-ref name="authenticationStack" />
 		</action>
+		
 	</package>
 </struts>

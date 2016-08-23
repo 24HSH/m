@@ -1,5 +1,7 @@
 package com.hsh24.mall.api.user;
 
+import java.util.List;
+
 import com.hsh24.mall.api.user.bo.UserAddress;
 import com.hsh24.mall.framework.bo.BooleanResult;
 
@@ -9,6 +11,21 @@ import com.hsh24.mall.framework.bo.BooleanResult;
  * 
  */
 public interface IUserAddressService {
+
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	List<UserAddress> getUserAddressList(Long userId);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param addId
+	 * @return
+	 */
+	UserAddress getUserAddress(Long userId, String addId);
 
 	/**
 	 * 获取用户默认收货地址.
@@ -28,5 +45,13 @@ public interface IUserAddressService {
 	 * @return
 	 */
 	BooleanResult createUserAddress(Long userId, UserAddress userAddress, String tradeNo);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param userAddress
+	 * @return
+	 */
+	BooleanResult updateUserAddress(Long userId, UserAddress userAddress);
 
 }
