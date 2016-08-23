@@ -38,6 +38,43 @@
 	]]>
 	</insert>
 	
+	<insert id="copyCart" parameterType="cart" useGeneratedKeys="true" keyProperty="cartId">
+	<![CDATA[
+		INSERT
+		INTO mall.mall_tb_cart
+		  (
+			USER_ID,
+			SHOP_ID,
+			ITEM_ID,
+			SKU_ID,
+			POINTS_ID,
+			QUANTITY,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  (SELECT #{userId},
+			   t.shop_id,
+			   t.item_id,
+			   t.sku_id,
+			   0,
+			   t.quantity,
+			   'U',
+			   NOW(),
+			   #{modifyUser},
+			   NOW(),
+			   #{modifyUser}
+		  FROM mall.mall_tb_cart t
+		 WHERE t.cart_id  IN 
+	]]>
+		<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
+	<![CDATA[
+		  )
+	]]>
+	</insert>
+	
 	<update id="checkCart" parameterType="cart">
 	<![CDATA[
 		UPDATE mall.mall_tb_cart t

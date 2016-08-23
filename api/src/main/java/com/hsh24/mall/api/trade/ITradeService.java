@@ -58,6 +58,8 @@ public interface ITradeService {
 
 	String CANCEL = "cancel";
 
+	String DELETE = "delete";
+
 	/**
 	 * 立即购买.
 	 * 
@@ -181,5 +183,23 @@ public interface ITradeService {
 	 * @return
 	 */
 	BooleanResult signTrade(Long userId, String tradeNo);
+
+	/**
+	 * 删除订单.
+	 * 
+	 * @param userId
+	 * @param tradeNo
+	 * @return
+	 */
+	BooleanResult deleteTrade(Long userId, String tradeNo);
+
+	/**
+	 * 复制订单.
+	 * 
+	 * @param userId
+	 * @param tradeNo
+	 * @return
+	 */
+	BooleanResult copyTrade(Long userId, String tradeNo);
 
 }

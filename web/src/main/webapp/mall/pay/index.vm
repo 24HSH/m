@@ -76,11 +76,11 @@
 			<div class="list-block">
 				<ul>
 					<li>
-						<div class="item-content">
+						<a href="$!{env.appUrl}/item/list.htm?shopId=$!{trade.shopId}" class="item-link item-content" data-ignore-cache="true">
 							<div class="item-inner">
 								<div class="item-title">店铺：$!{trade.shopName}</div>
 							</div>
-						</div>
+						</a>
 					</li>
 					<li>
 						<a href="$!{env.appUrl}/order/detail.htm?tradeNo=$!{tradeNo}" class="item-link item-content">

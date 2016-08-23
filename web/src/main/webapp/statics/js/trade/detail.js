@@ -1,0 +1,58 @@
+myApp.onPageInit('trade.detail', function(page) {
+	$$('form.ajax-submit.trade-detail-delete').on('beforeSubmit', function(e) {
+			});
+
+	$$('form.ajax-submit.trade-detail-copy').on('beforeSubmit', function(e) {
+			});
+
+	$$('form.ajax-submit.trade-detail-delete').on('submitted', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				myApp.alert(xhr.responseText, '信息', function() {
+							// member_index_stats();
+							myApp.getCurrentView().router.back({
+										url : myApp.getCurrentView().history[0],
+										force : true,
+										ignoreCache : true
+									});
+						});
+			});
+
+	$$('form.ajax-submit.trade-detail-copy').on('submitted', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				// member_index_stats();
+				myApp.getCurrentView().router.load({
+							url : appUrl + "/item/list.htm?shopId="
+									+ xhr.responseText,
+							ignoreCache : true
+						});
+			});
+
+	$$('form.ajax-submit.trade-detail-delete').on('submitError', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				myApp.alert(xhr.responseText, '错误');
+			});
+
+	$$('form.ajax-submit.trade-detail-copy').on('submitError', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				myApp.alert(xhr.responseText, '错误');
+			});
+
+});
+
+function trade_detail_delete() {
+	myApp.confirm('确定删除订单？', '订单管理', function() {
+				myApp.showIndicator();
+
+				$$('#trade/detail/delete').trigger("submit");
+			});
+}
+
+function trade_detail_copy() {
+	myApp.showIndicator();
+
+	$$('#trade/detail/copy').trigger("submit");
+}

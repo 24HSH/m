@@ -41,11 +41,11 @@
 			<div class="list-block">
 				<ul>
 					<li>
-						<div class="item-content">
+						<a href="$!{env.appUrl}/item/list.htm?shopId=$!{trade.shopId}" class="item-link item-content" data-ignore-cache="true">
 							<div class="item-inner">
 								<div class="item-title">店铺：$!{trade.shopName}</div>
 							</div>
-						</div>
+						</a>
 					</li>
 					<li>
 						<a href="$!{env.appUrl}/order/detail.htm?tradeNo=$!{tradeNo}" class="item-link item-content">
@@ -157,18 +157,25 @@
 					</li>
 				</ul>
             </div>
+			
+			<form id="trade/detail/delete" action="$!{env.appUrl}/trade/delete.htm" method="POST" class="ajax-submit trade-detail-delete">
+            	<input type="hidden" name="tradeNo" value="$!{trade.tradeNo}"/>
+            </form>
+			<form id="trade/detail/copy" action="$!{env.appUrl}/trade/copy.htm" method="POST" class="ajax-submit trade-detail-copy">
+            	<input type="hidden" name="tradeNo" value="$!{trade.tradeNo}"/>
+            </form>
         </div>
 		
 		<div class="toolbar">
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-33">
-						<a href="#" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">
+						<a href="javascript:trade_detail_delete();" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">
                             <i class="iconfont icon-delete"></i><span style="margin-left: 3px;">删除</span>
                         </a>
 					</div>
 					<div class="col-66">
-						<a href="#" class="button button-big color-gray" style="background: #fff; border: 0;">再次购买</a>
+						<a href="javascript:trade_detail_copy();" class="button button-big color-gray" style="background: #fff; border: 0;">再次购买</a>
 					</div>
 				</div>   
 			</div>

@@ -23,6 +23,13 @@ public interface ICartDao {
 	 * @param cart
 	 * @return
 	 */
+	int copyCart(Cart cart);
+
+	/**
+	 * 
+	 * @param cart
+	 * @return
+	 */
 	int checkCart(Cart cart);
 
 	/**

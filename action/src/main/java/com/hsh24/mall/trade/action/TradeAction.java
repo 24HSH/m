@@ -186,6 +186,42 @@ public class TradeAction extends BaseAction {
 		return RESOURCE_RESULT;
 	}
 
+	/**
+	 * 删除订单.
+	 * 
+	 * @return
+	 */
+	public String delete() {
+		BooleanResult result = tradeService.deleteTrade(this.getUser().getUserId(), tradeNo);
+
+		if (result.getResult()) {
+			this.setResourceResult(result.getCode());
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
+	}
+
+	/**
+	 * 复制订单.
+	 * 
+	 * @return
+	 */
+	public String copy() {
+		BooleanResult result = tradeService.copyTrade(this.getUser().getUserId(), tradeNo);
+
+		if (result.getResult()) {
+			this.setResourceResult(result.getCode());
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
+	}
+
 	public String getItemId() {
 		return itemId;
 	}

@@ -183,6 +183,9 @@
 			<if test="type == 'feedbacked'">
 			<![CDATA[ , t.FEEDBACKED_DATE = NOW() ]]>
 			</if>
+			<if test="type == 'delete'">
+			<![CDATA[ , t.state = 'D' ]]>
+			</if>
 		</if>
 		<if test="receiverName != null and receiverName != ''">
 		<![CDATA[ , t.receiver_name = #{receiverName} ]]>

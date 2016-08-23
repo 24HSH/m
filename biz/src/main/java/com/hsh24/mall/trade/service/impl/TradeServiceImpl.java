@@ -624,6 +624,7 @@ public class TradeServiceImpl implements ITradeService {
 			return result;
 		}
 		trade.setUserId(userId);
+		trade.setModifyUser(userId.toString());
 
 		if (StringUtils.isBlank(tradeNo)) {
 			result.setCode("交易订单不能为空");
@@ -631,13 +632,128 @@ public class TradeServiceImpl implements ITradeService {
 		}
 		trade.setTradeNo(tradeNo.trim());
 
+		result = updateTrade(trade);
+
+		if (result.getResult()) {
+			result.setCode("操作成功");
+		}
+
+		return result;
+	}
+
+	@Override
+	public BooleanResult deleteTrade(Long userId, String tradeNo) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		Trade trade = new Trade();
+		// 删除
+		trade.setType(ITradeService.DELETE);
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+		trade.setUserId(userId);
 		trade.setModifyUser(userId.toString());
+
+		if (StringUtils.isBlank(tradeNo)) {
+			result.setCode("交易订单不能为空");
+			return result;
+		}
+		trade.setTradeNo(tradeNo.trim());
+
+		// 锁定订单
+		String key = tradeNo.trim();
+
+		// 锁定当前订单
+		try {
+			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + key, key,
+				IMemcachedCacheService.CACHE_KEY_TRADE_NO_DEFAULT_EXP);
+		} catch (ServiceException e) {
+			result.setCode("当前订单已被锁定，请稍后再试");
+			return result;
+		}
+
+		// 0. 查询 未付款交易订单
+		Trade t = getTrade(trade);
+		if (t == null) {
+			result.setCode("当前订单不存在");
+
+			remove(key);
+			return result;
+		}
+
+		if (ITradeService.DELETE.equals(t.getType())) {
+			result.setCode("当前订单已删除");
+
+			remove(key);
+			return result;
+		}
+
+		if (!ITradeService.CANCEL.equals(t.getType())) {
+			result.setCode("当前订单正在处理中，不能删除");
+
+			remove(key);
+			return result;
+		}
 
 		result = updateTrade(trade);
 
 		if (result.getResult()) {
 			result.setCode("操作成功");
 		}
+
+		remove(key);
+		return result;
+	}
+
+	@Override
+	public BooleanResult copyTrade(Long userId, String tradeNo) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		Trade trade = new Trade();
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+		trade.setUserId(userId);
+
+		if (StringUtils.isBlank(tradeNo)) {
+			result.setCode("交易订单不能为空");
+			return result;
+		}
+		trade.setTradeNo(tradeNo.trim());
+
+		// 0. 查询 未付款交易订单
+		Trade t = getTrade(trade);
+		if (t == null) {
+			result.setCode("当前订单不存在");
+			return result;
+		}
+
+		String id = t.getCartId();
+
+		if (StringUtils.isBlank(id)) {
+			// TODO
+			result.setCode("TODO");
+			return result;
+		}
+
+		String[] cartId = id.split(",");
+
+		// 根据购物车 复制订单
+		result = cartService.copyCart(userId, cartId);
+
+		if (!result.getResult()) {
+			return result;
+		}
+
+		// 用户页面跳转店铺商品
+		result.setCode(t.getShopId().toString());
+
 		return result;
 	}
 

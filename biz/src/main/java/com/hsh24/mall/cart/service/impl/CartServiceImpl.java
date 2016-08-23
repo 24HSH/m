@@ -160,6 +160,40 @@ public class CartServiceImpl implements ICartService {
 	}
 
 	@Override
+	public BooleanResult copyCart(Long userId, String[] cartId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		Cart cart = new Cart();
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+		cart.setUserId(userId);
+		cart.setModifyUser(userId.toString());
+
+		if (cartId == null || cartId.length == 0) {
+			result.setCode("购物车商品信息不能为空");
+			return result;
+		}
+		cart.setCodes(cartId);
+
+		// 2. 复制购物车
+		try {
+			cartDao.copyCart(cart);
+			result.setResult(true);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(cart), e);
+
+			result.setCode("添加购物车失败，请稍后再试");
+		}
+
+		result.setResult(true);
+		return result;
+	}
+
+	@Override
 	public int getCartCountByBlock(Long userId, Long blockId) {
 		// userId 必填
 		if (userId == null || blockId == null) {
@@ -170,13 +204,7 @@ public class CartServiceImpl implements ICartService {
 		cart.setUserId(userId);
 		cart.setBlockId(blockId);
 
-		try {
-			return cartDao.getCartCount(cart);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(cart), e);
-		}
-
-		return 0;
+		return getCartCount(cart);
 	}
 
 	@Override
@@ -190,13 +218,7 @@ public class CartServiceImpl implements ICartService {
 		cart.setUserId(userId);
 		cart.setShopId(shopId);
 
-		try {
-			return cartDao.getCartCount(cart);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(cart), e);
-		}
-
-		return 0;
+		return getCartCount(cart);
 	}
 
 	@Override
@@ -412,26 +434,6 @@ public class CartServiceImpl implements ICartService {
 	}
 
 	@Override
-	public Cart getCartStats(Long userId, Long shopId, String[] cartId) {
-		if (userId == null || shopId == null || cartId == null || cartId.length == 0) {
-			return new Cart();
-		}
-
-		Cart cart = new Cart();
-		cart.setUserId(userId);
-		cart.setShopId(shopId);
-		cart.setCodes(cartId);
-
-		try {
-			return cartDao.getCartStats(cart);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(cart), e);
-		}
-
-		return cart;
-	}
-
-	@Override
 	public BooleanResult finishCart(Long userId, String[] cartId) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
@@ -461,6 +463,41 @@ public class CartServiceImpl implements ICartService {
 
 		result.setResult(true);
 		return result;
+	}
+
+	@Override
+	public Cart getCartStats(Long userId, Long shopId, String[] cartId) {
+		if (userId == null || shopId == null || cartId == null || cartId.length == 0) {
+			return new Cart();
+		}
+
+		Cart cart = new Cart();
+		cart.setUserId(userId);
+		cart.setShopId(shopId);
+		cart.setCodes(cartId);
+
+		try {
+			return cartDao.getCartStats(cart);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(cart), e);
+		}
+
+		return cart;
+	}
+
+	/**
+	 * 
+	 * @param cart
+	 * @return
+	 */
+	private int getCartCount(Cart cart) {
+		try {
+			return cartDao.getCartCount(cart);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(cart), e);
+		}
+
+		return 0;
 	}
 
 	/**

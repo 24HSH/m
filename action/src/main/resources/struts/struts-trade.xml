@@ -36,6 +36,14 @@
 			<interceptor-ref name="authenticationStack" />
 		</action>
 		
+		<action name="delete" class="tradeAction" method="delete">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
+		<action name="copy" class="tradeAction" method="copy">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 	</package>
 	
 	<package name="{http://mall}mall$order"

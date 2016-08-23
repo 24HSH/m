@@ -28,6 +28,15 @@ public interface ICartService {
 	BooleanResult createCart(Long userId, Long shopId, String itemId, String skuId, String quantity);
 
 	/**
+	 * 复制购物车.
+	 * 
+	 * @param userId
+	 * @param cartId
+	 * @return
+	 */
+	BooleanResult copyCart(Long userId, String[] cartId);
+
+	/**
 	 * block 下有多少 shop.
 	 * 
 	 * @param userId
@@ -83,6 +92,15 @@ public interface ICartService {
 	BooleanResult updateQuantity(Long userId, Long shopId, String cartId, String quantity);
 
 	/**
+	 * 根据购物车完成订单.
+	 * 
+	 * @param userId
+	 * @param cartId
+	 * @return
+	 */
+	BooleanResult finishCart(Long userId, String[] cartId);
+
+	/**
 	 * 统计商品总金额 运费.
 	 * 
 	 * @param userId
@@ -91,14 +109,5 @@ public interface ICartService {
 	 * @return
 	 */
 	Cart getCartStats(Long userId, Long shopId, String[] cartId);
-
-	/**
-	 * 根据购物车完成订单.
-	 * 
-	 * @param userId
-	 * @param cartId
-	 * @return
-	 */
-	BooleanResult finishCart(Long userId, String[] cartId);
 
 }

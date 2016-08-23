@@ -21,11 +21,14 @@ myApp.onPageInit('trade.list', function(page) {
 	$$('form.ajax-submit.trade-list-sign').on('beforeSubmit', function(e) {
 			});
 
+	$$('form.ajax-submit.trade-list-copy').on('beforeSubmit', function(e) {
+			});
+
 	$$('form.ajax-submit.trade-list-cancel').on('submitted', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
 				myApp.alert(xhr.responseText, '信息', function() {
-							member_index_stats();
+							// member_index_stats();
 							myApp.getCurrentView().router.refreshPage();
 						});
 			});
@@ -34,8 +37,19 @@ myApp.onPageInit('trade.list', function(page) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
 				myApp.alert(xhr.responseText, '信息', function() {
-							member_index_stats();
+							// member_index_stats();
 							myApp.getCurrentView().router.refreshPage();
+						});
+			});
+
+	$$('form.ajax-submit.trade-list-copy').on('submitted', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				// member_index_stats();
+				myApp.getCurrentView().router.load({
+							url : appUrl + "/item/list.htm?shopId="
+									+ xhr.responseText,
+							ignoreCache : true
 						});
 			});
 
@@ -46,6 +60,12 @@ myApp.onPageInit('trade.list', function(page) {
 			});
 
 	$$('form.ajax-submit.trade-list-sign').on('submitError', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				myApp.alert(xhr.responseText, '错误');
+			});
+
+	$$('form.ajax-submit.trade-list-copy').on('submitError', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
 				myApp.alert(xhr.responseText, '错误');
@@ -78,6 +98,13 @@ function trade_list_sign(tradeNo) {
 				$$('#trade_list_sign_tradeNo').val(tradeNo);
 				$$('#trade/list/sign').trigger("submit");
 			});
+}
+
+function trade_list_copy(tradeNo) {
+	myApp.showIndicator();
+
+	$$('#trade_list_copy_tradeNo').val(tradeNo);
+	$$('#trade/list/copy').trigger("submit");
 }
 
 function trade_list_stats() {
