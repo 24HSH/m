@@ -1,4 +1,125 @@
-myApp.onPageInit('deliver.time', function(page) {
+// Initialize your app
+var myApp = new Framework7({
+			animateNavBackIcon : true,
+			animatePages : Framework7.prototype.device.ios,
+			pushState : true,
+			swipePanel : 'false',
+			modalButtonOk : '确认',
+			modalButtonCancel : '取消',
+			imagesLazyLoadPlaceholder : imgUrl + '/image/loading.png',
+			// Hide and show indicator during ajax requests
+			onAjaxStart : function(xhr) {
+				myApp.showIndicator();
+			},
+			onAjaxComplete : function(xhr) {
+				myApp.hideIndicator();
+			}
+		});
+
+// Export selectors engine
+var $$ = Dom7;
+
+// Add view
+var mainView = myApp.addView('.view-main', {
+			// Because we use fixed-through navbar we can enable dynamic navbar
+			dynamicNavbar : true
+		});
+
+new Swiper('.swiper-container', {
+			speed : 1000,
+			autoplay : 2000,
+			loop : true
+		});
+
+// ==============================
+
+var view_left = myApp.addView('#view-left', {
+			dynamicNavbar : true
+		});
+// view_left.router.reloadPage(appUrl + "/item/cat.htm");
+
+var view2 = myApp.addView('#view-2', {
+			dynamicNavbar : true
+		});
+$$('#href-2').on('click', function() {
+			if (view2.history.length == 1) {
+				view2.router.load({
+							url : appUrl + "/group/list.htm"
+						});
+			}
+		});
+
+var view3 = myApp.addView('#view-3', {
+			dynamicNavbar : true
+		});
+$$('#href-3').on('click', function() {
+			if (view3.history.length == 1) {
+				view3.router.load({
+							url : appUrl + "/facebook/index.htm"
+						});
+			}
+		});
+
+var view4 = myApp.addView('#view-4', {
+			dynamicNavbar : true
+		});
+$$('#href-4').on('click', function() {
+			if (view4.history.length == 1) {
+				view4.router.load({
+							url : appUrl + "/cart/index.htm",
+							ignoreCache : true,
+							reload : true
+						});
+			}
+		});
+
+var view5 = myApp.addView('#view-5', {
+			dynamicNavbar : true
+		});
+$$('#href-5').on('click', function() {
+			if (view5.history.length == 1) {
+				view5.router.load({
+							url : appUrl + "/trade/list.htm?code=view",
+							ignoreCache : true,
+							reload : true
+						});
+			}
+		});
+
+var view6 = myApp.addView('#view-6', {
+			dynamicNavbar : true
+		});
+$$('#href-6').on('click', function() {
+			if (view6.history.length == 1) {
+				view6.router.load({
+							url : appUrl + "/member/index.htm",
+							ignoreCache : true,
+							reload : true
+						});
+			}
+		});
+
+// ==============================
+
+function portal_homepage_cart_stats() {
+	$$.get(appUrl + '/cart/stats.htm', {}, function(data) {
+				if (data > 0) {
+					$$('#portal/homepage/cart').addClass('badge bg-red');
+					$$('#portal/homepage/cart').html(data);
+				} else {
+					$$('#portal/homepage/cart').removeClass('badge bg-red');
+					$$('#portal/homepage/cart').html('');
+				}
+			});
+}
+
+portal_homepage_cart_stats();
+
+myApp.onPageInit('portal.homepage', function(page) {
+			portal_homepage_cart_stats();
+		});
+
+		myApp.onPageInit('deliver.time', function(page) {
 			$$('form.ajax-submit.deliver-time-form').on('beforeSubmit',
 					function(e) {
 					});
@@ -84,7 +205,6 @@ function deliver_time_set() {
 
 	$$('#deliver/time/set').trigger("submit");
 }
-
 myApp.onPageInit('item.list', function(page) {
 			$$('form.ajax-submit.item-list-form').on('beforeSubmit',
 					function(e) {
@@ -530,7 +650,6 @@ function item_list_scan() {
 		}
 	});
 }
-
 myApp.onPageInit('member.index', function(page) {
 			// member_index_stats();
 		});
@@ -543,9 +662,7 @@ function member_index_stats() {
 				$$('#member/index/send').html(stats[2]);
 				$$('#member/index/sign').html(stats[3]);
 			});
-}
-
-myApp.onPageInit('pay.index', function(page) {
+}myApp.onPageInit('pay.index', function(page) {
 			$$('form.ajax-submit.pay-index-form').on('beforeSubmit',
 					function(e) {
 					});
@@ -599,130 +716,7 @@ function getBrandWCPayRequest(data) {
 	} catch (e) {
 		myApp.alert(e, '错误');
 	}
-}
-
-// Initialize your app
-var myApp = new Framework7({
-			animateNavBackIcon : true,
-			animatePages : Framework7.prototype.device.ios,
-			pushState : true,
-			swipePanel : 'false',
-			modalButtonOk : '确认',
-			modalButtonCancel : '取消',
-			imagesLazyLoadPlaceholder : imgUrl + '/image/loading.png',
-			// Hide and show indicator during ajax requests
-			onAjaxStart : function(xhr) {
-				myApp.showIndicator();
-			},
-			onAjaxComplete : function(xhr) {
-				myApp.hideIndicator();
-			}
-		});
-
-// Export selectors engine
-var $$ = Dom7;
-
-// Add view
-var mainView = myApp.addView('.view-main', {
-			// Because we use fixed-through navbar we can enable dynamic navbar
-			dynamicNavbar : true
-		});
-
-new Swiper('.swiper-container', {
-			speed : 1000,
-			autoplay : 2000,
-			loop : true
-		});
-
-// ==============================
-
-var view_left = myApp.addView('#view-left', {
-			dynamicNavbar : true
-		});
-// view_left.router.reloadPage(appUrl + "/item/cat.htm");
-
-var view2 = myApp.addView('#view-2', {
-			dynamicNavbar : true
-		});
-$$('#href-2').on('click', function() {
-			if (view2.history.length == 1) {
-				view2.router.load({
-							url : appUrl + "/group/list.htm"
-						});
-			}
-		});
-
-var view3 = myApp.addView('#view-3', {
-			dynamicNavbar : true
-		});
-$$('#href-3').on('click', function() {
-			if (view3.history.length == 1) {
-				view3.router.load({
-							url : appUrl + "/facebook/index.htm"
-						});
-			}
-		});
-
-var view4 = myApp.addView('#view-4', {
-			dynamicNavbar : true
-		});
-$$('#href-4').on('click', function() {
-			if (view4.history.length == 1) {
-				view4.router.load({
-							url : appUrl + "/cart/index.htm",
-							ignoreCache : true,
-							reload : true
-						});
-			}
-		});
-
-var view5 = myApp.addView('#view-5', {
-			dynamicNavbar : true
-		});
-$$('#href-5').on('click', function() {
-			if (view5.history.length == 1) {
-				view5.router.load({
-							url : appUrl + "/trade/list.htm?code=view",
-							ignoreCache : true,
-							reload : true
-						});
-			}
-		});
-
-var view6 = myApp.addView('#view-6', {
-			dynamicNavbar : true
-		});
-$$('#href-6').on('click', function() {
-			if (view6.history.length == 1) {
-				view6.router.load({
-							url : appUrl + "/member/index.htm",
-							ignoreCache : true,
-							reload : true
-						});
-			}
-		});
-
-// ==============================
-
-function portal_homepage_cart_stats() {
-	$$.get(appUrl + '/cart/stats.htm', {}, function(data) {
-				if (data > 0) {
-					$$('#portal/homepage/cart').addClass('badge bg-red');
-					$$('#portal/homepage/cart').html(data);
-				} else {
-					$$('#portal/homepage/cart').removeClass('badge bg-red');
-					$$('#portal/homepage/cart').html('');
-				}
-			});
-}
-
-portal_homepage_cart_stats();
-
-myApp.onPageInit('portal.homepage', function(page) {
-			portal_homepage_cart_stats();
-		});
-
-		myApp.onPageInit('trade.detail', function(page) {
+}myApp.onPageInit('trade.detail', function(page) {
 	$$('form.ajax-submit.trade-detail-delete').on('beforeSubmit', function(e) {
 			});
 
@@ -779,9 +773,7 @@ function trade_detail_copy() {
 	myApp.showIndicator();
 
 	$$('#trade/detail/copy').trigger("submit");
-}
-
-myApp.onPageInit('trade.list', function(page) {
+}myApp.onPageInit('trade.list', function(page) {
 	// 下拉刷新页面
 	var ptrContent = $$('.pull-to-refresh-content');
 
@@ -899,7 +891,6 @@ function trade_list_stats() {
 				$$('#trade/list/sign').html(stats[3]);
 			});
 }
-
 myApp.onPageInit('trade.refund', function(page) {
 			$$('form.ajax-submit.trade-refund-refund').on('beforeSubmit',
 					function(e) {
@@ -929,9 +920,7 @@ function trade_refund_refund(tradeNo) {
 
 				$$('#trade/refund/refund').trigger("submit");
 			});
-}
-
-myApp.onPageInit('user.address', function(page) {
+}myApp.onPageInit('user.address', function(page) {
 			$$('form.ajax-submit.user-address-form').on('beforeSubmit',
 					function(e) {
 					});
