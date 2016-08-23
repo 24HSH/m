@@ -745,14 +745,22 @@ public class TradeServiceImpl implements ITradeService {
 		String[] cartId = id.split(",");
 
 		// 根据购物车 复制订单
-		result = cartService.copyCart(userId, cartId);
-
-		if (!result.getResult()) {
+		List<Cart> cartList = cartService.getCartList(userId, cartId);
+		if (cartList == null || cartList.size() == 0) {
+			result.setCode("当前订单不存在");
 			return result;
 		}
 
+		Long shopId = t.getShopId();
+
+		for (Cart cart : cartList) {
+			cartService.createCart(userId, shopId, cart.getItemId().toString(), cart.getSkuId().toString(),
+				String.valueOf(cart.getQuantity()));
+		}
+
 		// 用户页面跳转店铺商品
-		result.setCode(t.getShopId().toString());
+		result.setCode(shopId.toString());
+		result.setResult(true);
 
 		return result;
 	}

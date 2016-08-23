@@ -28,15 +28,6 @@ public interface ICartService {
 	BooleanResult createCart(Long userId, Long shopId, String itemId, String skuId, String quantity);
 
 	/**
-	 * 复制购物车.
-	 * 
-	 * @param userId
-	 * @param cartId
-	 * @return
-	 */
-	BooleanResult copyCart(Long userId, String[] cartId);
-
-	/**
 	 * block 下有多少 shop.
 	 * 
 	 * @param userId
@@ -53,6 +44,14 @@ public interface ICartService {
 	 * @return
 	 */
 	int getCartCountByShop(Long userId, Long shopId);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param cartId
+	 * @return
+	 */
+	List<Cart> getCartList(Long userId, String[] cartId);
 
 	/**
 	 * 

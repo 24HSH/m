@@ -160,40 +160,6 @@ public class CartServiceImpl implements ICartService {
 	}
 
 	@Override
-	public BooleanResult copyCart(Long userId, String[] cartId) {
-		BooleanResult result = new BooleanResult();
-		result.setResult(false);
-
-		Cart cart = new Cart();
-
-		if (userId == null) {
-			result.setCode("用户信息不能为空");
-			return result;
-		}
-		cart.setUserId(userId);
-		cart.setModifyUser(userId.toString());
-
-		if (cartId == null || cartId.length == 0) {
-			result.setCode("购物车商品信息不能为空");
-			return result;
-		}
-		cart.setCodes(cartId);
-
-		// 2. 复制购物车
-		try {
-			cartDao.copyCart(cart);
-			result.setResult(true);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(cart), e);
-
-			result.setCode("添加购物车失败，请稍后再试");
-		}
-
-		result.setResult(true);
-		return result;
-	}
-
-	@Override
 	public int getCartCountByBlock(Long userId, Long blockId) {
 		// userId 必填
 		if (userId == null || blockId == null) {
@@ -219,6 +185,19 @@ public class CartServiceImpl implements ICartService {
 		cart.setShopId(shopId);
 
 		return getCartCount(cart);
+	}
+
+	@Override
+	public List<Cart> getCartList(Long userId, String[] cartId) {
+		if (userId == null || cartId == null || cartId.length == 0) {
+			return null;
+		}
+
+		Cart cart = new Cart();
+		cart.setUserId(userId);
+		cart.setCodes(cartId);
+
+		return getCartList(cart);
 	}
 
 	@Override
