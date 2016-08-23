@@ -203,6 +203,15 @@ function item_list_trade_create() {
 
 function item_list_cart_remove() {
 	myApp.confirm('清空购物车中所有商品？', '提示', function() {
+				var cartIds = document.getElementById("item/list/form")
+						.getElementsByTagName("INPUT");
+				for (var i = 0; i < cartIds.length; i++) {
+					var v = cartIds[i];
+					if (v.name == 'cartIds') {
+						$$(v).prop('checked', true);
+					}
+				}
+
 				item_list_flag = "remove";
 
 				myApp.showIndicator();

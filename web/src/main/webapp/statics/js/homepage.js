@@ -1,123 +1,89 @@
-// Initialize your app
-var myApp = new Framework7({
-			animateNavBackIcon : true,
-			animatePages : Framework7.prototype.device.ios,
-			pushState : true,
-			swipePanel : 'false',
-			modalButtonOk : '确认',
-			modalButtonCancel : '取消',
-			imagesLazyLoadPlaceholder : imgUrl + '/image/loading.png',
-			// Hide and show indicator during ajax requests
-			onAjaxStart : function(xhr) {
-				myApp.showIndicator();
-			},
-			onAjaxComplete : function(xhr) {
-				myApp.hideIndicator();
-			}
-		});
+myApp.onPageInit('deliver.time', function(page) {
+			$$('form.ajax-submit.deliver-time-form').on('beforeSubmit',
+					function(e) {
+					});
 
-// Export selectors engine
-var $$ = Dom7;
+			$$('form.ajax-submit.deliver-time-form').on('submitted',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.alert(xhr.responseText, '信息', function() {
+									myApp.getCurrentView().router.back({
+												url : appUrl
+														+ "/pay/index.htm?tradeNo="
+														+ $$('#deliver_time_tradeNo')
+																.val(),
+												force : true,
+												ignoreCache : true
+											});
+								});
+					});
 
-// Add view
-var mainView = myApp.addView('.view-main', {
-			// Because we use fixed-through navbar we can enable dynamic navbar
-			dynamicNavbar : true
-		});
+			$$('form.ajax-submit.deliver-time-form').on('submitError',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.alert(xhr.responseText, '错误');
+					});
 
-new Swiper('.swiper-container', {
-			speed : 1000,
-			autoplay : 2000,
-			loop : true
-		});
+			$$('.content-block-inner .date').find('p').each(function() {
+				$$(this).click(function() {
+					if ($$(this).hasClass("cur")) {
+						return;
+					}
 
-// ==============================
+					var date = $$('.date  .sendDate.cur');
+					// 1. 日期
+					date.removeClass("cur");
+					// 2. 时间
+					var tab = date.data("tab");
+					$$('.content-block-inner .time').find('div').each(
+							function() {
+								if (tab == $$(this).data("tab")) {
+									$$(this).hide();
+								}
+							});
+					// 3. 时间
+					$$('.time .sendTime.cur').removeClass("cur");
 
-var view_left = myApp.addView('#view-left', {
-			dynamicNavbar : true
-		});
-// view_left.router.reloadPage(appUrl + "/item/cat.htm");
-
-var view2 = myApp.addView('#view-2', {
-			dynamicNavbar : true
-		});
-$$('#href-2').on('click', function() {
-			if (view2.history.length == 1) {
-				view2.router.load({
-							url : appUrl + "/group/list.htm"
-						});
-			}
-		});
-
-var view3 = myApp.addView('#view-3', {
-			dynamicNavbar : true
-		});
-$$('#href-3').on('click', function() {
-			if (view3.history.length == 1) {
-				view3.router.load({
-							url : appUrl + "/facebook/index.htm"
-						});
-			}
-		});
-
-var view4 = myApp.addView('#view-4', {
-			dynamicNavbar : true
-		});
-$$('#href-4').on('click', function() {
-			if (view4.history.length == 1) {
-				view4.router.load({
-							url : appUrl + "/cart/index.htm",
-							ignoreCache : true,
-							reload : true
-						});
-			}
-		});
-
-var view5 = myApp.addView('#view-5', {
-			dynamicNavbar : true
-		});
-$$('#href-5').on('click', function() {
-			if (view5.history.length == 1) {
-				view5.router.load({
-							url : appUrl + "/trade/list.htm?code=view",
-							ignoreCache : true,
-							reload : true
-						});
-			}
-		});
-
-var view6 = myApp.addView('#view-6', {
-			dynamicNavbar : true
-		});
-$$('#href-6').on('click', function() {
-			if (view6.history.length == 1) {
-				view6.router.load({
-							url : appUrl + "/member/index.htm",
-							ignoreCache : true,
-							reload : true
-						});
-			}
-		});
-
-// ==============================
-
-function portal_homepage_cart_stats() {
-	$$.get(appUrl + '/cart/stats.htm', {}, function(data) {
-				if (data > 0) {
-					$$('#portal/homepage/cart').addClass('badge bg-red');
-					$$('#portal/homepage/cart').html(data);
-				} else {
-					$$('#portal/homepage/cart').removeClass('badge bg-red');
-					$$('#portal/homepage/cart').html('');
-				}
+					// 1. 日期
+					$$(this).addClass("cur");
+					// 2. 时间
+					var tab = $$(this).data("tab");
+					$$('.content-block-inner .time').find('div').each(
+							function() {
+								if (tab == $$(this).data("tab")) {
+									$$(this).show();
+								}
+							});
+				});
 			});
-}
 
-portal_homepage_cart_stats();
+			$$('.time .time_div').find('p').each(function() {
+						$$(this).click(function() {
+									if ($$(this).hasClass("cur")) {
+										return;
+									}
 
-myApp.onPageInit('portal.homepage', function(page) {
-			portal_homepage_cart_stats();
+									$$('.time .sendTime.cur')
+											.removeClass("cur");
+
+									$$(this).addClass("cur");
+								});
+					});
 		});
+
+function deliver_time_set() {
+	$$('#deliver_time_date').val($$('.date .sendDate.cur').data("tab"));
+
+	var time = $$('.time .sendTime.cur');
+	$$('#deliver_time_startTime').val(time.data("starttime"));
+	$$('#deliver_time_endTime').val(time.data("endtime"));
+
+	myApp.showIndicator();
+
+	$$('#deliver/time/set').trigger("submit");
+}
 
 myApp.onPageInit('item.list', function(page) {
 			$$('form.ajax-submit.item-list-form').on('beforeSubmit',
@@ -324,6 +290,15 @@ function item_list_trade_create() {
 
 function item_list_cart_remove() {
 	myApp.confirm('清空购物车中所有商品？', '提示', function() {
+				var cartIds = document.getElementById("item/list/form")
+						.getElementsByTagName("INPUT");
+				for (var i = 0; i < cartIds.length; i++) {
+					var v = cartIds[i];
+					if (v.name == 'cartIds') {
+						$$(v).prop('checked', true);
+					}
+				}
+
 				item_list_flag = "remove";
 
 				myApp.showIndicator();
@@ -557,7 +532,7 @@ function item_list_scan() {
 }
 
 myApp.onPageInit('member.index', function(page) {
-			member_index_stats();
+			// member_index_stats();
 		});
 
 function member_index_stats() {
@@ -626,6 +601,186 @@ function getBrandWCPayRequest(data) {
 	}
 }
 
+// Initialize your app
+var myApp = new Framework7({
+			animateNavBackIcon : true,
+			animatePages : Framework7.prototype.device.ios,
+			pushState : true,
+			swipePanel : 'false',
+			modalButtonOk : '确认',
+			modalButtonCancel : '取消',
+			imagesLazyLoadPlaceholder : imgUrl + '/image/loading.png',
+			// Hide and show indicator during ajax requests
+			onAjaxStart : function(xhr) {
+				myApp.showIndicator();
+			},
+			onAjaxComplete : function(xhr) {
+				myApp.hideIndicator();
+			}
+		});
+
+// Export selectors engine
+var $$ = Dom7;
+
+// Add view
+var mainView = myApp.addView('.view-main', {
+			// Because we use fixed-through navbar we can enable dynamic navbar
+			dynamicNavbar : true
+		});
+
+new Swiper('.swiper-container', {
+			speed : 1000,
+			autoplay : 2000,
+			loop : true
+		});
+
+// ==============================
+
+var view_left = myApp.addView('#view-left', {
+			dynamicNavbar : true
+		});
+// view_left.router.reloadPage(appUrl + "/item/cat.htm");
+
+var view2 = myApp.addView('#view-2', {
+			dynamicNavbar : true
+		});
+$$('#href-2').on('click', function() {
+			if (view2.history.length == 1) {
+				view2.router.load({
+							url : appUrl + "/group/list.htm"
+						});
+			}
+		});
+
+var view3 = myApp.addView('#view-3', {
+			dynamicNavbar : true
+		});
+$$('#href-3').on('click', function() {
+			if (view3.history.length == 1) {
+				view3.router.load({
+							url : appUrl + "/facebook/index.htm"
+						});
+			}
+		});
+
+var view4 = myApp.addView('#view-4', {
+			dynamicNavbar : true
+		});
+$$('#href-4').on('click', function() {
+			if (view4.history.length == 1) {
+				view4.router.load({
+							url : appUrl + "/cart/index.htm",
+							ignoreCache : true,
+							reload : true
+						});
+			}
+		});
+
+var view5 = myApp.addView('#view-5', {
+			dynamicNavbar : true
+		});
+$$('#href-5').on('click', function() {
+			if (view5.history.length == 1) {
+				view5.router.load({
+							url : appUrl + "/trade/list.htm?code=view",
+							ignoreCache : true,
+							reload : true
+						});
+			}
+		});
+
+var view6 = myApp.addView('#view-6', {
+			dynamicNavbar : true
+		});
+$$('#href-6').on('click', function() {
+			if (view6.history.length == 1) {
+				view6.router.load({
+							url : appUrl + "/member/index.htm",
+							ignoreCache : true,
+							reload : true
+						});
+			}
+		});
+
+// ==============================
+
+function portal_homepage_cart_stats() {
+	$$.get(appUrl + '/cart/stats.htm', {}, function(data) {
+				if (data > 0) {
+					$$('#portal/homepage/cart').addClass('badge bg-red');
+					$$('#portal/homepage/cart').html(data);
+				} else {
+					$$('#portal/homepage/cart').removeClass('badge bg-red');
+					$$('#portal/homepage/cart').html('');
+				}
+			});
+}
+
+portal_homepage_cart_stats();
+
+myApp.onPageInit('portal.homepage', function(page) {
+			portal_homepage_cart_stats();
+		});
+
+		myApp.onPageInit('trade.detail', function(page) {
+	$$('form.ajax-submit.trade-detail-delete').on('beforeSubmit', function(e) {
+			});
+
+	$$('form.ajax-submit.trade-detail-copy').on('beforeSubmit', function(e) {
+			});
+
+	$$('form.ajax-submit.trade-detail-delete').on('submitted', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				myApp.alert(xhr.responseText, '信息', function() {
+							// member_index_stats();
+							myApp.getCurrentView().router.back({
+										url : myApp.getCurrentView().history[0],
+										force : true,
+										ignoreCache : true
+									});
+						});
+			});
+
+	$$('form.ajax-submit.trade-detail-copy').on('submitted', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				// member_index_stats();
+				myApp.getCurrentView().router.load({
+							url : appUrl + "/item/list.htm?shopId="
+									+ xhr.responseText,
+							ignoreCache : true
+						});
+			});
+
+	$$('form.ajax-submit.trade-detail-delete').on('submitError', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				myApp.alert(xhr.responseText, '错误');
+			});
+
+	$$('form.ajax-submit.trade-detail-copy').on('submitError', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				myApp.alert(xhr.responseText, '错误');
+			});
+
+});
+
+function trade_detail_delete() {
+	myApp.confirm('确定删除订单？', '订单管理', function() {
+				myApp.showIndicator();
+
+				$$('#trade/detail/delete').trigger("submit");
+			});
+}
+
+function trade_detail_copy() {
+	myApp.showIndicator();
+
+	$$('#trade/detail/copy').trigger("submit");
+}
+
 myApp.onPageInit('trade.list', function(page) {
 	// 下拉刷新页面
 	var ptrContent = $$('.pull-to-refresh-content');
@@ -649,11 +804,14 @@ myApp.onPageInit('trade.list', function(page) {
 	$$('form.ajax-submit.trade-list-sign').on('beforeSubmit', function(e) {
 			});
 
+	$$('form.ajax-submit.trade-list-copy').on('beforeSubmit', function(e) {
+			});
+
 	$$('form.ajax-submit.trade-list-cancel').on('submitted', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
 				myApp.alert(xhr.responseText, '信息', function() {
-							member_index_stats();
+							// member_index_stats();
 							myApp.getCurrentView().router.refreshPage();
 						});
 			});
@@ -662,8 +820,19 @@ myApp.onPageInit('trade.list', function(page) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
 				myApp.alert(xhr.responseText, '信息', function() {
-							member_index_stats();
+							// member_index_stats();
 							myApp.getCurrentView().router.refreshPage();
+						});
+			});
+
+	$$('form.ajax-submit.trade-list-copy').on('submitted', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				// member_index_stats();
+				myApp.getCurrentView().router.load({
+							url : appUrl + "/item/list.htm?shopId="
+									+ xhr.responseText,
+							ignoreCache : true
 						});
 			});
 
@@ -674,6 +843,12 @@ myApp.onPageInit('trade.list', function(page) {
 			});
 
 	$$('form.ajax-submit.trade-list-sign').on('submitError', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				myApp.alert(xhr.responseText, '错误');
+			});
+
+	$$('form.ajax-submit.trade-list-copy').on('submitError', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
 				myApp.alert(xhr.responseText, '错误');
@@ -706,6 +881,13 @@ function trade_list_sign(tradeNo) {
 				$$('#trade_list_sign_tradeNo').val(tradeNo);
 				$$('#trade/list/sign').trigger("submit");
 			});
+}
+
+function trade_list_copy(tradeNo) {
+	myApp.showIndicator();
+
+	$$('#trade_list_copy_tradeNo').val(tradeNo);
+	$$('#trade/list/copy').trigger("submit");
 }
 
 function trade_list_stats() {
@@ -776,91 +958,4 @@ function user_address_create() {
 	myApp.showIndicator();
 
 	$$('#user/address/create').trigger("submit");
-}
-
-myApp.onPageInit('deliver.time', function(page) {
-			$$('form.ajax-submit.deliver-time-form').on('beforeSubmit',
-					function(e) {
-					});
-
-			$$('form.ajax-submit.deliver-time-form').on('submitted',
-					function(e) {
-						myApp.hideIndicator();
-						var xhr = e.detail.xhr;
-						myApp.alert(xhr.responseText, '信息', function() {
-									myApp.getCurrentView().router.back({
-												url : appUrl
-														+ "/pay/index.htm?tradeNo="
-														+ $$('#deliver_time_tradeNo')
-																.val(),
-												force : true,
-												ignoreCache : true
-											});
-								});
-					});
-
-			$$('form.ajax-submit.deliver-time-form').on('submitError',
-					function(e) {
-						myApp.hideIndicator();
-						var xhr = e.detail.xhr;
-						myApp.alert(xhr.responseText, '错误');
-					});
-
-			$$('.content-block-inner .date').find('p').each(function() {
-				$$(this).click(function() {
-					if ($$(this).hasClass("cur")) {
-						return;
-					}
-
-					var date = $$('.date  .sendDate.cur');
-					// 1. 日期
-					date.removeClass("cur");
-					// 2. 时间
-					var tab = date.data("tab");
-					$$('.content-block-inner .time').find('div').each(
-							function() {
-								if (tab == $$(this).data("tab")) {
-									$$(this).hide();
-								}
-							});
-					// 3. 时间
-					$$('.time .sendTime.cur').removeClass("cur");
-
-					// 1. 日期
-					$$(this).addClass("cur");
-					// 2. 时间
-					var tab = $$(this).data("tab");
-					$$('.content-block-inner .time').find('div').each(
-							function() {
-								if (tab == $$(this).data("tab")) {
-									$$(this).show();
-								}
-							});
-				});
-			});
-
-			$$('.time .time_div').find('p').each(function() {
-						$$(this).click(function() {
-									if ($$(this).hasClass("cur")) {
-										return;
-									}
-
-									$$('.time .sendTime.cur')
-											.removeClass("cur");
-
-									$$(this).addClass("cur");
-								});
-					});
-		});
-
-function deliver_time_set() {
-	$$('#deliver_time_date').val($$('.date .sendDate.cur').data("tab"));
-
-	var time = $$('.time .sendTime.cur');
-	$$('#deliver_time_startTime').val(time.data("starttime"));
-	$$('#deliver_time_endTime').val(time.data("endtime"));
-
-	myApp.showIndicator();
-
-	$$('#deliver/time/set').trigger("submit");
 }

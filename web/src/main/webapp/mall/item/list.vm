@@ -193,7 +193,7 @@
                     <div class="right">
                         <a href="javascript:item_list_cart_remove();">
 							<i class="iconfont icon-delete color-gray" style="font-size: 15px;"></i>
-							<span class="color-gray" style="font-size: 14px;">删除全部</span>
+							<span class="color-gray" style="font-size: 14px;">清空购物车</span>
 						</a>
 					</div>
             	</div>
