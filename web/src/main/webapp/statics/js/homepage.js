@@ -119,7 +119,7 @@ myApp.onPageInit('portal.homepage', function(page) {
 			portal_homepage_cart_stats();
 		});
 
-		myApp.onPageInit('deliver.time', function(page) {
+myApp.onPageInit('deliver.time', function(page) {
 			$$('form.ajax-submit.deliver-time-form').on('beforeSubmit',
 					function(e) {
 					});
@@ -662,7 +662,8 @@ function member_index_stats() {
 				$$('#member/index/send').html(stats[2]);
 				$$('#member/index/sign').html(stats[3]);
 			});
-}myApp.onPageInit('pay.index', function(page) {
+}
+myApp.onPageInit('pay.index', function(page) {
 			$$('form.ajax-submit.pay-index-form').on('beforeSubmit',
 					function(e) {
 					});
@@ -716,7 +717,8 @@ function getBrandWCPayRequest(data) {
 	} catch (e) {
 		myApp.alert(e, '错误');
 	}
-}myApp.onPageInit('trade.detail', function(page) {
+}
+myApp.onPageInit('trade.detail', function(page) {
 	$$('form.ajax-submit.trade-detail-delete').on('beforeSubmit', function(e) {
 			});
 
@@ -773,7 +775,8 @@ function trade_detail_copy() {
 	myApp.showIndicator();
 
 	$$('#trade/detail/copy').trigger("submit");
-}myApp.onPageInit('trade.list', function(page) {
+}
+myApp.onPageInit('trade.list', function(page) {
 	// 下拉刷新页面
 	var ptrContent = $$('.pull-to-refresh-content');
 
@@ -802,19 +805,15 @@ function trade_detail_copy() {
 	$$('form.ajax-submit.trade-list-cancel').on('submitted', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
-				myApp.alert(xhr.responseText, '信息', function() {
-							// member_index_stats();
-							myApp.getCurrentView().router.refreshPage();
-						});
+				// member_index_stats();
+				myApp.getCurrentView().router.refreshPage();
 			});
 
 	$$('form.ajax-submit.trade-list-sign').on('submitted', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
-				myApp.alert(xhr.responseText, '信息', function() {
-							// member_index_stats();
-							myApp.getCurrentView().router.refreshPage();
-						});
+				// member_index_stats();
+				myApp.getCurrentView().router.refreshPage();
 			});
 
 	$$('form.ajax-submit.trade-list-copy').on('submitted', function(e) {
@@ -920,7 +919,8 @@ function trade_refund_refund(tradeNo) {
 
 				$$('#trade/refund/refund').trigger("submit");
 			});
-}myApp.onPageInit('user.address', function(page) {
+}
+myApp.onPageInit('user.address', function(page) {
 			$$('form.ajax-submit.user-address-form').on('beforeSubmit',
 					function(e) {
 					});
@@ -979,4 +979,34 @@ function user_address_detail_update() {
 	myApp.showIndicator();
 
 	$$('#user/address/detail/update').trigger("submit");
+}
+
+myApp.onPageInit('user.address.list', function(page) {
+			$$('form.ajax-submit.user-address-list-form').on('beforeSubmit',
+					function(e) {
+					});
+
+			$$('form.ajax-submit.user-address-list-form').on('submitted',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.getCurrentView().router.refreshPage();
+					});
+
+			$$('form.ajax-submit.user-address-list-form').on('submitError',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.alert(xhr.responseText, '错误');
+					});
+
+		});
+
+function user_address_list_delete(addId) {
+	myApp.confirm('确定删除地址？', '地址管理', function() {
+				myApp.showIndicator();
+
+				$$('#user_address_list_addId').val(addId);
+				$$('#user/address/list/delete').trigger("submit");
+			});
 }

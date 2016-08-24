@@ -27,24 +27,23 @@ myApp.onPageInit('trade.list', function(page) {
 	$$('form.ajax-submit.trade-list-cancel').on('submitted', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
-				myApp.alert(xhr.responseText, '信息', function() {
-							// member_index_stats();
-							myApp.getCurrentView().router.refreshPage();
-						});
+
+				// member_index_stats();
+				myApp.getCurrentView().router.refreshPage();
 			});
 
 	$$('form.ajax-submit.trade-list-sign').on('submitted', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
-				myApp.alert(xhr.responseText, '信息', function() {
-							// member_index_stats();
-							myApp.getCurrentView().router.refreshPage();
-						});
+
+				// member_index_stats();
+				myApp.getCurrentView().router.refreshPage();
 			});
 
 	$$('form.ajax-submit.trade-list-copy').on('submitted', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
+
 				// member_index_stats();
 				myApp.getCurrentView().router.load({
 							url : appUrl + "/item/list.htm?shopId="
