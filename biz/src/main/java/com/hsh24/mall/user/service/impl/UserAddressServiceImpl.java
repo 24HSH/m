@@ -172,6 +172,50 @@ public class UserAddressServiceImpl implements IUserAddressService {
 		return result;
 	}
 
+	@Override
+	public BooleanResult deleteUserAddress(Long userId, String addId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		UserAddress userAddress = new UserAddress();
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		userAddress.setUserId(userId);
+
+		if (StringUtils.isBlank(addId)) {
+			result.setCode("地址信息不能为空");
+			return result;
+		}
+
+		try {
+			userAddress.setAddId(Long.valueOf(addId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("地址信息不能为空");
+			return result;
+		}
+
+		try {
+			int c = userAddressDao.deleteUserAddress(userAddress);
+			if (c == 1) {
+				result.setResult(true);
+			} else {
+				result.setCode("收货地址信息删除失败，请稍后再试");
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(userAddress), e);
+
+			result.setCode("收货地址信息删除失败，请稍后再试");
+		}
+
+		return result;
+	}
+
 	/**
 	 * 
 	 * @param userAddress

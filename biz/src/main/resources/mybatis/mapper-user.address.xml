@@ -121,4 +121,16 @@
 	]]>
 	</update>
 	
+	<update id="deleteUserAddress" parameterType="userAddress">
+	<![CDATA[
+		UPDATE mall.mall_tb_user_address t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{userId},
+			   t.state = 'D'
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.add_id = #{addId}
+	]]>
+	</update>
+	
 </mapper>

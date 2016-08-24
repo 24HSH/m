@@ -63,6 +63,19 @@ public class UserAddressAction extends BaseAction {
 		return RESOURCE_RESULT;
 	}
 
+	public String delete() {
+		BooleanResult result = userAddressService.deleteUserAddress(this.getUser().getUserId(), addId);
+
+		if (result.getResult()) {
+			this.setResourceResult(result.getCode());
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
+	}
+
 	public String index() {
 		Address address = this.getAddress();
 

@@ -46,4 +46,11 @@ public interface IUserAddressDao {
 	 */
 	int updateUserAddress(UserAddress userAddress);
 
+	/**
+	 * 
+	 * @param userAddress
+	 * @return
+	 */
+	int deleteUserAddress(UserAddress userAddress);
+
 }

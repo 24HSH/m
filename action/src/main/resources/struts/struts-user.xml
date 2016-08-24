@@ -35,6 +35,10 @@
 			<interceptor-ref name="authenticationStack" />
 		</action>
 		
+		<action name="delete" class="userAddressAction" method="delete">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 		<action name="create" class="userAddressAction" method="create">
 			<interceptor-ref name="authenticationStack" />
 		</action>

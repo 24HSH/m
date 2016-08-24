@@ -54,4 +54,12 @@ public interface IUserAddressService {
 	 */
 	BooleanResult updateUserAddress(Long userId, UserAddress userAddress);
 
+	/**
+	 * 
+	 * @param userId
+	 * @param addId
+	 * @return
+	 */
+	BooleanResult deleteUserAddress(Long userId, String addId);
+
 }
