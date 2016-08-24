@@ -90,6 +90,18 @@
 					</li>
 				</ul>
             </div>
+			<div class="list-block">
+				<ul>
+					<li>
+						<a href="#" class="item-link item-content">
+							<div class="item-media"><i class="iconfont icon-info" style="color: #4db4f9;"></i></div>
+							<div class="item-inner">
+								<div class="item-title">关于我们</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+            </div>
         </div>
     </div>
 </div>
