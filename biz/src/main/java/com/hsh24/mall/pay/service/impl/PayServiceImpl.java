@@ -118,8 +118,19 @@ public class PayServiceImpl implements IPayService {
 			return result;
 		}
 
+		// 0. 验证订单状态
+		trade = tradeService.checkTrade(userId, trade);
+
 		// 1. 判断是否属于未付款交易订单
 		String type = trade.getType();
+
+		if (ITradeService.CANCEL.equals(type)) {
+			result.setCode("当前订单超时未支付，已取消");
+
+			remove(no);
+			return result;
+		}
+
 		if (!ITradeService.CHECK.equals(type) && !ITradeService.TO_PAY.equals(type)) {
 			result.setCode("当前订单已完成支付");
 

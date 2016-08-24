@@ -2,6 +2,7 @@ package com.hsh24.mall.trade.service.impl;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -322,6 +323,38 @@ public class TradeServiceImpl implements ITradeService {
 	}
 
 	@Override
+	public Trade checkTrade(Long userId, Trade trade) {
+		if (trade == null) {
+			return null;
+		}
+
+		// 订单状态
+		String type = trade.getType();
+
+		// 临时 待付款 订单
+		if (!ITradeService.CHECK.equals(type) && !ITradeService.TO_PAY.equals(type)) {
+			return trade;
+		}
+
+		// 下单时间
+		String createDate = trade.getCreateDate();
+
+		int quotSeconds =
+			DateUtil.getQuotSeconds(DateUtil.datetime(createDate, DateUtil.DEFAULT_DATETIME_FORMAT), new Date());
+
+		// 15分钟以内
+		if (quotSeconds < 15 * 60) {
+			return trade;
+		}
+
+		// 无论取消是否成功
+		cancelTrade(userId, trade.getTradeNo());
+
+		trade.setType(ITradeService.CANCEL);
+		return trade;
+	}
+
+	@Override
 	public int getTradeCount(Long userId, String[] type) {
 		if (userId == null) {
 			return 0;
@@ -357,6 +390,9 @@ public class TradeServiceImpl implements ITradeService {
 		}
 
 		for (Trade trade : tradeList) {
+			// 验证订单状态
+			trade = checkTrade(userId, trade);
+
 			// 获取 shop 信息
 			Shop shop = shopService.getShop(trade.getShopId());
 			trade.setShopName(shop != null ? shop.getShopName() : "店铺");
