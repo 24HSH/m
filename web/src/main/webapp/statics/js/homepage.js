@@ -33,9 +33,7 @@ new Swiper('.swiper-container', {
 
 // ==============================
 
-var view_left = myApp.addView('#view-left', {
-			dynamicNavbar : true
-		});
+// var view_left = myApp.addView('#view-left', { dynamicNavbar : true });
 // view_left.router.reloadPage(appUrl + "/item/cat.htm");
 
 var view2 = myApp.addView('#view-2', {

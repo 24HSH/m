@@ -14,9 +14,10 @@
 	</head>
 	<body>
 		<!-- First, we need to add Panel's overlay that will overlays app while panel is opened -->
-		<div class="panel-overlay"></div>
+		<!-- <div class="panel-overlay"></div> -->
  
         <!-- Left panel -->
+		<!--
         <div class="panel panel-left panel-reveal">
 			<div id="view-left" class="view panel-view">
 				<div class="navbar"><div class="navbar-inner"></div></div>
@@ -25,6 +26,7 @@
                 </div>
 			</div>
         </div>
+		-->
 		
 		<!-- Views -->
 		<div class="views tabs toolbar-through">
