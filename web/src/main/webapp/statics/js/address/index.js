@@ -3,7 +3,7 @@ var myApp = new Framework7({
 			animateNavBackIcon : true,
 			animatePages : Framework7.prototype.device.ios,
 			pushState : true,
-			swipePanel : 'left',
+			swipePanel : 'false',
 			modalButtonOk : '确认',
 			modalButtonCancel : '取消',
 			imagesLazyLoadPlaceholder : imgUrl + '/image/loading.png',
