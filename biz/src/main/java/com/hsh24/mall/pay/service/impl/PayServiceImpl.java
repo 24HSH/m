@@ -111,15 +111,13 @@ public class PayServiceImpl implements IPayService {
 
 		// 0. 查询交易订单
 		Trade trade = tradeService.getTrade(userId, tradeNo);
+
 		if (trade == null) {
 			result.setCode("当前订单不存在");
 
 			remove(no);
 			return result;
 		}
-
-		// 0. 验证订单状态
-		trade = tradeService.checkTrade(userId, trade);
 
 		// 1. 判断是否属于未付款交易订单
 		String type = trade.getType();

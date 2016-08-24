@@ -420,15 +420,15 @@ public class TradeServiceImpl implements ITradeService {
 			return null;
 		}
 
+		// 验证订单状态
+		trade = checkTrade(userId, trade);
+
 		// 获取 shop 信息
 		Shop shop = shopService.getShop(trade.getShopId());
 		trade.setShopName(shop != null ? shop.getShopName() : "店铺");
 
-		List<Order> orderList = orderService.getOrderList(userId, trade.getTradeId());
-
-		if (orderList != null && orderList.size() > 0) {
-			trade.setOrderList(orderList);
-		}
+		// 明细信息
+		trade.setOrderList(orderService.getOrderList(userId, trade.getTradeId()));
 
 		return trade;
 	}
