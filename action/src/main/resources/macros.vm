@@ -24,7 +24,6 @@
 			<script src="$!{env.imgUrl}/js/common.js"></script>
 		#elseif($key == 'framework7')
 			<script src="$!{env.imgUrl}/framework7/js/framework7.min.js"></script>
-			<script src="$!{env.imgUrl}/framework7.3dpanels/framework7.3dpanels.min.js"></script>
 		#elseif($key == 'jquery')
 			<script src="$!{env.imgUrl}/jquery/jquery-1.12.1.min.js"></script>
 		#elseif($key == 'jquery.citytools')
@@ -62,7 +61,6 @@
 		#elseif($key == 'framework7')
 			<link rel="stylesheet" href="$!{env.imgUrl}/framework7/css/framework7.ios.min.css" />
 			<link rel="stylesheet" href="$!{env.imgUrl}/framework7/css/framework7.ios.colors.min.css" />
-			<link rel="stylesheet" href="$!{env.imgUrl}/framework7.3dpanels/framework7.3dpanels.min.css" />
 		#elseif($key == 'iconfont')
 			<link rel="stylesheet" href="$!{env.imgUrl}/iconfont/iconfont.css" />
 		#elseif($key == 'nav')
