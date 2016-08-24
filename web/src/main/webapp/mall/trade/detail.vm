@@ -14,15 +14,20 @@
 	<div data-page="trade.detail" class="page no-tabbar">
 		<!-- Scrollable page content-->
 		<div class="page-content" style="padding-bottom: 44px;">
-			<div class="list-block">
+			<div class="list-block media-list">
 				<ul>
 					<li>
 						<div class="item-content">
 							<div class="item-inner">
-								<div class="item-title" style="line-height: 22px;">
-									收货人：$!{trade.receiverName}<span style="float: right;">$!{trade.receiverTel}</span><br />
-									收货地址：$!{trade.receiverProvince}$!{trade.receiverCity}$!{trade.receiverArea}$!{trade.receiverAddress}
-								</div>
+								<div class="item-title-row">
+    								<div class="item-title">收货人：$!{trade.receiverName}</div>
+                                    <div class="item-after">$!{trade.receiverTel}</div>
+                                </div>
+								<div class="item-title-row">
+    								<div class="item-title">
+    									收货地址：$!{trade.receiverProvince}$!{trade.receiverCity}$!{trade.receiverArea}$!{trade.receiverAddress}
+    								</div>
+                                </div>
 							</div>
 						</div>
 					</li>
