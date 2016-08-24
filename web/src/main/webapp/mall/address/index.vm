@@ -56,7 +56,7 @@
                 									<div class="item-title">$!{address.addName}</div>
                 								</div>
                 								<div class="item-title-row">
-                									<div class="item-subtitle color-gray" style="font-size: 12px;">$!{address.address}</div>
+                									<div class="item-subtitle">$!{address.address}</div>
                 								</div>
                                             </div>
                 						</a>

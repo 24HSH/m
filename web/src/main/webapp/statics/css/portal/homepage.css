@@ -1,6 +1,6 @@
 /* 基本颜色 */
 .color-base {
-  color: #FF5500;
+    color: #FF5500;
 }
 
 /* 链接 */
@@ -22,12 +22,17 @@ a {
     margin: 0;
 }
 
+.list-block.media-list .item-title-row {
+    margin-bottom: 3px;
+}
+
 .list-block.media-list .item-title {
     font-weight: 400 !important;
 }
 
-.item-title-row {
-    margin-bottom: 3px;
+.list-block.media-list .item-subtitle {
+    font-size: 12px;
+    color: #8e8e93;
 }
 
 .tabbar a.active {

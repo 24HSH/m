@@ -114,7 +114,7 @@
                                                             <div class="item-title"><span class="little-tag">新店</span>$!{shop.shopName}</div>
                         								</div>
                         								<div class="item-title-row">
-                        									<div class="item-subtitle color-gray" style="font-size: 12px;">月售199单</div>
+                        									<div class="item-subtitle">月售199单</div>
                         								</div>
                                                     </a>
 													<div class="item-after">

@@ -31,7 +31,7 @@
 									<div class="item-after">$!{userAddress.tel}</div>
 								</div>
 								<div class="item-title-row">
-									<div class="item-subtitle color-gray">$!{userAddress.city}$!{userAddress.area}$!{userAddress.address}</div>
+									<div class="item-title">$!{userAddress.city}$!{userAddress.area}$!{userAddress.address}</div>
 									<div class="item-after"></div>
 								</div>
 								<div class="item-title-row">
