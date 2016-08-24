@@ -334,21 +334,6 @@ public class TradeServiceImpl implements ITradeService {
 		return getTradeCount(trade);
 	}
 
-	/**
-	 * 
-	 * @param trade
-	 * @return
-	 */
-	private int getTradeCount(Trade trade) {
-		try {
-			return tradeDao.getTradeCount(trade);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(trade), e);
-		}
-
-		return 0;
-	}
-
 	@Override
 	public List<Trade> getTradeList(Long userId, String[] type) {
 		if (userId == null) {
@@ -376,25 +361,11 @@ public class TradeServiceImpl implements ITradeService {
 			Shop shop = shopService.getShop(trade.getShopId());
 			trade.setShopName(shop != null ? shop.getShopName() : "店铺");
 
+			// 明细信息
 			trade.setOrderList(orderService.getOrderList(userId, trade.getTradeId()));
 		}
 
 		return tradeList;
-	}
-
-	/**
-	 * 
-	 * @param trade
-	 * @return
-	 */
-	private List<Trade> getTradeList(Trade trade) {
-		try {
-			return tradeDao.getTradeList(trade);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(trade), e);
-		}
-
-		return null;
 	}
 
 	@Override
@@ -763,6 +734,36 @@ public class TradeServiceImpl implements ITradeService {
 		result.setResult(true);
 
 		return result;
+	}
+
+	/**
+	 * 
+	 * @param trade
+	 * @return
+	 */
+	private int getTradeCount(Trade trade) {
+		try {
+			return tradeDao.getTradeCount(trade);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(trade), e);
+		}
+
+		return 0;
+	}
+
+	/**
+	 * 
+	 * @param trade
+	 * @return
+	 */
+	private List<Trade> getTradeList(Trade trade) {
+		try {
+			return tradeDao.getTradeList(trade);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(trade), e);
+		}
+
+		return null;
 	}
 
 	/**
