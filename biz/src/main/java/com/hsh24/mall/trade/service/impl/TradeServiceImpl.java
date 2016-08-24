@@ -323,38 +323,6 @@ public class TradeServiceImpl implements ITradeService {
 	}
 
 	@Override
-	public Trade checkTrade(Long userId, Trade trade) {
-		if (trade == null) {
-			return null;
-		}
-
-		// 订单状态
-		String type = trade.getType();
-
-		// 临时 待付款 订单
-		if (!ITradeService.CHECK.equals(type) && !ITradeService.TO_PAY.equals(type)) {
-			return trade;
-		}
-
-		// 下单时间
-		String createDate = trade.getCreateDate();
-
-		int quotSeconds =
-			DateUtil.getQuotSeconds(DateUtil.datetime(createDate, DateUtil.DEFAULT_DATETIME_FORMAT), new Date());
-
-		// 15分钟以内
-		if (quotSeconds < 15 * 60) {
-			return trade;
-		}
-
-		// 无论取消是否成功
-		cancelTrade(userId, trade.getTradeNo());
-
-		trade.setType(ITradeService.CANCEL);
-		return trade;
-	}
-
-	@Override
 	public int getTradeCount(Long userId, String[] type) {
 		if (userId == null) {
 			return 0;
@@ -815,6 +783,43 @@ public class TradeServiceImpl implements ITradeService {
 		}
 
 		return null;
+	}
+
+	/**
+	 * 验证订单状态 订单未付款时间 超时.
+	 * 
+	 * @param trade
+	 * @return
+	 */
+	private Trade checkTrade(Long userId, Trade trade) {
+		if (trade == null) {
+			return null;
+		}
+
+		// 订单状态
+		String type = trade.getType();
+
+		// 临时 待付款 订单
+		if (!ITradeService.CHECK.equals(type) && !ITradeService.TO_PAY.equals(type)) {
+			return trade;
+		}
+
+		// 下单时间
+		String createDate = trade.getCreateDate();
+
+		int quotSeconds =
+			DateUtil.getQuotSeconds(DateUtil.datetime(createDate, DateUtil.DEFAULT_DATETIME_FORMAT), new Date());
+
+		// 15分钟以内
+		if (quotSeconds < 15 * 60) {
+			return trade;
+		}
+
+		// 无论取消是否成功
+		cancelTrade(userId, trade.getTradeNo());
+
+		trade.setType(ITradeService.CANCEL);
+		return trade;
 	}
 
 	private BooleanResult updateTrade(Trade trade) {

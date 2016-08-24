@@ -86,14 +86,6 @@ public interface ITradeService {
 	BooleanResult createTrade(Long userId, Long shopId, String[] cartId, Address address);
 
 	/**
-	 * 验证订单状态 订单未付款时间 超时.
-	 * 
-	 * @param trade
-	 * @return
-	 */
-	Trade checkTrade(Long userId, Trade trade);
-
-	/**
 	 * 买家查询交易.
 	 * 
 	 * @param userId
