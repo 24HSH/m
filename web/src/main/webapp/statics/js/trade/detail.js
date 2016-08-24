@@ -8,6 +8,7 @@ myApp.onPageInit('trade.detail', function(page) {
 	$$('form.ajax-submit.trade-detail-delete').on('submitted', function(e) {
 		myApp.hideIndicator();
 		var xhr = e.detail.xhr;
+
 		// member_index_stats();
 		myApp.getCurrentView().router.back({
 			url : myApp.getCurrentView().history[myApp.getCurrentView().history.length
@@ -20,6 +21,7 @@ myApp.onPageInit('trade.detail', function(page) {
 	$$('form.ajax-submit.trade-detail-copy').on('submitted', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
+
 				// member_index_stats();
 				myApp.getCurrentView().router.load({
 							url : appUrl + "/item/list.htm?shopId="
