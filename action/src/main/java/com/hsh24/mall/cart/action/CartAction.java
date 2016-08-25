@@ -1,6 +1,5 @@
 package com.hsh24.mall.cart.action;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -88,20 +87,13 @@ public class CartAction extends BaseAction {
 		for (Shop shop : shopList) {
 			Long shopId = shop.getShopId();
 			List<Cart> list = new ArrayList<Cart>();
-			int quantity = 0;
-			BigDecimal price = BigDecimal.ZERO;
 
 			for (Cart cart : cartList) {
 				if (shopId.equals(cart.getShopId())) {
 					list.add(cart);
-
-					quantity += cart.getQuantity();
-					price = price.add(cart.getPrice().multiply(new BigDecimal(cart.getQuantity())));
 				}
 			}
 
-			shop.setQuantity(quantity);
-			shop.setPrice(price);
 			shop.setCartList(list);
 		}
 

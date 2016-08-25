@@ -1,6 +1,5 @@
 package com.hsh24.mall.api.shop.bo;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import com.hsh24.mall.api.cart.bo.Cart;
@@ -29,13 +28,6 @@ public class Shop extends SearchInfo {
 	private Long blockId;
 
 	private List<Cart> cartList;
-
-	/**
-	 * 购物车商品数量.
-	 */
-	private int quantity;
-
-	private BigDecimal price;
 
 	public Long getShopId() {
 		return shopId;
@@ -75,22 +67,6 @@ public class Shop extends SearchInfo {
 
 	public void setCartList(List<Cart> cartList) {
 		this.cartList = cartList;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public BigDecimal getPrice() {
-		return price;
-	}
-
-	public void setPrice(BigDecimal price) {
-		this.price = price;
 	}
 
 }
