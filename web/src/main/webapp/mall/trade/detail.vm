@@ -180,7 +180,7 @@
                         </a>
 					</div>
 					<div class="col-66">
-						<a href="javascript:trade_detail_copy();" class="button button-big color-gray" style="background: #fff; border: 0;">再次购买</a>
+						<a href="javascript:trade_detail_copy();" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0;">再次购买</a>
 					</div>
 				</div>   
 			</div>
