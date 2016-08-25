@@ -25,7 +25,7 @@
 			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
 		</if>
 	<![CDATA[
-		LIMIT ${limit} OFFSET ${offset}
+		LIMIT #{limit} OFFSET #{offset}
 	]]>		
 	</select>
 	

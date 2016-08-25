@@ -117,7 +117,7 @@
 		<![CDATA[ ORDER BY ${sort} ${order}, TRADE_ID DESC ]]>
 		</if>
 	<![CDATA[
-		LIMIT ${limit} OFFSET ${offset}
+		LIMIT #{limit} OFFSET #{offset}
 	]]>
 	</select>
 	
