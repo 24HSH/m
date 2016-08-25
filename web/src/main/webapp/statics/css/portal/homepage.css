@@ -827,6 +827,7 @@ a.component.type3 img {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-style: normal;
 }
 
 .a7w i {
@@ -841,6 +842,7 @@ a.component.type3 img {
     line-height: 18px;
     border-radius: 15px;
     background-color: #ff3b30;
+    font-style: normal;
 }
 
 
