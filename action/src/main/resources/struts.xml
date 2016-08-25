@@ -4,8 +4,9 @@
 <struts>
 	<include file="struts-default.xml" />
 	<include file="struts/struts-framework.xml" />
-	<include file="struts/struts-auth.xml" />
+	<include file="struts/struts-about.xml" />
 	<include file="struts/struts-address.xml" />
+	<include file="struts/struts-auth.xml" />
 	<include file="struts/struts-cart.xml" />
 	<include file="struts/struts-coupon.xml" />
 	<include file="struts/struts-deliver.xml" />

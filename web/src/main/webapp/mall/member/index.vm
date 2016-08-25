@@ -19,7 +19,7 @@
 					<li>
 						<a class="item-link item-content" href="$!{env.appUrl}/user/detail.htm" data-ignore-cache="true">
 							<div class="item-media">
-								<img src="$!{user.headImgUrl}" class="lazy" style="width: 60px; height: 60px; border-radius: 5px;"></img>
+								<img data-src="$!{user.headImgUrl}" class="lazy" style="width: 60px; height: 60px; border-radius: 5px;"></img>
 							</div>
 							<div class="item-inner">
 								<div class="item-title">$!{user.userName}</div>
@@ -93,7 +93,7 @@
 			<div class="list-block">
 				<ul>
 					<li>
-						<a href="#" class="item-link item-content">
+						<a href="$!{env.appUrl}/about/index.htm" class="item-link item-content">
 							<div class="item-media"><i class="iconfont icon-info" style="color: #4db4f9;"></i></div>
 							<div class="item-inner">
 								<div class="item-title">关于我们</div>
