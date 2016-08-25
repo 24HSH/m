@@ -24,4 +24,12 @@ public class AboutAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public String agreement() {
+		return SUCCESS;
+	}
+
 }

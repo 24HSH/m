@@ -4,7 +4,7 @@
 <struts>
 	<package name="{http://mall}mall$address"
 		extends="{http://mall}mall$framework" namespace="/address">
-
+		
 		<action name="index" class="addressAction" method="index">
 			<result name="success">/mall/address/index.vm</result>
 		</action>

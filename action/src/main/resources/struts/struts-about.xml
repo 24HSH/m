@@ -4,9 +4,13 @@
 <struts>
 	<package name="{http://mall}mall$about"
 		extends="{http://mall}mall$framework" namespace="/about">
-
+		
 		<action name="index" class="aboutAction" method="index">
 			<result name="success">/mall/about/index.vm</result>
+		</action>
+		
+		<action name="agreement" class="aboutAction" method="agreement">
+			<result name="success">/mall/about/agreement.vm</result>
 		</action>
 		
 	</package>

@@ -22,10 +22,10 @@
 			<div class="list-block">
 				<ul>
 					<li>
-						<a href="$!{env.appUrl}/about/index.htm" class="item-link item-content">
+						<a href="$!{env.appUrl}/about/agreement.htm" class="item-link item-content">
 							<div class="item-media"><i class="iconfont icon-form color-base"></i></div>
 							<div class="item-inner">
-								<div class="item-title">好社惠 用户协议</div>
+								<div class="item-title">好社惠 服务协议</div>
 							</div>
 						</a>
 					</li>
