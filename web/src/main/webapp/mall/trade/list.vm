@@ -147,7 +147,7 @@
 								<div class="item-after">
 									#if($!{trade.type} == 'check' || $!{trade.type} == 'topay')
 									<a href="javascript:trade_list_cancel('$!{trade.tradeNo}');" class="button color-gray" style="margin-right: 5px;">取消订单</a>
-									<a href="$!{env.appUrl}/pay/index.htm?tradeNo=$!{trade.tradeNo}" class="button color-orange" data-ignore-cache="true">付款</a>
+									<a href="$!{env.appUrl}/pay/index.htm?tradeNo=$!{trade.tradeNo}" class="button button-fill color-red" data-ignore-cache="true">去支付</a>
 									#elseif($!{trade.type} == 'send')
 									<a href="javascript:trade_list_sign('$!{trade.tradeNo}');" class="button color-gray">确认收货</a>
     								#elseif($!{trade.type} == 'sign')
