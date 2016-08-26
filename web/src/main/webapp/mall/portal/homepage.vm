@@ -101,10 +101,15 @@
 							</div>
 							
 							<div class="list-block cards-list media-list">
+								#set($flag = 0)
 								#foreach($shop in $!{shopList})
 								<ul>
 									<li class="card" style="border-radius: 5px; margin: 10px 5px;">
+										#if($flag == 0) #set($flag = 1)
+										<span class="bw"></span>
+										#else
 										<span class="by"></span>
+										#end
 										<div class="card-content">
 											<div class="card-content-inner" style="padding: 0;">
 												<div class="item-content">
@@ -129,8 +134,7 @@
 										</div>
 										<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
                                             <span style="font-size: 12px;">
-												<i class="iconfont icon-notice" style="font-size: 15px;"></i>
-												满59元免5元运费
+												<i class="iconfont icon-notice" style="font-size: 15px;"></i> 好社惠便民亭
 											</span>
 										</div>
 									</li>
