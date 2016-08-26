@@ -1,5 +1,6 @@
 package com.hsh24.mall.trade.action;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import com.hsh24.mall.api.trade.ITradeService;
 import com.hsh24.mall.api.trade.bo.Trade;
 import com.hsh24.mall.framework.action.BaseAction;
 import com.hsh24.mall.framework.bo.BooleanResult;
+import com.hsh24.mall.framework.util.DateUtil;
 
 /**
  * 
@@ -55,6 +57,10 @@ public class TradeAction extends BaseAction {
 	 * 订单明细编号.
 	 */
 	private String orderId;
+
+	private String today;
+
+	private String yesterday;
 
 	/**
 	 * 创建临时订单.
@@ -125,6 +131,9 @@ public class TradeAction extends BaseAction {
 		} else {
 			tradeList = tradeService.getTradeList(userId, null);
 		}
+
+		today = DateUtil.getNowDateStr();
+		yesterday = DateUtil.datetime(DateUtil.addDays(new Date(), -1), DateUtil.DEFAULT_DATE_FORMAT);
 
 		return SUCCESS;
 	}
@@ -292,6 +301,22 @@ public class TradeAction extends BaseAction {
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
+	}
+
+	public String getToday() {
+		return today;
+	}
+
+	public void setToday(String today) {
+		this.today = today;
+	}
+
+	public String getYesterday() {
+		return yesterday;
+	}
+
+	public void setYesterday(String yesterday) {
+		this.yesterday = yesterday;
 	}
 
 }

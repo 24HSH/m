@@ -142,7 +142,13 @@
 						<div class="item-content">
 							<div class="item-inner" style="display: inherit;">
                                 <div class="item-title">
+								#if($!{today} == $!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'yyyy-MM-dd')})
+									今天 $!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'HH:mm')}
+								#elseif($!{yesterday} == $!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'yyyy-MM-dd')})
+									昨天 $!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'HH:mm')}
+								#else
 									$!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'MM-dd HH:mm')}
+								#end
 								</div>
 								<div class="item-after">
 									#if($!{trade.type} == 'check' || $!{trade.type} == 'topay')
