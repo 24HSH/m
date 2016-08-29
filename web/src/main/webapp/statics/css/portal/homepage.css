@@ -353,6 +353,37 @@ a.component.type3 img {
     -webkit-overflow-scrolling: touch;
 }
 
+.v2 {
+    position: relative;
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+    line-height: 30px;
+    margin: 0 10px;
+}
+
+.v2 span:before {
+    content: "";
+    height: 0;
+    border-top: 1px solid #999;
+    width: 6%;
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    left: 25%;
+}
+
+.v2 span:after {
+    content: "";
+    height: 0;
+    border-top: 1px solid #999;
+    width: 6%;
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    right: 25%;
+}
+
 
 
 /* 团购列表模块 */
