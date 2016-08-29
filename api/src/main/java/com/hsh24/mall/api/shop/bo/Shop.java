@@ -23,10 +23,15 @@ public class Shop extends SearchInfo {
 	 */
 	private Long regionId;
 
+	private String address;
+
 	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
 
 	private Long blockId;
 
+	/**
+	 * 以亭子为单位 显示购物车.
+	 */
 	private List<Cart> cartList;
 
 	public Long getShopId() {
@@ -51,6 +56,14 @@ public class Shop extends SearchInfo {
 
 	public void setRegionId(Long regionId) {
 		this.regionId = regionId;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Long getBlockId() {

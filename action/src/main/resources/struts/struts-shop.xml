@@ -14,5 +14,9 @@
 			<result name="success" type="redirect">${redirectUrl}?shopId=${shopId}</result>
 		</action>
 		
+		<action name="detail" class="shopAction" method="detail">
+			<result name="success">/mall/shop/detail.vm</result>
+		</action>
+		
 	</package>
 </struts>

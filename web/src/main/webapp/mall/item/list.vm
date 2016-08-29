@@ -6,7 +6,7 @@
 		<div class="center sliding">$!{shop.shopName}</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
-			<a href="#" class="link icon-only"> <i class="iconfont icon-more color-gray"></i><span></span></a>
+			<a href="$!{env.appUrl}/shop/detail.htm?shopId=$!{shop.shopId}" class="link icon-only"> <i class="iconfont icon-more color-gray"></i><span></span></a>
 		</div>
 	</div>
 </div>

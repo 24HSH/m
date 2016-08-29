@@ -34,7 +34,8 @@
 	<![CDATA[
 		SELECT t.shop_id AS shopId,
 			   t.shop_name AS shopName,
-			   t.region_id AS regionId
+			   t.region_id AS regionId,
+			   t.`ADDRESS`
 		  FROM mdm.mdm_tb_shop t
 		 WHERE t.state = 'U'
 		   AND t.shop_id = #{shopId}

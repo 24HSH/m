@@ -46,7 +46,21 @@ public class ShopAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	/**
+	 * 选中.
+	 * 
+	 * @return
+	 */
 	public String select() {
+		return SUCCESS;
+	}
+
+	/**
+	 * 店铺介绍.
+	 * 
+	 * @return
+	 */
+	public String detail() {
 		return SUCCESS;
 	}
 

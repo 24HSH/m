@@ -1,0 +1,76 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
+		<div class="center sliding">$!{shop.shopName}</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="shop.detail" class="page no-tabbar">
+		<!-- Scrollable page content-->
+		<div class="page-content">
+			<div class="content-block-title">店铺信息</div>
+			<div class="list-block">
+				<ul>
+					<li class="item-content">
+						<div class="item-inner">
+							<div class="item-title label" style="width: 70px;">店铺评分：</div>
+							<div class="item-input">
+								<i class="iconfont icon-upstagefill color-base"></i>
+								<i class="iconfont icon-upstagefill color-base"></i>
+								<i class="iconfont icon-upstagefill color-base"></i>
+								<i class="iconfont icon-upstagefill color-base"></i>
+								<i class="iconfont icon-upstage color-base"></i>
+							</div>
+                        </div>
+                    </li>
+					<li class="item-content">
+						<div class="item-inner">
+                            <div class="item-title label" style="width: 70px;">全部商品：</div>
+							<div class="item-input">100件</div>
+                        </div>
+                    </li>
+					<li class="item-content">
+						<div class="item-inner">
+							<div class="item-title label" style="width: 70px;">月售单量：</div>
+							<div class="item-input">100单</div>
+                        </div>
+                    </li>
+					<li class="item-content">
+						<div class="item-inner">
+							<div class="item-title label" style="width: 70px;">营业时间：</div>
+							<div class="item-input">09:00 - 18:00</div>
+                        </div>
+                    </li>
+					<li class="item-content">
+						<div class="item-inner">
+                            <div class="item-title label" style="width: 70px;">门店地址：</div>
+							<div class="item-input">$!{shop.address}</div>
+                        </div>
+                    </li>
+					<li class="item-content">
+						<div class="item-inner">
+							<div class="item-title label" style="width: 70px;">配送服务：</div>
+							<div class="item-input">由好社惠提供配送服务</div>
+                        </div>
+                    </li>
+					<li class="item-content">
+						<div class="item-inner">
+							<div class="item-title label" style="width: 70px;">商家电话：</div>
+							<div class="item-input"><a href="tel:18215520316" class="external">18215520316</a></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+			<div class="content-block-title">商家公告</div>
+			<div class="content-block">
+				<div class="content-block-inner">如果您下单的时间超过我们的营业时间，我们将在下一个营业时间开始处理您的订单。</div>
+            </div>
+        </div>
+    </div>
+</div>
