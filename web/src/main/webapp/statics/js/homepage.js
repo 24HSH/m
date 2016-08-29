@@ -765,6 +765,16 @@ myApp.onPageInit('trade.detail', function(page) {
 
 		});
 
+function trade_detail_service() {
+	myApp.actions([[{
+						text : '<a href="tel:12345678900" class="external">联系商家</a>'
+					}, {
+						text : '<a href="tel:12345678900" class="external">好社惠客服</a>'
+					}], [{
+						text : '取消'
+					}]]);
+}
+
 function trade_detail_delete() {
 	myApp.confirm('确定删除订单？', '订单管理', function() {
 				myApp.showIndicator();

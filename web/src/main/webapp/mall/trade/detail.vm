@@ -174,12 +174,17 @@
 		<div class="toolbar">
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
-					<div class="col-33">
+					<div class="col-15">
+						<a href="javascript:trade_detail_service();" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">
+                            <i class="iconfont icon-service"></i>
+                        </a>
+					</div>
+					<div class="col-25">
 						<a href="javascript:trade_detail_delete();" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">
                             <i class="iconfont icon-delete" style="font-size: 17px;"></i><span style="margin-left: 3px;">删除</span>
                         </a>
 					</div>
-					<div class="col-66">
+					<div class="col-60">
 						<a href="javascript:trade_detail_copy();" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0;">再次购买</a>
 					</div>
 				</div>   
