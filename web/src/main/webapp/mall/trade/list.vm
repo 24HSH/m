@@ -4,7 +4,7 @@
 	<div class="navbar-inner">
 		<div class="left">
 			#if("view" != $!{code})
-			<a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a>
+			<a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a>
 			#end
 		</div>
 		<div class="center sliding">订单</div>
