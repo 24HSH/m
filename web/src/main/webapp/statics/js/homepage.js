@@ -100,6 +100,7 @@ $$('#href-6').on('click', function() {
 // ==============================
 
 function portal_homepage_cart_stats() {
+	return;
 	$$.get(appUrl + '/cart/stats.htm', {}, function(data) {
 				if (data > 0) {
 					$$('#portal/homepage/cart').addClass('badge bg-red');
