@@ -2,7 +2,7 @@
 <!-- Top Navbar-->
 <div class="navbar">
 	<div class="navbar-inner">
-		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
+		<div class="left"><a href="javascript:item_list_back();" class="link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
 		<div class="center sliding">$!{shop.shopName}</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
