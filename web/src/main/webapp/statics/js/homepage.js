@@ -2,7 +2,7 @@
 var myApp = new Framework7({
 			animateNavBackIcon : true,
 			animatePages : Framework7.prototype.device.ios,
-			pushState : true,
+			pushState : false,
 			swipePanel : 'false',
 			modalButtonOk : '确认',
 			modalButtonCancel : '取消',
