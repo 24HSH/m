@@ -22,7 +22,6 @@ import com.hsh24.mall.api.item.IItemSkuService;
 import com.hsh24.mall.api.item.bo.Item;
 import com.hsh24.mall.api.item.bo.ItemSku;
 import com.hsh24.mall.api.pay.IPayService;
-import com.hsh24.mall.api.trade.IOrderService;
 import com.hsh24.mall.api.trade.ITradeService;
 import com.hsh24.mall.api.trade.bo.Order;
 import com.hsh24.mall.api.trade.bo.OrderRefund;
@@ -58,9 +57,6 @@ public class PayServiceImpl implements IPayService {
 
 	@Resource
 	private ITradeService tradeService;
-
-	@Resource
-	private IOrderService orderService;
 
 	@Resource
 	private IItemService itemService;
@@ -142,8 +138,26 @@ public class PayServiceImpl implements IPayService {
 
 		// 2. 临时订单
 		if (ITradeService.CHECK.equals(type)) {
-			// 3. 判断库存
-			List<Order> orderList = orderService.getOrderList(userId, trade.getTradeId());
+			// 3.1 判断 收货地址
+			String address = trade.getReceiverAddress();
+			if (StringUtils.isBlank(address)) {
+				result.setCode("订单收货地址不能为空");
+
+				remove(no);
+				return result;
+			}
+
+			// 3.2 判断 送达时间
+			String deliverDate = trade.getDeliverDate();
+			if (StringUtils.isBlank(deliverDate)) {
+				result.setCode("订单送达时间不能为空");
+
+				remove(no);
+				return result;
+			}
+
+			// 3.3 判断 库存
+			List<Order> orderList = trade.getOrderList();
 			if (orderList == null || orderList.size() == 0) {
 				result.setCode("当前订单明细不存在");
 
