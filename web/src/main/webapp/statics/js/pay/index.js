@@ -53,7 +53,7 @@ function getBrandWCPayRequest(data) {
 					WeixinJSBridge.log(res.err_msg);
 
 					if (res.err_msg == 'get_brand_wcpay_request:ok') {
-						myApp.getCurrentView().router.back();
+						pay_index_back();
 					} else if (res.err_msg == 'get_brand_wcpay_request:fail') {
 						myApp.alert(res.err_code + res.err_desc + res.err_msg,
 								'错误');
@@ -62,4 +62,13 @@ function getBrandWCPayRequest(data) {
 	} catch (e) {
 		myApp.alert(e, '错误');
 	}
+}
+
+function pay_index_back() {
+	myApp.getCurrentView().router.back({
+		url : myApp.getCurrentView().history[myApp.getCurrentView().history.length
+				- 2],
+		force : true,
+		ignoreCache : true
+	});
 }

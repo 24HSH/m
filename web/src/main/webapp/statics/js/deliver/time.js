@@ -1,33 +1,26 @@
 myApp.onPageInit('deliver.time', function(page) {
-			$$('form.ajax-submit.deliver-time-form').on('beforeSubmit',
-					function(e) {
-					});
+	$$('form.ajax-submit.deliver-time-form').on('beforeSubmit', function(e) {
+			});
 
-			$$('form.ajax-submit.deliver-time-form').on('submitted',
-					function(e) {
-						myApp.hideIndicator();
-						var xhr = e.detail.xhr;
-						myApp.alert(xhr.responseText, '信息', function() {
-									myApp.getCurrentView().router.back({
-												url : appUrl
-														+ "/pay/index.htm?tradeNo="
-														+ $$('#deliver_time_tradeNo')
-																.val(),
-												force : true,
-												ignoreCache : true
-											});
-								});
-					});
+	$$('form.ajax-submit.deliver-time-form').on('submitted', function(e) {
+		myApp.hideIndicator();
+		var xhr = e.detail.xhr;
+		myApp.getCurrentView().router.back({
+			url : myApp.getCurrentView().history[myApp.getCurrentView().history.length
+					- 2],
+			force : true,
+			ignoreCache : true
+		});
+	});
 
-			$$('form.ajax-submit.deliver-time-form').on('submitError',
-					function(e) {
-						myApp.hideIndicator();
-						var xhr = e.detail.xhr;
-						myApp.alert(xhr.responseText, '错误');
-					});
+	$$('form.ajax-submit.deliver-time-form').on('submitError', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				myApp.alert(xhr.responseText, '错误');
+			});
 
-			$$('.content-block-inner .date').find('p').each(function() {
-				$$(this).click(function() {
+	$$('.content-block-inner .date').find('p').each(function() {
+		$$(this).click(function() {
 					if ($$(this).hasClass("cur")) {
 						return;
 					}
@@ -57,21 +50,20 @@ myApp.onPageInit('deliver.time', function(page) {
 								}
 							});
 				});
+	});
+
+	$$('.time .time_div').find('p').each(function() {
+				$$(this).click(function() {
+							if ($$(this).hasClass("cur")) {
+								return;
+							}
+
+							$$('.time .sendTime.cur').removeClass("cur");
+
+							$$(this).addClass("cur");
+						});
 			});
-
-			$$('.time .time_div').find('p').each(function() {
-						$$(this).click(function() {
-									if ($$(this).hasClass("cur")) {
-										return;
-									}
-
-									$$('.time .sendTime.cur')
-											.removeClass("cur");
-
-									$$(this).addClass("cur");
-								});
-					});
-		});
+});
 
 function deliver_time_set() {
 	$$('#deliver_time_date').val($$('.date .sendDate.cur').data("tab"));

@@ -75,7 +75,7 @@
             </div>
         
 			<form id="deliver/time/set" action="$!{env.appUrl}/deliver/time/set.htm" method="POST" class="ajax-submit deliver-time-form">
-				<input type="hidden" name="tradeNo" id="deliver_time_tradeNo" value="$!{tradeNo}" />
+				<input type="hidden" name="tradeNo" value="$!{tradeNo}" />
 				<input type="hidden" name="date" id="deliver_time_date" />
 				<input type="hidden" name="startTime" id="deliver_time_startTime" />
 				<input type="hidden" name="endTime" id="deliver_time_endTime" />

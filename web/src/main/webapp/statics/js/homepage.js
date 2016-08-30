@@ -118,35 +118,28 @@ myApp.onPageInit('portal.homepage', function(page) {
 		});
 
 myApp.onPageInit('deliver.time', function(page) {
-			$$('form.ajax-submit.deliver-time-form').on('beforeSubmit',
-					function(e) {
-					});
+	$$('form.ajax-submit.deliver-time-form').on('beforeSubmit', function(e) {
+			});
 
-			$$('form.ajax-submit.deliver-time-form').on('submitted',
-					function(e) {
-						myApp.hideIndicator();
-						var xhr = e.detail.xhr;
-						myApp.alert(xhr.responseText, '信息', function() {
-									myApp.getCurrentView().router.back({
-												url : appUrl
-														+ "/pay/index.htm?tradeNo="
-														+ $$('#deliver_time_tradeNo')
-																.val(),
-												force : true,
-												ignoreCache : true
-											});
-								});
-					});
+	$$('form.ajax-submit.deliver-time-form').on('submitted', function(e) {
+		myApp.hideIndicator();
+		var xhr = e.detail.xhr;
+		myApp.getCurrentView().router.back({
+			url : myApp.getCurrentView().history[myApp.getCurrentView().history.length
+					- 2],
+			force : true,
+			ignoreCache : true
+		});
+	});
 
-			$$('form.ajax-submit.deliver-time-form').on('submitError',
-					function(e) {
-						myApp.hideIndicator();
-						var xhr = e.detail.xhr;
-						myApp.alert(xhr.responseText, '错误');
-					});
+	$$('form.ajax-submit.deliver-time-form').on('submitError', function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				myApp.alert(xhr.responseText, '错误');
+			});
 
-			$$('.content-block-inner .date').find('p').each(function() {
-				$$(this).click(function() {
+	$$('.content-block-inner .date').find('p').each(function() {
+		$$(this).click(function() {
 					if ($$(this).hasClass("cur")) {
 						return;
 					}
@@ -176,21 +169,20 @@ myApp.onPageInit('deliver.time', function(page) {
 								}
 							});
 				});
+	});
+
+	$$('.time .time_div').find('p').each(function() {
+				$$(this).click(function() {
+							if ($$(this).hasClass("cur")) {
+								return;
+							}
+
+							$$('.time .sendTime.cur').removeClass("cur");
+
+							$$(this).addClass("cur");
+						});
 			});
-
-			$$('.time .time_div').find('p').each(function() {
-						$$(this).click(function() {
-									if ($$(this).hasClass("cur")) {
-										return;
-									}
-
-									$$('.time .sendTime.cur')
-											.removeClass("cur");
-
-									$$(this).addClass("cur");
-								});
-					});
-		});
+});
 
 function deliver_time_set() {
 	$$('#deliver_time_date').val($$('.date .sendDate.cur').data("tab"));
@@ -716,7 +708,7 @@ function getBrandWCPayRequest(data) {
 					WeixinJSBridge.log(res.err_msg);
 
 					if (res.err_msg == 'get_brand_wcpay_request:ok') {
-						myApp.getCurrentView().router.back();
+						pay_index_back();
 					} else if (res.err_msg == 'get_brand_wcpay_request:fail') {
 						myApp.alert(res.err_code + res.err_desc + res.err_msg,
 								'错误');
@@ -726,6 +718,16 @@ function getBrandWCPayRequest(data) {
 		myApp.alert(e, '错误');
 	}
 }
+
+function pay_index_back() {
+	myApp.getCurrentView().router.back({
+		url : myApp.getCurrentView().history[myApp.getCurrentView().history.length
+				- 2],
+		force : true,
+		ignoreCache : true
+	});
+}
+
 myApp.onPageInit('trade.detail', function(page) {
 			$$('form.ajax-submit.trade-detail-delete').on('beforeSubmit',
 					function(e) {
