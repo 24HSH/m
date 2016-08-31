@@ -26,23 +26,28 @@
                                 </div>
                             </a>
 						</div>
-						<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
-							<a class="a7w" style="overflow-x: hidden;" href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" data-ignore-cache="true">
-								<ul style="padding-left: 0; width: $!{velocityMath.mul($!{shop.cartList.size()},63)}px;">
-                                    #foreach($cart in $!{shop.cartList})
-                					<li>
-        								#if($!{cart.itemFileList.size()} > 0)
-        								<img src="$!{cart.itemFileList.get(0).filePath}"></img>
-										#end
-                                        <em>￥$!{cart.price}</em>
-										#if($!{cart.quantity} > 1)
-										<i>$!{cart.quantity}</i>
-										#end
-                					</li>
-									#end
-                                </ul>
-							</a>
-						</div>
+						<a href="$!{env.appUrl}/item/list.htm?shopId=$!{shop.shopId}" class="card-footer item-content" style="padding: 0 0 0 15px;" data-ignore-cache="true">
+							<div class="item-inner">
+    							<div class="a7w" style="overflow-x: hidden;">
+    								<ul style="padding-left: 0; width: $!{velocityMath.mul($!{shop.cartList.size()},63)}px;">
+                                        #set($quantity = 0)
+										#foreach($cart in $!{shop.cartList})
+                    					<li>
+            								#if($!{cart.itemFileList.size()} > 0)
+            								<img src="$!{cart.itemFileList.get(0).filePath}"></img>
+    										#end
+                                            <em>￥$!{cart.price}</em>
+    										#if($!{cart.quantity} > 1)
+    										<i>$!{cart.quantity}</i>
+											#end
+											#set($quantity = $quantity + $!{cart.quantity})
+                    					</li>
+    									#end
+                                    </ul>
+                                </div>
+								<div class="item-after">共$quantity件</div>
+                            </div>
+						</a>
 					</li>
 				</ul>
 				#end
