@@ -111,7 +111,9 @@
 								<div class="col-100">
 									<div class="card" style="border-radius: 5px; margin: 0 1px 10px 1px;">
 										<div class="card-header" style="font-size: 14px;">
-											<div class="left"><i class="iconfont icon-creative color-base" style="font-size: 16px;"></i> 待付款</div>
+											<div class="left">
+                                                <i class="iconfont icon-creative color-base" style="font-size: 16px;"></i> 待付款 <span class="color-red pay-time-left" data-count="$!{trade.count}"></span>
+											</div>
                                             <div class="right">
 												#if($!{today} == $!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'yyyy-MM-dd')})
                 									今天 $!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'HH:mm')}

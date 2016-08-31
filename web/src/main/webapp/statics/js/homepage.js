@@ -799,46 +799,50 @@ function trade_detail_copy() {
 	$$('#trade/detail/copy').trigger("submit");
 }
 myApp.onPageInit('trade.list', function(page) {
-	// 下拉刷新页面
-	var ptrContent = $$('.pull-to-refresh-content');
+			// 下拉刷新页面
+			var ptrContent = $$('.pull-to-refresh-content');
 
-	// 添加'refresh'监听器
-	ptrContent.on('refresh', function(e) {
-				// 模拟1s的加载过程
-				setTimeout(function() {
-							// 列表元素的HTML字符串
-							var itemHTML = '';
-							// 前插新列表元素
-							// ptrContent.find('.more').prepend(itemHTML);
-							// 加载完毕需要重置
-							myApp.pullToRefreshDone();
-						}, 1000);
-			});
+			// 添加'refresh'监听器
+			ptrContent.on('refresh', function(e) {
+						// 模拟1s的加载过程
+						setTimeout(function() {
+									// 列表元素的HTML字符串
+									var itemHTML = '';
+									// 前插新列表元素
+									// ptrContent.find('.more').prepend(itemHTML);
+									// 加载完毕需要重置
+									myApp.pullToRefreshDone();
+								}, 1000);
+					});
 
-	$$('form.ajax-submit.trade-list-cancel').on('beforeSubmit', function(e) {
-			});
+			$$('form.ajax-submit.trade-list-cancel').on('beforeSubmit',
+					function(e) {
+					});
 
-	$$('form.ajax-submit.trade-list-sign').on('beforeSubmit', function(e) {
-			});
+			$$('form.ajax-submit.trade-list-sign').on('beforeSubmit',
+					function(e) {
+					});
 
-	$$('form.ajax-submit.trade-list-copy').on('beforeSubmit', function(e) {
-			});
+			$$('form.ajax-submit.trade-list-copy').on('beforeSubmit',
+					function(e) {
+					});
 
-	$$('form.ajax-submit.trade-list-cancel').on('submitted', function(e) {
-				myApp.hideIndicator();
-				var xhr = e.detail.xhr;
-				// member_index_stats();
-				myApp.getCurrentView().router.refreshPage();
-			});
+			$$('form.ajax-submit.trade-list-cancel').on('submitted',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						// member_index_stats();
+						myApp.getCurrentView().router.refreshPage();
+					});
 
-	$$('form.ajax-submit.trade-list-sign').on('submitted', function(e) {
-				myApp.hideIndicator();
-				var xhr = e.detail.xhr;
-				// member_index_stats();
-				myApp.getCurrentView().router.refreshPage();
-			});
+			$$('form.ajax-submit.trade-list-sign').on('submitted', function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						// member_index_stats();
+						myApp.getCurrentView().router.refreshPage();
+					});
 
-	$$('form.ajax-submit.trade-list-copy').on('submitted', function(e) {
+			$$('form.ajax-submit.trade-list-copy').on('submitted', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
 				// member_index_stats();
@@ -849,26 +853,32 @@ myApp.onPageInit('trade.list', function(page) {
 						});
 			});
 
-	$$('form.ajax-submit.trade-list-cancel').on('submitError', function(e) {
-				myApp.hideIndicator();
-				var xhr = e.detail.xhr;
-				myApp.alert(xhr.responseText, '错误');
-			});
+			$$('form.ajax-submit.trade-list-cancel').on('submitError',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.alert(xhr.responseText, '错误');
+					});
 
-	$$('form.ajax-submit.trade-list-sign').on('submitError', function(e) {
-				myApp.hideIndicator();
-				var xhr = e.detail.xhr;
-				myApp.alert(xhr.responseText, '错误');
-			});
+			$$('form.ajax-submit.trade-list-sign').on('submitError',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.alert(xhr.responseText, '错误');
+					});
 
-	$$('form.ajax-submit.trade-list-copy').on('submitError', function(e) {
-				myApp.hideIndicator();
-				var xhr = e.detail.xhr;
-				myApp.alert(xhr.responseText, '错误');
-			});
+			$$('form.ajax-submit.trade-list-copy').on('submitError',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.alert(xhr.responseText, '错误');
+					});
 
-		// trade_list_stats();
-	});
+			// trade_list_stats();
+
+			// 待付款 订单 倒计时
+			trade_list_count(1);
+		});
 
 function trade_list(type, code) {
 	myApp.getCurrentView().router.load({
@@ -912,6 +922,23 @@ function trade_list_stats() {
 				$$('#trade/list/sign').html(stats[3]);
 			});
 }
+
+function trade_list_count(times) {
+	setTimeout(function() {
+				$$(".card .card-header .pay-time-left").each(function() {
+							var count = $$(this).data("count") - times;
+							if (count > 0) {
+								var m = parseInt(count / 60, 10);
+								var s = parseInt(count - m * 60);
+
+								$$(this).html("(还剩" + m + "分" + s + "秒)");
+							}
+						});
+
+				trade_list_count(++times);
+			}, 1000);
+}
+
 myApp.onPageInit('trade.refund', function(page) {
 			$$('form.ajax-submit.trade-refund-refund').on('beforeSubmit',
 					function(e) {

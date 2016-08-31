@@ -812,6 +812,8 @@ public class TradeServiceImpl implements ITradeService {
 
 		// 15分钟以内
 		if (quotSeconds < 15 * 60) {
+			// 赋值 返回页面 倒计时
+			trade.setCount(15 * 60 - quotSeconds);
 			return trade;
 		}
 
