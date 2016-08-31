@@ -1,3 +1,5 @@
+var trade_list_timer;
+
 myApp.onPageInit('trade.list', function(page) {
 			// 下拉刷新页面
 			var ptrContent = $$('.pull-to-refresh-content');
@@ -80,7 +82,8 @@ myApp.onPageInit('trade.list', function(page) {
 			// trade_list_stats();
 
 			// 待付款 订单 倒计时
-			trade_list_count(1);
+			clearTimeout(trade_list_timer);
+			trade_list_count(0);
 		});
 
 function trade_list(type, code) {
@@ -127,17 +130,27 @@ function trade_list_stats() {
 }
 
 function trade_list_count(times) {
-	setTimeout(function() {
-				$$(".card .card-header .pay-time-left").each(function() {
-							var count = $$(this).data("count") - times;
-							if (count > 0) {
-								var m = parseInt(count / 60, 10);
-								var s = parseInt(count - m * 60);
+	$$(".card .card-header .pay-time-left").each(function() {
+				var count = $$(this).data("count") - times;
+				if (count > 0) {
+					var m = parseInt(count / 60, 10);
+					var s = parseInt(count - m * 60);
 
-								$$(this).html("(还剩" + m + "分" + s + "秒)");
-							}
-						});
+					if (m > 0) {
+						$$(this).html("(还剩" + m + "分" + s + "秒)");
+					} else {
+						$$(this).html("(还剩" + s + "秒)");
+					}
+				} else {
+					$$(this).html("");
+				}
+			});
 
-				trade_list_count(++times);
-			}, 1000);
+	if (++times > 900) {
+		clearTimeout(trade_list_timer);
+	} else {
+		trade_list_timer = setTimeout(function() {
+					trade_list_count(times);
+				}, 1000);
+	}
 }
