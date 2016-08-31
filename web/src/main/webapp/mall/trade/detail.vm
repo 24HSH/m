@@ -151,10 +151,7 @@
                                 </div>
 								#if($!{trade.payDate})
 								<div class="item-title-row">
-									<div class="item-title color-gray">$!{trade.payDate}</div>
-                                </div>
-								<div class="item-title-row">
-									<div class="item-title color-gray">完成付款</div>
+									<div class="item-title color-gray">付款时间：$!{trade.payDate}</div>
                                 </div>
 								#end
 							</div>
