@@ -811,9 +811,9 @@ public class TradeServiceImpl implements ITradeService {
 			DateUtil.getQuotSeconds(DateUtil.datetime(createDate, DateUtil.DEFAULT_DATETIME_FORMAT), new Date());
 
 		// 15分钟以内
-		if (quotSeconds < 15 * 60) {
+		if (quotSeconds < 900) {
 			// 赋值 返回页面 倒计时
-			trade.setCount(15 * 60 - quotSeconds);
+			trade.setCount(900 - quotSeconds);
 			return trade;
 		}
 
