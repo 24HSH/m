@@ -78,7 +78,7 @@
 					<li>
 						<div class="item-content">
 							<div class="item-inner">
-								<div class="item-title"><i class="iconfont icon-shop" style="font-size: 14px;"></i> $!{trade.shopName}</div>
+								<div class="item-title"><i class="iconfont icon-shop color-base" style="font-size: 14px;"></i> $!{trade.shopName}</div>
 							</div>
 						</div>
 					</li>

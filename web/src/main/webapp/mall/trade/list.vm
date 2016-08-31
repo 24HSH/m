@@ -107,6 +107,29 @@
 						<a href="$!{env.appUrl}/trade/detail.htm?tradeNo=$!{trade.tradeNo}" class="item-content" data-ignore-cache="true">
 						#end
 							<div class="item-inner row no-gutter" style="display: flex;">
+								#if($!{trade.type} == 'check' || $!{trade.type} == 'topay')
+								<div class="col-100">
+									<div class="card" style="border-radius: 5px; margin: 0 1px 10px 1px;">
+										<div class="card-header" style="font-size: 14px;">
+											<div class="left"><i class="iconfont icon-creative color-base" style="font-size: 16px;"></i> 待付款</div>
+                                            <div class="right">
+												#if($!{today} == $!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'yyyy-MM-dd')})
+                									今天 $!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'HH:mm')}
+                								#elseif($!{yesterday} == $!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'yyyy-MM-dd')})
+                									昨天 $!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'HH:mm')}
+                								#else
+                									$!{dateUtil.datetime($!{dateUtil.datetime($!{trade.createDate})}, 'MM-dd HH:mm')}
+                								#end
+											</div>
+                                        </div>
+										<div class="card-content">
+											<div class="card-content-inner" style="font-size: 13px;">
+												请在订单提交后尽快完成支付，超时订单将自动取消
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+								#end
 								<div class="col-80">
         							<div class="a7w" style="overflow-x: hidden;">
         								<ul style="padding-left: 0; width: $!{velocityMath.mul($!{trade.orderList.size()},63)}px;">
