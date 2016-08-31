@@ -48,7 +48,7 @@
 					<li>
 						<a href="$!{env.appUrl}/item/list.htm?shopId=$!{trade.shopId}" class="item-link item-content" data-ignore-cache="true">
 							<div class="item-inner">
-								<div class="item-title">店铺：$!{trade.shopName}</div>
+								<div class="item-title">$!{trade.shopName}</div>
 							</div>
 						</a>
 					</li>

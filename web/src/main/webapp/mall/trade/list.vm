@@ -79,7 +79,7 @@
 							<div class="item-inner" style="display: inherit;">
 								<div class="item-title">
 									<a href="$!{env.appUrl}/item/list.htm?shopId=$!{trade.shopId}" data-ignore-cache="true">
-										店铺：$!{trade.shopName} <i class="iconfont icon-right color-gray" style="font-size: 14px;"></i>
+										$!{trade.shopName} <i class="iconfont icon-right color-gray" style="font-size: 14px;"></i>
                                     </a>
 								</div>
 								<div class="item-after">
