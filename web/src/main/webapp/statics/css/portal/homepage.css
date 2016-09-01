@@ -50,7 +50,11 @@ a {
 /* 颜色 */
 label.label-checkbox input[type="checkbox"]:checked + .item-media i.icon-form-checkbox,
 label.label-checkbox input[type="radio"]:checked + .item-media i.icon-form-checkbox {
-  background-color: #FF5500;
+    background-color: #FF5500;
+}
+
+.button.button-fill.color-white {
+    color: #000;
 }
 
 
