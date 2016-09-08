@@ -68,7 +68,9 @@ public class SessionFilter implements Filter {
 			requestSessionId = request.getRequestedSessionId();
 
 			if (StringUtils.isNotEmpty(requestSessionId)) {
-				map = (Map<String, Object>) this.memcachedCacheService.get(requestSessionId);
+				map =
+					(Map<String, Object>) this.memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_SESSION
+						+ requestSessionId);
 
 				if (map != null && map.size() != 0) {
 					session = request.getSession();
@@ -101,12 +103,12 @@ public class SessionFilter implements Filter {
 						map.put(attributeName, session.getAttribute(attributeName));
 					}
 
-					this.memcachedCacheService
-						.set(sessionId, map, IMemcachedCacheService.CACHE_KEY_SESSION_DEFAULT_EXP);
+					this.memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_SESSION + sessionId, map,
+						IMemcachedCacheService.CACHE_KEY_SESSION_DEFAULT_EXP);
 
 					if (!sessionId.equals(requestSessionId) && StringUtils.isNotEmpty(requestSessionId)) {
-						this.memcachedCacheService.set(requestSessionId, map,
-							IMemcachedCacheService.CACHE_KEY_SESSION_EXP);
+						this.memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_SESSION + requestSessionId,
+							map, IMemcachedCacheService.CACHE_KEY_SESSION_EXP);
 					}
 				}
 			}

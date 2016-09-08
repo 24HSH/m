@@ -23,6 +23,11 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 	/**
 	 * session.
 	 */
+	String CACHE_KEY_SESSION = "mall:key_session_";
+
+	/**
+	 * session.
+	 */
 	int CACHE_KEY_SESSION_DEFAULT_EXP = 168 * 60 * 60;
 
 	/**
@@ -40,32 +45,32 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 	/**
 	 * user id.
 	 */
-	String CACHE_KEY_USER_ID = "key_user_id_";
+	String CACHE_KEY_USER_ID = "mall:key_user_id_";
 
 	int CACHE_KEY_LOCKED_USER_ID_DEFAULT_EXP = 1 * 3;
 
 	/**
 	 * passport.
 	 */
-	String CACHE_KEY_PASSPORT = "key_passport_";
+	String CACHE_KEY_PASSPORT = "mall:key_passport_";
 
-	String CACHE_KEY_WX_OPEN_ID = "key_wx_open_id_";
+	String CACHE_KEY_WX_OPEN_ID = "mall:key_wx_open_id_";
 
-	String CACHE_KEY_WX_USER_ID = "key_wx_user_id_";
+	String CACHE_KEY_WX_USER_ID = "mall:key_wx_user_id_";
 
 	// >>>>>>>>>>以下是监控相关<<<<<<<<<<
 
 	/**
 	 * log monitor.
 	 */
-	String CACHE_KEY_LOG_MONITOR = "key_log_monitor";
+	String CACHE_KEY_LOG_MONITOR = "mall:key_log_monitor";
 
 	int CACHE_KEY_LOG_MONITOR_DEFAULT_EXP = 0;
 
 	/**
 	 * action log.
 	 */
-	String CACHE_KEY_ACTION_LOG = "key_action_log";
+	String CACHE_KEY_ACTION_LOG = "mall:key_action_log";
 
 	int CACHE_KEY_ACTION_LOG_DEFAULT_EXP = 0;
 
@@ -74,19 +79,19 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 	/**
 	 * token.
 	 */
-	String CACHE_KEY_WX_TOKEN = "key_wx_token_";
+	String CACHE_KEY_WX_TOKEN = "mall:key_wx_token_";
 
-	String CACHE_KEY_WX_TICKET = "key_wx_ticket_";
+	String CACHE_KEY_WX_TICKET = "mall:key_wx_ticket_";
 
 	// >>>>>>>>>>以下是交易相关<<<<<<<<<<
 
-	String CACHE_KEY_TRADE_NO = "key_trade_no_";
+	String CACHE_KEY_TRADE_NO = "mall:key_trade_no_";
 
 	int CACHE_KEY_TRADE_NO_DEFAULT_EXP = 30;
 
 	// >>>>>>>>>>以下是店铺相关<<<<<<<<<<
 
-	String CACHE_KEY_SHOP_ID = "key_shop_id_";
+	String CACHE_KEY_SHOP_ID = "mall:key_shop_id_";
 
 	// >>>>>>>>>>end<<<<<<<<<<
 

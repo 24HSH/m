@@ -88,7 +88,7 @@ public class LoginAction extends BaseAction {
 
 		// 清空cache中session信息
 		try {
-			memcachedCacheService.remove(session.getId());
+			memcachedCacheService.remove(IMemcachedCacheService.CACHE_KEY_SESSION + session.getId());
 		} catch (Exception e) {
 			logger.error(e);
 		}
