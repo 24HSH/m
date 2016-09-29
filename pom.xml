@@ -54,7 +54,7 @@
 		<weixin-api.version>1.1.5</weixin-api.version>
 		<woodstox-core-asl.version>4.2.0</woodstox-core-asl.version>
 		<wsdl4j.version>1.6.3</wsdl4j.version>
-		<xmemcached.version>2.0.1</xmemcached.version>
+		<xmemcached.version>2.1.0</xmemcached.version>
 		<xmlschema-core.version>2.0.3</xmlschema-core.version>
 		<zkclient.version>0.1</zkclient.version>
 		<zookeeper.version>3.4.6</zookeeper.version>
